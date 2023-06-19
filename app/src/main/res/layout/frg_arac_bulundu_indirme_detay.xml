@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.SevkiyatIslemleri.frg_arac_bulundu_indirme_detay">
+
+    <TextView
+        android:id="@+id/txtPaletAgirlik"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="320dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="----------------"
+        android:textAlignment="viewStart"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtUrunAdi"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="250dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="----------------"
+        android:textAlignment="viewStart"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txttorbaAgirlik"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="285dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="----------------"
+        android:textAlignment="viewStart"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtSapKodu"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="215dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="----------------"
+        android:textAlignment="viewStart"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtKonteyner"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="180dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="----------------"
+        android:textAlignment="viewStart"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtAlici"
+
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="75dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="----------------"
+        android:textAlignment="viewStart"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtBitenKalan"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="355dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="----------------"
+        android:textAlignment="viewStart"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtBitenKalan2"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="390dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="----------------"
+        android:textAlignment="viewStart"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/txtBooking"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="110dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="----------------"
+        android:textAlignment="viewStart"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtAracPlakasi"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="145dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="----------------"
+        android:textAlignment="viewStart"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtYazi5"
+        android:layout_width="325dp"
+        android:textColor="@color/green"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="29dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="YÜKLEME BİLGİLERİ"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:textColor="@color/green"
+        android:layout_y="0dp"
+        android:text="frg_arac_bulundu_indirme_detay"
+        android:textSize="12dp" />
+
+    <Button
+        android:id="@+id/btngeri"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="440dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+
+</AbsoluteLayout>

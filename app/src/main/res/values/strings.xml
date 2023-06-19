@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Etimaden RFID</string>
+    <string name="tags_count">TAGS Count\n%d</string>
+    <string name="button_lock">Lock</string>
+    <string name="version">v.1 14.09.2022</string>
+
+    <string name="downloading">İndiriliyor...</string>
+    <string name="title_file_download">İndiriliyor</string>
+    <string name="storage_access_required">Storage access is required to downloading the file.</string>
+    <string name="storage_permission_denied">Storage permission request was denied.</string>
+    <string name="ok">OK</string>
+
+</resources>

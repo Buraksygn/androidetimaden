@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.SevkiyatIslemleri.frg_konteyner_emir_detay">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/green"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:text="frg_konteyner_emir_detay"
+        android:textSize="12dp" />
+
+
+    <TextView
+        android:id="@+id/txtaciklama"
+        android:layout_width="325dp"
+        android:layout_height="480dp"
+        android:layout_x="0dp"
+        android:layout_y="20dp"
+        android:fontFamily="tahoma"
+        android:gravity="top|left"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="19sp"
+        tools:text="KONTEYNER İŞ EMRİ DETAYI" />
+
+    <Button
+        android:id="@+id/btngeri"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="510dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:text="TAMAM"
+        android:textColor="@color/colorRed"
+        android:textSize="20sp" />
+
+
+</AbsoluteLayout>

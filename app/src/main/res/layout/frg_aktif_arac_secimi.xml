@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_secimi">
+
+    <TextView
+        android:id="@+id/txtYazi5"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="29dp"
+        android:textColor="@color/green"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="AKTİF ARAÇ SEÇİMİ"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_05"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="70dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="&lt; AKTİF ARAÇ LİSTESİ &gt;"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:textColor="@color/green"
+        android:layout_y="0dp"
+        android:text="frg_aktif_arac_secimi"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/txtYazi"
+        android:layout_width="325dp"
+        android:layout_height="63dp"
+        android:layout_x="0dp"
+        android:textColor="@color/green"
+        android:layout_y="132dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="YÜKLEME AKTİVASYONU İÇİN ARAÇ ETİKETİ OKUTUNUZ"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btngeri"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="510dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="325dp"
+        android:layout_height="311dp"
+        android:layout_x="0dp"
+        android:layout_y="197dp"
+        app:srcCompat="@mipmap/cbimage" />
+
+
+</AbsoluteLayout>

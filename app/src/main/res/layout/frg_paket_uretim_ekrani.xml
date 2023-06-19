@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.UretimIslemleri.frg_paket_uretim_ekrani"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:textColor="@color/green"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:text="frg_paket_uretim_ekrani"
+        android:textSize="12dp" />
+
+    <Button
+        android:id="@+id/btncikis"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="25dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/txtLot"
+        android:layout_width="324dp"
+        android:layout_height="30dp"
+        android:layout_x="0dp"
+        android:layout_y="85dp"
+        android:gravity="left"
+        android:text="Lot No : "
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorRed"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/txtMiktar"
+        android:layout_width="324dp"
+        android:layout_height="30dp"
+        android:layout_x="0dp"
+        android:layout_y="115dp"
+        android:gravity="left"
+        android:text="Miktar No : "
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorRed"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtUretimIslemi"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="145dp"
+        android:background="@color/colorRed"
+        android:text="\nÜRETİM İŞLEMİ"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/txtMiktar3"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="205dp"
+        android:gravity="left"
+        android:text="GEÇİCİ PALET VEYA BİGBAG ETİKETİ OKUTUNUZ.... "
+        android:textAlignment="center"
+        android:textColor="@color/colorRed"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnEtiketsizUretim"
+        android:layout_width="324dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="270dp"
+        android:background="@color/colorButonYavruAgzi"
+        android:gravity="center"
+        android:text="ETİKETSİZ ÜRETİM"
+        android:textColor="@color/colorRed"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/txtPaletId"
+        android:layout_width="324dp"
+        android:layout_height="35dp"
+        android:layout_x="0dp"
+        android:layout_y="325dp"
+        android:background="@color/colorGri"
+        android:gravity="left"
+        android:text="Palet ID :"
+        android:textAlignment="center"
+        android:textColor="@color/colorRed"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/txtParcaBir"
+        android:layout_width="135dp"
+        android:layout_height="75dp"
+        android:layout_x="0dp"
+        android:layout_y="360dp"
+        android:background="@color/colorGri"
+        android:gravity="bottom|right"
+        android:text="0"
+        android:textColor="@color/colorBlack"
+        android:textSize="72dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/txtAra"
+        android:layout_width="65dp"
+        android:layout_height="75dp"
+        android:layout_x="135dp"
+        android:layout_y="360dp"
+        android:background="@color/colorGri"
+        android:gravity="bottom|center_horizontal"
+        android:text="-"
+        android:textColor="@color/colorBlack"
+        android:textSize="72dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/txtParcaIki"
+        android:layout_width="124dp"
+        android:layout_height="75dp"
+        android:layout_x="200dp"
+        android:layout_y="360dp"
+        android:background="@color/colorGri"
+        android:gravity="bottom|left"
+        android:text="0"
+        android:textColor="@color/colorBlack"
+        android:textSize="72dp"
+        android:textStyle="bold" />
+
+
+
+    <Button
+        android:id="@+id/btnIptal"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="440dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="IPTAL"
+        android:textColor="@color/colorRed" />
+
+
+</AbsoluteLayout>

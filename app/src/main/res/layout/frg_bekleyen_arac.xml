@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.SevkiyatIslemleri.frg_bekleyen_arac">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:textColor="@color/green"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:text="frg_bekleyen_arac"
+        android:textSize="12dp" />
+
+
+    <Button
+        android:id="@+id/btn_03"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="66dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="ONAYLA"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtYazi6"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="25dp"
+        android:gravity="center_horizontal"
+        android:text="ARAÇ LİSTESİ"
+        android:textColor="@color/green"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+
+
+    <Button
+        android:id="@+id/btncikis"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="440dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+
+    <HorizontalScrollView
+        android:layout_width="325dp"
+        android:layout_height="261dp"
+        android:layout_x="2dp"
+        android:layout_y="150dp">
+
+        <ListView
+            android:id="@+id/liste_bekleyen_arac"
+            android:layout_width="wrap_content"
+            android:layout_height="283dp"
+            android:listSelector="@color/colorBlackSecili"
+            android:scrollbars="horizontal|vertical"
+            android:textColor="@color/green" />
+
+    </HorizontalScrollView>
+
+
+</AbsoluteLayout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.SevkiyatIslemleri.frg_konteyner_bulundu">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/green"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:text="frg_konteyner_bulundu"
+        android:textSize="12dp" />
+
+
+    <Button
+        android:id="@+id/btnisemridegistir"
+        android:layout_width="324dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="20dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="İŞ EMRİ DEĞİŞTİR"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtdepoadi"
+        android:layout_width="324dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="70dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:textAlignment="center"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="268dp"
+        android:layout_height="60dp"
+        android:layout_x="58dp"
+        android:layout_y="115dp"
+        android:fontFamily="tahoma"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="KONTEYNER İŞ EMRİ DETAYI"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="18sp"
+        tools:text="KONTEYNER İŞ EMRİ DETAYI" />
+
+    <TextView
+        android:id="@+id/txtaciklama"
+        android:layout_width="324dp"
+        android:layout_height="243dp"
+        android:layout_x="2dp"
+        android:layout_y="186dp"
+        android:fontFamily="tahoma"
+        android:gravity="top|left"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="20sp"
+        tools:text="KONTEYNER İŞ EMRİ DETAYI" />
+
+    <Button
+        android:id="@+id/btnileri"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="440dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text=" &gt; &gt; İLERİ"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btngeri"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="510dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="48dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="115dp"
+        app:srcCompat="@mipmap/information2" />
+
+
+</AbsoluteLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.etimaden.SevkiyatIslemleri.arac_bulundu">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_x="20dp"
+        android:layout_y="48dp"
+        android:text="layout_arac_bulundu.xml/arac_bulundu.java"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/txtSetKullaniciAdi"
+        android:layout_width="188dp"
+        android:layout_height="30dp"
+        android:layout_x="20dp"
+        android:paddingLeft="5dp"
+        android:gravity="left|center_vertical"
+        android:background="@drawable/my_textview_border"
+        android:layout_y="10dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtSetAktifAltTesis"
+        android:layout_width="78dp"
+        android:layout_height="30dp"
+        android:layout_x="208dp"
+        android:background="@drawable/my_textview_border"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_y="10dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtBaglanti"
+        android:layout_width="58dp"
+        android:layout_height="30dp"
+        android:paddingRight="5dp"
+        android:background="@drawable/my_textview_border"
+        android:layout_x="286dp"
+        android:layout_y="10dp"
+        android:gravity="right|center_vertical"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="23dp"
+        android:layout_y="83dp"
+        android:gravity="center_horizontal"
+        android:text="ARAÇ İŞ EMRİ DETAYI"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtdepoadi"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="23dp"
+        android:layout_y="180dp"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textSize="20sp" />
+
+
+    <Button
+        android:id="@+id/btnisemridegistir"
+        android:layout_width="324dp"
+        android:layout_height="50dp"
+        android:layout_x="23dp"
+        android:layout_y="120dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="İŞ EMRİ DEĞİŞTİR"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtaciklama"
+        android:layout_width="322dp"
+        android:layout_height="200dp"
+        android:layout_x="23dp"
+        android:layout_y="233dp"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btnileri"
+        android:layout_width="324dp"
+        android:layout_height="50dp"
+        android:layout_x="20dp"
+        android:layout_y="435dp"
+        android:background="@drawable/my_button_basarili"
+        android:gravity="center"
+        android:text="İLERİ"
+        android:textColor="@color/colorGreen"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btngeri"
+        android:layout_width="324dp"
+        android:layout_height="50dp"
+        android:layout_x="20dp"
+        android:layout_y="495dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="GERİ"
+        android:textColor="@color/colorRed" />
+
+
+</AbsoluteLayout>

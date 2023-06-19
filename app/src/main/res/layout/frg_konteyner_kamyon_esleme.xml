@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+android:background="@color/colorBlack"
+    tools:context="com.etimaden.SevkiyatIslemleri.frg_konteyner_kamyon_esleme">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorGreen"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:text="frg_konteyner_kamyon_esleme"
+        android:textSize="12dp" />
+
+
+    <TextView
+        android:id="@+id/txtYazi4"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="35dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="KONTEYNER AKTİVASYON"
+        android:textColor="@color/colorGreen"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtYazi"
+        android:layout_width="325dp"
+        android:layout_height="70dp"
+        android:textColor="@color/colorGreen"
+        android:layout_x="0dp"
+        android:layout_y="90dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="AKTİVASYON İÇİN KONTEYNER ETİKETİ OKUTUNUZ..."
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+
+
+    <Button
+        android:id="@+id/btncikis"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="440dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:layout_x="34dp"
+        android:layout_y="160dp"
+        app:srcCompat="@mipmap/konteyner" />
+
+
+</AbsoluteLayout>

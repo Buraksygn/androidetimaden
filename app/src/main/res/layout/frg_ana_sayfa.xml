@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorBlack"
+        tools:context="com.etimaden.frg_ana_sayfa"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:textColor="@color/green"
+        android:text="frg_ana_sayfa"
+        android:textSize="12dp" />
+
+    <Button
+        android:id="@+id/btnSevkiyat"
+        android:layout_width="324dp"
+        android:layout_height="75dp"
+        android:layout_x="0dp"
+        android:layout_y="25dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="SEVKİYAT İŞLEMLERİ"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+
+    <Button
+        android:id="@+id/btnUretim"
+        android:layout_width="324dp"
+        android:layout_height="75dp"
+        android:layout_x="0dp"
+        android:layout_y="125dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="ÜRETİM İŞLEMLERİ"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btncikis"
+        android:layout_width="324dp"
+        android:layout_height="70dp"
+        android:layout_x="0dp"
+        android:layout_y="500dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:text="ÇIKIŞ"
+        android:textColor="@color/colorRed"
+        android:textSize="20sp" />
+
+
+
+
+</AbsoluteLayout>

@@ -1,0 +1,82 @@
+
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.etimaden.ugr_demo">
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+
+
+
+
+
+    <application
+        android:usesCleartextTraffic="true"
+        android:name="com.etimaden.ugr_demo.UGRApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>
+
+
+        <activity android:name="com.etimaden.ugr_demo.ResultWindow_aidl"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="com.etimaden.ugr_demo.ConfigPreferenceActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name="com.etimaden.ugr_demo.AccessActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name="com.etimaden.ugr_demo.LockActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name="com.etimaden.ugr_demo.SearchActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name="com.etimaden.ugr_demo.MainActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.etimaden.ugr_demo.ResultWindow"
+            android:screenOrientation="portrait" />
+
+
+        <activity  android:name="com.etimaden.GirisSayfasi">
+
+        </activity>
+
+
+        <activity android:name="com.etimaden.kurulum">
+
+        </activity>
+
+        <activity android:name="com.etimaden.SevkiyatIslemleri.csurumkontrol">
+
+        </activity>
+
+    </application>
+</manifest>

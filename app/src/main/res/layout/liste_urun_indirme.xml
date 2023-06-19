@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:scrollbars="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_height="22dp"
+        android:layout_width="23dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/greenpoint"
+        android:id="@+id/imageViewFlag"></ImageView>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text=""
+        android:textSize="16dp"
+        android:id="@+id/yazi_kod_durum"/>
+
+
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="Depo Kodu"
+        android:textSize="16dp"
+        android:id="@+id/yazi_kod_sira"/>
+
+
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="Depo Adı"
+        android:textSize="16dp"
+        android:id="@+id/yazi_palet_id"/>
+
+
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="Depo Adı"
+        android:textSize="16dp"
+        android:id="@+id/yazi_lot_no"/>
+</LinearLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.SevkiyatIslemleri.frg_arac_aktivasyon_2003">
+
+    <Button
+        android:id="@+id/btnBekleyenArac"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="30dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="BEKLEYEN ARAÇ LİSTESİ"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:textColor="@color/green"
+        android:text="frg_arac_aktivasyon_2003"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/txtYazi"
+        android:layout_width="325dp"
+        android:layout_height="328dp"
+        android:layout_x="0dp"
+        android:layout_y="99dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="2003 LOJİSTİK YÜKLEME AKTİVASYONU İÇİN ARAÇ ETİKETİ OKUTUNUZ"
+        android:textColor="@color/green"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btngeri"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="440dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+
+</AbsoluteLayout>
