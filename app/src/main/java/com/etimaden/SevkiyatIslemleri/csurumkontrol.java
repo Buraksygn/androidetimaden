@@ -80,7 +80,7 @@ public class csurumkontrol extends AppCompatActivity  {
         if(_ayarbaglantituru.equals("wifi"))
         {
             _OnlineUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/VersiyonKontrolEt";
-            _Kurulum = "http://"+_ayarsunucuip+":"+_zportWifi+"/uygulama.apk";
+            _Kurulum = "https://"+_ayarsunucuip+":"+_zportWifi+"/uygulama.apk";
         }
         else
         {
@@ -205,10 +205,9 @@ public class csurumkontrol extends AppCompatActivity  {
 
         if(_zGuncellemeGerekli.equals("1"))
         {
-           // Toast.makeText(getApplicationContext(),"Burası", Toast.LENGTH_SHORT).show();
+
             Intent _frmAnaSayfa=new Intent(getApplicationContext(), kurulum.class);
             _frmAnaSayfa.putExtra("_OnlineUrl", _Kurulum);
-         //   Toast.makeText(getApplicationContext(),"Adres Burada = "+_Kurulum, Toast.LENGTH_SHORT).show();
             _frmAnaSayfa.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(_frmAnaSayfa);
         }
