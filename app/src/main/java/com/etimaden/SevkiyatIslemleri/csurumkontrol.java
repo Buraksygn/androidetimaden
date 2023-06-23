@@ -199,7 +199,9 @@ public class csurumkontrol extends AppCompatActivity  {
     {
      //   Toast.makeText(getApplicationContext(),"-"+_zGuncellemeGerekli+"-", Toast.LENGTH_SHORT).show();
 
-        int _Dur=1;
+        int _Dur = 1;
+
+       // _zGuncellemeGerekli = "0";
 
         if(_zGuncellemeGerekli.equals("1"))
         {
