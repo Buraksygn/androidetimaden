@@ -8,6 +8,8 @@
     tools:context="com.etimaden.UretimIslemleri.frg_uretim_menu_panel"
     android:layout_height="match_parent">
 
+>
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="325dp"
@@ -53,6 +55,43 @@
         android:text="SHRINK ETİKET EŞLEŞTİRME"
         android:textColor="@color/green"
         android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnUretimIptali"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="235dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="ÜRETİM İPTALİ"
+        android:textColor="@color/green"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnUretimSorgulama"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="305dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="ÜRETİM SORGULAMA"
+        android:textColor="@color/green"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnUretimZayi"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="375dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="ÜRETİM ZAYİ"
+        android:textColor="@color/green"
+        android:textSize="20sp"/>
+
 
     <Button
         android:id="@+id/btncikis"

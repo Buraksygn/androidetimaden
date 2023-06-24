@@ -126,33 +126,6 @@ public class csurumkontrol extends AppCompatActivity  {
                     public void onResponse(JSONObject response) {
                         try {
 
-                            /*
-
-                            String sKullanici = response.getString("_zKullaniciAdi");
-                            String sAktifDepo = response.getString("_zAktifDepo");
-                            String sAktifAltTesis = response.getString("_zAktif_Alt_Tesis");
-                            String sAktifTesis = response.getString("_zAktif_Tesis");
-                            String sAktifSunucu = response.getString("_zAktif_Sunucu");
-                            String sAktifIsletmeEsleme = response.getString("_zAktifIsletmeEslesme");
-                            String sSunucuIp = response.getString("_zSunucuIp");
-                            String sHataAciklama = response.getString("_zHataAciklama");
-
-                            // deger=response.getString("_zKullaniciAdi");
-
-                            BaslangicDegerleri.settaktif_kullanici(sKullanici);
-                            BaslangicDegerleri.setaktif_depo(sAktifDepo);
-                            BaslangicDegerleri.setaktif_alt_tesis(sAktifAltTesis);
-                            BaslangicDegerleri.setaktif_tesis(sAktifTesis);
-                            BaslangicDegerleri.setaktif_sunucu(sAktifSunucu);
-                            BaslangicDegerleri.setaktif_isletmeesleme(sAktifIsletmeEsleme);
-                            BaslangicDegerleri.setsunucu_ip(sSunucuIp);
-                            BaslangicDegerleri.setaciklama(sHataAciklama);
-
-                            Intent intent = new Intent(MainActivity.this, Anasayfa.class);
-                            intent.putExtra("_zKullaniciAdi", BaslangicDegerleri.getaktif_kullanici());
-                            startActivity(intent);*/
-
-
                             _zGuncellemeGerekli = response.getString("_zGuncellemeGerekli").trim();
                             fn_SurumKontrol();
                             pDialog.hide();
@@ -197,19 +170,41 @@ public class csurumkontrol extends AppCompatActivity  {
 
     private void fn_SurumKontrol()
     {
-     //   Toast.makeText(getApplicationContext(),"-"+_zGuncellemeGerekli+"-", Toast.LENGTH_SHORT).show();
 
         int _Dur = 1;
 
-       // _zGuncellemeGerekli = "0";
 
         if(_zGuncellemeGerekli.equals("1"))
         {
+
+            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("VERSİYON UYARISI")
+                    .setContentText("UYGULAMANIN YENİ SÜRÜMÜ BULUNMAKTADIR.<br><a href = '"+_Kurulum+"'>"+_Kurulum.replace("https://","")+"</a> ADRESİNDEN YENİ SÜRÜMÜ KURABİLİRSİNİZ")
+                    .setConfirmText("Tamam")
+                    .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog)
+                        {
+
+                            sDialog.dismissWithAnimation();
+
+                            Intent _anasayfayaGit = new Intent(getApplicationContext(), GirisSayfasi.class);
+                            _anasayfayaGit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(_anasayfayaGit);
+                        }
+                    })
+                    .show();
+
+
+            /*
 
             Intent _frmAnaSayfa=new Intent(getApplicationContext(), kurulum.class);
             _frmAnaSayfa.putExtra("_OnlineUrl", _Kurulum);
             _frmAnaSayfa.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(_frmAnaSayfa);
+        */
+
         }
         else
         {
