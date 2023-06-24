@@ -34,7 +34,6 @@ import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_yukleme;
 import com.etimaden.SevkiyatIslemleri.frg_arac_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_konteyner_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_konteyner_yukleme_aktivasyon;
-import com.etimaden.UretimIslemleri.frg_paket_uretim_ekrani;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.ugr_demo.AccessActivity;
 import com.etimaden.ugr_demo.ConfigPreferenceActivity;
