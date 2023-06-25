@@ -390,7 +390,7 @@ public class frg_silo_secimi extends Fragment {
             {
                 frg_paket_uretim_ekrani fragmentyeni = new frg_paket_uretim_ekrani();
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentyeni.fn_senddata(_cSeciliDepo,_cSeciliSilo,uretim_etiket);
+              //  fragmentyeni.fn_senddata(_cSeciliDepo,_cSeciliSilo,uretim_etiket);
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_paket_uretim_ekrani").addToBackStack(null);
                 fragmentTransaction.commit();
