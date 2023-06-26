@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.SevkiyatIslemleri.frg_isemri_degistir;
+import com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
@@ -23,6 +24,7 @@ public class frg_ana_sayfa extends Fragment
     Button _btnCikis;
     Button _btnUretim;
     Button _btnSevkiyat;
+    Button _btnSatilmisEtiket;
     Button _btnTest;
 
 
@@ -74,10 +76,17 @@ public class frg_ana_sayfa extends Fragment
         _btnSevkiyat.playSoundEffect(0);
         _btnSevkiyat.setOnClickListener(new fn_Sevkiyat());
 
-
         _btnUretim= (Button)getView().findViewById(R.id.btnUretim);
         _btnUretim.playSoundEffect(0);
         _btnUretim.setOnClickListener(new fn_Uretim());
+
+        _btnSatilmisEtiket= (Button)getView().findViewById(R.id.btnSatilmisEtiket);
+        _btnSatilmisEtiket.playSoundEffect(0);
+        _btnSatilmisEtiket.setOnClickListener(new fn_btnSatilmisEtiket());
+
+
+
+
 
 
     }
@@ -137,6 +146,17 @@ public class frg_ana_sayfa extends Fragment
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_uretim_menu_panel").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+    }
+
+    private class fn_btnSatilmisEtiket implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            frg_satilmis_etiket fragmentyeni = new frg_satilmis_etiket();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_satilmis_etiket").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }

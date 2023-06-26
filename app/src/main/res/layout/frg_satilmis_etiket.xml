@@ -5,54 +5,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
-        tools:context="com.etimaden.frg_ana_sayfa"
+    tools:context="com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView22"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_x="0dp"
         android:layout_y="0dp"
-        android:textColor="@color/green"
-        android:text="frg_ana_sayfa"
+        android:text="frg_satilmis_etiket"
+        android:textColor="@color/colorGreen"
         android:textSize="12dp" />
 
     <Button
-        android:id="@+id/btnSevkiyat"
-        android:layout_width="324dp"
+        android:id="@+id/btnTemizle"
+        android:layout_width="325dp"
         android:layout_height="75dp"
         android:layout_x="0dp"
         android:layout_y="25dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="SEVKİYAT İŞLEMLERİ"
+        android:text="TEMİZLE"
         android:textColor="@color/green"
         android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/btnUretim"
-        android:layout_width="324dp"
-        android:layout_height="75dp"
-        android:layout_x="0dp"
-        android:layout_y="125dp"
-        android:background="@drawable/btn_menu_normal"
-        android:gravity="center"
-        android:text="ÜRETİM İŞLEMLERİ"
-        android:textColor="@color/green"
-        android:textSize="20sp" />
+    <HorizontalScrollView
+        android:layout_width="325dp"
+        android:layout_height="356dp"
+        android:layout_x="2dp"
+        android:layout_y="124dp">
 
-    <Button
-        android:id="@+id/btnSatilmisEtiket"
-        android:layout_width="324dp"
-        android:layout_height="75dp"
-        android:layout_x="0dp"
-        android:layout_y="225dp"
-        android:background="@drawable/btn_menu_normal"
-        android:gravity="center"
-        android:text="SATILMIŞ ETİKET KONTROL"
-        android:textColor="@color/green"
-        android:textSize="20sp" />
+        <ListView
+            android:id="@+id/liste_satilmis_etiket"
+            android:layout_width="wrap_content"
+            android:layout_height="310dp"
+            android:listSelector="@color/colorBlackSecili"
+            android:scrollbars="horizontal|vertical"
+            android:textColor="@color/green" />
+
+    </HorizontalScrollView>
+
+
+
+
+
 
     <Button
         android:id="@+id/btncikis"
@@ -62,7 +59,7 @@
         android:layout_y="500dp"
         android:background="@drawable/my_button_cikis"
         android:gravity="center"
-        android:text="ÇIKIŞ"
+        android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
         android:textSize="20sp" />
 

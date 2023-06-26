@@ -19,9 +19,13 @@ import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_secimi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cIslem.cTanimEnum;
 import com.etimaden.cResponseResult.DEPOTag;
+import com.etimaden.service.response.uretim_etiket;
 import com.etimaden.ugr_demo.R;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
@@ -55,6 +59,16 @@ public class frg_paket_uretim_ekrani extends Fragment {
     TextView _txtParcaIki;
 
     cTanimEnum._eDurum _IslemDurum = cTanimEnum._eDurum.ISLEM_YOK;
+
+    uretim_etiket aktif_Palet = null;
+
+    List<String> paket_listesi=new ArrayList<>();
+
+    DEPOTag depo = null;
+
+    DEPOTag silo = null;
+
+    uretim_etiket aktif_urun = null;
 
     int _islemDurumu = 0;
     //  0 : etiket okutma bekleniyor
@@ -124,12 +138,6 @@ public class frg_paket_uretim_ekrani extends Fragment {
         _txtParcaIki = (TextView)getView().findViewById(R.id.txtParcaIki);
 
         fn_AltPanelGorunsunmu(false);
-
-        DEPOTag _Depo = null;
-
-        DEPOTag _Silo = null;
-
-
     }
 
     private void fn_AltPanelGorunsunmu(boolean _bGoster) {
@@ -190,6 +198,13 @@ public class frg_paket_uretim_ekrani extends Fragment {
     }
 
     private void fn_EtiketSorgula(String barcode) {
+
+        if(_islemDurumu == 0)
+        {
+
+
+        }
+
 
         JSONObject parametre = new JSONObject();
 

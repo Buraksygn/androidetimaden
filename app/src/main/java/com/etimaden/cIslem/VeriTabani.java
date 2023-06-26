@@ -148,12 +148,17 @@ public class VeriTabani extends SQLiteOpenHelper {
     private static final String TABLO_08_BEKLEYEN_ARAC_ISEMRI = "bekleyenarac_isemri";
     private static final String TABLO_08_BEKLEYEN_ARAC_RFIDKOD = "bekleyenarac_rfidkod";
 
-        // urun_listesi_yuklenen
-        private static final String TABLO_09_INDIRME_YUKLENEN = "listeyuklenen";
-        private static final String TABLO_09_INDIRME_YUKLENEN_PALET_KOD = "paletkod";
-        private static final String TABLO_09_INDIRME_YUKLENEN_LOT_NO = "lotno";
-        private static final String TABLO_09_INDIRME_YUKLENEN_PALET_AGIRLIK = "paletagirligi";
-        private static final String TABLO_09_INDIRME_YUKLENEN_DURUM  = "durum";
+    // urun_listesi_yuklenen
+    private static final String TABLO_09_INDIRME_YUKLENEN = "listeyuklenen";
+    private static final String TABLO_09_INDIRME_YUKLENEN_PALET_KOD = "paletkod";
+    private static final String TABLO_09_INDIRME_YUKLENEN_LOT_NO = "lotno";
+    private static final String TABLO_09_INDIRME_YUKLENEN_PALET_AGIRLIK = "paletagirligi";
+    private static final String TABLO_09_INDIRME_YUKLENEN_DURUM  = "durum";
+
+    // satilsmis_etiket_kontrol
+    private static final String TABLO_10_ETIKET_KONTROL = "etiketkontrol";
+    private static final String TABLO_10_ETIKET_KONTROL_EPC = "epc";
+    private static final String TABLO_10_ETIKET_KONTROL_DURUM = "durum";
 
 
 
@@ -164,6 +169,14 @@ public class VeriTabani extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+
+
+
+
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLO_10_ETIKET_KONTROL+ "("
+                + TABLO_10_ETIKET_KONTROL_EPC + " TEXT,"
+                + TABLO_10_ETIKET_KONTROL_DURUM + " TEXT )");
+
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLO_09_INDIRME_YUKLENEN+ "("
                 + TABLO_09_INDIRME_YUKLENEN_PALET_KOD + " TEXT,"
@@ -1463,6 +1476,25 @@ public class VeriTabani extends SQLiteOpenHelper {
 
     public void fn_DepoListeTemizle() {
     }
+
+
+    public void fn_SatilmisEtiketTabloTemizle() {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            String Sonuc = "";
+
+            String _strSql = "delete from "+TABLO_10_ETIKET_KONTROL;
+            db.execSQL(_strSql);
+
+            if(db.isOpen())
+            {
+                db.close();
+            }
+        } catch (Exception ex) {
+
+        }
+    }
+
 
     public void fn_IndirmeListeTemize() {
         try {

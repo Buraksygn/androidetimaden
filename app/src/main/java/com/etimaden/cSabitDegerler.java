@@ -9,5 +9,5 @@ public class cSabitDegerler
     public static final String _zportWifi = "7773"; //9988 canlı sistem 8888 test sistemi
     public static final String _zport3G = "9988"; //9988 canlı sistem 8888 test sistemi
 
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 8;
 }
