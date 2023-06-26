@@ -42,6 +42,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Timer;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -71,6 +72,7 @@ public class frg_silo_secimi extends Fragment {
     Button _btn_03;
 
     public DEPOTag _cSeciliSilo=new DEPOTag();
+
     public DEPOTag _cSeciliDepo=new DEPOTag();
 
     uretim_etiket uretim_etiket;
@@ -80,6 +82,7 @@ public class frg_silo_secimi extends Fragment {
     ArrayList<HashMap<String, String>> _Siloliste;
 
     public ListView _Liste;
+
 
     ViewsecDepoTanimlari _Yanit;
 

@@ -113,6 +113,7 @@ public class frg_sevkiyat_menu_panel extends Fragment {
         _btn_03 = (Button) getView().findViewById(R.id.btn_03);
         _btn_03.playSoundEffect(0);
         _btn_03.setOnClickListener(new fn_btn_03());
+        //_btn_03.setOnClickListener(new fn_btn_03_01());
     }
 
     private class fn_Geri implements View.OnClickListener {
@@ -184,6 +185,19 @@ public class frg_sevkiyat_menu_panel extends Fragment {
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_konteyner_yukleme_aktivasyon").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+    }
+
+    private class fn_btn_03_01 implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            ((GirisSayfasi) getActivity()).fn_ModRFID();
+
+            frg_timer_test fragmentyeni = new frg_timer_test();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_timer_test").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }

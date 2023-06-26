@@ -18,6 +18,7 @@ import com.etimaden.GirisSayfasi;
 import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_secimi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cIslem.cTanimEnum;
+import com.etimaden.cResponseResult.DEPOTag;
 import com.etimaden.ugr_demo.R;
 
 import org.json.JSONObject;
@@ -123,6 +124,11 @@ public class frg_paket_uretim_ekrani extends Fragment {
         _txtParcaIki = (TextView)getView().findViewById(R.id.txtParcaIki);
 
         fn_AltPanelGorunsunmu(false);
+
+        DEPOTag _Depo = null;
+
+        DEPOTag _Silo = null;
+
 
     }
 
