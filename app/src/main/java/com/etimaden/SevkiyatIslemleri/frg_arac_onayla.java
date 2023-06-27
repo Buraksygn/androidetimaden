@@ -694,7 +694,9 @@ public class frg_arac_onayla extends Fragment {
                                             pDialog.setTitle("UYARI");
                                             pDialog.setContentText("ARACA YÜKLEME YAPILMAMIŞ DURUMDA. BU ARACIN KAYDINI İPTAL ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?");
                                             pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
-
+                                            pDialog.showCancelButton(true);
+                                            pDialog.setCancelText("İPTAL");
+                                            pDialog.setConfirmText("KAPAT");
                                             pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                                 @Override
                                                 public void onClick(SweetAlertDialog sDialog) {

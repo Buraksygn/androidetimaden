@@ -34,6 +34,7 @@ import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_yukleme;
 import com.etimaden.SevkiyatIslemleri.frg_arac_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_konteyner_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_konteyner_yukleme_aktivasyon;
+import com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket;
 import com.etimaden.UretimIslemleri.frg_paket_uretim_ekrani;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.ugr_demo.AccessActivity;
@@ -758,12 +759,22 @@ public class GirisSayfasi extends AppCompatActivity {
 
                                                 if (_frg_aktif_arac_secimi != null && _frg_aktif_arac_secimi.isVisible()) {
                                                     _frg_aktif_arac_secimi.fn_rfidOkundu(_TempEpc);
-                                                } else
+                                                }
+                                                else
                                                 {
                                                     frg_paket_uretim_ekrani _frg_paket_uretim_ekrani = (frg_paket_uretim_ekrani) getSupportFragmentManager().findFragmentByTag("frg_paket_uretim_ekrani");
 
                                                     if (_frg_paket_uretim_ekrani != null && _frg_paket_uretim_ekrani.isVisible()) {
                                                         _frg_paket_uretim_ekrani.fn_BarkodOkutuldu(_TempEpc);
+                                                    }
+                                                    else
+                                                    {
+                                                        frg_satilmis_etiket _frg_satilmis_etiket = (frg_satilmis_etiket) getSupportFragmentManager().findFragmentByTag("frg_satilmis_etiket");
+
+                                                        if (_frg_satilmis_etiket != null && _frg_satilmis_etiket.isVisible()) {
+                                                            _frg_satilmis_etiket.fn_RfidOkutuldu(_TempEpc);
+                                                        }
+
                                                     }
                                                 }
                                             }
@@ -795,6 +806,24 @@ public class GirisSayfasi extends AppCompatActivity {
     {
        // Toast.makeText(getApplicationContext(), "fn_ListeTemizle Çalıştı", Toast.LENGTH_LONG).show();
         mTAGs.clear();
+
+    }
+
+
+    public void fn_ReadModeAyarla(int v_Gelen)
+    {
+        try {
+            // On Pause
+            Intent intent = new Intent(UGRApplication.UGR_ACTION_SETTING_CHANGE);
+            intent.putExtra("setting", "read_mode");
+            intent.putExtra("read_mode_value", v_Gelen);
+            sendOrderedBroadcast(intent, null);
+
+            // onpausebitti
+        } catch (Exception ex) {
+
+        }
+
 
     }
 

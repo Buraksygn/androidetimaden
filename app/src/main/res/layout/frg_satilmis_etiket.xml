@@ -32,14 +32,14 @@
 
     <HorizontalScrollView
         android:layout_width="325dp"
-        android:layout_height="356dp"
+        android:layout_height="310dp"
         android:layout_x="2dp"
         android:layout_y="124dp">
 
         <ListView
             android:id="@+id/liste_satilmis_etiket"
             android:layout_width="wrap_content"
-            android:layout_height="310dp"
+            android:layout_height="300dp"
             android:listSelector="@color/colorBlackSecili"
             android:scrollbars="horizontal|vertical"
             android:textColor="@color/green" />
@@ -47,6 +47,28 @@
     </HorizontalScrollView>
 
 
+    <TextView
+        android:id="@+id/txtSayi2"
+        android:layout_width="170dp"
+        android:layout_height="45dp"
+        android:layout_x="0dp"
+        android:layout_y="450dp"
+        android:gravity="left"
+        android:text="SAYI"
+        android:textColor="@color/colorGreen"
+        android:textSize="28dp" />
+
+
+    <TextView
+        android:id="@+id/txtSayi"
+        android:layout_width="133dp"
+        android:layout_height="45dp"
+        android:layout_x="178dp"
+        android:layout_y="450dp"
+        android:gravity="right"
+        android:text="120/1"
+        android:textColor="@color/colorGreen"
+        android:textSize="28dp" />
 
 
 

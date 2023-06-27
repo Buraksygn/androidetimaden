@@ -167,6 +167,104 @@ public class VeriTabani extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, cSabitDegerler.DATABASE_VERSION);
     }
 
+    public String fn_SaglamEtiketSayisi()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "SELECT epc from etiketkontrol where durum = '1'  ";
+        Cursor cursor = db.rawQuery(query,null);
+
+        String _Sayi =  cursor.getCount()+"";
+
+        if(db.isOpen())
+        {
+            db.close();
+        }
+
+        return  _Sayi;
+    }
+
+
+
+    public void fn_EtiketDurumUpdate(String v_GelenEpc,String v_GelenDurum) {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            String Sonuc = "";
+
+            String _strSql = "update etiketkontrol set durum = '"+v_GelenDurum+"' where  epc = '"+v_GelenEpc+"' ";
+            db.execSQL(_strSql);
+
+            _strSql = "DELETE from etiketkontrol where  durum = 'TANIMSIZ' ";
+            db.execSQL(_strSql);
+
+            if(db.isOpen())
+            {
+                db.close();
+            }
+        } catch (Exception ex) {
+
+        }
+    }
+
+
+    public void fn_SatilmisEtiketInsert(String v_Gelen) {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            String Sonuc = "";
+
+            String _strSql = "insert into etiketkontrol(epc,durum) values ('"+v_Gelen+"','0') ";
+            db.execSQL(_strSql);
+
+            if(db.isOpen())
+            {
+                db.close();
+            }
+        } catch (Exception ex) {
+
+        }
+    }
+
+    public String fn_SiradakiEpc() {
+        String _Sql="select epc  from etiketkontrol where durum = '0' limit 1 ";
+
+        String _Sonuc = "0";
+
+        try
+        {
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            Cursor cursor = db.rawQuery(_Sql, null);
+
+            if (cursor != null) {
+                try {
+                    if (cursor.moveToFirst()) {
+                        _Sonuc = cursor.getString(0);
+
+
+                    }
+                } finally {
+                    cursor.close();
+
+                    if(db.isOpen())
+                    {
+                        db.close();
+                    }
+                }
+            }
+            else
+            {
+                _Sonuc="0";
+
+            }
+        }catch (Exception ex)
+        {
+            _Sonuc="0";
+        }
+
+return _Sonuc;
+    }
+
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
@@ -1470,6 +1568,7 @@ public class VeriTabani extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLO_07_DEPO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLO_08_BEKLEYEN_ARAC);
         db.execSQL("DROP TABLE IF EXISTS " + TABLO_09_INDIRME_YUKLENEN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLO_10_ETIKET_KONTROL);
 
         onCreate(db);
     }
@@ -1494,6 +1593,8 @@ public class VeriTabani extends SQLiteOpenHelper {
 
         }
     }
+
+
 
 
     public void fn_IndirmeListeTemize() {
@@ -1581,6 +1682,37 @@ public class VeriTabani extends SQLiteOpenHelper {
         return  _DepoYeriListesi;
     }
 
+    public ArrayList<HashMap<String, String>> fn_DigerEtiketListele()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<HashMap<String, String>> _IsEmirleriListesi = new ArrayList<>();
 
+        String query = "SELECT epc, durum from etiketkontrol where durum !='1'";
+        // String query = getString(R.string.sql_sorgusu);
+        Cursor cursor = db.rawQuery(query,null);
+
+        int gorev_id=0;
+
+        gorev_id =cursor.getCount()+1;
+
+        while (cursor.moveToNext())
+        {
+            gorev_id = gorev_id-1;
+
+            HashMap<String,String> _IsEmri = new HashMap<>();
+
+            _IsEmri.put("sira",gorev_id+"");
+            _IsEmri.put("epc",cursor.getString(cursor.getColumnIndex("epc")).substring(10));
+            _IsEmri.put("durum",cursor.getString(cursor.getColumnIndex("durum")));
+            _IsEmirleriListesi.add(_IsEmri);
+        }
+
+        if(db.isOpen())
+        {
+            db.close();
+        }
+
+        return  _IsEmirleriListesi;
+    }
 
 }
