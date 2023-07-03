@@ -104,10 +104,11 @@ public class MainActivity extends AppCompatActivity {
         {
             this.getSupportActionBar().hide();
         }
-        catch (NullPointerException e){
-
+        catch (NullPointerException e)
+        {
 
         }
+
         setContentView(R.layout.activity_main);
 
         _btnCikis = (Button) findViewById(R.id.btnCikis);
@@ -135,21 +136,21 @@ public class MainActivity extends AppCompatActivity {
         pDialog.setCancelable(false);
 
         _txtversiyon.setText(_sbtVerisyon);
-try
-{
-    pDialog.show();
-}catch (Exception ex)
-{
 
-    Log.d("Hata",ex.toString());
-}
+        try {
+            pDialog.show();
+        } catch (Exception ex)
+        {
+
+            Log.d("Hata", ex.toString());
+        }
 
 
         pDialog.findViewById(R.id.confirm_button).setVisibility(View.GONE);
 
-       fn_BaslangicAyarlari();
+        fn_BaslangicAyarlari();
 
-       fn_AyarlariYukle();
+        fn_AyarlariYukle();
     }
 
 

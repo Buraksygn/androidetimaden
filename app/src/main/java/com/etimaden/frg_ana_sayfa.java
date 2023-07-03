@@ -7,6 +7,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,6 +21,8 @@ import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.ugr_demo.R;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class frg_ana_sayfa extends Fragment
 {
     Button _btnCikis;
@@ -26,6 +30,8 @@ public class frg_ana_sayfa extends Fragment
     Button _btnSevkiyat;
     Button _btnSatilmisEtiket;
     Button _btnTest;
+
+
 
 
     public frg_ana_sayfa() {
@@ -67,6 +73,7 @@ public class frg_ana_sayfa extends Fragment
       //  ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
         ((GirisSayfasi)getActivity()).fn_ListeTemizle();
+        ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
         _btnCikis=(Button)getView().findViewById(R.id.btncikis);
         _btnCikis.playSoundEffect(0);
@@ -85,8 +92,10 @@ public class frg_ana_sayfa extends Fragment
         _btnSatilmisEtiket.setOnClickListener(new fn_btnSatilmisEtiket());
 
 
+    }
 
-
+    public void fn_BarkodOkutuldu(final String barcode)
+    {
 
 
     }

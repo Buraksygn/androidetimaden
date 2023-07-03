@@ -594,7 +594,16 @@ public class GirisSayfasi extends AppCompatActivity {
 
                             if (_frg_aktif_isemri_indirme != null && _frg_aktif_isemri_indirme.isVisible())
                             {
-                                _frg_aktif_isemri_indirme.fn_BarkodOkutuldu(barcode);
+                                _frg_aktif_isemri_indirme.fn_BarkodOkutuldu(barcode.toString());
+                            }
+                            else
+                            {
+                                frg_ana_sayfa _frg_ana_sayfa = (frg_ana_sayfa) getSupportFragmentManager().findFragmentByTag("frg_ana_sayfa");
+
+                                if (_frg_ana_sayfa != null && _frg_ana_sayfa.isVisible())
+                                {
+                                    _frg_ana_sayfa.fn_BarkodOkutuldu(barcode.toString());
+                                }
                             }
                         }
                     }

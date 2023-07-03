@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
-        tools:context="com.etimaden.frg_ana_sayfa"
+    tools:context="com.etimaden.frg_ana_sayfa"
     android:layout_height="match_parent">
 
     <TextView
@@ -54,6 +54,8 @@
         android:textColor="@color/green"
         android:textSize="20sp" />
 
+
+
     <Button
         android:id="@+id/btncikis"
         android:layout_width="324dp"
@@ -65,8 +67,6 @@
         android:text="ÇIKIŞ"
         android:textColor="@color/colorRed"
         android:textSize="20sp" />
-
-
 
 
 </AbsoluteLayout>
