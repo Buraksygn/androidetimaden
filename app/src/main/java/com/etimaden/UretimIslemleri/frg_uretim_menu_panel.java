@@ -1,6 +1,5 @@
 package com.etimaden.UretimIslemleri;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,16 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.etimaden.ConnectionHelper;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.frg_ana_sayfa;
 import com.etimaden.ugr_demo.R;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class frg_uretim_menu_panel extends Fragment {
 

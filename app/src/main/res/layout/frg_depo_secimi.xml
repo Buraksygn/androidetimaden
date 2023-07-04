@@ -44,14 +44,12 @@
         android:textSize="18dp"
         android:textStyle="bold" />
 
-
-
     <Button
         android:id="@+id/btncikis"
         android:layout_width="324dp"
         android:layout_height="60dp"
         android:layout_x="0dp"
-        android:layout_y="440dp"
+        android:layout_y="510dp"
         android:background="@drawable/my_button_cikis"
         android:gravity="center"
         android:textSize="20sp"
@@ -61,14 +59,14 @@
 
     <HorizontalScrollView
         android:layout_width="325dp"
-        android:layout_height="261dp"
-        android:layout_x="2dp"
+        android:layout_height="340dp"
+        android:layout_x="0dp"
         android:layout_y="150dp">
 
         <ListView
             android:id="@+id/depo_list"
             android:layout_width="wrap_content"
-            android:layout_height="283dp"
+            android:layout_height="440dp"
             android:listSelector="@color/colorBlackSecili"
             android:scrollbars="horizontal|vertical"
             android:textColor="@color/green" />

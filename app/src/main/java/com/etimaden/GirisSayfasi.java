@@ -586,7 +586,7 @@ public class GirisSayfasi extends AppCompatActivity {
 
                         if (_frg_paket_uretim_ekrani != null && _frg_paket_uretim_ekrani.isVisible())
                         {
-                            _frg_paket_uretim_ekrani.fn_BarkodOkutuldu(barcode);
+                            _frg_paket_uretim_ekrani.barkodOkundu(barcode);
                         }
                         else
                         {
@@ -769,21 +769,13 @@ public class GirisSayfasi extends AppCompatActivity {
                                                 if (_frg_aktif_arac_secimi != null && _frg_aktif_arac_secimi.isVisible()) {
                                                     _frg_aktif_arac_secimi.fn_rfidOkundu(_TempEpc);
                                                 }
-                                                else
-                                                {
-                                                    frg_paket_uretim_ekrani _frg_paket_uretim_ekrani = (frg_paket_uretim_ekrani) getSupportFragmentManager().findFragmentByTag("frg_paket_uretim_ekrani");
+                                                else {
 
-                                                    if (_frg_paket_uretim_ekrani != null && _frg_paket_uretim_ekrani.isVisible()) {
-                                                        _frg_paket_uretim_ekrani.fn_BarkodOkutuldu(_TempEpc);
-                                                    }
-                                                    else
+                                                    frg_satilmis_etiket _frg_satilmis_etiket = (frg_satilmis_etiket) getSupportFragmentManager().findFragmentByTag("frg_satilmis_etiket");
+
+                                                    if (_frg_satilmis_etiket != null && _frg_satilmis_etiket.isVisible())
                                                     {
-                                                        frg_satilmis_etiket _frg_satilmis_etiket = (frg_satilmis_etiket) getSupportFragmentManager().findFragmentByTag("frg_satilmis_etiket");
-
-                                                        if (_frg_satilmis_etiket != null && _frg_satilmis_etiket.isVisible()) {
-                                                            _frg_satilmis_etiket.fn_RfidOkutuldu(_TempEpc);
-                                                        }
-
+                                                        _frg_satilmis_etiket.fn_RfidOkutuldu(_TempEpc);
                                                     }
                                                 }
                                             }

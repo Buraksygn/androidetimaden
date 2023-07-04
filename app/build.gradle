@@ -41,14 +41,20 @@ dependencies {
     implementation files('libs/jtds-1.2.7.jar')
 
 
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+  //  compile 'com.squareup.retrofit2:retrofit:2.1.0'
+  //  compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
 
-    //implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    //compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    //compile 'com.google.code.gson:gson:2.6.2'
+   // compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     //implementation 'com.google.code.gson:gson:2.8.6'
 
     //implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 }
 repositories {
     mavenCentral()
