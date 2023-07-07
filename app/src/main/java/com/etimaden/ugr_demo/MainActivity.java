@@ -41,6 +41,9 @@ import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cIslem.Viewsistemgiris;
 import com.etimaden.cIslem.ViewtestParseClass;
 import com.etimaden.cSabitDegerler;
+import com.etimaden.servisbaglanti.ViewtoplamaTest;
+import com.etimaden.servisbaglanti.requesttoplamaTest;
+import com.etimaden.servisbaglanti.test_interface;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,12 +51,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Collections;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
@@ -96,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
     public int zSonuc = 1;
 
+    Retrofit _retrofit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         _btnGiris.setFocusableInTouchMode(true);///add this line
         _btnGiris.requestFocus();
         _btnGiris.playSoundEffect(SoundEffectConstants.CLICK);
-        _btnGiris.setOnClickListener(new fn_Giris());
+        _btnGiris.setOnClickListener(new fn_Giris_01());
 
         _editTxtKullaniciAdi = (EditText) findViewById(R.id.editTextAd);
 
@@ -136,6 +146,12 @@ public class MainActivity extends AppCompatActivity {
         pDialog.setCancelable(false);
 
         _txtversiyon.setText(_sbtVerisyon);
+
+        String _OnlineUrlTest="";
+
+        _OnlineUrlTest = "http://88.255.50.73:"+_zport3G+"/";
+
+
 
         try {
             pDialog.show();
@@ -583,6 +599,80 @@ int x= 1;
             RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
             request.setRetryPolicy(policy);
             queue.add(request);
+        }
+    }
+
+    private class fn_Giris_01 implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+
+            requesttoplamaTest _Param = new requesttoplamaTest();
+            _Param.set_girilendeger("7");
+
+
+            test_interface _ApiServis = _retrofit.create(test_interface.class);
+            Call<ViewtoplamaTest> call = _ApiServis.fn_toplamaTest(_Param);
+
+            try {
+                call.execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } {};
+
+
+
+
+            try {
+
+
+
+                ViewtoplamaTest response = call.execute().body();
+
+                int _Sayi_01 = response.get_toplam();
+
+                _Param = new requesttoplamaTest();
+                _Param.set_girilendeger("8");
+
+                _ApiServis = _retrofit.create(test_interface.class);
+                call = _ApiServis.fn_toplamaTest(_Param);
+
+                int _Sayi_02 = response.get_toplam();
+
+                int _Sayi_03 = _Sayi_01 + _Sayi_02;
+
+                Toast.makeText(getApplicationContext(),"Cevap = "+_Sayi_03, Toast.LENGTH_SHORT).show();
+
+
+
+            } catch (IOException e) {
+                Toast.makeText(getApplicationContext(),"Cevap = "+e.getMessage()+"", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
+
+            /*
+
+
+
+
+
+            call.enqueue(new Callback<ViewtoplamaTest>() {
+                @Override
+                public void onResponse(Call<ViewtoplamaTest> call, retrofit2.Response<ViewtoplamaTest> response) {
+
+                    if
+                }
+
+                @Override
+                public void onFailure(Call<ViewtoplamaTest> call, Throwable t) {
+
+                }
+            });
+
+*/
+
+
         }
     }
 }

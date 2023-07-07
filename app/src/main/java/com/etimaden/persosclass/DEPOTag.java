@@ -2,6 +2,20 @@ package com.etimaden.persosclass;
 
 public class DEPOTag {
 
+    public DEPOTag() {
+    }
+
+    public DEPOTag(String depo_id, String depo_adi, String depo_giris_tag, String depo_cikis_tag, String alt_isletme_kod, String isletme_kod, String depo_turu, String depo_kod_isletmeesleme) {
+        this.depo_id = depo_id;
+        this.depo_adi = depo_adi;
+        this.depo_giris_tag = depo_giris_tag;
+        this.depo_cikis_tag = depo_cikis_tag;
+        this.alt_isletme_kod = alt_isletme_kod;
+        this.isletme_kod = isletme_kod;
+        this.depo_turu = depo_turu;
+        this.depo_kod_isletmeesleme = depo_kod_isletmeesleme;
+    }
+
     public String getDepo_id() {
         return depo_id;
     }
@@ -74,28 +88,4 @@ public class DEPOTag {
     private String isletme_kod = "";
     private String depo_turu = "";
     private String depo_kod_isletmeesleme = "";
-
-    public DEPOTag(String v_depo_id,
-                   String v_depo_adi,
-                   String v_isletme_kod,
-                   String v_alt_isletme_kod,
-                   String v_depo_giris_tag,
-                   String v_depo_cikis_tag,
-                   String v_depo_turu,
-                   String v_depo_kod_isletmeesleme)
-    {
-        this.depo_adi = v_depo_adi;
-        this.depo_id = v_depo_id;
-        this.depo_giris_tag = v_depo_giris_tag;
-        this.depo_cikis_tag = v_depo_cikis_tag;
-        this.alt_isletme_kod = v_alt_isletme_kod;
-        this.isletme_kod = v_isletme_kod;
-        this.depo_turu = v_depo_turu;
-        this.depo_kod_isletmeesleme = v_depo_kod_isletmeesleme;
-    }
-
-
-
-
-
 }

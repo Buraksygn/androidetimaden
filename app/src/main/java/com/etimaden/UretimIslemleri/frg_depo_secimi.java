@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -45,6 +46,7 @@ import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
 import static com.etimaden.cSabitDegerler._zsifre;
 
+
 public class frg_depo_secimi extends Fragment {
 
     VeriTabani _myIslem;
@@ -61,14 +63,13 @@ public class frg_depo_secimi extends Fragment {
 
     Retrofit _retrofit;
 
-
-
     uretim_etiket urun;
 
     Button _btncikis;
+    Button _btn_03;
 
     ArrayList<DEPOTag> dataModels;
-    DEPOTag _Secili;
+    DEPOTag _Secili = new DEPOTag();
     private static apmblDepoListesi adapter;
 
     public ListView _Liste;
@@ -104,6 +105,10 @@ public class frg_depo_secimi extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         _myIslem = new VeriTabani(getContext());
+
+        _btn_03 = (Button)getView().findViewById(R.id.btn_03);
+        _btn_03.playSoundEffect(0);
+        _btn_03.setOnClickListener(new fn_btn03());
 
         _btncikis = (Button)getView().findViewById(R.id.btncikis);
         _btncikis.playSoundEffect(0);
@@ -167,12 +172,9 @@ public class frg_depo_secimi extends Fragment {
         _Param.setAktif_kullanici(_ayaraktifkullanici);
 
         _Param.setDepo_turu("0");
-        _Param.setIsletme(urun.getisletme());
-        _Param.setDepo_id(urun.getdepo_silo_secimi());
+        _Param.setIsletme(urun.getIsletme());
+        _Param.setDepo_id(urun.getDepo_silo_secimi());
         _Param.setDepo_silo_secimi("");
-
-        int _Dur = 1;
-        int _Devam = 2;
 
         //
 
@@ -185,8 +187,6 @@ public class frg_depo_secimi extends Fragment {
                 ViewsecDepoTanimlari _Yanit = response.body();
 
                 List<DEPOTag> _DepoListesi= _Yanit.get_DepoListesi();
-
-
 
                 if (_Yanit.get_zSonuc().equals("0")) {
                     new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
@@ -210,7 +210,7 @@ public class frg_depo_secimi extends Fragment {
                     for(int iSayac = 0;iSayac<_DepoListesi.size();iSayac++)
                     {
                         dataModels.add(new DEPOTag(
-                                _DepoListesi.get(iSayac).getIsletme_kod()+"",
+                                _DepoListesi.get(iSayac).getDepo_id()+"",
                                 _DepoListesi.get(iSayac).getDepo_adi()+"",
                                 _DepoListesi.get(iSayac).getIsletme_kod()+"",
                                 _DepoListesi.get(iSayac).getAlt_isletme_kod()+"",
@@ -230,7 +230,21 @@ public class frg_depo_secimi extends Fragment {
 
             @Override
             public void onFailure(Call<ViewsecDepoTanimlari> call, Throwable t) {
-
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentText("Sistemsel Hata = "+t.getMessage())
+                        .setContentTextSize(20)
+                        .setConfirmText("TAMAM")
+                        .showCancelButton(false)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                        {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog)
+                            {
+                                sDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -253,8 +267,39 @@ public class frg_depo_secimi extends Fragment {
         @Override
         public void onClick(View view) {
 
+           if(_Secili.getDepo_id().equals(""))
+           {
+
+               new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                       .setTitleText("HATA")
+                       .setContentText("Lütfen depo seçiniz")
+                       .setContentTextSize(20)
+                       .setConfirmText("TAMAM")
+                       .showCancelButton(false)
+                       .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                       {
+                           @Override
+                           public void onClick(SweetAlertDialog sDialog)
+                           {
+                               sDialog.dismissWithAnimation();
 
 
+
+
+                           }
+                       })
+                       .show();
+
+           }
+           else
+           {
+               frg_silo_secimi fragmentyeni = new frg_silo_secimi();
+               fragmentyeni.fn_senddata(_Secili,urun);
+               FragmentManager fragmentManager = getFragmentManager();
+               FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+               fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_silo_secimi").addToBackStack(null);
+               fragmentTransaction.commit();
+           }
         }
     }
 

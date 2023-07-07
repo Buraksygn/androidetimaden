@@ -58,100 +58,59 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txtUretimIslemi"
-        android:layout_width="324dp"
-        android:layout_height="60dp"
-        android:layout_x="0dp"
-        android:layout_y="145dp"
-        android:background="@color/colorRed"
-        android:text="\nÜRETİM İŞLEMİ"
-        android:textAlignment="center"
-        android:textColor="@color/colorBlack"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-
-    <TextView
-        android:id="@+id/txtMiktar3"
-        android:layout_width="324dp"
-        android:layout_height="60dp"
-        android:layout_x="0dp"
-        android:layout_y="205dp"
-        android:gravity="left"
-        android:text="GEÇİCİ PALET VEYA BİGBAG ETİKETİ OKUTUNUZ.... "
-        android:textAlignment="center"
-        android:textColor="@color/colorRed"
-        android:textSize="20dp"
-        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnEtiketsizUretim"
         android:layout_width="324dp"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:layout_x="0dp"
-        android:layout_y="270dp"
-        android:background="@color/colorButonYavruAgzi"
+        android:layout_y="180dp"
+        android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="ETİKETSİZ ÜRETİM"
-        android:textColor="@color/colorRed"
-        android:textSize="24sp" />
-
-
-    <TextView
-        android:id="@+id/txtPaletId"
-        android:layout_width="324dp"
-        android:layout_height="50dp"
-        android:layout_x="0dp"
-        android:layout_y="355dp"
-        android:background="@color/colorGri"
-        android:gravity="left"
-        android:text="Palet ID :"
-        android:textAlignment="center"
-        android:textColor="@color/colorRed"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textColor="@color/green"
+        android:textSize="30sp" />
 
 
     <TextView
         android:id="@+id/txtParcaBir"
-        android:layout_width="135dp"
-        android:layout_height="100dp"
+        android:layout_width="130dp"
+        android:layout_height="190dp"
         android:layout_x="0dp"
-        android:layout_y="405dp"
+        android:layout_y="310dp"
         android:background="@color/colorGri"
-        android:gravity="bottom|right"
-        android:text="0"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="90"
         android:textColor="@color/colorBlack"
-        android:textSize="82dp"
+        android:textSize="98dp"
         android:textStyle="bold" />
 
 
     <TextView
         android:id="@+id/txtAra"
-        android:layout_width="65dp"
-        android:layout_height="100dp"
-        android:layout_x="135dp"
-        android:layout_y="405dp"
+        android:layout_width="64dp"
+        android:layout_height="190dp"
+        android:layout_x="130dp"
+        android:layout_y="310dp"
         android:background="@color/colorGri"
-        android:gravity="bottom|center_horizontal"
+        android:gravity="center_horizontal|center_vertical"
         android:text="-"
         android:textColor="@color/colorBlack"
-        android:textSize="82dp"
+        android:textSize="98dp"
         android:textStyle="bold" />
 
 
     <TextView
         android:id="@+id/txtParcaIki"
-        android:layout_width="124dp"
-        android:layout_height="100dp"
-        android:layout_x="200dp"
-        android:layout_y="405dp"
+        android:layout_width="130dp"
+        android:layout_height="190dp"
+        android:layout_x="194dp"
+        android:layout_y="310dp"
         android:background="@color/colorGri"
-        android:gravity="bottom|left"
+        android:gravity="center_horizontal|center_vertical"
         android:text="0"
         android:textColor="@color/colorBlack"
-        android:textSize="82dp"
+        android:textSize="94dp"
         android:textStyle="bold" />
 
 

@@ -1,6 +1,7 @@
 package com.etimaden.UretimIslemleri;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,15 +10,24 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.core.app.NotificationCompatSideChannelService;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.persosclass.DEPOTag;
+import com.etimaden.persosclass.etiket_no;
 import com.etimaden.persosclass.uretim_etiket;
+import com.etimaden.request.request_etiket_kontrol;
+import com.etimaden.request.request_sec_etiket_no;
+import com.etimaden.request.request_yari_otomatik_paket_kontrol_et;
 import com.etimaden.request.requestsec_etiket_uretim;
+import com.etimaden.response.frg_paket_uretim_ekrani.View_etiket_kontrol;
+import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_etiket_no;
+import com.etimaden.response.frg_paket_uretim_ekrani.View_yari_otomatik_paket_kontrol_et;
 import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
 import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_interface;
 import com.etimaden.ugr_demo.R;
@@ -54,33 +64,29 @@ public class frg_paket_uretim_ekrani extends Fragment {
     String _ayarversiyon = "";
     String _OnlineUrl = "";
 
-
-    uretim_etiket urun;
-
-
-
     Button _btnEtiketsizUretim;
     Button _btnIptal;
     Button _btncikis;
 
-    TextView _txtPaletId;
+   // TextView _txtPaletId;
     TextView _txtParcaBir;
     TextView _txtAra;
     TextView _txtParcaIki;
 
    // cTanimEnum._eDurum islemDurumu = cTanimEnum._eDurum.ISLEM_YOK;
 
+   uretim_etiket aktif_Palet = null;
 
 
     List<String> paket_listesi=new ArrayList<>();
 
     DEPOTag depo = null;
-
+    uretim_etiket urun = null;
     DEPOTag silo = null;
 
     Retrofit _retrofit;
 
-
+    CountDownTimer countDownTimer;
 
     Boolean isReadeable = true;
 
@@ -143,7 +149,6 @@ public class frg_paket_uretim_ekrani extends Fragment {
         _btnIptal.playSoundEffect(0);
         _btnIptal.setOnClickListener(new fn_btnIptal());
 
-        _txtPaletId = (TextView)getView().findViewById(R.id.txtPaletId);
 
         _txtParcaBir = (TextView)getView().findViewById(R.id.txtParcaBir);
 
@@ -151,7 +156,32 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
         _txtParcaIki = (TextView)getView().findViewById(R.id.txtParcaIki);
 
-        fn_AltPanelGorunsunmu(false);
+        countDownTimer = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long l) {
+
+                etiket_islem_baslat(urun.getSerino_rfid());
+
+            }
+
+            @Override
+            public void onFinish() {
+                // btn_basla_dur.setText("başla");
+
+                //   countDownTimer.start();
+
+            }
+        };
+
+        if(silo==null)
+        {
+            fn_AltPanelGorunsunmu(false);
+        }
+        else
+        {
+            countDownTimer.cancel(); // cancel
+            countDownTimer.start();  // then restart
+        }
     }
 
     private void fn_AltPanelGorunsunmu(boolean _bGoster) {
@@ -161,7 +191,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
             _btnIptal.setVisibility(View.VISIBLE);
 
-            _txtPaletId.setVisibility(View.VISIBLE);
+
             _txtParcaBir.setVisibility(View.VISIBLE);
             _txtAra.setVisibility(View.VISIBLE);
             _txtParcaIki.setVisibility(View.VISIBLE);
@@ -172,7 +202,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
             _btnIptal.setVisibility(View.INVISIBLE);
 
-            _txtPaletId.setVisibility(View.INVISIBLE);
+
             _txtParcaBir.setVisibility(View.INVISIBLE);
             _txtAra.setVisibility(View.INVISIBLE);
             _txtParcaIki.setVisibility(View.INVISIBLE);
@@ -206,124 +236,24 @@ public class frg_paket_uretim_ekrani extends Fragment {
     }
 
 
-    public void barkodOkundu(String barkod)
+    private void etiket_islem_baslat(String str)
     {
+
+    }
+
+
+
+
+    public void barkodOkundu(String barkod) {
         barkod = barkod.trim();
 
-        if(barkod.length()>=24)
-        {
+        if (barkod.length() >= 24) {
             int Sayac = barkod.length();
 
-            barkod = barkod.substring(barkod.length()-24);
+            barkod = barkod.substring(barkod.length() - 24);
 
-            frg_paket_uretim_ekrani_interface _ApiServis = _retrofit.create(frg_paket_uretim_ekrani_interface.class);
-
-            requestsec_etiket_uretim _Param=new requestsec_etiket_uretim();
-            //region Sabit değerleri yükle
-            _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
-            _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
-            _Param.set_zaktif_tesis(_ayaraktiftesis);
-            _Param.set_zsurum(_sbtVerisyon);
-            _Param.set_zkullaniciadi(_zkullaniciadi);
-            _Param.set_zsifre(_zsifre);
-            _Param.setaktif_sunucu(_ayaraktifsunucu);
-            _Param.setaktif_kullanici(_ayaraktifkullanici);
-            //
-            _Param.set_etiket(barkod);
-
-            Call<Viewsec_etiket_uretim> call = _ApiServis.fn_sec_etiket_uretim(_Param);
-            call.enqueue(new Callback<Viewsec_etiket_uretim>() {
-
-                @Override
-                public void onResponse(Call<Viewsec_etiket_uretim> call, Response<Viewsec_etiket_uretim> response) {
-
-                    Viewsec_etiket_uretim _Yanit = response.body();
-
-                    urun = _Yanit.get_tag();
-
-                    if (_Yanit.get_zSonuc().equals("0")) {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
-                                .setTitleText("HATA")
-                                .setContentText(_Yanit.get_zHataAciklama())
-                                .setContentTextSize(20)
-                                .setConfirmText("TAMAM")
-                                .showCancelButton(false)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                    @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
-                                        sDialog.dismissWithAnimation();
-                                    }
-                                })
-                                .show();
-                    } else if (!_Yanit.get_tag().getetiket_durumu().equals("0")) {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                                .setTitleText("Üretilmiş Etiket")
-                                .setContentText("Üretim için uygun olmayan etiketi.Etiketin üretim işlemi tamamlanmıştır.")
-                                .setContentTextSize(20)
-                                .setConfirmText("TAMAM")
-                                .showCancelButton(false)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                    @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
-                                        sDialog.dismissWithAnimation();
-                                    }
-                                })
-                                .show();
-                        return;
-                    } else if (!_Yanit.get_tag().getetiket_uretim_uygunlugu().equals("1")) {
-                        String _Yazi = "ÜRETİM ONAYI ALINAMADI.ÜRETİM KURALLARI";
-                        _Yazi += "<br/>1) İLK 5 DAKİKA İÇİNDE ÜRETİM İŞLEMİNİ GERÇEKLEŞTİREMEZSİNİZ.";
-                        _Yazi += "<br/>2) 3 GÜN İÇİNDE ÜRETİM KAYDI GERÇEKLEŞMEYEN ETİKET İÇİN ÜRETİM KAYDI OLUŞTURULAMAZ.";
-                        _Yazi += "<br/>3) SİSTEM İÇİNDE AYNI İŞ EMRİNE AİT EN FAZLA 2 ADET ÜRETİMİ TAMAMLANMAMIŞ LOT BULUNABİLİR.";
-
-
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                                .setTitleText("ONAY ALINAMADI")
-                                .setContentText(_Yazi)
-                                .setContentTextSize(16)
-                                .setConfirmText("TAMAM")
-                                .showCancelButton(false)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                    @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
-                                        sDialog.dismissWithAnimation();
-                                    }
-                                })
-                                .show();
-                        return;
-                    }else if (depo == null || silo == null)
-                    {
-                        frg_depo_secimi fragmentyeni = new frg_depo_secimi();
-                        fragmentyeni.fn_senddata(urun);
-                        FragmentManager fragmentManager = getFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_depo_secimi").addToBackStack(null);
-                        fragmentTransaction.commit();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Viewsec_etiket_uretim> call, Throwable t) {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText("HATA")
-                            .setContentText("Sistemsel Hata = "+t.getMessage())
-                            .setContentTextSize(20)
-                            .setConfirmText("TAMAM")
-                            .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
-                            {
-                                @Override
-                                public void onClick(SweetAlertDialog sDialog)
-                                {
-                                    sDialog.dismissWithAnimation();
-                                }
-                            })
-                            .show();
-
-                }
-            });
+            etiket_islem_baslat(barkod);
         }
-
     }
 
 
@@ -337,10 +267,50 @@ public class frg_paket_uretim_ekrani extends Fragment {
         }
     }
 
+
+    private String fn_set_etiketno(etiket_no eno, int sirano)
+    {
+        String a = "";
+        try
+        {
+            a = "7377670000";
+            String yil = eno.getEti_yil().substring(eno.getEti_yil().length()-2);
+            String ay = eno.getEti_ay();
+            if (eno.getEti_ay().length() != 2)
+            {
+                ay = "0" + eno.getEti_ay();
+            }
+            String gun = eno.getEti_gun();
+            if (eno.getEti_gun().length() != 2)
+            {
+                gun = "0" + eno.getEti_gun();
+            }
+
+            String b = yil + ay + gun + eno.getEti_isletme();
+
+            while ((b.length() + (sirano+"").length()) != 14)
+            {
+                b = b + "0";
+            }
+
+            a = a + b + (sirano+"");
+
+            //MessageBox.Show(a);
+
+        }
+        catch (Exception ex)
+        {}
+        return a;
+    }
+
     private class fn_btnIptal implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-
+            frg_uretim_menu_panel fragmentyeni = new frg_uretim_menu_panel();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_uretim_menu_panel").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
@@ -353,5 +323,46 @@ public class frg_paket_uretim_ekrani extends Fragment {
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_uretim_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
         }
+    }
+
+    public void fn_senddata(DEPOTag v_depo, DEPOTag v_silo, uretim_etiket v_aktif_urun)
+    {
+        urun = v_aktif_urun;
+        depo=v_depo;
+        silo=v_silo;
+    }
+
+    private void fn_yariotomatik_paketli_palet_uretim_tamamla(uretim_etiket etiket , String lot)
+    {
+
+        new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
+                .setTitleText("ONAY")
+                .setContentText(etiket.getSerino_kod() + " seri nolu ürünün üretim işlemini tamamlamak istiyor musunuz ?")
+                .setContentTextSize(20)
+                .setConfirmText("TAMAM")
+                .setCancelText("VAZGEÇ")
+                .showCancelButton(true)
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismissWithAnimation();
+                    }
+                })
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+
+                        sDialog.dismissWithAnimation();
+                    }
+                })
+                .show();
+
+    }
+
+
+    public boolean paketliUret_otomatik(uretim_etiket urun,String lotno) {
+
+        return true;
+
     }
 }
