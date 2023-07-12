@@ -7,8 +7,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -21,7 +20,10 @@ import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class frg_ana_sayfa extends Fragment
 {
@@ -167,6 +169,16 @@ public class frg_ana_sayfa extends Fragment
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_satilmis_etiket").addToBackStack(null);
             fragmentTransaction.commit();
+        }
+    }
+
+    private class fn_Sevkiyat_01 implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+
+
+
         }
     }
 }

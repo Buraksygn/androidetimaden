@@ -13,7 +13,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
-public interface frg_paket_uretim_ekrani_interface {
+public interface frg_paket_uretim_ekrani_Controller {
 
     @POST("api/sec_etiket_uretim")
     Call<Viewsec_etiket_uretim> fn_sec_etiket_uretim(@Body requestsec_etiket_uretim v_Gelen);
@@ -26,5 +26,4 @@ public interface frg_paket_uretim_ekrani_interface {
 
     @POST("api/yari_otomatik_paket_kontrol_et")
     Call<View_yari_otomatik_paket_kontrol_et> fn_yari_otomatik_paket_kontrol_et(@Body request_yari_otomatik_paket_kontrol_et v_Gelen);
-
 }

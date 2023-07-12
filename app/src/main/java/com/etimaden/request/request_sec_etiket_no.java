@@ -2,17 +2,17 @@ package com.etimaden.request;
 
 public class request_sec_etiket_no {
 
-    private String _zsunucu_ip_adresi;
-    private String _zaktif_alt_tesis;
-    private String _zaktif_tesis ;
-    private String _zsurum ;
-    private String _zkullaniciadi ;
-    private String _zsifre;
-    private String aktif_sunucu;
-    private String aktif_kullanici;
+    public String _zsunucu_ip_adresi;
+    public String _zaktif_alt_tesis;
+    public String _zaktif_tesis ;
+    public String _zsurum ;
+    public String _zkullaniciadi ;
+    public String _zsifre;
+    public String aktif_sunucu;
+    public String aktif_kullanici;
 
 
-    private String _palet_dizim;
+    public String _palet_dizim;
 
 
     public request_sec_etiket_no(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, String _palet_dizim) {

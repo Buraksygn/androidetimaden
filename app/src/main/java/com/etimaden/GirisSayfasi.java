@@ -586,7 +586,7 @@ public class GirisSayfasi extends AppCompatActivity {
 
                         if (_frg_paket_uretim_ekrani != null && _frg_paket_uretim_ekrani.isVisible())
                         {
-                            _frg_paket_uretim_ekrani.barkodOkundu(barcode);
+                            _frg_paket_uretim_ekrani.fn_barkodOkundu(barcode);
                         }
                         else
                         {

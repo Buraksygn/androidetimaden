@@ -1,12 +1,14 @@
 package com.etimaden.UretimIslemleri;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,7 +17,23 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.frg_ana_sayfa;
+import com.etimaden.response.frg_paket_uretim_ekrani.View_yari_otomatik_paket_kontrol_et;
+import com.etimaden.senkronResponse.ViewtoplamaTest;
+import com.etimaden.senkronResult.requesttoplamaTest;
+import com.etimaden.servisbaglanti.test_Controller;
 import com.etimaden.ugr_demo.R;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.etimaden.cSabitDegerler._ipAdresi3G;
+import static com.etimaden.cSabitDegerler._zport3G;
 
 public class frg_uretim_menu_panel extends Fragment {
 
@@ -36,7 +54,7 @@ public class frg_uretim_menu_panel extends Fragment {
     public String _ayarsunucuip = "";
     public String _ayarversiyon = "";
 
-
+    Retrofit retrofit;
 
     private void fn_AyarlariYukle()
     {
@@ -48,6 +66,9 @@ public class frg_uretim_menu_panel extends Fragment {
         _ayaraktiftesis=_myIslem.fn_aktif_tesis();
         _ayaraktifsunucu=_myIslem.fn_aktif_sunucu();
         _ayaraktifisletmeeslesme=_myIslem.fn_isletmeeslesme();
+
+        StrictMode.ThreadPolicy gfgPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(gfgPolicy);
     }
 
     public frg_uretim_menu_panel() {
@@ -81,6 +102,8 @@ public class frg_uretim_menu_panel extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
+
         new VeriTabani(getContext()).fn_EpcTemizle();
 
         _myIslem = new VeriTabani(getContext());
@@ -97,6 +120,20 @@ public class frg_uretim_menu_panel extends Fragment {
         _btnYeniUretim=(Button)getView().findViewById(R.id.btnYeniUretim);
         _btnYeniUretim.playSoundEffect(0);
         _btnYeniUretim.setOnClickListener(new fn_YeniUretim());
+
+        String _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/";
+
+
+        final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(75, TimeUnit.SECONDS)
+                .connectTimeout(75, TimeUnit.SECONDS)
+                .build();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(_OnlineUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
 
     }
 
@@ -123,8 +160,58 @@ public class frg_uretim_menu_panel extends Fragment {
     }
 
 
+    private class fn_YeniUretim_01 implements View.OnClickListener {
+        @Override
+        public void onClick(View v)
+        {
+            int _Sayi_01=0;
+            int _Sayi_02=0;
+            int _Sayi_03=0;
 
 
+            requesttoplamaTest v_Param = new requesttoplamaTest();
+            v_Param._girilendeger="4";
+            test_Controller _Servis = retrofit.create(test_Controller.class);
+            Call<ViewtoplamaTest> callSync_01 = _Servis.fn_toplamaTest_01(v_Param);
+
+
+            try {
+                Response<ViewtoplamaTest> _Response = callSync_01.execute();
+
+
+
+                ViewtoplamaTest _Yanit = _Response.body();
+                _Sayi_01 = _Yanit.get_toplam();
+
+
+
+                 v_Param = new requesttoplamaTest();
+                v_Param._girilendeger="5";
+
+                Call<ViewtoplamaTest> callSync_02 = _Servis.fn_toplamaTest_02(v_Param);
+                _Response = callSync_02.execute();
+                _Yanit = _Response.body();
+                _Sayi_02 = _Yanit.get_toplam();
+
+                _Sayi_03 = _Sayi_01 + _Sayi_02;
+
+
+
+                _btnYeniUretim.setText("Cevap = "+_Sayi_03);
+
+                Toast.makeText(getContext(), "Cevap = "+_Sayi_03, Toast.LENGTH_SHORT).show();
+
+
+            } catch (IOException e) {
+                Toast.makeText(getContext(), "Hata = "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                _btnYeniUretim.setText("Hata = "+e.getMessage());
+                int _Dur = 1 ;
+                e.printStackTrace();
+            }
+
+
+        }
+    }
 }
 
 

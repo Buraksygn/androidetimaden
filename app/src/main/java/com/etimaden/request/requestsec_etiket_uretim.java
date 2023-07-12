@@ -2,14 +2,14 @@ package com.etimaden.request;
 
 public class requestsec_etiket_uretim {
 
-    private String _zsunucu_ip_adresi;
-    private String _zaktif_alt_tesis;
-    private String _zaktif_tesis ;
-    private String _zsurum ;
-    private String _zkullaniciadi ;
-    private String _zsifre;
-    private String aktif_sunucu;
-    private String aktif_kullanici;
+    public String _zsunucu_ip_adresi;
+    public String _zaktif_alt_tesis;
+    public String _zaktif_tesis ;
+    public String _zsurum ;
+    public String _zkullaniciadi ;
+    public String _zsifre;
+    public String aktif_sunucu;
+    public String aktif_kullanici;
 
 
     private String _etiket;

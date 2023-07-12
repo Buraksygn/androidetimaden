@@ -9,25 +9,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.etimaden.DataModel.mblBekleyenArac;
-import com.etimaden.adapter.apmblBekleyenArac;
 import com.etimaden.adapter.apmblDepoListesi;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.persosclass.uretim_etiket;
 import com.etimaden.request.requestsecDepoTanimlari;
-import com.etimaden.request.requestsec_etiket_uretim;
 import com.etimaden.response.frg_paket_uretim_ekrani.ViewsecDepoTanimlari;
-import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
 import com.etimaden.servisbaglanti.frg_depo_secimi_interface;
-import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_interface;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
