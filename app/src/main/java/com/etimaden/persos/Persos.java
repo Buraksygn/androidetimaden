@@ -6,6 +6,7 @@ import com.etimaden.persosclass.etiket_no;
 import com.etimaden.persosclass.uretim_etiket;
 import com.etimaden.request.request_etiket_kontrol;
 import com.etimaden.request.request_get_lot_toplami;
+import com.etimaden.request.request_paketliUret;
 import com.etimaden.request.request_paketliUret_otomatik;
 import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_sec_etiket_no;
@@ -13,6 +14,7 @@ import com.etimaden.request.request_yari_otomatik_paket_kontrol_et;
 import com.etimaden.request.requestsec_etiket_uretim;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_etiket_kontrol;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_get_lot_toplami;
+import com.etimaden.response.frg_paket_uretim_ekrani.View_paketliUret;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_paketliUret_otomatik;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_etiket_no;
@@ -50,13 +52,55 @@ public class Persos {
                 .build();
     }
 
+
+    public Boolean fn_paketliUret(request_paketliUret v_gelen)
+    {
+        Boolean _bsonuc=false;
+
+        View_paketliUret _yanit = new View_paketliUret();
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_paketliUret> fn_Servis = _Servis.fn_paketliUret(v_gelen);
+
+            Response<View_paketliUret> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+               if(_yanit._zSonuc.equals("0"))
+               {
+                   _bsonuc = false;
+               }
+               else
+               {
+                   _bsonuc = true;
+               }
+            }
+            else
+            {
+                _bsonuc = false;
+            }
+
+        }catch (Exception ex )
+        {
+            _bsonuc = false;
+        }
+
+        return  _bsonuc;
+
+    }
+
+    // burası
     public View_secEtiket fn_secEtiket(request_secEtiket v_Gelen)
     {
         View_secEtiket _yanit = new View_secEtiket();
 
         try
         {
-
             frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
 
             Call<View_secEtiket> fn_Servis = _Servis.fn_secEtiket(v_Gelen);

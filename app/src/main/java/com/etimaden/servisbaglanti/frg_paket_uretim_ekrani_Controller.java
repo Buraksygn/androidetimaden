@@ -2,6 +2,7 @@ package com.etimaden.servisbaglanti;
 
 import com.etimaden.request.request_etiket_kontrol;
 import com.etimaden.request.request_get_lot_toplami;
+import com.etimaden.request.request_paketliUret;
 import com.etimaden.request.request_paketliUret_otomatik;
 import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_sec_etiket_no;
@@ -9,6 +10,7 @@ import com.etimaden.request.request_yari_otomatik_paket_kontrol_et;
 import com.etimaden.request.requestsec_etiket_uretim;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_etiket_kontrol;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_get_lot_toplami;
+import com.etimaden.response.frg_paket_uretim_ekrani.View_paketliUret;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_paketliUret_otomatik;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_etiket_no;
@@ -20,6 +22,9 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface frg_paket_uretim_ekrani_Controller {
+
+    @POST("api/paketliUret")
+    Call<View_paketliUret> fn_paketliUret(@Body request_paketliUret v_Gelen);
 
     @POST("api/secEtiket")
     Call<View_secEtiket> fn_secEtiket(@Body request_secEtiket v_Gelen);

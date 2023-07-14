@@ -23,6 +23,7 @@ import com.etimaden.persosclass.etiket_no;
 import com.etimaden.persosclass.uretim_etiket;
 import com.etimaden.request.request_etiket_kontrol;
 import com.etimaden.request.request_get_lot_toplami;
+import com.etimaden.request.request_paketliUret;
 import com.etimaden.request.request_paketliUret_otomatik;
 import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_sec_etiket_no;
@@ -245,9 +246,12 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
 
             _txtParcaBir.setVisibility(View.INVISIBLE);
-            _txtAra.setVisibility(View.INVISIBLE);
-            _txtParcaIki.setVisibility(View.INVISIBLE);
+            _txtParcaBir.setText("");
 
+            _txtAra.setVisibility(View.INVISIBLE);
+
+            _txtParcaIki.setVisibility(View.INVISIBLE);
+            _txtParcaIki.setText("");
         }
     }
 
@@ -270,10 +274,6 @@ public class frg_paket_uretim_ekrani extends Fragment {
         }
 
         persos = new Persos(_OnlineUrl);
-
-
-
-
     }
 
 
@@ -440,15 +440,18 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                     _txtParcaIki.setText(aktif_Palet.getPalet_dizim() + "");
 
-                } catch (Exception etx)
-                {
                     tadet = paket_listesi.size();
                     hAdet = Integer.parseInt(aktif_Palet.getPalet_dizim());
                     if (hAdet == tadet)
                     {
                         islemDurumu = 2;
+
                         return;
                     }
+
+                } catch (Exception etx)
+                {
+
                 }
             }
         }
@@ -756,7 +759,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
         }
     }
 
-    private void paketli_palet_uretim_tamamla(uretim_etiket v_etiket) {
+    private void paketli_palet_uretim_tamamla(final uretim_etiket v_etiket) {
 
         uretim_etiket etiket =v_etiket;
 
@@ -831,6 +834,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         }
 
                         int tadet = paket_listesi.size();
+
                         int hAdet = Integer.parseInt(aktif_Palet.getPalet_dizim());
 
                         Urun_tag tt = null;
@@ -907,17 +911,73 @@ public class frg_paket_uretim_ekrani extends Fragment {
                                 {
                                     pl.add(paket_listesi.get(i));
                                 }
+
+                                request_paketliUret v_param = new request_paketliUret();
+                                v_param.set_urun(v_gelen.get_tagtt());
+                                v_param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                v_param.set_zaktif_tesis(_ayaraktiftesis);
+                                v_param.set_zkullaniciadi(_zkullaniciadi);
+                                v_param.set_zsifre(_zsifre);
+                                v_param.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                v_param.set_zsurum(_sbtVerisyon);
+                                v_param.setAktif_kullanici(_ayaraktifkullanici);
+                                v_param.setAktif_sunucu(_ayaraktifsunucu);
+                                v_param.setPaketList(pl);
+
+                                Boolean b_yanit=persos.fn_paketliUret(v_param);
+
+                                if(b_yanit==true)
+                                {
+                                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                            .setTitleText("TAMAM")
+                                            .setContentText("İşlem başarı tamamlandı")
+                                            .setContentTextSize(20)
+                                            .setConfirmText("TAMAM")
+                                            .showCancelButton(false)
+                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                                            {
+                                                @Override
+                                                public void onClick(SweetAlertDialog sDialog)
+                                                {
+                                                    sDialog.dismissWithAnimation();
+
+                                                    fn_AltPanelGorunsunmu(false);
+
+                                                    update_lot_panel(aktif_Palet.getSer_lotno());
+
+                                                    aktif_Palet = null;
+
+                                                    paket_listesi.clear();
+                                                }
+                                            })
+                                            .show();
+                                }
+
+                                else
+                                {
+
+                                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                            .setTitleText("HATA")
+                                            .setContentText("HTN 12072023200000 Sistemsel bir hata oluştu")
+                                            .setContentTextSize(20)
+                                            .setConfirmText("TAMAM")
+                                            .showCancelButton(false)
+                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                                            {
+                                                @Override
+                                                public void onClick(SweetAlertDialog sDialog)
+                                                {
+                                                    sDialog.dismissWithAnimation();
+
+                                                    return;
+                                                }
+                                            })
+                                            .show();
+                                }
+
+
+
                             }
-
-
-
-
-
-
-
-
-
-
 
                         } else
                         {
@@ -960,6 +1020,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
     private void etiket_islem_baslat(String str) {
 
         try {
+            int _Dur = 1;
 
             if (islemDurumu == 0)
             {
@@ -1061,16 +1122,44 @@ public class frg_paket_uretim_ekrani extends Fragment {
                 }
                 else if (etiket.getPaket_tipi().equals("1"))
                 {
-                    if (etiket.getIsemri_tipialt().equals("150"))
+                    if (etiket.getIsemri_tipialt().equals("350"))
+                    {
+                        manipulasyon_paketli_uret(etiket);
+                    }
+                    else if (etiket.getIsemri_tipialt().equals("150"))
                     {
                         paketli_palet_basla(etiket);
+                    }
+                    else if (etiket.getIsemri_tipialt().equals("152"))
+                    {
+                        //bigbag_uret(etiket);
+                    }
+                    else if (etiket.getIsemri_tipialt().equals("400"))
+                    {
+                        //manipulasyon_palet_topla(etiket);
+                    }
+                }
+                else if (etiket.getPaket_tipi().equals("2") || etiket.getPaket_tipi().equals("3"))
+                {
+                    if (etiket.getIsemri_tipialt().equals("350"))
+                    {
+                        manipulasyon_paketli_uret(etiket);
+                    }
+                    else if (etiket.getIsemri_tipialt().equals("151") || etiket.getIsemri_tipialt().equals("152") || etiket.getIsemri_tipialt().equals("153"))
+                    {
+                        //bigbag_uret(etiket);
+                    }
+                    else if (etiket.getIsemri_tipialt().equals("351"))
+                    {
+                        //manipulasyon_bigbag_uret(etiket);
                     }
                 }
             }
             else if (islemDurumu == 1)
             {
                 paketli_palet_paket_ekle(str);
-            }else if (islemDurumu == 2)
+            }
+            else if (islemDurumu == 2)
             {
                 if (paket_listesi.indexOf(str) >= 0)
                 {
@@ -1114,8 +1203,6 @@ public class frg_paket_uretim_ekrani extends Fragment {
                     }
                     else if (!etiket.getEtiket_durumu().equals("0"))
                     {
-
-
                         new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                                 .setTitleText("Üretilmiş Etiket")
                                 .setContentText("Üretim için uygun olmayan etiket.<br/> Etiketin üretim işlemi tamamlanmıştır.")

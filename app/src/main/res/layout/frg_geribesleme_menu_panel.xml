@@ -5,68 +5,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
-    tools:context="com.etimaden.frg_ana_sayfa"
+    tools:context="com.etimaden.manipulasyon.frg_geribesleme_menu_panel"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView22"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_x="0dp"
         android:layout_y="0dp"
-        android:textColor="@color/green"
-        android:text="frg_ana_sayfa"
+        android:text="frg_geribesleme_menu_panel"
+        android:textColor="@color/colorGreen"
         android:textSize="12dp" />
 
-    <Button
-        android:id="@+id/btnSevkiyat"
-        android:layout_width="324dp"
-        android:layout_height="75dp"
+    <TextView
+        android:id="@+id/textView222"
+        android:layout_width="325dp"
+        android:layout_height="91dp"
         android:layout_x="0dp"
         android:layout_y="25dp"
-        android:background="@drawable/btn_menu_normal"
-        android:gravity="center"
-        android:text="SEVKİYAT İŞLEMLERİ"
-        android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:text="DÖKME ÜRÜNE ÇEVİRME İŞLEMLERİ"
+        android:textAlignment="center"
+        android:textColor="@color/colorGreen"
+        android:textSize="24dp" />
+
 
     <Button
-        android:id="@+id/btnUretim"
-        android:layout_width="324dp"
-        android:layout_height="75dp"
+        android:id="@+id/btn_01"
+        android:layout_width="325dp"
+        android:layout_height="65dp"
         android:layout_x="0dp"
-        android:layout_y="125dp"
+        android:layout_y="120dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="ÜRETİM İŞLEMLERİ"
+        android:text="ÜRÜN AYIRMA İŞLEMİ"
         android:textColor="@color/green"
         android:textSize="20sp" />
+
 
     <Button
-        android:id="@+id/btnSatilmisEtiket"
-        android:layout_width="324dp"
-        android:layout_height="75dp"
+        android:id="@+id/btn_02"
+        android:layout_width="325dp"
+        android:layout_height="65dp"
         android:layout_x="0dp"
-        android:layout_y="225dp"
-        android:visibility="invisible"
+        android:layout_y="210dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="SATILMIŞ ETİKET KONTROL"
+        android:text="İŞLEM TAMAMLA"
         android:textColor="@color/green"
         android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/btnmanipulasyon"
-        android:layout_width="324dp"
-        android:layout_height="75dp"
-        android:layout_x="0dp"
-        android:layout_y="225dp"
-        android:background="@drawable/btn_menu_normal"
-        android:gravity="center"
-        android:text="MANİPÜLASYON"
-        android:textColor="@color/green"
-        android:textSize="20sp" />
-
 
 
     <Button
@@ -77,9 +64,11 @@
         android:layout_y="500dp"
         android:background="@drawable/my_button_cikis"
         android:gravity="center"
-        android:text="ÇIKIŞ"
+        android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
         android:textSize="20sp" />
+
+
 
 
 </AbsoluteLayout>

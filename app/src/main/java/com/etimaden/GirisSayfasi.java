@@ -23,7 +23,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -37,6 +36,7 @@ import com.etimaden.SevkiyatIslemleri.frg_konteyner_yukleme_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket;
 import com.etimaden.UretimIslemleri.frg_paket_uretim_ekrani;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.manipulasyon.frg_geribesleme_onay;
 import com.etimaden.ugr_demo.AccessActivity;
 import com.etimaden.ugr_demo.ConfigPreferenceActivity;
 import com.etimaden.ugr_demo.LockActivity;
@@ -603,6 +603,13 @@ public class GirisSayfasi extends AppCompatActivity {
                                 if (_frg_ana_sayfa != null && _frg_ana_sayfa.isVisible())
                                 {
                                     _frg_ana_sayfa.fn_BarkodOkutuldu(barcode.toString());
+                                }
+
+                                frg_geribesleme_onay _frg_geribesleme_onay = (frg_geribesleme_onay) getSupportFragmentManager().findFragmentByTag("frg_geribesleme_onay");
+
+                                if (_frg_geribesleme_onay != null && _frg_geribesleme_onay.isVisible())
+                                {
+                                    _frg_geribesleme_onay.fn_BarkodOkutuldu(barcode.toString());
                                 }
                             }
                         }

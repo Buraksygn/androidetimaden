@@ -7,7 +7,6 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -18,12 +17,8 @@ import com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.manipulasyon.frg_manipulasyon_panel;
 import com.etimaden.ugr_demo.R;
-
-import java.io.IOException;
-
-import retrofit2.Call;
-import retrofit2.Response;
 
 public class frg_ana_sayfa extends Fragment
 {
@@ -31,6 +26,7 @@ public class frg_ana_sayfa extends Fragment
     Button _btnUretim;
     Button _btnSevkiyat;
     Button _btnSatilmisEtiket;
+    Button _btnmanipulasyon;
     Button _btnTest;
 
 
@@ -92,6 +88,10 @@ public class frg_ana_sayfa extends Fragment
         _btnSatilmisEtiket= (Button)getView().findViewById(R.id.btnSatilmisEtiket);
         _btnSatilmisEtiket.playSoundEffect(0);
         _btnSatilmisEtiket.setOnClickListener(new fn_btnSatilmisEtiket());
+
+        _btnmanipulasyon= (Button)getView().findViewById(R.id.btnmanipulasyon);
+        _btnmanipulasyon.playSoundEffect(0);
+        _btnmanipulasyon.setOnClickListener(new fn_btnmanipulasyon());
 
 
     }
@@ -172,12 +172,15 @@ public class frg_ana_sayfa extends Fragment
         }
     }
 
-    private class fn_Sevkiyat_01 implements View.OnClickListener {
+    private class fn_btnmanipulasyon implements View.OnClickListener {
         @Override
         public void onClick(View v) {
 
-
-
+            frg_manipulasyon_panel fragmentyeni = new frg_manipulasyon_panel();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_manipulasyon_panel").addToBackStack(null);
+            fragmentTransaction.commit();
 
         }
     }
