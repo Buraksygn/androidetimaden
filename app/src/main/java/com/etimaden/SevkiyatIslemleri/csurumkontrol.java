@@ -84,8 +84,8 @@ public class csurumkontrol extends AppCompatActivity  {
         }
         else
         {
-            _OnlineUrl = "http://88.255.50.73:"+_zport3G+"/api/VersiyonKontrolEt";
-            _Kurulum = "http://88.255.50.73:"+_zport3G+"/uygulama.apk";
+            _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/VersiyonKontrolEt";
+            _Kurulum = "http://"+_ipAdresi3G+":"+_zport3G+"/uygulama.apk";
         }
     }
 

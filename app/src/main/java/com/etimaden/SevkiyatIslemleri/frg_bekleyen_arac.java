@@ -409,8 +409,8 @@ public class frg_bekleyen_arac extends Fragment {
         }
         else
         {
-            _OnlineUrlBekleyenArac = "http://88.255.50.73:"+_zport3G+"/api/bekleyen_arac";
-            _OnlineUrlAracAc = "http://88.255.50.73:"+_zport3G+"/api/AracAktivasyon";
+            _OnlineUrlBekleyenArac = "http://"+_ipAdresi3G+":"+_zport3G+"/api/bekleyen_arac";
+            _OnlineUrlAracAc = "http://"+_ipAdresi3G+":"+_zport3G+"/api/AracAktivasyon";
         }
     }
 

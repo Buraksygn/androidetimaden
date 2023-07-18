@@ -7,27 +7,28 @@ import com.google.gson.GsonBuilder;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.etimaden.cSabitDegerler._ipAdresi3G;
+
 public class ApiServis {
 
     private static test_Controller api;
 
     public static synchronized test_Controller Api_test_Controller() {
-        if (api == null) {
+
+        if (api == null)
+        {
             Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
 
-            Retrofit retrofit=null;
+            Retrofit retrofit = null;
 
-            try
-            {
-                retrofit = new Retrofit.Builder().baseUrl("http://88.255.50.73:9988/")
+            try {
+                retrofit = new Retrofit.Builder().baseUrl("http://" + _ipAdresi3G + ":9988/")
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .build();
-            }catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 String _Hata = ex.toString();
                 int _Dur = 1;
             }
-
 
             api = retrofit.create(test_Controller.class);
         }

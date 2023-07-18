@@ -112,7 +112,7 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
         }
         else
         {
-            _OnlineUrl = "http://88.255.50.73:"+_zport3G+"/api/sec_sevkiyat_urun_listesi";
+            _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sec_sevkiyat_urun_listesi";
         }
     }
 

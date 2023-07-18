@@ -711,9 +711,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
         }
         else
         {
-            _sec_aracUrl = "http://88.255.50.73:"+_zport3G+"/api/sec_arac";
-            _sevkiyat_konteyner_ayirUrl = "http://88.255.50.73:"+_zport3G+"/api/sevkiyat_konteyner_ayir";
-            _OnlineUrl = "http://88.255.50.73:"+_zport3G+"/api/secKonteyner";
+            _sec_aracUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sec_arac";
+            _sevkiyat_konteyner_ayirUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sevkiyat_konteyner_ayir";
+            _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/secKonteyner";
         }
     }
 

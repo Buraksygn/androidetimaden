@@ -14,12 +14,19 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.cResponseResult.Urun_tag;
 import com.etimaden.persos.Persos;
+import com.etimaden.request.request_secetikettag;
+import com.etimaden.response.frg_paket_uretim_ekrani.View_secetikettag;
 import com.etimaden.ugr_demo.R;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
+import static com.etimaden.cSabitDegerler._zkullaniciadi;
 import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
+import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_geribesleme_onay extends Fragment {
 
@@ -125,13 +132,135 @@ public class frg_geribesleme_onay extends Fragment {
     {
         if(barkod.length()<24)
         {
+            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("HATA")
+                    .setContentText("Uygun olmayan etiket")
+                    .setContentTextSize(20)
+                    .setConfirmText("TAMAM")
+                    .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+
+                            return;
+                        }
+                    })
+                    .show();
+
             return;
+
         }
         else
         {
             String gidecekbarkod = barkod.substring(barkod.length()-24);
 
+            request_secetikettag v_giden = new request_secetikettag();
+            v_giden._rfid=gidecekbarkod;
+            v_giden._zaktif_alt_tesis=_ayaraktiftesis;
+            v_giden._zaktif_tesis=_ayaraktiftesis;
+            v_giden._zkullaniciadi=_zkullaniciadi;
+            v_giden._zsifre=_zsifre;
+            v_giden._zsunucu_ip_adresi=_ayarsunucuip;
+            v_giden._zsurum=_ayarversiyon;
+            v_giden.aktif_kullanici=_ayaraktifkullanici;
+            v_giden.aktif_sunucu=_ayaraktifsunucu;
 
+            View_secetikettag _yanit = persos.fn_secetikettag(v_giden);
+
+            if(_yanit.get_zSonuc().equals("0"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentText(_yanit.get_zHataAciklama())
+                        .setContentTextSize(20)
+                        .setConfirmText("TAMAM")
+                        .showCancelButton(false)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+
+                                return;
+                            }
+                        })
+                        .show();
+
+                return;
+            }
+
+
+        }
+    }
+
+    private void fn_etiketDegerlendir(Urun_tag tag)
+    {
+        if (tag == null)
+        {
+            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("HATA")
+                    .setContentText("Etiket detayına ulaşılamadı. Ağ bağlantısını kontrol ediniz..")
+                    .setContentTextSize(20)
+                    .setConfirmText("TAMAM")
+                    .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+
+                            return;
+                        }
+                    })
+                    .show();
+
+            return;
+        }
+        else if ( tag.etiket_turu.equals("0"))
+        {
+            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("HATA")
+                    .setContentText("İşlem için uygun olmayan ürün seçimi yaptınız.<br/>Bu işlem için lütfen üretim işlemi tamamlanmış ve satış işlemi yapılmamış bir palet etiketi okutunuz.")
+                    .setContentTextSize(20)
+                    .setConfirmText("TAMAM")
+                    .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+
+                            return;
+                        }
+                    })
+                    .show();
+
+            return;
+        }
+        else if (tag.islem_durumu.equals("1") || tag.islem_durumu.equals("370"))
+        {
+
+
+           // Program.setPage(new geribesleme_harcama_yeri_secimi(tag));
+        }
+        else
+        {
+
+            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("HATA")
+                    .setContentText("İşlem için uygun olmayan ürün seçimi yaptınız.<br/>Bu işlem için lütfen üretim işlemi tamamlanmış ve satış işlemi yapılmamış bir palet etiketi okutunuz.")
+                    .setContentTextSize(20)
+                    .setConfirmText("TAMAM")
+                    .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+
+                            return;
+                        }
+                    })
+                    .show();
+
+            return;
         }
     }
 }

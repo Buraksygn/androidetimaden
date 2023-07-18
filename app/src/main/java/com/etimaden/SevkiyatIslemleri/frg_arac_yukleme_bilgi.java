@@ -125,7 +125,7 @@ public class frg_arac_yukleme_bilgi extends Fragment {
         }
         else
         {
-            _OnlineUrl = "http://88.255.50.73:"+_zport3G+"/api/aktif_sevk_kalan_miktar_palet";
+            _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/aktif_sevk_kalan_miktar_palet";
         }
     }
 

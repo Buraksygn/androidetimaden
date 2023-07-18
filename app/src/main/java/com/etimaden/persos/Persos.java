@@ -10,6 +10,7 @@ import com.etimaden.request.request_paketliUret;
 import com.etimaden.request.request_paketliUret_otomatik;
 import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_sec_etiket_no;
+import com.etimaden.request.request_secetikettag;
 import com.etimaden.request.request_yari_otomatik_paket_kontrol_et;
 import com.etimaden.request.requestsec_etiket_uretim;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_etiket_kontrol;
@@ -18,8 +19,10 @@ import com.etimaden.response.frg_paket_uretim_ekrani.View_paketliUret;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_paketliUret_otomatik;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_etiket_no;
+import com.etimaden.response.frg_paket_uretim_ekrani.View_secetikettag;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_yari_otomatik_paket_kontrol_et;
 import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
+import com.etimaden.servisbaglanti.frg_geribesleme_onay_Controller;
 import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_Controller;
 
 import java.util.concurrent.TimeUnit;
@@ -50,6 +53,44 @@ public class Persos {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
+    }
+
+    public View_secetikettag fn_secetikettag(request_secetikettag v_Gelen)
+    {
+        View_secetikettag _yanit = new View_secetikettag();
+
+        try
+        {
+            frg_geribesleme_onay_Controller _Servis=retrofit.create(frg_geribesleme_onay_Controller.class);
+
+            Call<View_secetikettag> fn_Servis = _Servis.fn_secDepoTanimlari(v_Gelen);
+
+            Response<View_secetikettag> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit;
+            }
+            else
+            {
+                _yanit=new View_secetikettag();
+                _yanit._zSonuc="0";
+                _yanit._zAciklama="";
+                _yanit._zHataAciklama="Sistemsel hata";
+
+                return _yanit;
+            }
+
+        }catch (Exception ex) {
+            _yanit = new View_secetikettag();
+            _yanit._zAciklama = "";
+            _yanit._zHataAciklama = ex.toString();
+            _yanit._zSonuc = "0";
+
+            return _yanit;
+        }
     }
 
 

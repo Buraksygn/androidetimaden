@@ -137,7 +137,7 @@ public class frg_aktif_arac_secimi  extends Fragment {
         }
         else
         {
-            _OnlineUrl = "http://88.255.50.73:"+_zport3G+"/api/secAktifSevkIsemriListesi";
+            _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/secAktifSevkIsemriListesi";
         }
     }
 

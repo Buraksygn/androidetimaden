@@ -158,7 +158,7 @@ public class frg_arac_bulundu_indirme extends Fragment {
         }
         else
         {
-            _OnlineUrl = "http://88.255.50.73:"+_zport3G+"/api/AracAktivasyon_2003";
+            _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/AracAktivasyon_2003";
         }
     }
 

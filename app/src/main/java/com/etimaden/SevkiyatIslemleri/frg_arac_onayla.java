@@ -290,16 +290,16 @@ public class frg_arac_onayla extends Fragment {
         }
         else
         {
-            _EkleAracAktivasyonuUrl = "http://88.255.50.73:"+_zport3G+"/api/EkleAracAktivasyonu";
-            _UpdateAracAktivasyonuUrl = "http://88.255.50.73:"+_zport3G+"/api/UpdateAracAktivasyonu";
-            _AracKapatma = "http://88.255.50.73:"+_zport3G+"/api/sec_sevk_miktar";
-            _AraTartim = "http://88.255.50.73:"+_zport3G+"/api/sec_sevk_miktar";
-            _AraTartim_01 = "http://88.255.50.73:"+_zport3G+"/api/parsiyel_kontrol_01";
-            _IslemTamam = "http://88.255.50.73:"+_zport3G+"/api/sevkiyatKapat";
-            _OnlineUrlTartimIptal = "http://88.255.50.73:"+_zport3G+"/api/sevkiyatIptal";
+            _EkleAracAktivasyonuUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/EkleAracAktivasyonu";
+            _UpdateAracAktivasyonuUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/UpdateAracAktivasyonu";
+            _AracKapatma = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sec_sevk_miktar";
+            _AraTartim = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sec_sevk_miktar";
+            _AraTartim_01 = "http://"+_ipAdresi3G+":"+_zport3G+"/api/parsiyel_kontrol_01";
+            _IslemTamam = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sevkiyatKapat";
+            _OnlineUrlTartimIptal = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sevkiyatIptal";
             _OnlineGuncelleSevkHareket  = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/guncelle_sevk_hareket";
-            _OnlineUrlget_yukleme_palet_sayisi_miktar = "http://88.255.50.73:"+_zport3G+"/api/get_yukleme_palet_sayisi_miktar";
-            _SevkiyatDevam = "http://88.255.50.73:"+_zport3G+"/api/sevkiyatDevam";
+            _OnlineUrlget_yukleme_palet_sayisi_miktar = "http://"+_ipAdresi3G+":"+_zport3G+"/api/get_yukleme_palet_sayisi_miktar";
+            _SevkiyatDevam = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sevkiyatDevam";
         }
     }
 

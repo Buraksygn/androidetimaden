@@ -142,7 +142,7 @@ public class frg_konteyner_yukleme_aktivasyon  extends Fragment {
         }
         else
         {
-            _OnlineUrl = "http://88.255.50.73:"+_zport3G+"/api/KonteynerAktivasyon";
+            _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/KonteynerAktivasyon";
         }
     }
 

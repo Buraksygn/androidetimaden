@@ -140,7 +140,7 @@ public class frg_depo_secimi extends Fragment {
         }
         else
         {
-            _OnlineUrl = "http://88.255.50.73:"+_zport3G+"/";
+            _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/";
         }
         _retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())

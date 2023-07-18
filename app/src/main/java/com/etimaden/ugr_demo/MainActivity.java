@@ -48,6 +48,7 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
 import static com.etimaden.cSabitDegerler._zport3G;
@@ -133,13 +134,10 @@ public class MainActivity extends AppCompatActivity {
 
         _txtversiyon.setText(_sbtVerisyon);
 
+        _OnlineUrlTest = "http://"+_ipAdresi3G+":"+_zport3G+"/";
 
-
-        _OnlineUrlTest = "http://88.255.50.73:"+_zport3G+"/";
-
-
-
-        try {
+        try
+        {
             pDialog.show();
         } catch (Exception ex)
         {
@@ -158,7 +156,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private class fn_Cikis implements View.OnClickListener {
+    private class fn_Cikis implements View.OnClickListener
+    {
         @Override
         public void onClick(View view) {
          /*
@@ -184,12 +183,14 @@ public class MainActivity extends AppCompatActivity {
         if(_ayarbaglantituru.equals("wifi"))
         {
             _GirisUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/sistemgiris";
+
             _BaslangicUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/BaslangicBilgileri";
         }
         else
         {
-            _GirisUrl = "http://88.255.50.73:"+_zport3G+"/api/sistemgiris";
-            _BaslangicUrl = "http://88.255.50.73:"+_zport3G+"/api/BaslangicBilgileri";
+            _GirisUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sistemgiris";
+
+            _BaslangicUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/BaslangicBilgileri";
         }
     }
 
@@ -332,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
                 {
 
 
-                    _BaslangicUrl = "http://88.255.50.73:"+_zport3G+"/api/BaslangicBilgileri";
+                    _BaslangicUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/BaslangicBilgileri";
 
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 JSONObject parametre = new JSONObject();

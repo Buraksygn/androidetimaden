@@ -326,8 +326,8 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
             _OnlineUrl = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/secSevkiyatIsemriListesi";
             _OnlineUrlTamamla = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/ac_yerde_konteyner";
         } else {
-            _OnlineUrl = "http://88.255.50.73:" + _zport3G + "/api/secSevkiyatIsemriListesi";
-            _OnlineUrlTamamla = "http://88.255.50.73:" + _zport3G + "/api/ac_yerde_konteyner";
+            _OnlineUrl = "http://"+_ipAdresi3G+":" + _zport3G + "/api/secSevkiyatIsemriListesi";
+            _OnlineUrlTamamla = "http://"+_ipAdresi3G+":" + _zport3G + "/api/ac_yerde_konteyner";
         }
     }
 

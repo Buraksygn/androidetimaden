@@ -299,7 +299,7 @@ public class frg_satilmis_etiket extends Fragment {
         }
         else
         {
-            _OnlineUrl = "http://88.255.50.73:"+_zport3G+"/api/etiketkontrol";
+            _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/etiketkontrol";
         }
     }
 

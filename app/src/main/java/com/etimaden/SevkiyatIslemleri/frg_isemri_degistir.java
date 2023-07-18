@@ -309,8 +309,8 @@ public class frg_isemri_degistir extends Fragment {
             _OnlineUrl = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/secSevkiyatIsemriListesi";
             _OnlineUrlIsEmriDegistir = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/onaylaSevkIsDegisimi";
         } else {
-            _OnlineUrl = "http://88.255.50.73:" + _zport3G + "/api/secSevkiyatIsemriListesi";
-            _OnlineUrlIsEmriDegistir = "http://88.255.50.73:" + _zport3G + "/api/onaylaSevkIsDegisimi";
+            _OnlineUrl = "http://"+_ipAdresi3G+":" + _zport3G + "/api/secSevkiyatIsemriListesi";
+            _OnlineUrlIsEmriDegistir = "http://"+_ipAdresi3G+":" + _zport3G + "/api/onaylaSevkIsDegisimi";
         }
     }
 
