@@ -332,7 +332,6 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
     private class fn_Geri implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
             frg_konteyner_yukleme_aktivasyon fragmentyeni = new frg_konteyner_yukleme_aktivasyon();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -345,28 +344,21 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
         @Override
         public void onClick(View view) {
 
-            //Log.d("Tag","SATIR 01");
-
             pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
             pDialog.setTitleText("İŞLEM YAPILIYOR");
             pDialog.setContentText("İşlem tamamlanıyor. Lütfen Bekleyiniz");
-            //pDialog.setContentText(_TempEpc);
             pDialog.setCancelable(false);
             pDialog.show();
             pDialog.findViewById(R.id.confirm_button).setVisibility(View.GONE);
 
-            // Log.d("Tag","SATIR 01");
             JSONObject parametre = new JSONObject();
 
             try {
 
-                // JSONObject jsonObj = new JSONObject(aktif_sevk_isemri);
 
                 String Arac_Plaka = aktif_sevk_isemri.arac_plaka;
-                //String Arac_Plaka = jsonObj.getString("arac_plaka").trim();
 
                 String Arac_Kodu = aktif_sevk_isemri.arac_kodu;
-                //String Arac_Kodu=jsonObj.getString("arac_kodu").trim();
 
                 String sefer_no = _SeciliListe.getsefer_no();
                 String isemri_detay_id = _SeciliListe.getisemri_detay_id();
@@ -402,19 +394,17 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
                 parametre.put("_zkullaniciadi", _zkullaniciadi);
                 parametre.put("_zsifre", _zsifre);
 
-
-            } catch (JSONException error) {
+            } catch (JSONException error)
+            {
                 error.printStackTrace();
-
-
             }
 
             Cache cache = new DiskBasedCache(getContext().getCacheDir(), 2 * 1024 * 1024); // 1MB cap
             Network network = new BasicNetwork(new HurlStack());
 
             RequestQueue queue = new RequestQueue(cache, network);
-            queue.start();
 
+            queue.start();
 
             JsonObjectRequest request = new JsonObjectRequest(
                     Request.Method.POST,
@@ -460,8 +450,6 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
                                                 }
                                             })
                                             .show();
-
-
                                 }
 
                                 //Toast.makeText(getApplicationContext(), "_zSayfaAdiAciklama =" + _zHataAciklamasi, Toast.LENGTH_SHORT).show();
@@ -489,7 +477,8 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
 
     private class fn_btn_03 implements View.OnClickListener {
         @Override
-        public void onClick(View v) {
+        public void onClick(View v)
+        {
             String _Sayi = _SeciliListe.getkod_sap();
 
             int _Dur = 1;
