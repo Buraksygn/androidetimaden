@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ViewsecDepoTanimlari
 {
+
     public ViewsecDepoTanimlari(String _zHataAciklama, String _zAciklama, String _zSonuc, List<DEPOTag> _DepoListesi) {
         this._zHataAciklama = _zHataAciklama;
         this._zAciklama = _zAciklama;

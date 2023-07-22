@@ -77,7 +77,6 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
 
     public mblsEmriKonteyner _SeciliListe;
 
-
     //public ListAdapter adapter;
 
     private static apmblKonteynerIsEmri adapter;

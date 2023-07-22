@@ -342,6 +342,7 @@ public class MainActivity extends AppCompatActivity {
 
                     parametre.put("_zBaglantiTuru", _zBaglantiTuru);
                     parametre.put("_zIpAdresi", _zIpAdresi);
+                    parametre.put("_zsurum", _sbtVerisyon);
                     parametre.put("_zkullaniciadi", _zkullaniciadi);
                     parametre.put("_zsifre", _zsifre);
                 } catch (JSONException error) {
@@ -521,6 +522,7 @@ int x= 1;
                 parametre.put("_zaktif_tesis", _ayaraktiftesis);
                 parametre.put("_zkullaniciadi", _zkullaniciadi);
                 parametre.put("_zsifre", _zsifre);
+                parametre.put("_zsurum", _sbtVerisyon);
 
 
             } catch (JSONException error) {
