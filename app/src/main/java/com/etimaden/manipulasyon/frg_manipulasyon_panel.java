@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
+import com.etimaden.UretimIslemleri.frg_ambalaj_tipi_degisimi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.frg_ana_sayfa;
 import com.etimaden.ugr_demo.R;
@@ -130,8 +131,13 @@ public class frg_manipulasyon_panel extends Fragment {
 
     private class fn_btn_01 implements View.OnClickListener {
         @Override
-        public void onClick(View v) {
-
+        public void onClick(View v)
+        {
+            frg_ambalaj_tipi_degisimi fragmentyeni = new frg_ambalaj_tipi_degisimi();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_ambalaj_tipi_degisimi").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 

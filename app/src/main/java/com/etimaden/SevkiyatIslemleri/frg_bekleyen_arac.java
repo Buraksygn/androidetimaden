@@ -137,6 +137,9 @@ public class frg_bekleyen_arac extends Fragment {
         fn_BekleyenAracListele();
 
         _Liste=(ListView)getView().findViewById(R.id.liste_bekleyen_arac);
+
+
+
         _Liste.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override

@@ -7,11 +7,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.Cache;
 import com.android.volley.DefaultRetryPolicy;
@@ -30,6 +33,7 @@ import com.etimaden.GirisSayfasi;
 import com.etimaden.adapter.apmblDigerEtiket;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Viewetiket_durum_getir;
+import com.etimaden.frg_ana_sayfa;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -70,6 +74,9 @@ public class frg_satilmis_etiket extends Fragment {
 
     ArrayList<mblDigerEtiket> dataModels;
 
+    Button _btngeri;
+    Button _tumListe;
+
     public ListView _Liste;
 
 
@@ -101,8 +108,13 @@ public class frg_satilmis_etiket extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         ((GirisSayfasi) getActivity()).fn_ModRFID();
-        ((GirisSayfasi) getActivity()).fn_GucAyarla(300);
         ((GirisSayfasi) getActivity()).fn_ReadModeAyarla(0);
+        ((GirisSayfasi) getActivity()).fn_ListeTemizle();
+
+
+        ((GirisSayfasi) getActivity()).fn_GucAyarla(150);
+
+
 
         _txtSayi = (TextView)getView().findViewById(R.id.txtSayi);
         _txtSayi.setText("0");
@@ -112,6 +124,15 @@ public class frg_satilmis_etiket extends Fragment {
         _myIslem.fn_SatilmisEtiketTabloTemizle();
 
         fn_AyarlariYukle();
+
+        _btngeri = (Button)getView().findViewById(R.id.btncikis);
+        _btngeri.playSoundEffect(0);
+        _btngeri.setOnClickListener(new fn_Geri());
+
+        _tumListe = (Button)getView().findViewById(R.id.btn_02);
+        _tumListe.playSoundEffect(0);
+        _tumListe.setOnClickListener(new fn_TumListe());
+
 
         _Liste = (ListView) getView().findViewById(R.id.liste_satilmis_etiket);
 
@@ -142,14 +163,15 @@ public class frg_satilmis_etiket extends Fragment {
 
         dataModels= new ArrayList<>();
 
+        int Toplam = _Dizim.size();
 
-        for(int intSayac = 0;intSayac<_Dizim.size();intSayac++)
+        for(int intSayac = 0;intSayac<Toplam;intSayac++)
         {
             dataModels.add(new mblDigerEtiket(
-                    (intSayac+1),
+                    (Toplam-(intSayac)),
                     _Dizim.get(intSayac).get("epc")+"",
-                    _Dizim.get(intSayac).get("durum")+""));
-
+                    _Dizim.get(intSayac).get("durum")+"",
+                    _Dizim.get(intSayac).get("urunadi")+""));
         }
 
         _Adapter= new apmblDigerEtiket(dataModels,getContext());
@@ -158,7 +180,6 @@ public class frg_satilmis_etiket extends Fragment {
 
         countDownTimer.cancel(); // cancel
         countDownTimer.start();  // then restart
-
     }
 
 
@@ -220,7 +241,7 @@ public class frg_satilmis_etiket extends Fragment {
                                     {
                                         try {
 
-                                            _myIslem.fn_EtiketDurumUpdate(_KontrolEpc,_Yanit._zdurum);
+                                            _myIslem.fn_EtiketDurumUpdate(_KontrolEpc,_Yanit._zdurum,_Yanit._zurunadi);
 
                                             _txtSayi.setText(_myIslem.fn_SaglamEtiketSayisi());
 
@@ -301,6 +322,32 @@ public class frg_satilmis_etiket extends Fragment {
 
         if (tempEpc.startsWith("737767")) {
             _myIslem.fn_SatilmisEtiketInsert(tempEpc);
+        }
+    }
+
+    private class fn_Geri implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+            frg_ana_sayfa fragmentyeni = new frg_ana_sayfa();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_ana_sayfa").addToBackStack(null);
+            fragmentTransaction.commit();
+
+        }
+    }
+
+    private class fn_TumListe implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+            frg_satilmis_tum_liste fragmentyeni = new frg_satilmis_tum_liste();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_satilmis_tum_liste").addToBackStack(null);
+            fragmentTransaction.commit();
+
         }
     }
 }

@@ -4,6 +4,7 @@ import android.os.StrictMode;
 
 import com.etimaden.persosclass.etiket_no;
 import com.etimaden.persosclass.uretim_etiket;
+import com.etimaden.request.request_ambalaj_tipi_secEtiket;
 import com.etimaden.request.request_etiket_kontrol;
 import com.etimaden.request.request_get_lot_toplami;
 import com.etimaden.request.request_paketliUret;
@@ -13,6 +14,7 @@ import com.etimaden.request.request_sec_etiket_no;
 import com.etimaden.request.request_secetikettag;
 import com.etimaden.request.request_yari_otomatik_paket_kontrol_et;
 import com.etimaden.request.requestsec_etiket_uretim;
+import com.etimaden.response.frg_paket_uretim_ekrani.View_ambalaj_tipi_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_etiket_kontrol;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_get_lot_toplami;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_paketliUret;
@@ -22,6 +24,7 @@ import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_etiket_no;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_secetikettag;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_yari_otomatik_paket_kontrol_et;
 import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
+import com.etimaden.servisbaglanti.frg_ambalaj_tipi_degisimi_Controller;
 import com.etimaden.servisbaglanti.frg_geribesleme_onay_Controller;
 import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_Controller;
 
@@ -53,6 +56,49 @@ public class Persos {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
+    }
+
+    public View_ambalaj_tipi_secEtiket fn_ambalaj_tipi_secEtiket (request_ambalaj_tipi_secEtiket v_gelen)
+    {
+        View_ambalaj_tipi_secEtiket _yanit = new View_ambalaj_tipi_secEtiket();
+
+        try
+        {
+            frg_ambalaj_tipi_degisimi_Controller _Servis=retrofit.create(frg_ambalaj_tipi_degisimi_Controller.class);
+
+            Call<View_ambalaj_tipi_secEtiket> fn_Servis = _Servis.fn_ambalaj_tipi_secEtiket(v_gelen);
+
+            Response<View_ambalaj_tipi_secEtiket> _response = fn_Servis.execute();
+
+            if(_response.isSuccessful())
+            {
+                _yanit = _response.body();
+
+                return  _yanit;
+            }
+            else
+            {
+                _yanit = new View_ambalaj_tipi_secEtiket();
+                _yanit.set_tag(null);
+                _yanit.set_zAciklama("");
+                _yanit.set_zSonuc("0");
+                _yanit.set_zHataAciklama("HTN ANDROID 24_07_2023_11_40_00 "+_response.errorBody().string());
+
+                return _yanit;
+            }
+
+        }catch (Exception ex)
+        {
+            _yanit = new View_ambalaj_tipi_secEtiket();
+            _yanit.set_tag(null);
+            _yanit.set_zAciklama("");
+            _yanit.set_zSonuc("0");
+            _yanit.set_zHataAciklama("HTN ANDROID 24_07_2023_11_40_00 Sistemsel hata");
+
+            return  _yanit;
+
+        }
+
     }
 
     public View_secetikettag fn_secetikettag(request_secetikettag v_Gelen)

@@ -100,11 +100,11 @@ public class frg_depo_secimi extends Fragment {
 
         _myIslem = new VeriTabani(getContext());
 
-        _btn_03 = (Button)getView().findViewById(R.id.btn_03);
+        _btn_03 = (Button) getView().findViewById(R.id.btn_03);
         _btn_03.playSoundEffect(0);
         _btn_03.setOnClickListener(new fn_btn03());
 
-        _btncikis = (Button)getView().findViewById(R.id.btncikis);
+        _btncikis = (Button) getView().findViewById(R.id.btncikis);
         _btncikis.playSoundEffect(0);
         _btncikis.setOnClickListener(new fn_Geri());
 
@@ -122,7 +122,7 @@ public class frg_depo_secimi extends Fragment {
 
         fn_DepoListele();
 
-        }
+    }
 
     private void fn_AyarlariYukle()
     {

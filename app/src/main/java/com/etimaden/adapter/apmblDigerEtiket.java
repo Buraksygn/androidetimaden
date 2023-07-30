@@ -19,7 +19,9 @@ public class apmblDigerEtiket extends ArrayAdapter<mblDigerEtiket> {
     Context mContext;
 
     public apmblDigerEtiket(ArrayList<mblDigerEtiket> data, Context context) {
+
         super(context, R.layout.liste_digeretiket, data);
+
         this.dataSet = data;
         this.mContext=context;
 
@@ -29,6 +31,9 @@ public class apmblDigerEtiket extends ArrayAdapter<mblDigerEtiket> {
         TextView _yazi_kod_sira;
         TextView _yazi_kod;
         TextView _yazi_durum;
+        TextView _yazi_urun_adi;
+
+        //yazi_urun_adi
     }
 
     @Override
@@ -49,6 +54,7 @@ public class apmblDigerEtiket extends ArrayAdapter<mblDigerEtiket> {
             viewHolder._yazi_kod_sira  = (TextView) convertView.findViewById(R.id.yazi_kod_sira);
             viewHolder._yazi_kod = (TextView) convertView.findViewById(R.id.yazi_kod);
             viewHolder._yazi_durum = (TextView) convertView.findViewById(R.id.yazi_durum);
+            viewHolder._yazi_urun_adi = (TextView) convertView.findViewById(R.id.yazi_urun_adi);
 
 
             result=convertView;
@@ -62,9 +68,11 @@ public class apmblDigerEtiket extends ArrayAdapter<mblDigerEtiket> {
             result=convertView;
         }
 
-        viewHolder._yazi_kod_sira.setText(dataModel.getsirano());
-        viewHolder._yazi_kod.setText(dataModel.getkod());
-        viewHolder._yazi_durum.setText(dataModel.getdurum());
+
+        viewHolder._yazi_kod.setText(dataModel.getKod());
+        viewHolder._yazi_durum.setText(dataModel.getDurum());
+        viewHolder._yazi_urun_adi.setText(dataModel.getUrunadi());
+        viewHolder._yazi_kod_sira.setText(dataModel.getSirano()+"");
 
         return convertView;
     }

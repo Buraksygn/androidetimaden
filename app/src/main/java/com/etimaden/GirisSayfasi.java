@@ -34,6 +34,7 @@ import com.etimaden.SevkiyatIslemleri.frg_arac_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_konteyner_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_konteyner_yukleme_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket;
+import com.etimaden.UretimIslemleri.frg_ambalaj_tipi_degisimi;
 import com.etimaden.UretimIslemleri.frg_paket_uretim_ekrani;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.manipulasyon.frg_geribesleme_onay;
@@ -610,6 +611,13 @@ public class GirisSayfasi extends AppCompatActivity {
                                 if (_frg_geribesleme_onay != null && _frg_geribesleme_onay.isVisible())
                                 {
                                     _frg_geribesleme_onay.fn_BarkodOkutuldu(barcode.toString());
+                                }
+
+                                frg_ambalaj_tipi_degisimi _frg_ambalaj_tipi_degisimi = (frg_ambalaj_tipi_degisimi) getSupportFragmentManager().findFragmentByTag("frg_ambalaj_tipi_degisimi");
+
+                                if (_frg_ambalaj_tipi_degisimi != null && _frg_ambalaj_tipi_degisimi.isVisible())
+                                {
+                                    _frg_ambalaj_tipi_degisimi.fn_BarkodOkutuldu(barcode.toString());
                                 }
                             }
                         }

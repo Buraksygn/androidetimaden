@@ -4,14 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.TextView;
 
 import com.etimaden.cSabitDegerler;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 
 public class VeriTabani extends SQLiteOpenHelper {
@@ -159,6 +155,7 @@ public class VeriTabani extends SQLiteOpenHelper {
     private static final String TABLO_10_ETIKET_KONTROL = "etiketkontrol";
     private static final String TABLO_10_ETIKET_KONTROL_EPC = "epc";
     private static final String TABLO_10_ETIKET_KONTROL_DURUM = "durum";
+    private static final String TABLO_10_ETIKET_KONTROL_URUN_ADI = "urunadi";
 
 
 
@@ -186,12 +183,12 @@ public class VeriTabani extends SQLiteOpenHelper {
 
 
 
-    public void fn_EtiketDurumUpdate(String v_GelenEpc,String v_GelenDurum) {
+    public void fn_EtiketDurumUpdate(String v_GelenEpc,String v_GelenDurum,String v_GelenUrunAdi) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
             String Sonuc = "";
 
-            String _strSql = "update etiketkontrol set durum = '"+v_GelenDurum+"' where  epc = '"+v_GelenEpc+"' ";
+            String _strSql = "update etiketkontrol set durum = '"+v_GelenDurum+"' , urunadi = '"+v_GelenUrunAdi+"' where  epc = '"+v_GelenEpc+"' ";
             db.execSQL(_strSql);
 
             _strSql = "DELETE from etiketkontrol where  durum = 'TANIMSIZ' ";
@@ -273,6 +270,7 @@ return _Sonuc;
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLO_10_ETIKET_KONTROL+ "("
                 + TABLO_10_ETIKET_KONTROL_EPC + " TEXT,"
+                + TABLO_10_ETIKET_KONTROL_URUN_ADI + " TEXT,"
                 + TABLO_10_ETIKET_KONTROL_DURUM + " TEXT )");
 
 
@@ -1687,7 +1685,7 @@ return _Sonuc;
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> _IsEmirleriListesi = new ArrayList<>();
 
-        String query = "SELECT epc, durum from etiketkontrol where durum !='1'";
+        String query = "SELECT epc, durum,urunadi from etiketkontrol where durum !='1' order by epc";
         // String query = getString(R.string.sql_sorgusu);
         Cursor cursor = db.rawQuery(query,null);
 
@@ -1704,12 +1702,24 @@ return _Sonuc;
             _IsEmri.put("sira",gorev_id+"");
             _IsEmri.put("epc",cursor.getString(cursor.getColumnIndex("epc")).substring(10));
             _IsEmri.put("durum",cursor.getString(cursor.getColumnIndex("durum")));
+            _IsEmri.put("urunadi",cursor.getString(cursor.getColumnIndex("urunadi")));
             _IsEmirleriListesi.add(_IsEmri);
         }
 
         if(db.isOpen())
         {
             db.close();
+        }
+
+        try
+        {
+            if(cursor != null)
+            {
+                cursor.close();
+            }
+        }catch (Exception ex )
+        {
+
         }
 
         return  _IsEmirleriListesi;

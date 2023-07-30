@@ -201,7 +201,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
         if(_yanit._zSonuc.equals("0"))
         {
-            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentText(_yanit.get_zHataAciklama())
                     .setContentTextSize(20)

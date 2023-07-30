@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBlack"
-    tools:context="com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket">
+    tools:context="com.etimaden.SevkiyatIslemleri.frg_satilmis_tum_liste">
 
     <TextView
         android:id="@+id/textView22"
@@ -14,40 +14,14 @@
         android:layout_height="wrap_content"
         android:layout_x="0dp"
         android:layout_y="0dp"
-        android:text="frg_satilmis_etiket"
+        android:text="frg_satilmis_tum_liste"
         android:textColor="@color/colorGreen"
         android:textSize="12dp" />
 
 
-    <TextView
-        android:id="@+id/txtSayi2"
-        android:layout_width="170dp"
-        android:layout_height="45dp"
-        android:layout_x="0dp"
-        android:layout_y="450dp"
-        android:gravity="left"
-        android:text="SAYI"
-        android:textColor="@color/colorGreen"
-        android:textSize="28dp" />
-
-
-    <TextView
-        android:id="@+id/txtSayi"
-        android:layout_width="133dp"
-        android:layout_height="45dp"
-        android:layout_x="178dp"
-        android:layout_y="450dp"
-        android:gravity="right"
-        android:text="120/1"
-        android:textColor="@color/colorGreen"
-        android:textSize="28dp" />
-
-
-
-
     <Button
         android:id="@+id/btncikis"
-        android:layout_width="150dp"
+        android:layout_width="324dp"
         android:layout_height="70dp"
         android:layout_x="0dp"
         android:layout_y="500dp"
@@ -58,30 +32,16 @@
         android:textSize="20sp" />
 
 
-    <Button
-        android:id="@+id/btn_02"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:layout_x="174dp"
-        android:layout_y="500dp"
-        android:background="@drawable/btn_menu_normal"
-        android:gravity="center"
-        android:text="TÜM LİSTE"
-        android:textColor="@color/green"
-        android:textSize="20sp" />
-
-
-
     <HorizontalScrollView
         android:layout_width="325dp"
-        android:layout_height="360dp"
+        android:layout_height="460dp"
         android:layout_x="0dp"
         android:layout_y="25dp">
 
         <ListView
             android:id="@+id/liste_satilmis_etiket"
             android:layout_width="wrap_content"
-            android:layout_height="350dp"
+            android:layout_height="450dp"
             android:listSelector="@color/colorBlackSecili"
             android:scrollbars="horizontal|vertical"
             android:textColor="@color/green" />

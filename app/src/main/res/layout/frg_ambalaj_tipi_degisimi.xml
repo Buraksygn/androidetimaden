@@ -5,79 +5,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
-    tools:context="com.etimaden.frg_ana_sayfa"
+    tools:context="com.etimaden.UretimIslemleri.frg_ambalaj_tipi_degisimi"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="325dp"
+        android:textColor="@color/green"
         android:layout_height="wrap_content"
         android:layout_x="0dp"
         android:layout_y="0dp"
-        android:textColor="@color/green"
-        android:text="frg_ana_sayfa"
+        android:text="frg_ambalaj_tipi_degisimi"
         android:textSize="12dp" />
 
-    <Button
-        android:id="@+id/btnSevkiyat"
+    <TextView
+        android:id="@+id/txtYazi6"
         android:layout_width="324dp"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
         android:layout_x="0dp"
         android:layout_y="25dp"
-        android:background="@drawable/btn_menu_normal"
-        android:gravity="center"
-        android:text="SEVKİYAT İŞLEMLERİ"
+        android:gravity="center_horizontal"
+        android:text="AMBALAJ TİPİ DEĞİŞİMİ"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
 
     <Button
-        android:id="@+id/btnUretim"
-        android:layout_width="324dp"
-        android:layout_height="75dp"
+        android:id="@+id/btn_01"
+        android:layout_width="325dp"
+        android:layout_height="95dp"
         android:layout_x="0dp"
-        android:layout_y="125dp"
+        android:layout_y="90dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="ÜRETİM İŞLEMLERİ"
+        android:text="AMBALAJ TİPİ DEĞİŞİMİ"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="22sp" />
 
-    <Button
-        android:id="@+id/btnmanipulasyon"
+    <TextView
+        android:id="@+id/txtYazi"
         android:layout_width="324dp"
-        android:layout_height="75dp"
+        android:layout_height="386dp"
         android:layout_x="0dp"
-        android:layout_y="225dp"
-        android:background="@drawable/btn_menu_normal"
-        android:gravity="center"
-        android:text="MANİPÜLASYON"
+        android:layout_y="85dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:lineSpacingExtra="20sp"
+        android:text="İŞ EMRİ SEÇİMİ İÇİN ÖNCELİKLE DÖNÜŞTÜRÜLECEK ÜRÜNÜN ETİKETİNİ OKUTUNUZ..."
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnSatilmisEtiket"
+
+    <ListView
+        android:id="@+id/listisemirleri"
         android:layout_width="324dp"
-        android:layout_height="75dp"
+        android:layout_height="282dp"
         android:layout_x="0dp"
-        android:layout_y="325dp"
-        android:visibility="visible"
-        android:background="@drawable/btn_menu_normal"
-        android:gravity="center"
-        android:text="SATILMIŞ ETİKET KONTROL"
-        android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:layout_y="188dp"
+        android:listSelector="@color/colorBlackSecili"
+        android:scrollbars="horizontal|vertical"
+        android:textColor="@color/green" />
+
+
 
 
 
     <Button
-        android:id="@+id/btncikis"
+        android:id="@+id/btngeri"
         android:layout_width="324dp"
         android:layout_height="70dp"
         android:layout_x="0dp"
         android:layout_y="500dp"
         android:background="@drawable/my_button_cikis"
         android:gravity="center"
-        android:text="ÇIKIŞ"
+        android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
         android:textSize="20sp" />
 

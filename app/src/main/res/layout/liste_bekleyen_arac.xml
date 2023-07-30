@@ -14,7 +14,7 @@
         android:textColor="@color/colorGreen"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
-        android:text="#"
+        android:text="Sıra No"
         android:textSize="30dp"
         android:id="@+id/yazi_sira_no"/>
 
@@ -27,7 +27,7 @@
         android:textColor="@color/colorGreen"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
-        android:text="#"
+        android:text="Araç Plaka"
         android:textSize="30dp"
         android:id="@+id/yazi_arac_plaka"/>
 
@@ -40,7 +40,7 @@
         android:textColor="@color/colorGreen"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
-        android:text="#"
+        android:text="Sap Kodu"
         android:textSize="30dp"
         android:id="@+id/yazi_isemri"/>
 
@@ -52,7 +52,7 @@
         android:textColor="@color/colorGreen"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
-        android:text="#"
+        android:text="Miktar"
         android:textSize="30dp"
         android:id="@+id/yazi_konteyner_plaka"/>
 

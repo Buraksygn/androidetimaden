@@ -6,27 +6,47 @@ public class mblDigerEtiket {
 
     String kod = "";
     String durum= "";
+    String urunadi= "";
 
-    public mblDigerEtiket( int v_sirano,String v_kod,String v_durum)
-    {
-        sirano = v_sirano;
-        kod = v_kod;
-        durum = v_durum;
+    public mblDigerEtiket() {
     }
 
-    public String getsirano()
-    {
-        return sirano+"";
+    public mblDigerEtiket(int sirano, String kod, String durum, String urunadi) {
+        this.sirano = sirano;
+        this.kod = kod;
+        this.durum = durum;
+        this.urunadi = urunadi;
     }
 
-    public String getkod()
-    {
-        return kod+"";
+    public int getSirano() {
+        return sirano;
     }
 
-    public String getdurum()
-    {
+    public void setSirano(int sirano) {
+        this.sirano = sirano;
+    }
+
+    public String getKod() {
+        return kod;
+    }
+
+    public void setKod(String kod) {
+        this.kod = kod;
+    }
+
+    public String getDurum() {
         return durum;
     }
 
+    public void setDurum(String durum) {
+        this.durum = durum;
+    }
+
+    public String getUrunadi() {
+        return urunadi;
+    }
+
+    public void setUrunadi(String urunadi) {
+        this.urunadi = urunadi;
+    }
 }
