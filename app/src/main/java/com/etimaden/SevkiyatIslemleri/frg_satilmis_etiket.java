@@ -112,7 +112,7 @@ public class frg_satilmis_etiket extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
 
 
-        ((GirisSayfasi) getActivity()).fn_GucAyarla(150);
+        ((GirisSayfasi) getActivity()).fn_GucAyarla(250);
 
 
 

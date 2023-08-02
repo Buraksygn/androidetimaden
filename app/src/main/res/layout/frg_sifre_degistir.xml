@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.digerislemler.frg_sifre_degistir">
+
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:textColor="@color/green"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:text="frg_sifre_degistir"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/txtYazi3"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="25dp"
+        android:gravity="center_horizontal"
+        android:text="ŞİFRE DEĞİŞTİRME"
+        android:textColor="@color/green"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+
+
+
+    <TextView
+        android:id="@+id/txteskisifreyazi"
+        android:layout_width="105dp"
+        android:layout_height="40dp"
+        android:layout_x="0dp"
+        android:layout_y="105dp"
+        android:ems="10"
+        android:gravity="left"
+        android:text="Eski Şifre"
+        android:textColor="@color/colorGreen"
+        android:textStyle="bold"></TextView>
+
+
+    <EditText
+        android:id="@+id/txteskisifre"
+        android:layout_width="219dp"
+        android:layout_height="40dp"
+        android:layout_x="105dp"
+        android:layout_y="105dp"
+        android:background="@drawable/btn_giris_yap"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColor="@color/colorGreen" />
+
+    <TextView
+        android:id="@+id/txtyenisifreyazi"
+        android:layout_width="105dp"
+        android:layout_height="40dp"
+        android:layout_x="0dp"
+        android:layout_y="155dp"
+        android:ems="10"
+        android:gravity="left"
+        android:text="Yeni Şifre"
+        android:textColor="@color/colorGreen"
+        android:textStyle="bold">
+    </TextView>
+
+
+    <EditText
+        android:id="@+id/txtyenisifre"
+        android:layout_width="219dp"
+        android:layout_height="40dp"
+        android:layout_x="105dp"
+        android:layout_y="155dp"
+        android:background="@drawable/btn_giris_yap"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColor="@color/colorGreen" />
+
+    <TextView
+        android:id="@+id/txtyenisifretekraryazi"
+        android:layout_width="105dp"
+        android:layout_height="40dp"
+        android:layout_x="0dp"
+        android:layout_y="205dp"
+        android:ems="10"
+        android:gravity="left"
+        android:text="Yeni Şifre"
+        android:textColor="@color/colorGreen"
+        android:textStyle="bold">
+    </TextView>
+
+
+    <EditText
+        android:id="@+id/txtyenisifretekrar"
+        android:layout_width="219dp"
+        android:layout_height="40dp"
+        android:layout_x="105dp"
+        android:layout_y="205dp"
+        android:background="@drawable/btn_giris_yap"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColor="@color/colorGreen" />
+
+    <Button
+        android:id="@+id/btnsifredegistir"
+        android:textColor="@color/colorGreen"
+        android:layout_width="219dp"
+        android:layout_height="50dp"
+        android:layout_x="105dp"
+        android:layout_y="255dp"
+        android:textSize="22sp"
+        android:background="@drawable/btn_giris_yap"
+        android:text="Güncelle" />
+
+    <Button
+        android:id="@+id/btncikis"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="510dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+
+</AbsoluteLayout>

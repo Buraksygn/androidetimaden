@@ -74,14 +74,14 @@
 
     <HorizontalScrollView
         android:layout_width="325dp"
-        android:layout_height="360dp"
+        android:layout_height="410dp"
         android:layout_x="0dp"
         android:layout_y="25dp">
 
         <ListView
             android:id="@+id/liste_satilmis_etiket"
             android:layout_width="wrap_content"
-            android:layout_height="350dp"
+            android:layout_height="400dp"
             android:listSelector="@color/colorBlackSecili"
             android:scrollbars="horizontal|vertical"
             android:textColor="@color/green" />

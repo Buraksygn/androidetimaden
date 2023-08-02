@@ -7,6 +7,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,15 +18,18 @@ import com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.digerislemler.frg_sifre_degistir;
 import com.etimaden.manipulasyon.frg_manipulasyon_panel;
 import com.etimaden.ugr_demo.R;
 
 public class frg_ana_sayfa extends Fragment
 {
-    Button _btnCikis;
+    ImageView _btnCikis;
+    ImageView _imgsifredegistir;
+
     Button _btnUretim;
     Button _btnSevkiyat;
-    Button _btnSatilmisEtiket;
+ //   Button _btnSatilmisEtiket;
     Button _btnmanipulasyon;
     Button _btnTest;
 
@@ -73,9 +77,13 @@ public class frg_ana_sayfa extends Fragment
         ((GirisSayfasi)getActivity()).fn_ListeTemizle();
         ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
-        _btnCikis=(Button)getView().findViewById(R.id.btncikis);
+        _btnCikis=(ImageView)getView().findViewById(R.id.imgCikis);
         _btnCikis.playSoundEffect(0);
         _btnCikis.setOnClickListener(new fn_Cikis());
+
+        _imgsifredegistir=(ImageView)getView().findViewById(R.id.imgsifredegistir);
+        _imgsifredegistir.playSoundEffect(0);
+        _imgsifredegistir.setOnClickListener(new fn_sifredegistir());
 
         _btnSevkiyat=(Button)getView().findViewById(R.id.btnSevkiyat);
         _btnSevkiyat.playSoundEffect(0);
@@ -85,20 +93,18 @@ public class frg_ana_sayfa extends Fragment
         _btnUretim.playSoundEffect(0);
         _btnUretim.setOnClickListener(new fn_Uretim());
 
-        _btnSatilmisEtiket= (Button)getView().findViewById(R.id.btnSatilmisEtiket);
-        _btnSatilmisEtiket.playSoundEffect(0);
-        _btnSatilmisEtiket.setOnClickListener(new fn_btnSatilmisEtiket());
+        //_btnSatilmisEtiket= (Button)getView().findViewById(R.id.btnSatilmisEtiket);
+        //_btnSatilmisEtiket.playSoundEffect(0);
+        //_btnSatilmisEtiket.setOnClickListener(new fn_btnSatilmisEtiket());
 
         _btnmanipulasyon= (Button)getView().findViewById(R.id.btnmanipulasyon);
         _btnmanipulasyon.playSoundEffect(0);
         _btnmanipulasyon.setOnClickListener(new fn_btnmanipulasyon());
 
-
     }
 
     public void fn_BarkodOkutuldu(final String barcode)
     {
-
 
     }
 
@@ -182,6 +188,17 @@ public class frg_ana_sayfa extends Fragment
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_manipulasyon_panel").addToBackStack(null);
             fragmentTransaction.commit();
 
+        }
+    }
+
+    private class fn_sifredegistir implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            frg_sifre_degistir fragmentyeni = new frg_sifre_degistir();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sifre_degistir").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 }

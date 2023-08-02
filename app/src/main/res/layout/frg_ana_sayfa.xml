@@ -20,66 +20,93 @@
 
     <Button
         android:id="@+id/btnSevkiyat"
-        android:layout_width="324dp"
-        android:layout_height="75dp"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
         android:layout_x="0dp"
         android:layout_y="25dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="SEVKİYAT İŞLEMLERİ"
+        android:text="SEVKİYAT"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="26sp" />
 
     <Button
         android:id="@+id/btnUretim"
-        android:layout_width="324dp"
-        android:layout_height="75dp"
-        android:layout_x="0dp"
-        android:layout_y="125dp"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_x="184dp"
+        android:layout_y="25dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="ÜRETİM İŞLEMLERİ"
+        android:text="ÜRETİM"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="26sp" />
 
     <Button
         android:id="@+id/btnmanipulasyon"
-        android:layout_width="324dp"
-        android:layout_height="75dp"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
         android:layout_x="0dp"
-        android:layout_y="225dp"
+        android:layout_y="145dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="MANİPÜLASYON"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
+
 
     <Button
-        android:id="@+id/btnSatilmisEtiket"
-        android:layout_width="324dp"
-        android:layout_height="75dp"
+        android:id="@+id/btneldensatis"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
         android:layout_x="0dp"
-        android:layout_y="325dp"
-        android:visibility="visible"
+        android:layout_y="265dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="SATILMIŞ ETİKET KONTROL"
+        android:text=""
         android:textColor="@color/green"
-        android:textSize="20sp" />
-
+        android:textSize="25sp" />
 
 
     <Button
-        android:id="@+id/btncikis"
+        android:id="@+id/btndepoduzenleme"
         android:layout_width="324dp"
+        android:layout_height="80dp"
+        android:layout_x="0dp"
+        android:layout_y="410dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/green"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/btndepoduzenleme2"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_x="184dp"
+        android:layout_y="146dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/green"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:id="@+id/imgsifredegistir"
+        android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_x="0dp"
         android:layout_y="500dp"
-        android:background="@drawable/my_button_cikis"
-        android:gravity="center"
-        android:text="ÇIKIŞ"
-        android:textColor="@color/colorRed"
-        android:textSize="20sp" />
+        android:src="@mipmap/changepassword" />
+
+    <ImageView
+        android:id="@+id/imgCikis"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_x="254dp"
+        android:layout_y="500dp"
+        android:src="@mipmap/cikis" />
 
 
 </AbsoluteLayout>
