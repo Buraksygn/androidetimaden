@@ -1,6 +1,6 @@
 package com.etimaden.request;
 
-public class request_secEtiket {
+public class request_bos {
 
     private String _zsunucu_ip_adresi="";
     private String _zaktif_alt_tesis;
@@ -11,14 +11,10 @@ public class request_secEtiket {
     private String aktif_sunucu;
     private String aktif_kullanici;
 
-    private String _rfid ="";
-
-
-
-    public request_secEtiket() {
+    public request_bos() {
     }
 
-    public request_secEtiket(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, String _rfid, String _paket_tipi, String _isemri_tipialt, String _sap_kodu, String _palet_miktar, String _silo, String _depo_silo_secimi, String _depo, String _serino_rfid, String _serino_kod, String _torba_miktar, String _palet_dizim, String _urun_kodu, String _isemri_kodu, String _isletme, String _isemri_detay) {
+    public request_bos(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici) {
         this._zsunucu_ip_adresi = _zsunucu_ip_adresi;
         this._zaktif_alt_tesis = _zaktif_alt_tesis;
         this._zaktif_tesis = _zaktif_tesis;
@@ -27,8 +23,6 @@ public class request_secEtiket {
         this._zsifre = _zsifre;
         this.aktif_sunucu = aktif_sunucu;
         this.aktif_kullanici = aktif_kullanici;
-        this._rfid = _rfid;
-
     }
 
     public String get_zsunucu_ip_adresi() {
@@ -94,14 +88,4 @@ public class request_secEtiket {
     public void setAktif_kullanici(String aktif_kullanici) {
         this.aktif_kullanici = aktif_kullanici;
     }
-
-    public String get_rfid() {
-        return _rfid;
-    }
-
-    public void set_rfid(String _rfid) {
-        this._rfid = _rfid;
-    }
-
-
 }

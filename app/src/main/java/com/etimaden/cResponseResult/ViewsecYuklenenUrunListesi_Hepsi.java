@@ -1,5 +1,7 @@
 package com.etimaden.cResponseResult;
 
+import com.etimaden.persosclass.Urun_tag;
+
 import java.util.List;
 
 public class ViewsecYuklenenUrunListesi_Hepsi 	extends ViewDefaultSonuc

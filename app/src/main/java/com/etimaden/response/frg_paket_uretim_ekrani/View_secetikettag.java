@@ -1,6 +1,6 @@
 package com.etimaden.response.frg_paket_uretim_ekrani;
 
-import com.etimaden.cResponseResult.Urun_tag;
+import com.etimaden.persosclass.Urun_tag;
 
 public class View_secetikettag {
     public String _zHataAciklama = "";

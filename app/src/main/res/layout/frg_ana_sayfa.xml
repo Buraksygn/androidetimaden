@@ -57,7 +57,7 @@
 
     <Button
         android:id="@+id/btneldensatis"
-        android:layout_width="200dp"
+        android:layout_width="141dp"
         android:layout_height="80dp"
         android:layout_x="0dp"
         android:layout_y="265dp"

@@ -1,24 +1,20 @@
 package com.etimaden.response.frg_paket_uretim_ekrani;
 
-import com.etimaden.persosclass.Urun_tag;
-
-public class View_secEtiket {
-
+public class View_string_response {
     public String _zHataAciklama = "";
     public String _zAciklama = "";
     public String _zSonuc = "";
 
-    public Urun_tag _tag;
+    public String _result;
 
-
-    public View_secEtiket() {
+    public View_string_response() {
     }
 
-    public View_secEtiket(String _zHataAciklama, String _zAciklama, String _zSonuc, Urun_tag _tagtt) {
+    public View_string_response(String _zHataAciklama, String _zAciklama, String _zSonuc, String _result) {
         this._zHataAciklama = _zHataAciklama;
         this._zAciklama = _zAciklama;
         this._zSonuc = _zSonuc;
-        this._tag = _tagtt;
+        this._result = _result;
     }
 
     public String get_zHataAciklama() {
@@ -45,11 +41,11 @@ public class View_secEtiket {
         this._zSonuc = _zSonuc;
     }
 
-    public Urun_tag get_tag() {
-        return _tag;
+    public String get_result() {
+        return _result;
     }
 
-    public void set_tag(Urun_tag _tagtt) {
-        this._tag = _tagtt;
+    public void set_result(String _result) {
+        this._result = _result;
     }
 }

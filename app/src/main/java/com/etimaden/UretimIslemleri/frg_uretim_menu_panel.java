@@ -15,9 +15,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
+import com.etimaden.UretimIslemleri.Paket_uretim.frg_shrink_ayirma;
+import com.etimaden.UretimIslemleri.Paket_uretim.frg_shrink_onay;
+import com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_iptal;
+import com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_zayi;
+import com.etimaden.UretimIslemleri.Uretim_sorgulama.frg_uretim_detay_ekrani;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.frg_ana_sayfa;
-import com.etimaden.response.frg_paket_uretim_ekrani.View_yari_otomatik_paket_kontrol_et;
 import com.etimaden.senkronResponse.ViewtoplamaTest;
 import com.etimaden.senkronResult.requesttoplamaTest;
 import com.etimaden.servisbaglanti.test_Controller;
@@ -37,10 +41,15 @@ import static com.etimaden.cSabitDegerler._zport3G;
 
 public class frg_uretim_menu_panel extends Fragment {
 
-    Button _btngeri;
+
     Button _btnYeniUretim;
-    Button _btn_02;
-    Button _btn_03;
+    Button _btnShrinkOlusturma;
+    Button _btnShrinkEslestirme;
+    Button _btnUretimIptali;
+    Button _btnUretimSorgulama;
+    Button _btnUretimZayi;
+    Button _btnYariOtomatikUretim;
+    Button _btngeri;
 
 
     VeriTabani _myIslem;
@@ -113,13 +122,37 @@ public class frg_uretim_menu_panel extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ModBarkod();
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
 
-        _btngeri=(Button)getView().findViewById(R.id.btncikis);
-        _btngeri.playSoundEffect(0);
-        _btngeri.setOnClickListener(new fn_Geri());
-
         _btnYeniUretim=(Button)getView().findViewById(R.id.btnYeniUretim);
         _btnYeniUretim.playSoundEffect(0);
         _btnYeniUretim.setOnClickListener(new fn_YeniUretim());
+
+        _btnShrinkOlusturma=(Button)getView().findViewById(R.id.btnShrinkOlusturma);
+        _btnShrinkOlusturma.playSoundEffect(0);
+        _btnShrinkOlusturma.setOnClickListener(new fn_ShrinkOlusturma());
+
+        _btnShrinkEslestirme=(Button)getView().findViewById(R.id.btnShrinkEslestirme);
+        _btnShrinkEslestirme.playSoundEffect(0);
+        _btnShrinkEslestirme.setOnClickListener(new fn_ShrinkEslestirme());
+
+        _btnUretimIptali=(Button)getView().findViewById(R.id.btnUretimIptali);
+        _btnUretimIptali.playSoundEffect(0);
+        _btnUretimIptali.setOnClickListener(new fn_UretimIptali());
+
+        _btnUretimSorgulama=(Button)getView().findViewById(R.id.btnUretimSorgulama);
+        _btnUretimSorgulama.playSoundEffect(0);
+        _btnUretimSorgulama.setOnClickListener(new fn_UretimSorgulama());
+
+        _btnUretimZayi=(Button)getView().findViewById(R.id.btnUretimZayi);
+        _btnUretimZayi.playSoundEffect(0);
+        _btnUretimZayi.setOnClickListener(new fn_UretimZayi());
+
+        _btnYariOtomatikUretim=(Button)getView().findViewById(R.id.btnYariOtomatikUretim);
+        _btnYariOtomatikUretim.playSoundEffect(0);
+        _btnYariOtomatikUretim.setOnClickListener(new fn_YariOtomatikUretim());
+
+        _btngeri=(Button)getView().findViewById(R.id.btncikis);
+        _btngeri.playSoundEffect(0);
+        _btngeri.setOnClickListener(new fn_Geri());
 
         String _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/";
 
@@ -137,16 +170,7 @@ public class frg_uretim_menu_panel extends Fragment {
 
     }
 
-    private class fn_Geri implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            frg_ana_sayfa fragmentyeni = new frg_ana_sayfa();
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_ana_sayfa").addToBackStack(null);
-            fragmentTransaction.commit();
-        }
-    }
+
 
     private class fn_YeniUretim implements View.OnClickListener {
         @Override
@@ -158,6 +182,82 @@ public class frg_uretim_menu_panel extends Fragment {
             fragmentTransaction.commit();
         }
     }
+
+    private class fn_ShrinkOlusturma implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            frg_shrink_ayirma fragmentyeni = new frg_shrink_ayirma();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_shrink_ayirma").addToBackStack(null);
+            fragmentTransaction.commit();
+
+        }
+    }
+
+    private class fn_ShrinkEslestirme implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            frg_shrink_onay fragmentyeni = new frg_shrink_onay();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_shrink_onay").addToBackStack(null);
+            fragmentTransaction.commit();
+
+        }
+    }
+    private class fn_UretimIptali implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            frg_uretim_iptal fragmentyeni = new frg_uretim_iptal();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_uretim_iptal").addToBackStack(null);
+            fragmentTransaction.commit();
+
+        }
+    }
+    private class fn_UretimSorgulama implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+
+            frg_uretim_detay_ekrani fragmentyeni = new frg_uretim_detay_ekrani();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_uretim_detay_ekrani").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+    }
+    private class fn_UretimZayi implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            frg_uretim_zayi fragmentyeni = new frg_uretim_zayi();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_uretim_zayi").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+    }
+    private class fn_YariOtomatikUretim implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+
+        }
+    }
+
+
+    private class fn_Geri implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            frg_ana_sayfa fragmentyeni = new frg_ana_sayfa();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_ana_sayfa").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+    }
+
+
 
 
     private class fn_YeniUretim_01 implements View.OnClickListener {

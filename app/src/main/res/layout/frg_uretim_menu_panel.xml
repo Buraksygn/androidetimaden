@@ -23,7 +23,7 @@
     <Button
         android:id="@+id/btnYeniUretim"
         android:layout_width="325dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
         android:layout_y="25dp"
         android:background="@drawable/btn_menu_normal"
@@ -35,9 +35,9 @@
     <Button
         android:id="@+id/btnShrinkOlusturma"
         android:layout_width="325dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="95dp"
+        android:layout_y="85dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="SHRINK ETİKET OLUŞTURMA"
@@ -47,9 +47,9 @@
     <Button
         android:id="@+id/btnShrinkEslestirme"
         android:layout_width="325dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="165dp"
+        android:layout_y="145dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="SHRINK ETİKET EŞLEŞTİRME"
@@ -59,9 +59,9 @@
     <Button
         android:id="@+id/btnUretimIptali"
         android:layout_width="325dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="235dp"
+        android:layout_y="205dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="ÜRETİM İPTALİ"
@@ -71,9 +71,9 @@
     <Button
         android:id="@+id/btnUretimSorgulama"
         android:layout_width="325dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="305dp"
+        android:layout_y="265dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="ÜRETİM SORGULAMA"
@@ -83,12 +83,24 @@
     <Button
         android:id="@+id/btnUretimZayi"
         android:layout_width="325dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="375dp"
+        android:layout_y="325dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="ÜRETİM ZAYİ"
+        android:textColor="@color/green"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnYariOtomatikUretim"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="385dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="YARI OTOMATİK ÜRETİM"
         android:textColor="@color/green"
         android:textSize="20sp"/>
 
@@ -96,7 +108,7 @@
     <Button
         android:id="@+id/btncikis"
         android:layout_width="324dp"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
         android:layout_y="500dp"
         android:background="@drawable/my_button_cikis"

@@ -1,6 +1,6 @@
 package com.etimaden.request;
 
-import com.etimaden.cResponseResult.Urun_tag;
+import com.etimaden.persosclass.Urun_tag;
 
 import java.util.List;
 

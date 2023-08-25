@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_zayi"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:textColor="@color/green"
+        android:text="frg_uretim_zayi"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="30dp"
+        android:textColor="@color/colorRed"
+        android:gravity="center"
+        android:text="ÜRETİM ZAYİ İÇİN ETİKETİ OKUTUNUZ"
+        android:textSize="12dp" />
+
+    <RadioGroup
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="100dp" >
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_marginBottom="10dp"
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:layout_x="0dp"
+            android:layout_y="150dp"
+            android:translationX="102dp"
+            android:scaleX="1.4"
+            android:scaleY="1.4"
+            android:textColor="@color/main_cyan_color"
+            android:buttonTint="@color/colorGri"
+            android:text="DAHİLİ SİGORTA" />
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_marginBottom="10dp"
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:layout_x="102dp"
+            android:layout_y="150dp"
+            android:translationX="102dp"
+            android:scaleX="1.4"
+            android:scaleY="1.4"
+            android:textColor="@color/main_cyan_color"
+            android:buttonTint="@color/colorGri"
+            android:text="HARİCİ SİGORTA" />
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_marginBottom="10dp"
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:layout_x="102dp"
+            android:layout_y="150dp"
+            android:translationX="102dp"
+            android:scaleX="1.4"
+            android:scaleY="1.4"
+            android:textColor="@color/main_cyan_color"
+            android:buttonTint="@color/colorGri"
+            android:text="SİGORTASIZ" />
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_marginBottom="10dp"
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:layout_x="102dp"
+            android:layout_y="150dp"
+            android:translationX="102dp"
+            android:scaleX="1.4"
+            android:scaleY="1.4"
+            android:textColor="@color/main_cyan_color"
+            android:buttonTint="@color/colorGri"
+            android:text="İPTAL" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btncikis"
+        android:layout_width="324dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="500dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+</AbsoluteLayout>

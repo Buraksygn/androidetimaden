@@ -16,7 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.cResponseResult.Urun_tag;
+import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.manipulasyon.frg_manipulasyon_panel;
 import com.etimaden.persos.Persos;
 import com.etimaden.request.request_ambalaj_tipi_secEtiket;

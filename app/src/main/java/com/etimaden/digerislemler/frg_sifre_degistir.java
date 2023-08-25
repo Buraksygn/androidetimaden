@@ -123,9 +123,24 @@ public class frg_sifre_degistir extends Fragment {
     }
 
 
+
+    public void fn_BarkodOkutuldu(String str)
+    {
+
+    }
+
+
+    public void fn_RfidOkutuldu(String str)
+    {
+
+    }
+
+
+
     private class fn_Geri implements View.OnClickListener {
         @Override
-        public void onClick(View v) {
+        public void onClick(View v)
+        {
             frg_ana_sayfa fragmentyeni = new frg_ana_sayfa();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

@@ -11,4 +11,5 @@ public class cSabitDegerler
     public static final String _ipAdresi3G = "88.255.50.73"; //9988 canlı sistem 8888 test sistemi
 
     public static final int DATABASE_VERSION = 11;
+
 }

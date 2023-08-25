@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_iptal">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:textColor="@color/green"
+        android:layout_y="0dp"
+        android:text="frg_shrink_onay"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/txtYazi5"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="29dp"
+        android:textColor="@color/green"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="ÜRETİM İPTALİ"
+        android:textSize="26dp"
+        android:textStyle="bold" />
+
+
+
+    <TextView
+        android:id="@+id/txtYazi"
+        android:layout_width="325dp"
+        android:layout_height="70dp"
+        android:layout_x="0dp"
+        android:layout_y="70dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="ÜRETİM İPTALİ İÇİN ETİKETİ OKUTUNUZ..."
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="325dp"
+        android:layout_height="350dp"
+        android:layout_x="1dp"
+        android:layout_y="135dp"
+        app:srcCompat="@mipmap/cbimage" />
+
+    <Button
+        android:id="@+id/btngeri"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="510dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed"
+        android:textSize="20sp" />
+
+
+
+
+</AbsoluteLayout>

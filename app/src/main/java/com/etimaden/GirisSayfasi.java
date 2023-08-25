@@ -34,9 +34,14 @@ import com.etimaden.SevkiyatIslemleri.frg_arac_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_konteyner_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_konteyner_yukleme_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket;
+import com.etimaden.UretimIslemleri.Paket_uretim.frg_shrink_ayirma;
+import com.etimaden.UretimIslemleri.Paket_uretim.frg_shrink_onay;
+import com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_iptal;
+import com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_zayi;
 import com.etimaden.UretimIslemleri.frg_ambalaj_tipi_degisimi;
 import com.etimaden.UretimIslemleri.frg_paket_uretim_ekrani;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.digerislemler.frg_sifre_degistir;
 import com.etimaden.manipulasyon.frg_geribesleme_onay;
 import com.etimaden.ugr_demo.AccessActivity;
 import com.etimaden.ugr_demo.ConfigPreferenceActivity;
@@ -229,6 +234,20 @@ public class GirisSayfasi extends AppCompatActivity {
 
         triggerIntent.putExtra("trigger_mode_value", 1);
         mLastTriggerMode = 1;
+
+        sendBroadcast(triggerIntent, null);
+
+    }
+
+    public  void fn_ModBoth()
+    {
+        // Sadece RFID okumaya ayarla
+        Intent triggerIntent = new Intent(UGRApplication.UGR_ACTION_SETTING_CHANGE);
+        triggerIntent.putExtra("setting", "trigger_mode");
+
+
+        triggerIntent.putExtra("trigger_mode_value", 2);
+        mLastTriggerMode = 2;
 
         sendBroadcast(triggerIntent, null);
 
@@ -619,6 +638,45 @@ public class GirisSayfasi extends AppCompatActivity {
                                 {
                                     _frg_ambalaj_tipi_degisimi.fn_BarkodOkutuldu(barcode.toString());
                                 }
+
+                                else
+                                {
+                                    frg_sifre_degistir _frg_sifre_degistir = (frg_sifre_degistir) getSupportFragmentManager().findFragmentByTag("frg_sifre_degistir");
+
+                                    if (_frg_sifre_degistir != null && _frg_sifre_degistir.isVisible())
+                                    {
+                                        _frg_sifre_degistir.fn_BarkodOkutuldu(barcode.toString());
+                                    }
+                                    else {
+                                        frg_uretim_zayi _frg_frg_uretim_zayi = (frg_uretim_zayi) getSupportFragmentManager().findFragmentByTag("frg_uretim_zayi");
+
+                                        if (_frg_frg_uretim_zayi != null && _frg_frg_uretim_zayi.isVisible())
+                                        {
+                                            _frg_frg_uretim_zayi.fn_BarkodOkutuldu(barcode.toString());
+                                        }
+                                        else {
+                                            frg_shrink_ayirma _frg_frg_shrink_ayirma = (frg_shrink_ayirma) getSupportFragmentManager().findFragmentByTag("frg_shrink_ayirma");
+
+                                            if (_frg_frg_shrink_ayirma != null && _frg_frg_shrink_ayirma.isVisible()) {
+                                                _frg_frg_shrink_ayirma.fn_BarkodOkutuldu(barcode.toString());
+                                            }
+                                            else {
+                                                frg_shrink_onay _frg_frg_shrink_onay = (frg_shrink_onay) getSupportFragmentManager().findFragmentByTag("frg_shrink_onay");
+
+                                                if (_frg_frg_shrink_onay != null && _frg_frg_shrink_onay.isVisible()) {
+                                                    _frg_frg_shrink_onay.fn_BarkodOkutuldu(barcode.toString());
+                                                }
+                                                else {
+                                                    frg_uretim_iptal _frg_frg_uretim_iptal = (frg_uretim_iptal) getSupportFragmentManager().findFragmentByTag("frg_uretim_iptal");
+
+                                                    if (_frg_frg_uretim_iptal != null && _frg_frg_shrink_onay.isVisible()) {
+                                                        _frg_frg_uretim_iptal.fn_BarkodOkutuldu(barcode.toString());
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -791,6 +849,38 @@ public class GirisSayfasi extends AppCompatActivity {
                                                     if (_frg_satilmis_etiket != null && _frg_satilmis_etiket.isVisible())
                                                     {
                                                         _frg_satilmis_etiket.fn_RfidOkutuldu(_TempEpc);
+                                                    }
+                                                    else {
+                                                        frg_uretim_zayi _frg_frg_uretim_zayi = (frg_uretim_zayi) getSupportFragmentManager().findFragmentByTag("frg_uretim_zayi");
+
+                                                        if (_frg_frg_uretim_zayi != null && _frg_frg_uretim_zayi.isVisible())
+                                                        {
+                                                            _frg_frg_uretim_zayi.fn_rfidOkundu(_TempEpc);
+                                                        }
+                                                        else {
+                                                            frg_shrink_ayirma _frg_frg_shrink_ayirma = (frg_shrink_ayirma) getSupportFragmentManager().findFragmentByTag("frg_shrink_ayirma");
+
+                                                            if (_frg_frg_shrink_ayirma != null && _frg_frg_shrink_ayirma.isVisible())
+                                                            {
+                                                                _frg_frg_shrink_ayirma.fn_RfidOkundu(_TempEpc);
+                                                            }
+                                                            else {
+                                                                frg_shrink_onay _frg_frg_shrink_onay = (frg_shrink_onay) getSupportFragmentManager().findFragmentByTag("frg_shrink_onay");
+
+                                                                if (_frg_frg_shrink_onay != null && _frg_frg_shrink_onay.isVisible())
+                                                                {
+                                                                    _frg_frg_shrink_onay.fn_RfidOkundu(_TempEpc);
+                                                                }
+                                                                else {
+                                                                    frg_uretim_iptal _frg_frg_uretim_iptal = (frg_uretim_iptal) getSupportFragmentManager().findFragmentByTag("frg_uretim_iptal");
+
+                                                                    if (_frg_frg_uretim_iptal != null && _frg_frg_uretim_iptal.isVisible())
+                                                                    {
+                                                                        _frg_frg_uretim_iptal.fn_RfidOkundu(_TempEpc);
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }

@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.cResponseResult.Urun_tag;
+import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.persos.Persos;
 import com.etimaden.request.request_secetikettag;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_secetikettag;
