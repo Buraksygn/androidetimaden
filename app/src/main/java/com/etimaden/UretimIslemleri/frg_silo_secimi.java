@@ -172,8 +172,8 @@ public class frg_silo_secimi extends Fragment {
 
         _Param.setDepo_turu("1");
         _Param.setIsletme(urun.getIsletme());
-        _Param.setDepo_id(urun.getDepo_silo_secimi());
-        _Param.setDepo_silo_secimi("");
+        //_Param.setDepo_id(urun.getDepo_silo_secimi());
+        _Param.setDepo_silo_secimi(urun.getDepo_silo_secimi());
 
         //
 

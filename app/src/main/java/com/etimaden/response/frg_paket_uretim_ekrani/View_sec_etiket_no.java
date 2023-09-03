@@ -2,7 +2,15 @@ package com.etimaden.response.frg_paket_uretim_ekrani;
 
 import com.etimaden.persosclass.etiket_no;
 
+
+
 public class View_sec_etiket_no {
+
+    private String _zHataAciklama = "";
+    private String _zAciklama = "";
+    private String _zSonuc = "";
+
+    private etiket_no _tag;
 
     public View_sec_etiket_no(String _zHataAciklama, String _zAciklama, String _zSonuc, etiket_no _tag) {
         this._zHataAciklama = _zHataAciklama;
@@ -46,10 +54,6 @@ public class View_sec_etiket_no {
         this._tag = _tag;
     }
 
-    private String _zHataAciklama = "";
-    private String _zAciklama = "";
-    private String _zSonuc = "";
 
-    private etiket_no _tag;
 
 }

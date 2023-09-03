@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.UretimIslemleri.Yari_otomatik.frg_yari_otomatik_ayarlar">
+
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:textColor="@color/green"
+        android:layout_y="0dp"
+        android:text="frg_yari_otomatik_ayarlar"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/txtYazi5"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="29dp"
+        android:textColor="@color/green"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="YARI OTOMATİK AYARLAR"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+
+
+
+    <TextView
+        android:id="@+id/txtYazi2"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:layout_x="6dp"
+        android:layout_y="82dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="PALET DİZİM:"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/editTextPaletDizim"
+        android:layout_width="184dp"
+        android:layout_height="wrap_content"
+        android:layout_x="141dp"
+        android:layout_y="70dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        android:textColor="@color/colorRed" />
+
+    <Button
+        android:id="@+id/btnKaydet"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="120dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="KAYDET"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/txt_palet_sirano"
+        android:layout_width="325dp"
+        android:layout_height="48dp"
+        android:layout_x="2dp"
+        android:layout_y="191dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text=""
+        android:textColor="@color/colorRed"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_paket_sirano"
+        android:layout_width="325dp"
+        android:layout_height="48dp"
+        android:layout_x="2dp"
+        android:layout_y="255dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text=""
+        android:textColor="@color/colorRed"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/btnYenile"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="360dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="YENİLE"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnSifirla"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="430dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="SIFIRLA"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btngeri"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="510dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed"
+        android:textSize="20sp" />
+
+
+</AbsoluteLayout>

@@ -74,7 +74,7 @@ public class apmbluretimdetayAktifIsEmirleri extends ArrayAdapter<uretim_detay> 
         }
 
 
-        viewHolder._sira.setText(position + "" );
+        viewHolder._sira.setText(position + 1 + "" );
         viewHolder._uretim_lot.setText(dataModel.getUretim_lot());
         viewHolder._uretim_adet.setText(dataModel.getUretim_adet());
 

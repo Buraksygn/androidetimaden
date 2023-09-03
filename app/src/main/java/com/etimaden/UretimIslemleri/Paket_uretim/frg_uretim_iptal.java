@@ -146,7 +146,7 @@ public class frg_uretim_iptal extends Fragment {
 
         try
         {
-            barkod = barkod.substring(barkod.length() - 24, 24);
+            barkod = barkod.substring(barkod.length() - 24);
             if (!isReadable)
             {
                 return;
@@ -280,7 +280,7 @@ public class frg_uretim_iptal extends Fragment {
                 return;
 
             }
-            else if (tag.islem_durumu != "1")
+            else if (!tag.islem_durumu.equals("1") )
             {
 
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
@@ -292,7 +292,7 @@ public class frg_uretim_iptal extends Fragment {
                 return;
 
                }
-            else if (tag.uretim_dakika_onayi != "1")
+            else if (!tag.uretim_dakika_onayi.equals("1") )
             {
 
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
@@ -309,7 +309,7 @@ public class frg_uretim_iptal extends Fragment {
             else
             {
 
-                if (_iIptalOncesiDepoKontrol==1  && tag.son_depo_kod.toString().trim().startsWith("URN"))
+                if (_iIptalOncesiDepoKontrol==1  && tag.son_depo_kod.trim().startsWith("URN"))
                 {
                     new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN DEPO")

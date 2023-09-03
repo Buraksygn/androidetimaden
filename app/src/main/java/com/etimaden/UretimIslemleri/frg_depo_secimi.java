@@ -165,10 +165,10 @@ public class frg_depo_secimi extends Fragment {
         _Param.setAktif_sunucu(_ayaraktifsunucu);
         _Param.setAktif_kullanici(_ayaraktifkullanici);
 
-        _Param.setDepo_turu("0");
-        _Param.setIsletme(urun.getIsletme());
-        _Param.setDepo_id(urun.getDepo_silo_secimi());
-        _Param.setDepo_silo_secimi("");
+        _Param.setDepo_turu("0");//var
+        _Param.setIsletme(urun.getIsletme());//var
+        //_Param.setDepo_id(urun.getDepo_silo_secimi());
+        _Param.setDepo_silo_secimi(urun.getDepo_silo_secimi());
 
         //
 

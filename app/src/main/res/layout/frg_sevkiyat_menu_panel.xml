@@ -21,7 +21,7 @@
     <Button
         android:id="@+id/btn_01"
         android:layout_width="325dp"
-        android:layout_height="75dp"
+        android:layout_height="70dp"
         android:layout_x="0dp"
         android:layout_y="25dp"
         android:background="@drawable/btn_menu_normal"
@@ -33,9 +33,9 @@
     <Button
         android:id="@+id/btn_02"
         android:layout_width="325dp"
-        android:layout_height="75dp"
+        android:layout_height="70dp"
         android:layout_x="0dp"
-        android:layout_y="125dp"
+        android:layout_y="105dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="AKTİF SEVKİYATLAR"
@@ -45,56 +45,51 @@
     <Button
         android:id="@+id/btn_03"
         android:layout_width="325dp"
-        android:layout_height="75dp"
+        android:layout_height="70dp"
         android:layout_x="0dp"
-        android:layout_y="225dp"
+        android:layout_y="185dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="SEVKİYAT HAZIRLIK"
         android:textColor="@color/green"
         android:textSize="20sp" />
 
+
     <Button
         android:id="@+id/btn_04"
         android:layout_width="325dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_x="0dp"
-        android:layout_y="210dp"
-        android:visibility="gone"
-        android:background="@drawable/btn_menu_normal"
+        android:layout_y="265dp"
+        android:background="@drawable/my_button_cikis"
         android:gravity="center"
         android:text="SİLOBAS İŞLEMLERİ"
-        android:textColor="@color/green"
+        android:textColor="@color/colorGri"
         android:textSize="20sp" />
-
 
     <Button
         android:id="@+id/btn_05"
         android:layout_width="325dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_x="0dp"
-        android:layout_y="280dp"
-        android:background="@drawable/btn_menu_normal"
+        android:layout_y="345dp"
+        android:background="@drawable/my_button_cikis"
         android:gravity="center"
-        android:visibility="gone"
         android:text="ZAYİ İŞLEMLER"
-        android:textColor="@color/green"
+        android:textColor="@color/colorGri"
         android:textSize="20sp" />
-
 
     <Button
         android:id="@+id/btn_06"
         android:layout_width="325dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_x="0dp"
-        android:layout_y="350dp"
-        android:visibility="gone"
-        android:background="@drawable/btn_menu_normal"
+        android:layout_y="425dp"
+        android:background="@drawable/my_button_cikis"
         android:gravity="center"
         android:text="VAGON SATIŞ TAMAMLA"
-        android:textColor="@color/green"
+        android:textColor="@color/colorGri"
         android:textSize="20sp" />
-
 
     <Button
         android:id="@+id/btncikis"

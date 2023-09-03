@@ -20,6 +20,7 @@ import com.etimaden.UretimIslemleri.Paket_uretim.frg_shrink_onay;
 import com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_iptal;
 import com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_zayi;
 import com.etimaden.UretimIslemleri.Uretim_sorgulama.frg_uretim_detay_ekrani;
+import com.etimaden.UretimIslemleri.Yari_otomatik.frg_yari_otomatik_ayarlar;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.frg_ana_sayfa;
 import com.etimaden.senkronResponse.ViewtoplamaTest;
@@ -30,6 +31,7 @@ import com.etimaden.ugr_demo.R;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -50,7 +52,7 @@ public class frg_uretim_menu_panel extends Fragment {
     Button _btnUretimZayi;
     Button _btnYariOtomatikUretim;
     Button _btngeri;
-
+SweetAlertDialog pDialog;
 
     VeriTabani _myIslem;
     public String _ayaraktifkullanici = "";
@@ -226,6 +228,7 @@ public class frg_uretim_menu_panel extends Fragment {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_uretim_detay_ekrani").addToBackStack(null);
             fragmentTransaction.commit();
+
         }
     }
     private class fn_UretimZayi implements View.OnClickListener {
@@ -241,7 +244,11 @@ public class frg_uretim_menu_panel extends Fragment {
     private class fn_YariOtomatikUretim implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            //frg_yari_otomatik_ayarlar fragmentyeni = new frg_yari_otomatik_ayarlar();
+            //FragmentManager fragmentManager = getFragmentManager();
+            //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            //fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_yari_otomatik_ayarlar").addToBackStack(null);
+            //fragmentTransaction.commit();
         }
     }
 

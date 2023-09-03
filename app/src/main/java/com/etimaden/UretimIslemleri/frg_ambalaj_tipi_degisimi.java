@@ -242,7 +242,7 @@ public class frg_ambalaj_tipi_degisimi extends Fragment {
 
     private void isemri_degerlendir(Urun_tag v_tag)
     {
-        if (v_tag.uretim_dakika_onayi != "1")
+        if (!v_tag.uretim_dakika_onayi.equals("1"))
         {
             String _yazi = "";
             _yazi += "PAKET TİPİ DEĞİŞİMİ ONAYI ALINAMADI. DETAYLAR KISMINDAN PAKET TİPİ DEĞİŞİMİ KURALLARINI OKUYABİLİRSİNİZ.";

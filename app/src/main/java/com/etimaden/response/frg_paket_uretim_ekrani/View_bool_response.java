@@ -5,7 +5,7 @@ public class View_bool_response {
     public String _zAciklama = "";
     public String _zSonuc = "";
 
-    public boolean _result;
+    public Boolean _result;
 
     public View_bool_response() {
     }

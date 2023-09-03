@@ -2,6 +2,21 @@ package com.etimaden.request;
 
 public class requestsecDepoTanimlari {
 
+
+    private String _zsunucu_ip_adresi;
+    private String _zaktif_alt_tesis;
+    private String _zaktif_tesis ;
+    private String _zsurum ;
+    private String _zkullaniciadi ;
+    private String _zsifre;
+    private String aktif_sunucu;
+    private String aktif_kullanici;
+
+    private String isletme;
+    private String depo_silo_secimi;
+    private String depo_turu;
+    //private String depo_id;
+
     public requestsecDepoTanimlari() {
     }
 
@@ -93,28 +108,17 @@ public class requestsecDepoTanimlari {
         this.depo_turu = depo_turu;
     }
 
-    private String _zsunucu_ip_adresi;
-    private String _zaktif_alt_tesis;
-    private String _zaktif_tesis ;
-    private String _zsurum ;
-    private String _zkullaniciadi ;
-    private String _zsifre;
-    private String aktif_sunucu;
-    private String aktif_kullanici;
 
-    private String isletme;
-    private String depo_silo_secimi;
-    private String depo_turu;
 
-    public String getDepo_id() {
-        return depo_id;
-    }
+   // public String getDepo_id() {
+       // return depo_id;
+    //}
 
-    public void setDepo_id(String depo_id) {
-        this.depo_id = depo_id;
-    }
+    //public void setDepo_id(String depo_id) {
+     //   this.depo_id = depo_id;
+  //  }
 
-    private String depo_id;
+
 
 
     public requestsecDepoTanimlari(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, String isletme, String depo_silo_secimi, String depo_turu) {

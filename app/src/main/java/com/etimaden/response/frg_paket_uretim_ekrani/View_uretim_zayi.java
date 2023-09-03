@@ -5,7 +5,7 @@ public class View_uretim_zayi {
     public String _zAciklama = "";
     public String _zSonuc = "";
 
-    public boolean _uretim_zayi;
+    public Boolean _uretim_zayi;
 
     public View_uretim_zayi() {
     }

@@ -89,6 +89,7 @@ public class frg_shrink_ayirma extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.frg_shrink_ayirma, container, false);
     }
 
@@ -128,7 +129,7 @@ public class frg_shrink_ayirma extends Fragment {
         _myIslem = new VeriTabani(getContext());
 
         //barkod,rfid,ikiside
-        ((GirisSayfasi) getActivity()).fn_ModBoth();
+        ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
         _btnShrinkOlustur = (Button)getView().findViewById(R.id.btnShrinkOlustur);
         _btnShrinkOlustur.playSoundEffect(0);
@@ -156,8 +157,13 @@ public class frg_shrink_ayirma extends Fragment {
 
         try
         {
-            barkod = barkod.substring(barkod.length()-24,24);
-            if (!isReadable && barkod.length() == 24)
+
+            barkod = barkod.substring(barkod.length()-24);
+
+            int lenght = barkod.length();
+            boolean readable = isReadable;
+
+            if (!(isReadable && barkod.length() == 24))
             {
                 return;
             }
@@ -177,7 +183,7 @@ public class frg_shrink_ayirma extends Fragment {
             v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
-            if (tag == null || tag.islem_durumu != "1" || tag.etiket_turu != "1")
+            if (tag == null || (!tag.islem_durumu.equals("1")) || (!tag.etiket_turu.equals("1")))
             {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
@@ -227,7 +233,7 @@ public class frg_shrink_ayirma extends Fragment {
 
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
 
-            if (tag == null || tag.islem_durumu != "1" || tag.etiket_turu != "1")
+            if (tag == null || (!tag.islem_durumu.equals("1"))  || (!tag.etiket_turu.equals("1")))
             {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
@@ -271,8 +277,10 @@ public class frg_shrink_ayirma extends Fragment {
         {
            int gorev_id = 0;
 
-           adapter.clear();
-           _isemri_list.setAdapter(adapter);
+            if (adapter != null) {
+                adapter.clear();
+                _isemri_list.setAdapter(adapter);
+            }
 
            adapter=new apmblAktifIsEmirleri(dataModels,getContext());
            _isemri_list.setAdapter(adapter);
@@ -355,7 +363,7 @@ public class frg_shrink_ayirma extends Fragment {
                         frg_paket_uretim_ekrani fragmentyeni = new frg_paket_uretim_ekrani();
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_paket_uretim_ekrani").addToBackStack(null);
+                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_uretim_menu_panel").addToBackStack(null);
                         fragmentTransaction.commit();
                         //Program.setPage(new Uretim_Islemleri.Uretim_Menu_Panel.Uretim_Menu_Panel());
                     }

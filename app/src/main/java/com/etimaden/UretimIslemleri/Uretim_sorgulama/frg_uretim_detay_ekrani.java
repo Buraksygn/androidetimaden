@@ -1,6 +1,7 @@
 package com.etimaden.UretimIslemleri.Uretim_sorgulama;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,9 +19,11 @@ import com.etimaden.GirisSayfasi;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.adapter.apmbluretimdetayAktifIsEmirleri;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.uretim_detay;
 import com.etimaden.request.request_bos;
+import com.etimaden.ugr_demo.MainActivity;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
@@ -150,7 +153,14 @@ public class frg_uretim_detay_ekrani extends Fragment {
         fn_AyarlariYukle();
         dataModels= new ArrayList<uretim_detay>();
         //fn_SiloListele();
+
+        Genel.showProgressDialog(getContext());
+
         uretim_detay_degerlendir();
+
+        Genel.dismissProgressDialog();
+
+
     }
 
     private void uretim_detay_degerlendir()
@@ -167,7 +177,8 @@ public class frg_uretim_detay_ekrani extends Fragment {
             v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
             v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
-            //Urun_tag tag = persos.fn_secEtiket(v_Gelen);
+
+
             List<uretim_detay> uretimDetayList =persos.fn_sec_uretim_detay(v_Gelen);
             if ( uretimDetayList!=null ){
                 dataModels = new ArrayList<>(persos.fn_sec_uretim_detay(v_Gelen));
@@ -178,6 +189,7 @@ public class frg_uretim_detay_ekrani extends Fragment {
         }
         catch (Exception ex)
         {
+            //pDialog.hide();
             new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                     .setTitleText("BAĞLANTI HATASI")
                     .setContentTextSize(25)
@@ -200,7 +212,7 @@ public class frg_uretim_detay_ekrani extends Fragment {
 
             adapter=new apmbluretimdetayAktifIsEmirleri(dataModels,getContext());
             _aktif_isemri_list.setAdapter(adapter);
-
+            //pDialog.hide();
 
         }
         catch (Exception ex)

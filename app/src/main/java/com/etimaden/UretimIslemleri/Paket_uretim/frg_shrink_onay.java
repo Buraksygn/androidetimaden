@@ -127,7 +127,7 @@ public class frg_shrink_onay extends Fragment {
         _myIslem = new VeriTabani(getContext());
 
         //barkod,rfid,ikiside
-        ((GirisSayfasi) getActivity()).fn_ModBoth();
+        ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
         _txtYazi=(TextView)getView().findViewById(R.id.txtYazi);
 
@@ -144,7 +144,7 @@ public class frg_shrink_onay extends Fragment {
 
         try
         {
-            barkod = barkod.substring(barkod.length() - 24, 24);
+            barkod = barkod.substring(barkod.length() - 24);
             if (!isReadable)
             {
                 return;
@@ -228,7 +228,7 @@ public class frg_shrink_onay extends Fragment {
                     return;
 
                 }
-                else if ( tag.islem_durumu != "1" || tag.etiket_turu != "1" )
+                else if ( (!tag.islem_durumu.equals("1")) || (!tag.etiket_turu.equals("1")) )
                 {
                     new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
@@ -261,7 +261,7 @@ public class frg_shrink_onay extends Fragment {
                     return;
 
                 }
-                else if(aktif_etiket.etiket_turu == "1" && tag.kod.equals(aktif_etiket.kod))
+                else if(aktif_etiket.etiket_turu.equals("1") && tag.kod.equals(aktif_etiket.kod))
                 {
                     //Cursor.Current = Cursors.WaitCursor;
                     request_shrink_onayi_al _Param= new request_shrink_onayi_al();

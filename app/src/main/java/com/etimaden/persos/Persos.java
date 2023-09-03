@@ -2,6 +2,7 @@ package com.etimaden.persos;
 
 import android.os.StrictMode;
 
+import com.etimaden.cResponseResult.View_sec_sevk_miktar;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.persosclass.etiket_no;
 import com.etimaden.persosclass.uretim_detay;
@@ -10,13 +11,17 @@ import com.etimaden.request.request_ambalaj_tipi_secEtiket;
 import com.etimaden.request.request_bos;
 import com.etimaden.request.request_etiket_kontrol;
 import com.etimaden.request.request_get_lot_toplami;
+import com.etimaden.request.request_guncelle_sevk_hareket;
 import com.etimaden.request.request_paketliUret;
+import com.etimaden.request.request_paketliUretKontrol;
 import com.etimaden.request.request_paketliUret_otomatik;
 import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_sec_etiket_no;
 import com.etimaden.request.request_secetikettag;
+import com.etimaden.request.request_sevkiyat_isemri;
 import com.etimaden.request.request_shrink_is_emri;
 import com.etimaden.request.request_shrink_onayi_al;
+import com.etimaden.request.request_string;
 import com.etimaden.request.request_uretim_etiket;
 import com.etimaden.request.request_uretim_iptali;
 import com.etimaden.request.request_uretim_zayi;
@@ -24,16 +29,14 @@ import com.etimaden.request.request_yari_otomatik_paket_kontrol_et;
 import com.etimaden.request.requestsec_etiket_uretim;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_ambalaj_tipi_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
+import com.etimaden.response.frg_paket_uretim_ekrani.View_bos;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_etiket_kontrol;
-import com.etimaden.response.frg_paket_uretim_ekrani.View_get_lot_toplami;
-import com.etimaden.response.frg_paket_uretim_ekrani.View_paketliUret;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_paketliUret_otomatik;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_etiket_no;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_uretim_detay;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_secetikettag;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_string_response;
-import com.etimaden.response.frg_paket_uretim_ekrani.View_uretim_zayi;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_yari_otomatik_paket_kontrol_et;
 import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
 import com.etimaden.servisbaglanti.frg_ambalaj_tipi_degisimi_Controller;
@@ -157,15 +160,15 @@ public class Persos {
     {
         Boolean _bsonuc=false;
 
-        View_paketliUret _yanit = new View_paketliUret();
+        View_bos _yanit = new View_bos();
 
         try
         {
             frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
 
-            Call<View_paketliUret> fn_Servis = _Servis.fn_paketliUret(v_gelen);
+            Call<View_bos> fn_Servis = _Servis.fn_paketliUret(v_gelen);
 
-            Response<View_paketliUret> _Response = fn_Servis.execute();
+            Response<View_bos> _Response = fn_Servis.execute();
 
             if(_Response.isSuccessful())
             {
@@ -179,6 +182,41 @@ public class Persos {
                {
                    _bsonuc = true;
                }
+            }
+            else
+            {
+                _bsonuc = false;
+            }
+
+        }catch (Exception ex )
+        {
+            _bsonuc = false;
+        }
+
+        return  _bsonuc;
+
+    }
+    // Persos içerisindeki fn_paketliUret(uretim_etiket _urun) fonksiyonu fn_paketliUretKontrol şeklinde tanımlandı.
+    public Boolean fn_paketliUretKontrol(request_paketliUretKontrol v_gelen)
+    {
+        Boolean _bsonuc;
+
+        View_bool_response _yanit ;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_paketliUretKontrol(v_gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+                _bsonuc=_yanit._result;
+
+
             }
             else
             {
@@ -211,7 +249,7 @@ public class Persos {
             {
                 _yanit = _Response.body();
 
-                return  _yanit.get_tag();
+                return  _yanit._tag;
             }
             else
             {
@@ -237,17 +275,17 @@ public class Persos {
 
 
 
-    public View_get_lot_toplami fn_get_lot_toplami(request_get_lot_toplami v_Gelen)
+    public View_string_response fn_get_lot_toplami(request_get_lot_toplami v_Gelen)
     {
-        View_get_lot_toplami _yanit=new View_get_lot_toplami();
+        View_string_response _yanit=new View_string_response();
 
         try
         {
             frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
 
-            Call<View_get_lot_toplami> fn_Servis = _Servis.fn_get_lot_toplami(v_Gelen);
+            Call<View_string_response> fn_Servis = _Servis.fn_get_lot_toplami(v_Gelen);
 
-            Response<View_get_lot_toplami> _Response = fn_Servis.execute();
+            Response<View_string_response> _Response = fn_Servis.execute();
 
             if(_Response.isSuccessful())
             {
@@ -257,7 +295,7 @@ public class Persos {
             }
             else
             {
-                _yanit=new View_get_lot_toplami();
+                _yanit=new View_string_response();
                 _yanit._zSonuc="0";
                 _yanit._zAciklama="";
                 _yanit._zHataAciklama="Sistemsel hata";
@@ -267,7 +305,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            _yanit=new View_get_lot_toplami();
+            _yanit=new View_string_response();
             _yanit._zAciklama="";
             _yanit._zHataAciklama=ex.toString();
             _yanit._zSonuc="0";
@@ -277,17 +315,17 @@ public class Persos {
     }
 
 
-    public View_paketliUret_otomatik paketliUret_otomatik(request_paketliUret_otomatik v_Gelen)
+    public View_bool_response paketliUret_otomatik(request_paketliUret_otomatik v_Gelen)
     {
-        View_paketliUret_otomatik _Yanit = new View_paketliUret_otomatik();
+        View_bool_response _Yanit = new View_bool_response();
         try
         {
 
             frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
 
-            Call<View_paketliUret_otomatik> fn_Servis = _Servis.fn_paketliUret_otomatik(v_Gelen);
+            Call<View_bool_response> fn_Servis = _Servis.fn_paketliUret_otomatik(v_Gelen);
 
-            Response<View_paketliUret_otomatik> _Response = fn_Servis.execute();
+            Response<View_bool_response> _Response = fn_Servis.execute();
 
             if(_Response.isSuccessful())
             {
@@ -297,8 +335,8 @@ public class Persos {
             }
             else
             {
-                _Yanit=new View_paketliUret_otomatik();
-                _Yanit._bSonuc=false;
+                _Yanit=new View_bool_response();
+                _Yanit._result=false;
                 _Yanit._zAciklama="";
                 _Yanit._zSonuc="0";
                 _Yanit._zHataAciklama="Sistemsel hata";
@@ -308,8 +346,8 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            _Yanit=new View_paketliUret_otomatik();
-            _Yanit._bSonuc=false;
+            _Yanit=new View_bool_response();
+            _Yanit._result=false;
             _Yanit._zAciklama="";
             _Yanit._zHataAciklama=ex.toString();
             _Yanit._zSonuc="0";
@@ -323,7 +361,7 @@ public class Persos {
 
 
 
-    public String yari_otomatik_paket_kontrol_et(request_yari_otomatik_paket_kontrol_et v_Gelen)
+    public String yari_otomatik_paket_kontrol_et(request_string v_Gelen)
     {
         String _Cevap ="";
 
@@ -331,13 +369,13 @@ public class Persos {
         {
             frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
 
-            Call<View_yari_otomatik_paket_kontrol_et> fn_Servis = _Servis.fn_yari_otomatik_paket_kontrol_et(v_Gelen);
+            Call<View_string_response> fn_Servis = _Servis.fn_yari_otomatik_paket_kontrol_et(v_Gelen);
 
-            Response<View_yari_otomatik_paket_kontrol_et> _Response = fn_Servis.execute();
+            Response<View_string_response> _Response = fn_Servis.execute();
 
             if(_Response.isSuccessful())
             {
-                View_yari_otomatik_paket_kontrol_et _Yanit = _Response.body();
+                View_string_response _Yanit = _Response.body();
 
                 if(_Yanit.get_zSonuc().equals("0"))
                 {
@@ -345,7 +383,7 @@ public class Persos {
                 }
                 else
                 {
-                    _Cevap= _Yanit.get_lot();
+                    _Cevap= _Yanit.get_result();
                 }
             }
             else
@@ -362,21 +400,21 @@ public class Persos {
         return  _Cevap;
     }
 
-    public String etiket_kontrol(request_etiket_kontrol v_Gelen)
+    public String etiket_kontrol(request_string v_Gelen)
     {
         String _Cevap ="";
 
         frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
 
-        Call<View_etiket_kontrol> fn_Servis= _Servis.fn_etiket_kontrol(v_Gelen);
+        Call<View_string_response> fn_Servis= _Servis.fn_etiket_kontrol(v_Gelen);
 
         try
         {
-            Response<View_etiket_kontrol> _Response = fn_Servis.execute();
+            Response<View_string_response> _Response = fn_Servis.execute();
 
             if(_Response.isSuccessful())
             {
-                View_etiket_kontrol _Yanit = _Response.body();
+                View_string_response _Yanit = _Response.body();
 
                 if(_Yanit.get_zSonuc().equals("0"))
                 {
@@ -384,7 +422,7 @@ public class Persos {
                 }
                 else
                 {
-                    _Cevap= _Yanit.get_durum();
+                    _Cevap= _Yanit.get_result();
                 }
             }
             else
@@ -401,9 +439,9 @@ public class Persos {
 
     }
 
-    public etiket_no sec_etiket_no(request_sec_etiket_no v_Gelen) {
+    public etiket_no sec_etiket_no(request_string v_Gelen) {
 
-        etiket_no _Cevap = new etiket_no();
+        etiket_no _Cevap ;
 
         frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
 
@@ -442,9 +480,9 @@ public class Persos {
         return  _Cevap;
     }
 
-    public uretim_etiket sec_etiket_uretim(requestsec_etiket_uretim _Param)
+    public uretim_etiket sec_etiket_uretim(request_string _Param)
     {
-        uretim_etiket _Cevap=new uretim_etiket();
+        uretim_etiket _Cevap;
 
         frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
 
@@ -483,25 +521,25 @@ public class Persos {
 
     public Boolean fn_uretim_zayi(request_uretim_zayi v_Gelen)
     {
-        View_uretim_zayi _yanit = new View_uretim_zayi();
+        View_bool_response _yanit = new View_bool_response();
 
         try
         {
             frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
 
-            Call<View_uretim_zayi> fn_Servis = _Servis.fn_uretim_zayi(v_Gelen);
+            Call<View_bool_response> fn_Servis = _Servis.fn_uretim_zayi(v_Gelen);
 
-            Response<View_uretim_zayi> _Response = fn_Servis.execute();
+            Response<View_bool_response> _Response = fn_Servis.execute();
 
             if(_Response.isSuccessful())
             {
                 _yanit = _Response.body();
 
-                return  _yanit.get_uretim_zayi();
+                return  _yanit.get_result();
             }
             else
             {
-                _yanit=new View_uretim_zayi();
+                _yanit=new View_bool_response();
                 _yanit._zSonuc="0";
                 _yanit._zAciklama="";
                 _yanit._zHataAciklama="Sistemsel hata";
@@ -511,7 +549,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            _yanit=new View_uretim_zayi();
+            _yanit=new View_bool_response();
             _yanit._zAciklama="";
             _yanit._zHataAciklama=ex.toString();
             _yanit._zSonuc="0";
@@ -521,8 +559,36 @@ public class Persos {
 
     }
 
-    public Boolean fn_bigBag_uret(request_uretim_etiket v_Gelen)
+    public View_bool_response fn_bigBag_uret(request_uretim_etiket v_Gelen)
     {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_bigBag_uret(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit;
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+        /*
         View_bool_response _yanit;
 
         try
@@ -549,7 +615,7 @@ public class Persos {
             ex.printStackTrace();
             return  null;
         }
-
+*/
     }
 
     public String fn_sec_ambalaj_degisim_toplam_harcanan_miktar(request_uretim_etiket v_Gelen)
@@ -674,8 +740,8 @@ public class Persos {
         }
 
     }
-
-    public Boolean fn_manipulasyon_bigbag_uret(request_uretim_etiket v_Gelen)
+/*
+    public View_bool_response fn_manipulasyon_bigbag_uret(request_uretim_etiket v_Gelen)
     {
         View_bool_response _yanit;
 
@@ -691,7 +757,7 @@ public class Persos {
             {
                 _yanit = _Response.body();
 
-                return  _yanit.get_result();
+                return  _yanit;
             }
             else
             {
@@ -704,7 +770,7 @@ public class Persos {
             return  null;
         }
 
-    }
+    }*/
 
     public Boolean fn_shrink_onayi_al(request_shrink_onayi_al v_Gelen)
     {
@@ -798,4 +864,326 @@ public class Persos {
 
     }
 
+    public String fn_sec_palet_dizim(request_bos v_Gelen)
+    {
+        View_string_response _yanit;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_string_response> fn_Servis = _Servis.fn_sec_palet_dizim(v_Gelen);
+
+            Response<View_string_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+
+    public Boolean fn_guncelle_palet_dizim(request_string v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_guncelle_palet_dizim(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+    public String fn_sec_palet_sirano_acilis(request_bos v_Gelen)
+    {
+        View_string_response _yanit;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_string_response> fn_Servis = _Servis.fn_sec_palet_sirano_acilis(v_Gelen);
+
+            Response<View_string_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+
+    public String fn_sec_palet_torba_sayisi(request_string v_Gelen)
+    {
+        View_string_response _yanit;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_string_response> fn_Servis = _Servis.fn_sec_palet_torba_sayisi(v_Gelen);
+
+            Response<View_string_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+    public String fn_sec_palet_sirano(request_bos v_Gelen)
+    {
+        View_string_response _yanit;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_string_response> fn_Servis = _Servis.fn_sec_palet_sirano(v_Gelen);
+
+            Response<View_string_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+
+    public List<String> fn_sec_sevk_miktar(request_string v_Gelen)
+    {
+        List<String> _Cevap=null ;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_sec_sevk_miktar> fn_Servis = _Servis.fn_sec_sevk_miktar(v_Gelen);
+
+            Response<View_sec_sevk_miktar> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                View_sec_sevk_miktar _Yanit = _Response.body();
+
+                if(_Yanit.get_zSonuc().equals("0"))
+                {
+                    _Cevap = null;
+                }
+                else
+                {
+                    _Cevap= _Yanit.get_miktarlar();
+                }
+            }
+            else
+            {
+                _Cevap = null;
+            }
+
+
+        }catch (Exception ex)
+        {
+
+        }
+
+        return  _Cevap;
+    }
+
+    public Boolean fn_sevkiyatIptal(request_sevkiyat_isemri v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_sevkiyatIptal(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+
+    public Boolean fn_sevkiyatDevam(request_sevkiyat_isemri v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_sevkiyatDevam(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+
+    public Boolean fn_guncelle_sevk_hareket(request_guncelle_sevk_hareket v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_guncelle_sevk_hareket(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+    public List<String> fn_get_yukleme_palet_sayisi_miktar(request_string v_Gelen)
+    {
+        List<String> _Cevap=null ;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_sec_sevk_miktar> fn_Servis = _Servis.fn_get_yukleme_palet_sayisi_miktar(v_Gelen);
+
+            Response<View_sec_sevk_miktar> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                View_sec_sevk_miktar _Yanit = _Response.body();
+
+                if(_Yanit.get_zSonuc().equals("0"))
+                {
+                    _Cevap = null;
+                }
+                else
+                {
+                    _Cevap= _Yanit.get_miktarlar();
+                }
+            }
+            else
+            {
+                _Cevap = null;
+            }
+
+
+        }catch (Exception ex)
+        {
+
+        }
+
+        return  _Cevap;
+    }
 }

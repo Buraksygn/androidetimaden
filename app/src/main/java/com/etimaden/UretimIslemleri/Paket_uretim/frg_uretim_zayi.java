@@ -163,7 +163,7 @@ public class frg_uretim_zayi extends Fragment {
                 return;
             }
 
-            String _barcode = barcode.substring(barcode.length() - 24, 24);
+            String _barcode = barcode.substring(barcode.length() - 24);
             if (!isReadeable)
             {
                 return;
@@ -265,7 +265,7 @@ public class frg_uretim_zayi extends Fragment {
         v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
         v_Gelen.set_Urun_tag(tag);
         v_Gelen.set_islem_turu(islem_turu);
-        boolean islem_res = persos.fn_uretim_zayi(v_Gelen);
+        Boolean islem_res = persos.fn_uretim_zayi(v_Gelen);
 
         if (islem_res)
         {
@@ -341,7 +341,7 @@ public class frg_uretim_zayi extends Fragment {
                         })
                         .show();
             }
-            else if (tag.islem_durumu != "1" && tag.islem_durumu != "10")
+            else if ((!tag.islem_durumu.equals("1")) && (!tag.islem_durumu.equals("10")))
             {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")

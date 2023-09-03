@@ -1,19 +1,18 @@
 package com.etimaden.response.frg_paket_uretim_ekrani;
 
-public class View_yari_otomatik_paket_kontrol_et {
+public class View_bos {
+    public String _zHataAciklama = "";
+    public String _zAciklama = "";
+    public String _zSonuc = "";
 
-    private String _zHataAciklama = "";
-    private String _zAciklama = "";
-    private String _zSonuc = "";
-    private String _lot = "";
-    public View_yari_otomatik_paket_kontrol_et() {
+    public View_bos() {
     }
 
-    public View_yari_otomatik_paket_kontrol_et(String _zHataAciklama, String _zAciklama, String _zSonuc, String _lot) {
+    public View_bos(String _zHataAciklama, String _zAciklama, String _zSonuc) {
         this._zHataAciklama = _zHataAciklama;
         this._zAciklama = _zAciklama;
         this._zSonuc = _zSonuc;
-        this._lot = _lot;
+
     }
 
     public String get_zHataAciklama() {
@@ -39,14 +38,5 @@ public class View_yari_otomatik_paket_kontrol_et {
     public void set_zSonuc(String _zSonuc) {
         this._zSonuc = _zSonuc;
     }
-
-    public String get_lot() {
-        return _lot;
-    }
-
-    public void set_lot(String _lot) {
-        this._lot = _lot;
-    }
-
 
 }

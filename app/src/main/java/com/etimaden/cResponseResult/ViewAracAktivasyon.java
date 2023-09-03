@@ -10,6 +10,10 @@ public class ViewAracAktivasyon extends ViewDefaultSonuc
 
     public vagon_hareket _zvagon_hareket;
 
+    public Integer _zYanit;
+
+    public String _zHataAciklamasi;
+
     public String _zSayfaAdiAciklama  = "";
-    public String _zSayfaAdi  = "";
+    public Integer _zSayfaAdi ;
 }

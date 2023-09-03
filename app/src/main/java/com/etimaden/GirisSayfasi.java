@@ -669,7 +669,7 @@ public class GirisSayfasi extends AppCompatActivity {
                                                 else {
                                                     frg_uretim_iptal _frg_frg_uretim_iptal = (frg_uretim_iptal) getSupportFragmentManager().findFragmentByTag("frg_uretim_iptal");
 
-                                                    if (_frg_frg_uretim_iptal != null && _frg_frg_shrink_onay.isVisible()) {
+                                                    if (_frg_frg_uretim_iptal != null && _frg_frg_uretim_iptal.isVisible()) {
                                                         _frg_frg_uretim_iptal.fn_BarkodOkutuldu(barcode.toString());
                                                     }
                                                 }

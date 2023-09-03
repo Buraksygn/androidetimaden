@@ -26,6 +26,10 @@ public class frg_sevkiyat_menu_panel extends Fragment {
     Button _btn_02;
     Button _btn_03;
 
+    Button _btn_04;
+    Button _btn_05;
+    Button _btn_06;
+
     VeriTabani _myIslem;
     public String _ayaraktifkullanici = "";
     public String _ayaraktifdepo = "";
@@ -113,6 +117,20 @@ public class frg_sevkiyat_menu_panel extends Fragment {
         _btn_03 = (Button) getView().findViewById(R.id.btn_03);
         _btn_03.playSoundEffect(0);
         _btn_03.setOnClickListener(new fn_btn_03());
+
+        _btn_04 = (Button) getView().findViewById(R.id.btn_04);
+        _btn_04.playSoundEffect(0);
+        _btn_04.setOnClickListener(new fn_btn_04());
+
+        _btn_05 = (Button) getView().findViewById(R.id.btn_05);
+        _btn_05.playSoundEffect(0);
+        _btn_05.setOnClickListener(new fn_btn_05());
+
+        _btn_06 = (Button) getView().findViewById(R.id.btn_06);
+        _btn_06.playSoundEffect(0);
+        _btn_06.setOnClickListener(new fn_btn_06());
+
+
         //_btn_03.setOnClickListener(new fn_btn_03_01());
     }
 
@@ -186,6 +204,30 @@ public class frg_sevkiyat_menu_panel extends Fragment {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_konteyner_yukleme_aktivasyon").addToBackStack(null);
             fragmentTransaction.commit();
+        }
+    }
+
+    private class fn_btn_04 implements View.OnClickListener {
+        @Override
+        public void onClick(View view)
+        {
+
+        }
+    }
+
+    private class fn_btn_05 implements View.OnClickListener {
+        @Override
+        public void onClick(View view)
+        {
+
+        }
+    }
+
+    private class fn_btn_06 implements View.OnClickListener {
+        @Override
+        public void onClick(View view)
+        {
+
         }
     }
 

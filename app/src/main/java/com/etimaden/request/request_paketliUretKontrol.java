@@ -1,26 +1,27 @@
 package com.etimaden.request;
 
+import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.persosclass.uretim_etiket;
 
-public class request_paketliUret_otomatik {
+import java.util.List;
 
-    public String _zsunucu_ip_adresi;
-    public String _zaktif_alt_tesis;
-    public String _zaktif_tesis ;
-    public String _zsurum ;
-    public String _zkullaniciadi ;
-    public String _zsifre;
-    public String aktif_sunucu;
-    public String aktif_kullanici;
+public class request_paketliUretKontrol {
 
+    public String _zsunucu_ip_adresi = "";
+    public String _zaktif_alt_tesis = "";
+    public String _zaktif_tesis = "";
+    public String _zsurum  = "";
+    public String _zkullaniciadi = "";
+    public String _zsifre = "";
+    public String aktif_sunucu = "";
+    public String aktif_kullanici = "";
 
-    private uretim_etiket _etiket;
-    public String _lotno;
+    public uretim_etiket _urun;
 
-    public request_paketliUret_otomatik() {
+    public request_paketliUretKontrol() {
     }
 
-    public request_paketliUret_otomatik(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, uretim_etiket _etiket, String _lotno) {
+    public request_paketliUretKontrol(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, uretim_etiket _urun) {
         this._zsunucu_ip_adresi = _zsunucu_ip_adresi;
         this._zaktif_alt_tesis = _zaktif_alt_tesis;
         this._zaktif_tesis = _zaktif_tesis;
@@ -29,8 +30,7 @@ public class request_paketliUret_otomatik {
         this._zsifre = _zsifre;
         this.aktif_sunucu = aktif_sunucu;
         this.aktif_kullanici = aktif_kullanici;
-        this._etiket = _etiket;
-        this._lotno = _lotno;
+        this._urun = _urun;
     }
 
     public String get_zsunucu_ip_adresi() {
@@ -97,19 +97,11 @@ public class request_paketliUret_otomatik {
         this.aktif_kullanici = aktif_kullanici;
     }
 
-    public uretim_etiket get_etiket() {
-        return _etiket;
+    public uretim_etiket get_urun() {
+        return _urun;
     }
 
-    public void set_etiket(uretim_etiket _etiket) {
-        this._etiket = _etiket;
-    }
-
-    public String get_lotno() {
-        return _lotno;
-    }
-
-    public void set_lotno(String _lotno) {
-        this._lotno = _lotno;
+    public void set_urun(uretim_etiket _urun) {
+        this._urun = _urun;
     }
 }

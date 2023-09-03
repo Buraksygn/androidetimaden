@@ -15,7 +15,7 @@
         android:layout_x="0dp"
         android:textColor="@color/green"
         android:layout_y="0dp"
-        android:text="frg_shrink_onay"
+        android:text="frg_uretim_iptal"
         android:textSize="12dp" />
 
     <TextView

@@ -1,26 +1,22 @@
 package com.etimaden.request;
 
-import com.etimaden.persosclass.uretim_etiket;
+public class request_string {
 
-public class request_paketliUret_otomatik {
+    private String _zsunucu_ip_adresi="";
+    private String _zaktif_alt_tesis;
+    private String _zaktif_tesis ;
+    private String _zsurum ;
+    private String _zkullaniciadi ;
+    private String _zsifre;
+    private String aktif_sunucu;
+    private String aktif_kullanici;
 
-    public String _zsunucu_ip_adresi;
-    public String _zaktif_alt_tesis;
-    public String _zaktif_tesis ;
-    public String _zsurum ;
-    public String _zkullaniciadi ;
-    public String _zsifre;
-    public String aktif_sunucu;
-    public String aktif_kullanici;
+    private String _value;
 
-
-    private uretim_etiket _etiket;
-    public String _lotno;
-
-    public request_paketliUret_otomatik() {
+    public request_string() {
     }
 
-    public request_paketliUret_otomatik(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, uretim_etiket _etiket, String _lotno) {
+    public request_string(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, String _value) {
         this._zsunucu_ip_adresi = _zsunucu_ip_adresi;
         this._zaktif_alt_tesis = _zaktif_alt_tesis;
         this._zaktif_tesis = _zaktif_tesis;
@@ -29,8 +25,7 @@ public class request_paketliUret_otomatik {
         this._zsifre = _zsifre;
         this.aktif_sunucu = aktif_sunucu;
         this.aktif_kullanici = aktif_kullanici;
-        this._etiket = _etiket;
-        this._lotno = _lotno;
+        this._value = _value;
     }
 
     public String get_zsunucu_ip_adresi() {
@@ -97,19 +92,11 @@ public class request_paketliUret_otomatik {
         this.aktif_kullanici = aktif_kullanici;
     }
 
-    public uretim_etiket get_etiket() {
-        return _etiket;
+    public String get_value() {
+        return _value;
     }
 
-    public void set_etiket(uretim_etiket _etiket) {
-        this._etiket = _etiket;
-    }
-
-    public String get_lotno() {
-        return _lotno;
-    }
-
-    public void set_lotno(String _lotno) {
-        this._lotno = _lotno;
+    public void set_value(String _value) {
+        this._value = _value;
     }
 }

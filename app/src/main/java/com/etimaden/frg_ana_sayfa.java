@@ -182,11 +182,11 @@ public class frg_ana_sayfa extends Fragment
         @Override
         public void onClick(View v) {
 
-            frg_manipulasyon_panel fragmentyeni = new frg_manipulasyon_panel();
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_manipulasyon_panel").addToBackStack(null);
-            fragmentTransaction.commit();
+            //frg_manipulasyon_panel fragmentyeni = new frg_manipulasyon_panel();
+            //FragmentManager fragmentManager = getFragmentManager();
+            //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            //fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_manipulasyon_panel").addToBackStack(null);
+            //fragmentTransaction.commit();
 
         }
     }

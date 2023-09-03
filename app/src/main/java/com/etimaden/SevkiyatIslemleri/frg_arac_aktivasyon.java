@@ -352,7 +352,7 @@ public class frg_arac_aktivasyon extends Fragment {
 
                 String _TempEpc = v_epc.substring(v_epc.length() - 24, v_epc.length());
 
-                if (_TempEpc.startsWith("737767"))
+                if (_TempEpc.startsWith("737767302"))
                 {
                     pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
                     pDialog.setContentTextSize(25);
@@ -427,18 +427,19 @@ public class frg_arac_aktivasyon extends Fragment {
                                             JSONObject _caktif_sevk_isemri = response.getJSONObject("_zaktif_sevk_isemri");
 
                                             //Arac_bulundu
-                                            if (_Yanit._zSayfaAdi.equals("1")) {
+                                            if (_Yanit._zSayfaAdi.toString().equals("1")) {
                                                 pDialog.hide();
 
                                                 frg_arac_bulundu fragmentyeni = new frg_arac_bulundu();
                                                 fragmentyeni.fn_senddata(_Yanit._zaktif_sevk_isemri);
                                                 FragmentManager fragmentManager = getFragmentManager();
-                                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                FragmentTransaction fragmentTransaction = fragmentManager.
+                                                        beginTransaction();
                                                 fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_bulundu").addToBackStack(null);
                                                 fragmentTransaction.commit();
                                             } else {
                                                 //Konteyner_kamyon_esleme
-                                                if (_Yanit._zSayfaAdi.equals("2")) {
+                                                if (_Yanit._zSayfaAdi.toString().equals("2")) {
                                                     pDialog.hide();
 
                                                     frg_konteyner_kamyon_esleme fragmentyeni = new frg_konteyner_kamyon_esleme();

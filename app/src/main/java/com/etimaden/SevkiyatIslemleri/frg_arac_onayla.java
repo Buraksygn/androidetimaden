@@ -1,5 +1,6 @@
 package com.etimaden.SevkiyatIslemleri;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,6 +38,10 @@ import com.etimaden.cResponseResult.ViewsevkiyatIptal;
 import com.etimaden.cResponseResult.viewDeger_01;
 import com.etimaden.cResponseResult.viewparsiyel_kontrol_01;
 import com.etimaden.cResponseResult.viewsevkiyatKapat;
+import com.etimaden.persos.Persos;
+import com.etimaden.request.request_guncelle_sevk_hareket;
+import com.etimaden.request.request_sevkiyat_isemri;
+import com.etimaden.request.request_string;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -44,6 +49,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -55,6 +62,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_arac_onayla extends Fragment {
 
+    //private ProgressDialog progressDialog;
     Button _btngeri;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -75,7 +83,7 @@ public class frg_arac_onayla extends Fragment {
     Button btn_01;
 
     SweetAlertDialog pDialog;
-
+    Persos persos;
     public String _EkleAracAktivasyonuUrl = "";
     public String _UpdateAracAktivasyonuUrl = "";
     public String _AracKapatma = "";
@@ -85,17 +93,17 @@ public class frg_arac_onayla extends Fragment {
 
     public String _IslemTamam = "";
 
-    public Sevkiyat_isemri aktif_sevk_isemri ;
+    public Sevkiyat_isemri aktif_sevk_isemri;
 
-    public String _Yazi="";
+    public String _Yazi = "";
 
-    public  String _OnlineUrlTartimIptal="";
-    public  String _OnlineUrlget_yukleme_palet_sayisi_miktar="";
-    public  String _OnlineGuncelleSevkHareket="";
-    public  String _zMiktar="";
-    public  String _zPaletSayisi="";
+    public String _OnlineUrlTartimIptal = "";
+    public String _OnlineUrlget_yukleme_palet_sayisi_miktar = "";
+    public String _OnlineGuncelleSevkHareket = "";
+    public String _zMiktar = "";
+    public String _zPaletSayisi = "";
 
-    public viewparsiyel_kontrol_01 _YanitAraTartim =new viewparsiyel_kontrol_01();
+    public viewparsiyel_kontrol_01 _YanitAraTartim = new viewparsiyel_kontrol_01();
 
     public frg_arac_onayla() {
         // Required empty public constructor
@@ -107,8 +115,7 @@ public class frg_arac_onayla extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
@@ -149,23 +156,21 @@ public class frg_arac_onayla extends Fragment {
         btn_05.playSoundEffect(0);
         btn_05.setOnClickListener(new fn_ana_menu());
 
-        btn_01 = (Button)getView().findViewById(R.id.btn_01);
+        btn_01 = (Button) getView().findViewById(R.id.btn_01);
         btn_01.playSoundEffect(0);
         btn_01.setOnClickListener(new fn_btn_01());
 
-        btn_04 = (Button)getView().findViewById(R.id.btn_04);
+        btn_04 = (Button) getView().findViewById(R.id.btn_04);
         btn_04.playSoundEffect(0);
         btn_04.setOnClickListener(new fn_btn_04());
 
-        btn_03 = (Button)getView().findViewById(R.id.btn_03);
+        btn_03 = (Button) getView().findViewById(R.id.btn_03);
         btn_03.playSoundEffect(0);
         btn_03.setOnClickListener(new fn_Ara_Tartima_Yolla());
     }
 
 
-
-    public void fn_IptalEt()
-    {
+    public void fn_IptalEt() {
         pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
         pDialog.setTitleText("YÜKLENİYOR");
         pDialog.setContentText(" Kontrol ediliyor Lütfen bekleyiniz.");
@@ -174,7 +179,7 @@ public class frg_arac_onayla extends Fragment {
         pDialog.show();
         pDialog.findViewById(R.id.confirm_button).setVisibility(View.GONE);
 
-        Cache cache = new DiskBasedCache(getContext().getCacheDir(), 2*1024 * 1024); // 2MB cap
+        Cache cache = new DiskBasedCache(getContext().getCacheDir(), 2 * 1024 * 1024); // 2MB cap
         Network network = new BasicNetwork(new HurlStack());
         JSONObject parametre = new JSONObject();
         RequestQueue queue = new RequestQueue(cache, network);
@@ -210,26 +215,19 @@ public class frg_arac_onayla extends Fragment {
 
                             ViewsevkiyatIptal _Yanit = objectMapper.readValue(response.toString(), ViewsevkiyatIptal.class);
 
-                            if (_Yanit._zSonuc.equals("0"))
-                            {
+                            if (_Yanit._zSonuc.equals("0")) {
                                 pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                                 pDialog.setTitle("HATA");
                                 pDialog.setContentTextSize(20);
                                 pDialog.setContentText(_Yanit._zHataAciklama);
                                 pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
-                            }
-                            else
-                            {
-                                if(_Yanit._zDurum.equals("1"))
-                                {
-                                    try
-                                    {
-                                        if(pDialog.isShowing()==true)
-                                        {
+                            } else {
+                                if (_Yanit._zDurum.equals("1")) {
+                                    try {
+                                        if (pDialog.isShowing() == true) {
                                             pDialog.hide();
                                         }
-                                    }catch (Exception ex)
-                                    {
+                                    } catch (Exception ex) {
 
                                     }
 
@@ -263,50 +261,45 @@ public class frg_arac_onayla extends Fragment {
         queue.add(request);
     }
 
-    private void fn_AyarlariYukle()
-    {
-        ((GirisSayfasi)getActivity()).fn_ModRFID();
+    private void fn_AyarlariYukle() {
+        ((GirisSayfasi) getActivity()).fn_ModRFID();
 
-        _ayarbaglantituru=_myIslem.fn_baglanti_turu();
-        _ayarsunucuip=_myIslem.fn_sunucu_ip();
-        _ayaraktifkullanici=_myIslem.fn_aktif_kullanici();
-        _ayaraktifdepo=_myIslem.fn_aktif_depo();
-        _ayaraktifalttesis=_myIslem.fn_aktif_alt_tesis();
-        _ayaraktiftesis=_myIslem.fn_aktif_tesis();
-        _ayaraktifsunucu=_myIslem.fn_aktif_sunucu();
-        _ayaraktifisletmeeslesme=_myIslem.fn_isletmeeslesme();
+        _ayarbaglantituru = _myIslem.fn_baglanti_turu();
+        _ayarsunucuip = _myIslem.fn_sunucu_ip();
+        _ayaraktifkullanici = _myIslem.fn_aktif_kullanici();
+        _ayaraktifdepo = _myIslem.fn_aktif_depo();
+        _ayaraktifalttesis = _myIslem.fn_aktif_alt_tesis();
+        _ayaraktiftesis = _myIslem.fn_aktif_tesis();
+        _ayaraktifsunucu = _myIslem.fn_aktif_sunucu();
+        _ayaraktifisletmeeslesme = _myIslem.fn_isletmeeslesme();
 
-        if(_ayarbaglantituru.equals("wifi"))
-        {
-            _EkleAracAktivasyonuUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/EkleAracAktivasyonu";
-            _UpdateAracAktivasyonuUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/UpdateAracAktivasyonu";
-            _AracKapatma = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/sec_sevk_miktar";
-            _AraTartim = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/sec_sevk_miktar";
-            _AraTartim_01 = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/parsiyel_kontrol_01";
-            _IslemTamam = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/sevkiyatKapat";
-            _OnlineGuncelleSevkHareket  = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/guncelle_sevk_hareket";
-            _OnlineUrlTartimIptal = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/sevkiyatIptal";
-            _OnlineUrlget_yukleme_palet_sayisi_miktar = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/get_yukleme_palet_sayisi_miktar";
-            _SevkiyatDevam = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/sevkiyatDevam";
-        }
-        else
-        {
-            _EkleAracAktivasyonuUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/EkleAracAktivasyonu";
-            _UpdateAracAktivasyonuUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/UpdateAracAktivasyonu";
-            _AracKapatma = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sec_sevk_miktar";
-            _AraTartim = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sec_sevk_miktar";
-            _AraTartim_01 = "http://"+_ipAdresi3G+":"+_zport3G+"/api/parsiyel_kontrol_01";
-            _IslemTamam = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sevkiyatKapat";
-            _OnlineUrlTartimIptal = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sevkiyatIptal";
-            _OnlineGuncelleSevkHareket  = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/guncelle_sevk_hareket";
-            _OnlineUrlget_yukleme_palet_sayisi_miktar = "http://"+_ipAdresi3G+":"+_zport3G+"/api/get_yukleme_palet_sayisi_miktar";
-            _SevkiyatDevam = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sevkiyatDevam";
+        if (_ayarbaglantituru.equals("wifi")) {
+            _EkleAracAktivasyonuUrl = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/EkleAracAktivasyonu";
+            _UpdateAracAktivasyonuUrl = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/UpdateAracAktivasyonu";
+            _AracKapatma = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/sec_sevk_miktar";
+            _AraTartim = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/sec_sevk_miktar";
+            _AraTartim_01 = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/parsiyel_kontrol_01";
+            _IslemTamam = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/sevkiyatKapat";
+            _OnlineGuncelleSevkHareket = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/guncelle_sevk_hareket";
+            _OnlineUrlTartimIptal = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/sevkiyatIptal";
+            _OnlineUrlget_yukleme_palet_sayisi_miktar = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/get_yukleme_palet_sayisi_miktar";
+            _SevkiyatDevam = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/sevkiyatDevam";
+        } else {
+            _EkleAracAktivasyonuUrl = "http://" + _ipAdresi3G + ":" + _zport3G + "/api/EkleAracAktivasyonu";
+            _UpdateAracAktivasyonuUrl = "http://" + _ipAdresi3G + ":" + _zport3G + "/api/UpdateAracAktivasyonu";
+            _AracKapatma = "http://" + _ipAdresi3G + ":" + _zport3G + "/api/sec_sevk_miktar";
+            _AraTartim = "http://" + _ipAdresi3G + ":" + _zport3G + "/api/sec_sevk_miktar";
+            _AraTartim_01 = "http://" + _ipAdresi3G + ":" + _zport3G + "/api/parsiyel_kontrol_01";
+            _IslemTamam = "http://" + _ipAdresi3G + ":" + _zport3G + "/api/sevkiyatKapat";
+            _OnlineUrlTartimIptal = "http://" + _ipAdresi3G + ":" + _zport3G + "/api/sevkiyatIptal";
+            _OnlineGuncelleSevkHareket = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/guncelle_sevk_hareket";
+            _OnlineUrlget_yukleme_palet_sayisi_miktar = "http://" + _ipAdresi3G + ":" + _zport3G + "/api/get_yukleme_palet_sayisi_miktar";
+            _SevkiyatDevam = "http://" + _ipAdresi3G + ":" + _zport3G + "/api/sevkiyatDevam";
         }
     }
 
-    public void fn_senddata(Sevkiyat_isemri v_aktif_sevk_isemri)
-    {
-        this.aktif_sevk_isemri=v_aktif_sevk_isemri;
+    public void fn_senddata(Sevkiyat_isemri v_aktif_sevk_isemri) {
+        this.aktif_sevk_isemri = v_aktif_sevk_isemri;
     }
 
 
@@ -325,21 +318,21 @@ public class frg_arac_onayla extends Fragment {
     private class fn_arac_aktive_et implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Boolean _bDevam=true;
+            Boolean _bDevam = true;
 
             String konteyner_turu = "";
             String kont_kodu = "";
-            String islem_id= "";
-            String depo_kodu= "";
-            String urun_kodu= "";
-            String isemri_id= "";
-            String kod_sap= "";
-            String rota_id= "";
-            String id_aracisemri= "";
-            String isemri_detay_id= "";
-            String arac_kodu= "";
-            String aktif_sunucu= "";
-            String aktif_kullanici= "";
+            String islem_id = "";
+            String depo_kodu = "";
+            String urun_kodu = "";
+            String isemri_id = "";
+            String kod_sap = "";
+            String rota_id = "";
+            String id_aracisemri = "";
+            String isemri_detay_id = "";
+            String arac_kodu = "";
+            String aktif_sunucu = "";
+            String aktif_kullanici = "";
 
 
             try {
@@ -368,13 +361,11 @@ public class frg_arac_onayla extends Fragment {
                     // Program.giveHataMesaji("ARAÇ TANIMI EKSİK","KONTEYNER TANIMLAMA VE EŞLEŞTİRME İŞLEMİ YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ.","");
                     return;
                 }
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
 
             }
 
-            if(_bDevam == true)
-            {
+            if (_bDevam == true) {
 
                 pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
                 pDialog.setTitleText("KONTROL");
@@ -388,8 +379,7 @@ public class frg_arac_onayla extends Fragment {
                 JSONObject parametre = new JSONObject();
 
 
-                if(islem_id.equals(""))
-                {
+                if (islem_id.equals("")) {
 //Ekle Araç Aktivasyonu
                     try {
 
@@ -429,15 +419,12 @@ public class frg_arac_onayla extends Fragment {
                                         String _zAciklama = response.getString("_zAciklama");
 
 
-                                        if (_zSonuc.equals("0"))
-                                        {
+                                        if (_zSonuc.equals("0")) {
                                             pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                                             pDialog.setTitle("HATA");
                                             pDialog.setContentText(_zHataAciklama);
                                             pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             pDialog.hide();
 
                                             new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
@@ -447,8 +434,7 @@ public class frg_arac_onayla extends Fragment {
                                                     .showCancelButton(false)
                                                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                                         @Override
-                                                        public void onClick(SweetAlertDialog sDialog)
-                                                        {
+                                                        public void onClick(SweetAlertDialog sDialog) {
                                                             sDialog.dismissWithAnimation();
 
                                                             sDialog.hide();
@@ -485,9 +471,7 @@ public class frg_arac_onayla extends Fragment {
                     request.setRetryPolicy(policy);
                     queue.add(request);
 
-                }
-                else
-                {
+                } else {
                     try {
 
                         parametre.put("kayit_parametresi", "");
@@ -524,15 +508,12 @@ public class frg_arac_onayla extends Fragment {
                                         String _zAciklama = response.getString("_zAciklama");
 
 
-                                        if (_zSonuc.equals("0"))
-                                        {
+                                        if (_zSonuc.equals("0")) {
                                             pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                                             pDialog.setTitle("HATA");
                                             pDialog.setContentText(_zHataAciklama);
                                             pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             pDialog.hide();
 
                                             new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
@@ -543,8 +524,7 @@ public class frg_arac_onayla extends Fragment {
                                                     .showCancelButton(false)
                                                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                                         @Override
-                                                        public void onClick(SweetAlertDialog sDialog)
-                                                        {
+                                                        public void onClick(SweetAlertDialog sDialog) {
                                                             sDialog.dismissWithAnimation();
 
                                                             sDialog.hide();
@@ -586,8 +566,6 @@ public class frg_arac_onayla extends Fragment {
             }
 
 
-
-
         }
     }
 
@@ -604,8 +582,7 @@ public class frg_arac_onayla extends Fragment {
 
     private class fn_btn_01 implements View.OnClickListener {
         @Override
-        public void onClick(View view)
-        {
+        public void onClick(View view) {
             frg_konteyner_aktivasyon fragmentyeni = new frg_konteyner_aktivasyon();
             fragmentyeni.fn_senddata(aktif_sevk_isemri);
             FragmentManager fragmentManager = getFragmentManager();
@@ -775,10 +752,8 @@ public class frg_arac_onayla extends Fragment {
         }
     }
 
-    private void fn_AraciKapat()
-    {
-        if(pDialog !=null && pDialog.isShowing())
-        {
+    private void fn_AraciKapat() {
+        if (pDialog != null && pDialog.isShowing()) {
             pDialog.hide();
         }
 
@@ -790,15 +765,14 @@ public class frg_arac_onayla extends Fragment {
         pDialog.show();
         pDialog.findViewById(R.id.confirm_button).setVisibility(View.GONE);
 
-        Cache cache = new DiskBasedCache(getContext().getCacheDir(), 2*1024 * 1024); // 2MB cap
+        Cache cache = new DiskBasedCache(getContext().getCacheDir(), 2 * 1024 * 1024); // 2MB cap
         Network network = new BasicNetwork(new HurlStack());
         JSONObject parametre = new JSONObject();
 
         RequestQueue queue = new RequestQueue(cache, network);
         queue.start();
 
-        try
-        {
+        try {
 
             parametre.put("_zsunucu_ip_adresi", _ayarsunucuip);
             parametre.put("_zaktif_alt_tesis", _ayaraktifalttesis);
@@ -810,9 +784,7 @@ public class frg_arac_onayla extends Fragment {
             parametre.put("_zislem_id", aktif_sevk_isemri.islem_id);
             parametre.put("_zkont_kodu", aktif_sevk_isemri.kont_kodu);
             parametre.put("_zrota_id", aktif_sevk_isemri.rota_id);
-        }
-        catch (Exception ex )
-        {
+        } catch (Exception ex) {
         }
 
         JsonObjectRequest request = new JsonObjectRequest(
@@ -828,15 +800,12 @@ public class frg_arac_onayla extends Fragment {
 
                             viewsevkiyatKapat _Yanit = objectMapper.readValue(response.toString(), viewsevkiyatKapat.class);
 
-                            if (_Yanit._zSonuc.equals("0"))
-                            {
+                            if (_Yanit._zSonuc.equals("0")) {
                                 pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                                 pDialog.setTitle("HATA");
-                                pDialog.setContentText(""+_Yanit._zHataAciklama);
+                                pDialog.setContentText("" + _Yanit._zHataAciklama);
                                 pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
-                            }
-                            else
-                            {
+                            } else {
 
                                 pDialog.hide();
 
@@ -847,8 +816,7 @@ public class frg_arac_onayla extends Fragment {
                                         .showCancelButton(false)
                                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                             @Override
-                                            public void onClick(SweetAlertDialog sDialog)
-                                            {
+                                            public void onClick(SweetAlertDialog sDialog) {
                                                 sDialog.dismissWithAnimation();
 
                                                 sDialog.hide();
@@ -864,9 +832,7 @@ public class frg_arac_onayla extends Fragment {
                             }
 
 
-
-                        }
-                        catch (JsonMappingException exxx) {
+                        } catch (JsonMappingException exxx) {
                             Log.d("hata", exxx.getMessage());
                         } catch (JsonProcessingException e) {
                             e.printStackTrace();
@@ -889,170 +855,403 @@ public class frg_arac_onayla extends Fragment {
         queue.add(request);
     }
 
+    private void fn_Arac_İptalOnConfirm() {
 
+        request_sevkiyat_isemri v_Gelen = new request_sevkiyat_isemri();
+        v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
+        v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
+        v_Gelen.set_zkullaniciadi(_zkullaniciadi);
+        v_Gelen.set_zsifre(_zsifre);
+        v_Gelen.set_zsunucu_ip_adresi(_ayarsunucuip);
+        //v_Gelen.set_zsurum(_sbtVerisyon);
+        v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
+        v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
+        v_Gelen.set_sevkiyat_ismeri(aktif_sevk_isemri);
+
+        Boolean result = persos.fn_sevkiyatIptal(v_Gelen);
+
+        if (result != null && result != false) {
+            frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_sevkiyat_menu_panel");
+            fragmentTransaction.commit();
+        } else {
+
+            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("HATA")
+                    .setContentTextSize(25)
+                    .setContentText("SEVKİYAT İPTAL İŞLEMİ GERÇEKLEŞTİRİLEMEDİ.")
+                    .showCancelButton(false)
+                    .show();
+            return;
+        }
+
+        //Program.setPage(new Sevkiyat_Islemleri.Sevkiyat_Menu_Panel.Sevkiyat_Menu_Panel());
+
+    }
+
+    private void fn_Ara_Tartim_IslemiOnConfirm() {
+
+        request_sevkiyat_isemri v_Gelen = new request_sevkiyat_isemri();
+        v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
+        v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
+        v_Gelen.set_zkullaniciadi(_zkullaniciadi);
+        v_Gelen.set_zsifre(_zsifre);
+        v_Gelen.set_zsunucu_ip_adresi(_ayarsunucuip);
+        //v_Gelen.set_zsurum(_sbtVerisyon);
+        v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
+        v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
+        v_Gelen.set_sevkiyat_ismeri(aktif_sevk_isemri);
+
+        Boolean islem_sonucu = persos.fn_sevkiyatDevam(v_Gelen);
+        if (islem_sonucu) {
+            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("İşlem Onayı")
+                    .setContentText("İşlem başarı ile tamamlanmıştır.")
+                    .setContentTextSize(20)
+                    .setConfirmText("TAMAM")
+                    .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+
+                            frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
+                            FragmentManager fragmentManager = getFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_sevkiyat_menu_panel");
+                            fragmentTransaction.commit();
+
+                            sDialog.dismissWithAnimation();
+                        }
+                    })
+                    .show();
+
+            return;
+
+        } else {
+            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("İşlem Başarısız")
+                    .setContentTextSize(25)
+                    .setContentText("Kayıt yapılamadı.\r\n Kayıt yapılamadı.")
+                    .showCancelButton(false)
+                    .show();
+            return;
+
+
+        }
+
+
+    }
+
+    private void fn_Ara_Tartima_YollaIslem() {
+
+        try {
+            if (aktif_sevk_isemri.islem_id == "") {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("ARAÇ TANIMI EKSİK")
+                        .setContentTextSize(25)
+                        .setContentText("SEVKİYAT DETAYLARINI TAMAMLAMADAN YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+
+            }
+
+            request_string v_Gelen = new request_string();
+            v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
+            v_Gelen.set_zkullaniciadi(_zkullaniciadi);
+            v_Gelen.set_zsifre(_zsifre);
+            v_Gelen.set_zsunucu_ip_adresi(_ayarsunucuip);
+            v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
+            v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
+            v_Gelen.set_value(aktif_sevk_isemri.islem_id);
+            //Urun_tag tag = persos.fn_secEtiket(v_Gelen);
+
+            List<String> miktarlar = persos.fn_sec_sevk_miktar(v_Gelen);
+
+            if (miktarlar.get(0).equals("0")) {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
+                        .setTitleText("YÜKLEME MİKTARI UYARISI")
+                        .setContentText("ARACA YÜKLEME YAPILMAMIŞ DURUMDA. BU ARACIN KAYDINI İPTAL ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?")
+                        .setContentTextSize(20)
+                        .setConfirmText("EVET")
+                        .setCancelText("HAYIR")
+                        .showCancelButton(true)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                fn_Arac_İptalOnConfirm();
+                                sDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
+
+            }
+
+            request_guncelle_sevk_hareket Param = new request_guncelle_sevk_hareket();
+            Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            Param.set_zaktif_tesis(_ayaraktiftesis);
+            Param.set_zkullaniciadi(_zkullaniciadi);
+            Param.set_zsifre(_zsifre);
+            Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+            Param.setAktif_kullanici(_ayaraktifkullanici);
+            Param.setAktif_sunucu(_ayaraktifsunucu);
+            //Param.set_value(aktif_sevk_isemri.islem_id);
+            Param.set_hareket(aktif_sevk_isemri.islem_id);
+            Param.set_miktarlar(miktarlar);
+
+
+            Boolean result = persos.fn_guncelle_sevk_hareket(Param);
+
+
+            if (result != false || result != null) {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Miktar Uyarısı")
+                        .setContentTextSize(25)
+                        .setContentText("Yükleme miktarı güncellenemedi.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+
+            }
+            request_string Param2 = new request_string();
+            Param2.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            Param2.set_zaktif_tesis(_ayaraktiftesis);
+            Param2.set_zkullaniciadi(_zkullaniciadi);
+            Param2.set_zsifre(_zsifre);
+            Param2.set_zsunucu_ip_adresi(_ayarsunucuip);
+            Param2.setAktif_kullanici(_ayaraktifkullanici);
+            Param2.setAktif_sunucu(_ayaraktifsunucu);
+            Param2.set_value(aktif_sevk_isemri.isemri_detay_id);
+
+            List<String> sevk_miktarları = persos.fn_get_yukleme_palet_sayisi_miktar(Param2);
+
+            if (sevk_miktarları.size() > 0) {
+                int kalan_miktar = Integer.parseInt(sevk_miktarları.get(0));
+                int kalan_palet = Integer.parseInt(sevk_miktarları.get(1));
+
+                if (kalan_miktar < 0) {
+                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Miktar Uyarısı")
+                            .setContentTextSize(25)
+                            .setContentText("İş emrinden fazla miktarda ürün yüklemesi yapılamaz.")
+                            .showCancelButton(false)
+                            .show();
+                    return;
+
+                }
+            } else {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Onay Hatası")
+                        .setContentTextSize(25)
+                        .setContentText("Kayıt yapılamadı.Toplam miktar detayına ulaşılamadı")
+                        .showCancelButton(false)
+                        .show();
+                return;
+
+            }
+
+
+            try {
+                if (!aktif_sevk_isemri.konteyner_turu.equals("") && aktif_sevk_isemri.kont_rfid.equals("")) {
+                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("ARAÇ TANIMI EKSİK")
+                            .setContentTextSize(25)
+                            .setContentText("KONTEYNER TANIMLAMA VE EŞLEŞTİRME İŞLEMİ YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ.")
+                            .showCancelButton(false)
+                            .show();
+                    return;
+
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+
+            try {
+
+                new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
+                        .setTitleText("ARA TARTIM UYARISI")
+                        .setContentText("PLAKA : '" + aktif_sevk_isemri.arac_plaka + "'"
+                                + "\r\nARAÇ İÇİNDE ;"
+                                + "\r\nPALET SAYISI: " + miktarlar.get(1)
+                                + "\r\nMİKTAR: " + miktarlar.get(0) + " KG"
+                                + "\r\nÜRÜN BULUNMAKTADIR !!"
+                                + "\r\nAracı 'ARA TARTIM' işlemine devam etmek istiyor musunuz ? ")
+                        .setContentTextSize(20)
+                        .setConfirmText("EVET")
+                        .setCancelText("HAYIR")
+                        .showCancelButton(true)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                fn_Ara_Tartim_IslemiOnConfirm();
+                                sDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
+
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+        } catch (Exception ex) {
+            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Onay Hatası")
+                    .setContentTextSize(25)
+                    .setContentText("Kayıt yapılamadı.\r\n Toplam miktar exception")
+                    .showCancelButton(false)
+                    .show();
+            return;
+
+        }
+
+    }
 
     private class fn_Ara_Tartima_Yolla implements View.OnClickListener {
         @Override
         public void onClick(View view) {
 
-            if (aktif_sevk_isemri.islem_id.equals(""))
-            {
-                SweetAlertDialog pDialogUyari = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
-                pDialogUyari.setTitleText("ARAÇ TANIMI EKSİK");
-                pDialogUyari.setContentText("SEVKİYAT DETAYLARINI TAMAMLAMADAN YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ.");
-                pDialogUyari.show();
-            }
-            else
-            {
-                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
-                pDialog.setTitleText("YÜKLENİYOR");
-                pDialog.setContentText(aktif_sevk_isemri.arac_plaka + " kontrol ediliyor Lütfen bekleyiniz.");
-                //pDialog.setContentText(_TempEpc);
-                pDialog.setCancelable(false);
-                pDialog.show();
-                pDialog.findViewById(R.id.confirm_button).setVisibility(View.GONE);
-
-                JSONObject parametre = new JSONObject();
-
-                try
-                {
-                    parametre.put("_zkullaniciadi", _zkullaniciadi);
-                    parametre.put("_zsifre", _zsifre);
-                    parametre.put("_zsunucu_ip_adresi", _ayarsunucuip);
-                    parametre.put("_zaktif_alt_tesis", _ayaraktifalttesis);
-                    parametre.put("_zaktif_tesis", _ayaraktiftesis);
-                    parametre.put("aktif_sunucu", _ayaraktifsunucu);
-                    parametre.put("aktif_kullanici", _ayaraktifkullanici);
-
-                    parametre.put("sevk_hareket_id", aktif_sevk_isemri.islem_id);
-
-                }
-                catch (JSONException error)
-                {
-                    error.printStackTrace();
-                }
-
-                RequestQueue mRequestQueue;
-
-                Cache cache = new DiskBasedCache(getContext().getCacheDir(), 2*1024 * 1024); // 1MB cap
-                Network network = new BasicNetwork(new HurlStack());
-
-                RequestQueue queue = new RequestQueue(cache, network);
-                queue.start();
-
-                JsonObjectRequest request = new JsonObjectRequest(
-                        Request.Method.POST,
-                        _AraTartim_01,
-                        parametre,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try
-                                {
-                                    ObjectMapper objectMapper = new ObjectMapper();
-
-                                    _YanitAraTartim = objectMapper.readValue(response.toString(), viewparsiyel_kontrol_01.class);
-
-                                    if(_YanitAraTartim._zSonuc.equals("0"))
-                                    {
-                                        pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                                        pDialog.setTitle("HATA");
-                                        pDialog.setContentTextSize(20);
-                                        pDialog.setContentText(_YanitAraTartim._zHataAciklama);
-                                        pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
-                                    }
-                                    else
-                                    {
-                                        try
-                                        {
-                                            if(pDialog != null && pDialog.isShowing() )
-                                            {
-                                                pDialog.hide();
-                                            }
-                                        }catch (Exception ex)
-                                        {
-
-                                        }
-
-                                        /*BEGIN ----------->*/
-
-                                        if (_YanitAraTartim._deger01.equals("0"))
-                                        {
-                                            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                                                    .setTitleText("YÜKLEME MİKTARI UYARISI")
-                                                    .setContentText("ARACA YÜKLEME YAPILMAMIŞ DURUMDA. BU ARACIN KAYDINI İPTAL ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?")
-                                                    .setCancelText("Hayır")
-                                                    .setContentTextSize(20)
-                                                    .setConfirmText("EVET")
-                                                    .showCancelButton(true)
-                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                                        @Override
-                                                        public void onClick(SweetAlertDialog sDialog)
-                                                        {
-                                                            sDialog.dismissWithAnimation();
-
-                                                            sDialog.hide();
-
-                                                            fn_IptalEt();
-                                                        }
-                                                    })
-                                                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                                        @Override
-                                                        public void onClick(SweetAlertDialog sDialog)
-                                                        {
-                                                            sDialog.cancel();
-                                                        }
-                                                    })
-                                                    .show();
-                                        }
-                                        else
-                                        {
-                                           fn_guncelle_sevk_hareket();
-                                        }
-
-                                        /*<--------------END*/
-                                    }
-
-
-                                } catch (JsonMappingException e)
-                                {
-                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                                    pDialog.setTitle("HATA");
-                                    pDialog.setContentText(e.toString());
-                                    pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
-                                    e.printStackTrace();
-                                } catch (JsonProcessingException e)
-                                {
-                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                                    pDialog.setTitle("HATA");
-                                    pDialog.setContentText(e.toString());
-                                    pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
-                                    e.printStackTrace();
-                                }
-
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                pDialog.hide();
-                                Toast.makeText(getContext(), "error =" + error.toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-
-                );
-                int socketTimeout = 30000;//30 seconds - change to what you want
-                RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-                request.setRetryPolicy(policy);
-                queue.add(request);
-            }
+            fn_Ara_Tartima_YollaIslem();
+//            if (aktif_sevk_isemri.islem_id.equals("")) {
+//                SweetAlertDialog pDialogUyari = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+//                pDialogUyari.setTitleText("ARAÇ TANIMI EKSİK");
+//                pDialogUyari.setContentText("SEVKİYAT DETAYLARINI TAMAMLAMADAN YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ.");
+//                pDialogUyari.show();
+//            } else {
+//                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+//                pDialog.setTitleText("YÜKLENİYOR");
+//                pDialog.setContentText(aktif_sevk_isemri.arac_plaka + " kontrol ediliyor Lütfen bekleyiniz.");
+//                //pDialog.setContentText(_TempEpc);
+//                pDialog.setCancelable(false);
+//                pDialog.show();
+//                pDialog.findViewById(R.id.confirm_button).setVisibility(View.GONE);
+//
+//                JSONObject parametre = new JSONObject();
+//
+//                try {
+//                    parametre.put("_zkullaniciadi", _zkullaniciadi);
+//                    parametre.put("_zsifre", _zsifre);
+//                    parametre.put("_zsunucu_ip_adresi", _ayarsunucuip);
+//                    parametre.put("_zaktif_alt_tesis", _ayaraktifalttesis);
+//                    parametre.put("_zaktif_tesis", _ayaraktiftesis);
+//                    parametre.put("aktif_sunucu", _ayaraktifsunucu);
+//                    parametre.put("aktif_kullanici", _ayaraktifkullanici);
+//
+//                    parametre.put("sevk_hareket_id", aktif_sevk_isemri.islem_id);
+//
+//                } catch (JSONException error) {
+//                    error.printStackTrace();
+//                }
+//
+//                RequestQueue mRequestQueue;
+//
+//                Cache cache = new DiskBasedCache(getContext().getCacheDir(), 2 * 1024 * 1024); // 1MB cap
+//                Network network = new BasicNetwork(new HurlStack());
+//
+//                RequestQueue queue = new RequestQueue(cache, network);
+//                queue.start();
+//
+//                JsonObjectRequest request = new JsonObjectRequest(
+//                        Request.Method.POST,
+//                        _AraTartim_01,
+//                        parametre,
+//                        new Response.Listener<JSONObject>() {
+//                            @Override
+//                            public void onResponse(JSONObject response) {
+//                                try {
+//                                    ObjectMapper objectMapper = new ObjectMapper();
+//
+//                                    _YanitAraTartim = objectMapper.readValue(response.toString(), viewparsiyel_kontrol_01.class);
+//
+//                                    if (_YanitAraTartim._zSonuc.equals("0")) {
+//                                        pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+//                                        pDialog.setTitle("HATA");
+//                                        pDialog.setContentTextSize(20);
+//                                        pDialog.setContentText(_YanitAraTartim._zHataAciklama);
+//                                        pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
+//                                    } else {
+//                                        try {
+//                                            if (pDialog != null && pDialog.isShowing()) {
+//                                                pDialog.hide();
+//                                            }
+//                                        } catch (Exception ex) {
+//
+//                                        }
+//
+//                                        /*BEGIN ----------->*/
+//
+//                                        if (_YanitAraTartim._deger01.equals("0")) {
+//                                            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+//                                                    .setTitleText("YÜKLEME MİKTARI UYARISI")
+//                                                    .setContentText("ARACA YÜKLEME YAPILMAMIŞ DURUMDA. BU ARACIN KAYDINI İPTAL ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?")
+//                                                    .setCancelText("Hayır")
+//                                                    .setContentTextSize(20)
+//                                                    .setConfirmText("EVET")
+//                                                    .showCancelButton(true)
+//                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                                        @Override
+//                                                        public void onClick(SweetAlertDialog sDialog) {
+//                                                            sDialog.dismissWithAnimation();
+//
+//                                                            sDialog.hide();
+//
+//                                                            fn_IptalEt();
+//                                                        }
+//                                                    })
+//                                                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                                        @Override
+//                                                        public void onClick(SweetAlertDialog sDialog) {
+//                                                            sDialog.cancel();
+//                                                        }
+//                                                    })
+//                                                    .show();
+//                                        } else {
+//                                            fn_guncelle_sevk_hareket();
+//                                        }
+//
+//                                        /*<--------------END*/
+//                                    }
+//
+//
+//                                } catch (JsonMappingException e) {
+//                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+//                                    pDialog.setTitle("HATA");
+//                                    pDialog.setContentText(e.toString());
+//                                    pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
+//                                    e.printStackTrace();
+//                                } catch (JsonProcessingException e) {
+//                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+//                                    pDialog.setTitle("HATA");
+//                                    pDialog.setContentText(e.toString());
+//                                    pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
+//                                    e.printStackTrace();
+//                                }
+//
+//                            }
+//                        },
+//                        new Response.ErrorListener() {
+//                            @Override
+//                            public void onErrorResponse(VolleyError error) {
+//                                pDialog.hide();
+//                                Toast.makeText(getContext(), "error =" + error.toString(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//
+//
+//                );
+//                int socketTimeout = 30000;//30 seconds - change to what you want
+//                RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+//                request.setRetryPolicy(policy);
+//                queue.add(request);
+//            }
         }
 
 
-
-        private void fn_guncelle_sevk_hareket()
-        {
+        private void fn_guncelle_sevk_hareket() {
             pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
             pDialog.setTitleText("YÜKLENİYOR");
             pDialog.setContentText(" Kontrol ediliyor Lütfen bekleyiniz.");
@@ -1099,33 +1298,25 @@ public class frg_arac_onayla extends Fragment {
 
                                 ObjectMapper objectMapper = new ObjectMapper();
 
-                                String _Gelen=response.toString();
+                                String _Gelen = response.toString();
 
-                                int _Sayi=1;
+                                int _Sayi = 1;
 
 
                                 Viewguncelle_sevk_hareket _Yanit = objectMapper.readValue(response.toString(), Viewguncelle_sevk_hareket.class);
 
 
-
-
-                                if (_Yanit._zSonuc.equals("0"))
-                                {
+                                if (_Yanit._zSonuc.equals("0")) {
                                     pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                                     pDialog.setTitle("HATA");
                                     pDialog.setContentText(_Yanit._zHataAciklama);
                                     pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
-                                }
-                                else
-                                {
-                                    try
-                                    {
-                                        if(pDialog.isShowing())
-                                        {
+                                } else {
+                                    try {
+                                        if (pDialog.isShowing()) {
                                             pDialog.hide();
                                         }
-                                    }catch (Exception ex)
-                                    {
+                                    } catch (Exception ex) {
 
                                     }
 
@@ -1156,10 +1347,7 @@ public class frg_arac_onayla extends Fragment {
         }
 
 
-
-
-        private void fn_get_yukleme_palet_sayisi_miktar()
-        {
+        private void fn_get_yukleme_palet_sayisi_miktar() {
 
             pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
             pDialog.setTitleText("YÜKLENİYOR");
@@ -1169,7 +1357,7 @@ public class frg_arac_onayla extends Fragment {
             pDialog.show();
             pDialog.findViewById(R.id.confirm_button).setVisibility(View.GONE);
 
-            Cache cache = new DiskBasedCache(getContext().getCacheDir(), 2*1024 * 1024); // 2MB cap
+            Cache cache = new DiskBasedCache(getContext().getCacheDir(), 2 * 1024 * 1024); // 2MB cap
             Network network = new BasicNetwork(new HurlStack());
             JSONObject parametre = new JSONObject();
             RequestQueue queue = new RequestQueue(cache, network);
@@ -1193,7 +1381,6 @@ public class frg_arac_onayla extends Fragment {
             }
 
 
-
             JsonObjectRequest request = new JsonObjectRequest(
                     Request.Method.POST,
                     _OnlineUrlget_yukleme_palet_sayisi_miktar,
@@ -1208,66 +1395,50 @@ public class frg_arac_onayla extends Fragment {
 
                                 Viewget_yukleme_palet_sayisi_miktar _Yanit = objectMapper.readValue(response.toString(), Viewget_yukleme_palet_sayisi_miktar.class);
 
-                                if (_Yanit._zSonuc.equals("0"))
-                                {
+                                if (_Yanit._zSonuc.equals("0")) {
                                     pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                                     pDialog.setTitle("HATA");
                                     pDialog.setContentText(_Yanit._zHataAciklama);
                                     pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
-                                }
-                                else
-                                {
-                                  try
-                                  {
-                                      try
-                                      {
-                                          if(pDialog.isShowing()==true)
-                                          {
-                                              pDialog.hide();
-                                          }
-                                      }catch (Exception ex)
-                                      {
+                                } else {
+                                    try {
+                                        try {
+                                            if (pDialog.isShowing() == true) {
+                                                pDialog.hide();
+                                            }
+                                        } catch (Exception ex) {
 
-                                      }
+                                        }
 
 
-                                      if (!aktif_sevk_isemri.konteyner_turu.equals("") && aktif_sevk_isemri.kont_rfid.equals(""))
-                                      {
-                                          new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
-                                                  .setTitleText("HATA")
-                                                  .setContentText("ARAÇ TANIMI EKSİK.KONTEYNER TANIMLAMA VE EŞLEŞTİRME İŞLEMİ YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ")
-                                                  .setConfirmText("TAMAM")
-                                                  .showCancelButton(false)
-                                                  .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                                      @Override
-                                                      public void onClick(SweetAlertDialog sDialog)
-                                                      {
-                                                          sDialog.dismissWithAnimation();
+                                        if (!aktif_sevk_isemri.konteyner_turu.equals("") && aktif_sevk_isemri.kont_rfid.equals("")) {
+                                            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                                    .setTitleText("HATA")
+                                                    .setContentText("ARAÇ TANIMI EKSİK.KONTEYNER TANIMLAMA VE EŞLEŞTİRME İŞLEMİ YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ")
+                                                    .setConfirmText("TAMAM")
+                                                    .showCancelButton(false)
+                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                        @Override
+                                                        public void onClick(SweetAlertDialog sDialog) {
+                                                            sDialog.dismissWithAnimation();
 
-                                                          sDialog.hide();
-                                                      }
-                                                  })
-                                                  .show();
-                                      }
-
-                                        else
-                                      {
-                                          fn_AraTartimDevam();
-                                      }
+                                                            sDialog.hide();
+                                                        }
+                                                    })
+                                                    .show();
+                                        } else {
+                                            fn_AraTartimDevam();
+                                        }
 
 
-                                  }catch (Exception ex )
-                                  {
+                                    } catch (Exception ex) {
 
-                                  }
+                                    }
                                 }
 
-                            } catch (JsonMappingException ex2)
-                            {
+                            } catch (JsonMappingException ex2) {
                                 Toast.makeText(getContext(), "error =" + ex2.toString(), Toast.LENGTH_SHORT).show();
-                            }
-                            catch (JsonProcessingException ex1)
-                            {
+                            } catch (JsonProcessingException ex1) {
                                 Toast.makeText(getContext(), "error =" + ex1.toString(), Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -1286,7 +1457,6 @@ public class frg_arac_onayla extends Fragment {
             queue.add(request);
         }
     }
-
 
 
     private void fn_AraTartimDevam() {
@@ -1379,16 +1549,13 @@ public class frg_arac_onayla extends Fragment {
 
                             ViewsevkiyatDevam _Yanit = objectMapper.readValue(response.toString(), ViewsevkiyatDevam.class);
 
-                            if (_Yanit._zSonuc.equals("0"))
-                            {
+                            if (_Yanit._zSonuc.equals("0")) {
                                 pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                                 pDialog.setTitle("HATA");
                                 pDialog.setContentTextSize(20);
                                 pDialog.setContentText(_Yanit._zHataAciklama);
                                 pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
-                            }
-                            else
-                            {
+                            } else {
                                 pDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
                                 pDialog.setTitle("TAMAM");
                                 pDialog.setContentTextSize(20);
@@ -1397,8 +1564,7 @@ public class frg_arac_onayla extends Fragment {
 
                                 pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog)
-                                    {
+                                    public void onClick(SweetAlertDialog sDialog) {
                                         sDialog.dismissWithAnimation();
 
                                         sDialog.hide();
@@ -1408,15 +1574,13 @@ public class frg_arac_onayla extends Fragment {
                                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                         fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_sevkiyat_menu_panel");
                                         fragmentTransaction.commit();
-                                    }});
+                                    }
+                                });
                             }
 
-                        } catch (JsonMappingException ex2)
-                        {
+                        } catch (JsonMappingException ex2) {
                             Toast.makeText(getContext(), "error =" + ex2.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                        catch (JsonProcessingException ex1)
-                        {
+                        } catch (JsonProcessingException ex1) {
                             Toast.makeText(getContext(), "error =" + ex1.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }

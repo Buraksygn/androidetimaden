@@ -1,19 +1,24 @@
-package com.etimaden.response.frg_paket_uretim_ekrani;
+package com.etimaden.cResponseResult;
 
-public class View_yari_otomatik_paket_kontrol_et {
+import com.etimaden.persosclass.uretim_detay;
 
-    private String _zHataAciklama = "";
-    private String _zAciklama = "";
-    private String _zSonuc = "";
-    private String _lot = "";
-    public View_yari_otomatik_paket_kontrol_et() {
+import java.util.List;
+
+public class View_sec_sevk_miktar {
+
+    public String _zHataAciklama = "";
+    public String _zAciklama = "";
+    public String _zSonuc = "";
+    public List<String> _miktarlar;
+
+    public View_sec_sevk_miktar() {
     }
 
-    public View_yari_otomatik_paket_kontrol_et(String _zHataAciklama, String _zAciklama, String _zSonuc, String _lot) {
+    public View_sec_sevk_miktar(String _zHataAciklama, String _zAciklama, String _zSonuc, List<String> _miktarlar) {
         this._zHataAciklama = _zHataAciklama;
         this._zAciklama = _zAciklama;
         this._zSonuc = _zSonuc;
-        this._lot = _lot;
+        this._miktarlar = _miktarlar;
     }
 
     public String get_zHataAciklama() {
@@ -40,13 +45,11 @@ public class View_yari_otomatik_paket_kontrol_et {
         this._zSonuc = _zSonuc;
     }
 
-    public String get_lot() {
-        return _lot;
+    public List<String> get_miktarlar() {
+        return _miktarlar;
     }
 
-    public void set_lot(String _lot) {
-        this._lot = _lot;
+    public void set_miktarlar(List<String> _miktarlar) {
+        this._miktarlar = _miktarlar;
     }
-
-
 }
