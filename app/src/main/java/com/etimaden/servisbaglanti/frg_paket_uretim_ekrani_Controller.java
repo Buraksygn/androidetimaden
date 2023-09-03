@@ -111,7 +111,7 @@ public interface frg_paket_uretim_ekrani_Controller {
     Call<View_bool_response> fn_paketliUretKontrol(@Body request_paketliUretKontrol v_Gelen);
 //------------------------------------------------------------------------------------------------
 
-    //Yeri değişecek
+    //Yeri değişecek1
 
     @POST("api/sec_sevk_miktar2")
     Call<View_sec_sevk_miktar> fn_sec_sevk_miktar(@Body request_string v_Gelen);
