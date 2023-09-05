@@ -2,14 +2,12 @@ package com.etimaden.servisbaglanti;
 
 import com.etimaden.cResponseResult.View_sec_sevk_miktar;
 import com.etimaden.request.request_bos;
-import com.etimaden.request.request_etiket_kontrol;
 import com.etimaden.request.request_get_lot_toplami;
 import com.etimaden.request.request_guncelle_sevk_hareket;
 import com.etimaden.request.request_paketliUret;
 import com.etimaden.request.request_paketliUretKontrol;
 import com.etimaden.request.request_paketliUret_otomatik;
 import com.etimaden.request.request_secEtiket;
-import com.etimaden.request.request_sec_etiket_no;
 import com.etimaden.request.request_sevkiyat_isemri;
 import com.etimaden.request.request_shrink_is_emri;
 import com.etimaden.request.request_shrink_onayi_al;
@@ -17,17 +15,12 @@ import com.etimaden.request.request_string;
 import com.etimaden.request.request_uretim_etiket;
 import com.etimaden.request.request_uretim_iptali;
 import com.etimaden.request.request_uretim_zayi;
-import com.etimaden.request.request_yari_otomatik_paket_kontrol_et;
-import com.etimaden.request.requestsec_etiket_uretim;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bos;
-import com.etimaden.response.frg_paket_uretim_ekrani.View_etiket_kontrol;
-import com.etimaden.response.frg_paket_uretim_ekrani.View_paketliUret_otomatik;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_etiket_no;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_uretim_detay;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_string_response;
-import com.etimaden.response.frg_paket_uretim_ekrani.View_yari_otomatik_paket_kontrol_et;
 import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
 
 import retrofit2.Call;
@@ -110,23 +103,6 @@ public interface frg_paket_uretim_ekrani_Controller {
     @POST("api/paketliUretKontrol")
     Call<View_bool_response> fn_paketliUretKontrol(@Body request_paketliUretKontrol v_Gelen);
 //------------------------------------------------------------------------------------------------
-
-    //Yeri değişecek1
-
-    @POST("api/sec_sevk_miktar2")
-    Call<View_sec_sevk_miktar> fn_sec_sevk_miktar(@Body request_string v_Gelen);
-
-    @POST("api/sevkiyatIptal2")
-    Call<View_bool_response> fn_sevkiyatIptal(@Body request_sevkiyat_isemri v_Gelen);
-
-    @POST("api/guncelle_sevk_hareket2")
-    Call<View_bool_response> fn_guncelle_sevk_hareket(@Body request_guncelle_sevk_hareket v_Gelen);
-
-    @POST("api/get_yukleme_palet_sayisi_miktar2")
-    Call<View_sec_sevk_miktar> fn_get_yukleme_palet_sayisi_miktar(@Body request_string v_Gelen);
-
-    @POST("api/sevkiyatDevam2")
-    Call<View_bool_response> fn_sevkiyatDevam(@Body request_sevkiyat_isemri v_Gelen);
 
 
 }

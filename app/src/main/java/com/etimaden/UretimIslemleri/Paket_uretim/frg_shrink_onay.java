@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_secEtiket;
@@ -277,7 +278,9 @@ public class frg_shrink_onay extends Fragment {
 
                     //String miktar = persos.fn_sec_ambalaj_degisim_toplam_harcanan_miktar(_Param);
 
+                    Genel.showProgressDialog(getContext());
                     Boolean result = persos.fn_shrink_onayi_al(_Param);
+                    Genel.dismissProgressDialog();
 
 
                     //Boolean res = Program.persos.shrink_onayi_al(tag); ;

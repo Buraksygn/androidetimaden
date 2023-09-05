@@ -42,6 +42,7 @@ import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
 import com.etimaden.servisbaglanti.frg_ambalaj_tipi_degisimi_Controller;
 import com.etimaden.servisbaglanti.frg_geribesleme_onay_Controller;
 import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_Controller;
+import com.etimaden.servisbaglanti.frg_sevkiyat_islemleri_ekrani_Controller;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -1023,7 +1024,7 @@ public class Persos {
 
         try
         {
-            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
 
             Call<View_sec_sevk_miktar> fn_Servis = _Servis.fn_sec_sevk_miktar(v_Gelen);
 
@@ -1062,7 +1063,7 @@ public class Persos {
 
         try
         {
-            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
 
             Call<View_bool_response> fn_Servis = _Servis.fn_sevkiyatIptal(v_Gelen);
 
@@ -1093,7 +1094,7 @@ public class Persos {
 
         try
         {
-            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
 
             Call<View_bool_response> fn_Servis = _Servis.fn_sevkiyatDevam(v_Gelen);
 
@@ -1124,7 +1125,7 @@ public class Persos {
 
         try
         {
-            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
 
             Call<View_bool_response> fn_Servis = _Servis.fn_guncelle_sevk_hareket(v_Gelen);
 
@@ -1154,7 +1155,7 @@ public class Persos {
 
         try
         {
-            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
 
             Call<View_sec_sevk_miktar> fn_Servis = _Servis.fn_get_yukleme_palet_sayisi_miktar(v_Gelen);
 

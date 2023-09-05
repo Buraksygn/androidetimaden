@@ -155,9 +155,7 @@ public class frg_uretim_detay_ekrani extends Fragment {
         //fn_SiloListele();
 
         Genel.showProgressDialog(getContext());
-
         uretim_detay_degerlendir();
-
         Genel.dismissProgressDialog();
 
 
@@ -240,7 +238,9 @@ public class frg_uretim_detay_ekrani extends Fragment {
 
             try
             {
+                Genel.showProgressDialog(getContext());
                 uretim_detay_degerlendir();
+                Genel.showProgressDialog(getContext());
             }
             catch (Exception ex)
             {

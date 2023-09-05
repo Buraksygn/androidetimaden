@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.persosclass.Urun_tag;
@@ -313,8 +314,12 @@ public class frg_paket_uretim_ekrani extends Fragment {
         }
 
       //  _Param_02.set_rfid(paket_listesi.get(0));
+
+        Genel.showProgressDialog(getContext());
         String p1kontrol = persos.etiket_kontrol(_Param_01);
         String p2kontrol = persos.etiket_kontrol(_Param_02);
+        Genel.dismissProgressDialog();
+
         p1kontrol=p1kontrol==null?"":p1kontrol;
 
         p2kontrol=p2kontrol==null?"":p2kontrol;
@@ -355,7 +360,10 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
             _Param.set_value(etiket.substring(10, 24));
 
+            Genel.showProgressDialog(getContext());
             lot = persos.yari_otomatik_paket_kontrol_et(_Param);
+            Genel.dismissProgressDialog();
+
             if(lot==null){
                 lot="";
             }
@@ -547,8 +555,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         v_Param.aktif_kullanici=_ayaraktifkullanici;
                         v_Param.aktif_sunucu=_ayaraktifsunucu;
 
-
+                        Genel.showProgressDialog(getContext());
                         View_bool_response _Yanit=persos.paketliUret_otomatik(v_Param);
+                        Genel.dismissProgressDialog();
 
                         if(_Yanit._zSonuc.equals("0"))
                         {
@@ -636,8 +645,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
             _Param.set_value(hAdet+"");
 
-
+            Genel.showProgressDialog(getContext());
             etiket_no eno = persos.sec_etiket_no(_Param);
+            Genel.dismissProgressDialog();
 
             if(eno==null)
             {
@@ -805,10 +815,13 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         {
                             _Param_02.set_value(paket_listesi.get(paket_listesi.size() - 1));
                         }
+
+                        Genel.showProgressDialog(getContext());
                         String p1kontrol = persos.etiket_kontrol(_Param_01);
                         String p2kontrol = persos.etiket_kontrol(_Param_02);
-                        p1kontrol=p1kontrol==null?"":p1kontrol;
+                        Genel.dismissProgressDialog();
 
+                        p1kontrol=p1kontrol==null?"":p1kontrol;
                         p2kontrol=p2kontrol==null?"":p2kontrol;
 
 
@@ -867,8 +880,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
                                 v_giden.set_rfid(aktif_Palet.getSerino_rfid());
 
                             //Urun_tag v_gelen ;
-
+                            Genel.showProgressDialog(getContext());
                             Urun_tag v_gelen = persos.fn_secEtiket(v_giden);
+                            Genel.dismissProgressDialog();
 
                             if(v_gelen==null)
                             {
@@ -1040,7 +1054,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                 _Param.set_value(str);
 
+                Genel.showProgressDialog(getContext());
                 uretim_etiket etiket = persos.sec_etiket_uretim(_Param);
+                Genel.dismissProgressDialog();
 
                 if (etiket == null)
                 {
@@ -1203,7 +1219,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                     _Param.set_value(str);
 
+                    Genel.showProgressDialog(getContext());
                     uretim_etiket etiket = persos.sec_etiket_uretim(_Param);
+                    Genel.dismissProgressDialog();
 
                     if (etiket == null)
                     {
@@ -1310,7 +1328,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
         _Param.setAktif_kullanici(_ayaraktifkullanici);
         _Param.set_etiket(it_etiket);
 
+        Genel.showProgressDialog(getContext());
         boolean islem_res = persos.fn_dkmpalet_lotundan_uretim(_Param);
+        Genel.dismissProgressDialog();
 
         if (islem_res)
         {
@@ -1610,7 +1630,10 @@ public class frg_paket_uretim_ekrani extends Fragment {
         _Param.setAktif_kullanici(_ayaraktifkullanici);
 
         _Param.set_etiket(etiket);
+
+        Genel.showProgressDialog(getContext());
         View_bool_response result = persos.fn_bigBag_uret(_Param);
+        Genel.dismissProgressDialog();
 
         if (result._result==null || !result._result)
         {
@@ -1702,7 +1725,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
                 _Param.setAktif_sunucu(_ayaraktifsunucu);
                 _Param.setAktif_kullanici(_ayaraktifkullanici);
 
+                Genel.showProgressDialog(getContext());
                 _Param.set_etiket(etiket);
+                Genel.dismissProgressDialog();
 
                 View_bool_response result = persos.fn_bigBag_uret(_Param);
 

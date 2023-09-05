@@ -19,6 +19,7 @@ import com.etimaden.UretimIslemleri.frg_paket_uretim_ekrani;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.adapter.apmblAktifIsEmirleri;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.persosclass.uretim_etiket;
@@ -340,7 +341,10 @@ public class frg_shrink_ayirma extends Fragment {
 
                     //String miktar = persos.fn_sec_ambalaj_degisim_toplam_harcanan_miktar(_Param);
 
+                    Genel.showProgressDialog(getContext());
                     Boolean result = persos.fn_setShrinkIsemri(_Param);
+                    Genel.dismissProgressDialog();
+
                     //Cursor.Current = Cursors.Default;
                     if (result)
                     {
@@ -360,7 +364,7 @@ public class frg_shrink_ayirma extends Fragment {
                                 .show();
                         //Program.giveUyariMesaji("İşlem Onayı", "İşlem başarı ile tamamlanmıştır.");
 
-                        frg_paket_uretim_ekrani fragmentyeni = new frg_paket_uretim_ekrani();
+                        frg_uretim_menu_panel fragmentyeni = new frg_uretim_menu_panel();
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_uretim_menu_panel").addToBackStack(null);

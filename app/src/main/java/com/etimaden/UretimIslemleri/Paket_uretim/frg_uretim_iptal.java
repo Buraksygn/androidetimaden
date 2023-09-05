@@ -249,7 +249,6 @@ public class frg_uretim_iptal extends Fragment {
                         })
                         .show();
 
-
             }
             else
             {
@@ -334,8 +333,9 @@ public class frg_uretim_iptal extends Fragment {
                             .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sDialog) {
-                                    etiketDegerlendirOnConfirm(tag);
                                     sDialog.dismissWithAnimation();
+                                    etiketDegerlendirOnConfirm(tag);
+
                                 }
                             })
                             .show();

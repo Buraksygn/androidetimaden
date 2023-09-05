@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_bos;
@@ -228,6 +229,7 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
 
             try
             {
+                Genel.showProgressDialog(getContext());
                 request_bos _Param= new request_bos();
                 _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
                 _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
@@ -262,11 +264,12 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
                     _txt_palet_sirano.setText("");
                     _txt_paket_sirano.setText("");
                 }
-
+                Genel.dismissProgressDialog();
 
             }
             catch (Exception ex)
             {
+                Genel.dismissProgressDialog();
                 ex.printStackTrace();
             }
 
@@ -279,6 +282,7 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
 
             try
             {
+                Genel.showProgressDialog(getContext());
                 request_bos _Param= new request_bos();
                 _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
                 _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
@@ -313,11 +317,12 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
                     _txt_palet_sirano.setText("");
                     _txt_paket_sirano.setText("");
                 }
-
+                Genel.dismissProgressDialog();
 
             }
             catch (Exception ex)
             {
+                Genel.dismissProgressDialog();
                 ex.printStackTrace();
             }
 
