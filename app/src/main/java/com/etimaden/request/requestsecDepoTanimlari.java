@@ -15,6 +15,7 @@ public class requestsecDepoTanimlari {
     private String isletme;
     private String depo_silo_secimi;
     private String depo_turu;
+    private Boolean depo_silo_secimi_kontrol;
     //private String depo_id;
 
     public requestsecDepoTanimlari() {
@@ -119,9 +120,15 @@ public class requestsecDepoTanimlari {
   //  }
 
 
+    public Boolean getDepo_silo_secimi_kontrol() {
+        return depo_silo_secimi_kontrol;
+    }
 
+    public void setDepo_silo_secimi_kontrol(Boolean depo_silo_secimi_kontrol) {
+        this.depo_silo_secimi_kontrol = depo_silo_secimi_kontrol;
+    }
 
-    public requestsecDepoTanimlari(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, String isletme, String depo_silo_secimi, String depo_turu) {
+    public requestsecDepoTanimlari(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, String isletme, String depo_silo_secimi, String depo_turu, Boolean depo_silo_secimi_kontrol) {
         this._zsunucu_ip_adresi = _zsunucu_ip_adresi;
         this._zaktif_alt_tesis = _zaktif_alt_tesis;
         this._zaktif_tesis = _zaktif_tesis;
@@ -133,5 +140,6 @@ public class requestsecDepoTanimlari {
         this.isletme = isletme;
         this.depo_silo_secimi = depo_silo_secimi;
         this.depo_turu = depo_turu;
+        this.depo_silo_secimi_kontrol = depo_silo_secimi_kontrol;
     }
 }

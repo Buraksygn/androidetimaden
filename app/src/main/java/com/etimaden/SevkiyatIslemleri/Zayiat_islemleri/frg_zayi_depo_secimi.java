@@ -1,8 +1,11 @@
 package com.etimaden.SevkiyatIslemleri.Zayiat_islemleri;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
+import static com.etimaden.cSabitDegerler._sbtVerisyon;
+import static com.etimaden.cSabitDegerler._zkullaniciadi;
 import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
+import static com.etimaden.cSabitDegerler._zsifre;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,13 +25,16 @@ import com.etimaden.adapter.apmblDepoListesi;
 import com.etimaden.adapter.apmblSevkiyatZayiIsEmirleri;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Arac;
+import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.persosclass.Zayi;
+import com.etimaden.request.requestsecDepoTanimlari;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -153,9 +159,28 @@ public class frg_zayi_depo_secimi extends Fragment {
     {
         try
         {
-            //todo GURKAN depo listesini nası cekicez parametreli parametresiz?
-            depo_listesi = Program.persos.secDepoTanimlari();
-            depo_listesi = depo_listesi.Where(w => w.isletme_kod.Equals(aktif_zayi.zay_isletme) && w.depo_turu.Equals("0")).ToList();
+            requestsecDepoTanimlari _Param=new requestsecDepoTanimlari();
+
+            //region Sabit değerleri yükle
+            _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+            _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            _Param.set_zaktif_tesis(_ayaraktiftesis);
+            _Param.set_zsurum(_sbtVerisyon);
+            _Param.set_zkullaniciadi(_zkullaniciadi);
+            _Param.set_zsifre(_zsifre);
+            _Param.setAktif_sunucu(_ayaraktifsunucu);
+            _Param.setAktif_kullanici(_ayaraktifkullanici);
+
+            _Param.setDepo_turu("0");
+            _Param.setIsletme(aktif_zayi.zay_isletme);
+            _Param.setDepo_silo_secimi("");
+            _Param.setDepo_silo_secimi_kontrol(false);
+
+            Genel.showProgressDialog(getContext());
+            List<DEPOTag> result = persos.fn_secDepoTanimlari(_Param);
+            depo_listesi=new ArrayList<>(result);
+            Genel.dismissProgressDialog();
+
             updateListviewItem();
 
         }

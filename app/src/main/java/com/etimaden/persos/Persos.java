@@ -5,6 +5,7 @@ import android.os.StrictMode;
 import com.etimaden.cResponseResult.Arac;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.View_sec_sevk_miktar;
+import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.persosclass.Zayi;
 import com.etimaden.persosclass.etiket_no;
@@ -32,6 +33,7 @@ import com.etimaden.request.request_uretim_etiket;
 import com.etimaden.request.request_uretim_iptali;
 import com.etimaden.request.request_uretim_zayi;
 import com.etimaden.request.request_yari_otomatik_paket_kontrol_et;
+import com.etimaden.request.requestsecDepoTanimlari;
 import com.etimaden.request.requestsec_etiket_uretim;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_ambalaj_tipi_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
@@ -44,12 +46,14 @@ import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_uretim_detay;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_secetikettag;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_string_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_yari_otomatik_paket_kontrol_et;
+import com.etimaden.response.frg_paket_uretim_ekrani.ViewsecDepoTanimlari;
 import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
 import com.etimaden.response.sevkiyat_islemleri.View_arac;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_listesi;
 import com.etimaden.servisbaglanti.frg_ambalaj_tipi_degisimi_Controller;
+import com.etimaden.servisbaglanti.frg_depo_secimi_interface;
 import com.etimaden.servisbaglanti.frg_geribesleme_onay_Controller;
 import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_sevkiyat_islemleri_ekrani_Controller;
@@ -1519,6 +1523,37 @@ public class Persos {
                 _yanit = _Response.body();
 
                 return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+
+    public List<DEPOTag> fn_secDepoTanimlari(requestsecDepoTanimlari v_Gelen)
+    {
+        ViewsecDepoTanimlari _yanit;
+
+        try
+        {
+            frg_depo_secimi_interface _Servis=retrofit.create(frg_depo_secimi_interface.class);
+
+            Call<ViewsecDepoTanimlari> fn_Servis = _Servis.fn_secDepoTanimlari(v_Gelen);
+
+            Response<ViewsecDepoTanimlari> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_DepoListesi();
             }
             else
             {

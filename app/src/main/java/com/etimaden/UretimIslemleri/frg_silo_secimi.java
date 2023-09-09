@@ -174,7 +174,7 @@ public class frg_silo_secimi extends Fragment {
         _Param.setIsletme(urun.getIsletme());
         //_Param.setDepo_id(urun.getDepo_silo_secimi());
         _Param.setDepo_silo_secimi(urun.getDepo_silo_secimi());
-
+        _Param.setDepo_silo_secimi_kontrol(true);
         //
 
         Call<ViewsecDepoTanimlari> call = _ApiServis.fn_secDepoTanimlari(_Param);
