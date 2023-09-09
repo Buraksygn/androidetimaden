@@ -352,7 +352,7 @@ public class frg_arac_aktivasyon extends Fragment {
 
                 String _TempEpc = v_epc.substring(v_epc.length() - 24, v_epc.length());
 
-                if (_TempEpc.startsWith("737767302"))
+                if (_TempEpc.startsWith("737767"))
                 {
                     pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
                     pDialog.setContentTextSize(25);

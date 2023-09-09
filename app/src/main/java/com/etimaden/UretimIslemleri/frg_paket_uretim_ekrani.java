@@ -1664,7 +1664,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
         try
         {
 
-            new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
+            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
                     .setTitleText("ONAY")
                     .setContentText(etiket.getSerino_kod() + " seri nolu ürünün üretim işlemini tamamlamak istiyor musunuz ?")
                     .setContentTextSize(20)
@@ -1840,7 +1840,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                                     })
                                     .show();
 
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
+                            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
                                     .setTitleText("ONAY")
                                     .setContentText(etiket.getSerino_kod() + " seri nolu ürünün üretim işlemini tamamlamak istiyor musunuz ?")
                                     .setContentTextSize(20)
