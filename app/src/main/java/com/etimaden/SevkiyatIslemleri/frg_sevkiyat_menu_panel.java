@@ -269,7 +269,7 @@ public class frg_sevkiyat_menu_panel extends Fragment {
             {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("Onay")
-                        .setContentText("İşlem onaylandı.")
+                        .setContentText("Vagonların satış işlemi SAP'ye aktarılacak. Onaylıyor musunuz?")
                         .setContentTextSize(20)
                         .setConfirmText("EVET")
                         .setCancelText("HAYIR")
