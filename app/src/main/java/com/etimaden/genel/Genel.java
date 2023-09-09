@@ -1,6 +1,8 @@
 package com.etimaden.genel;
 
 import android.content.Context;
+import android.media.AudioManager;
+import android.view.SoundEffectConstants;
 
 import com.etimaden.ugr_demo.R;
 
@@ -25,5 +27,23 @@ public class Genel {
             pDialog.hide();
         }
 
+    }
+
+    public static void playButtonClikSound(Context context){
+        try {
+            AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            audioManager.playSoundEffect(SoundEffectConstants.CLICK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void playQuestionSound(Context context){
+        try {
+            AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            audioManager.playSoundEffect(SoundEffectConstants.NAVIGATION_DOWN);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

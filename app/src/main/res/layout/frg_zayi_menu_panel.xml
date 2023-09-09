@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_menu_panel"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:text="frg_zayi_menu_panel"
+        android:textColor="@color/colorGreen"
+        android:textSize="12dp" />
+
+    <Button
+        android:id="@+id/btn_01"
+        android:layout_width="325dp"
+        android:layout_height="70dp"
+        android:layout_x="0dp"
+        android:layout_y="25dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="ZAYİ ARAÇ AKTİVASYON"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_02"
+        android:layout_width="325dp"
+        android:layout_height="70dp"
+        android:layout_x="0dp"
+        android:layout_y="105dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="AKTİF ZAYİ SEVKİYATLAR"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+
+
+    <Button
+        android:id="@+id/btncikis"
+        android:layout_width="324dp"
+        android:layout_height="70dp"
+        android:layout_x="0dp"
+        android:layout_y="500dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed"
+        android:textSize="20sp" />
+
+
+
+
+</AbsoluteLayout>

@@ -27,6 +27,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.etimaden.SevkiyatIslemleri.Silobas_islemleri.frg_aktif_silobas_arac_secimi;
+import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_aktif_arac_secimi;
 import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_indirme;
 import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_yukleme;
@@ -877,6 +879,20 @@ public class GirisSayfasi extends AppCompatActivity {
                                                                     if (_frg_frg_uretim_iptal != null && _frg_frg_uretim_iptal.isVisible())
                                                                     {
                                                                         _frg_frg_uretim_iptal.fn_RfidOkundu(_TempEpc);
+                                                                    }else {
+                                                                        frg_aktif_silobas_arac_secimi _frg_aktif_silobas_arac_secimi = (frg_aktif_silobas_arac_secimi) getSupportFragmentManager().findFragmentByTag("frg_aktif_silobas_arac_secimi");
+
+                                                                        if (_frg_aktif_silobas_arac_secimi != null && _frg_aktif_silobas_arac_secimi.isVisible())
+                                                                        {
+                                                                            _frg_aktif_silobas_arac_secimi.fn_RfidOkundu(_TempEpc);
+                                                                        }else {
+                                                                            frg_zayi_aktivasyon _frg_zayi_aktivasyon = (frg_zayi_aktivasyon) getSupportFragmentManager().findFragmentByTag("frg_zayi_aktivasyon");
+
+                                                                            if (_frg_zayi_aktivasyon != null && _frg_zayi_aktivasyon.isVisible())
+                                                                            {
+                                                                                _frg_zayi_aktivasyon.fn_RfidOkundu(_TempEpc);
+                                                                            }
+                                                                        }
                                                                     }
                                                                 }
                                                             }

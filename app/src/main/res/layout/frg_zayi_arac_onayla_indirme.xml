@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
-    tools:context="com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel"
+    tools:context="com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_arac_onayla_indirme"
     android:layout_height="match_parent">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_x="0dp"
         android:layout_y="0dp"
-        android:text="frg_sevkiyat_menu_panel"
+        android:text="frg_zayi_arac_onayla_indirme"
         android:textColor="@color/colorGreen"
         android:textSize="12dp" />
 
@@ -26,7 +26,7 @@
         android:layout_y="25dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="ARAÇ AKTİVASYON"
+        android:text="ARACI AKTİVE ET"
         android:textColor="@color/green"
         android:textSize="20sp" />
 
@@ -38,7 +38,7 @@
         android:layout_y="105dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="AKTİF SEVKİYATLAR"
+        android:text="ARA TARTIMA GÖNDER "
         android:textColor="@color/green"
         android:textSize="20sp" />
 
@@ -50,10 +50,9 @@
         android:layout_y="185dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="SEVKİYAT HAZIRLIK"
+        android:text="ARACI KAPAT"
         android:textColor="@color/green"
         android:textSize="20sp" />
-
 
     <Button
         android:id="@+id/btn_04"
@@ -63,31 +62,7 @@
         android:layout_y="265dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="SİLOBAS İŞLEMLERİ"
-        android:textColor="@color/green"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/btn_05"
-        android:layout_width="325dp"
-        android:layout_height="70dp"
-        android:layout_x="0dp"
-        android:layout_y="345dp"
-        android:background="@drawable/btn_menu_normal"
-        android:gravity="center"
-        android:text="ZAYİ İŞLEMLER"
-        android:textColor="@color/green"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/btn_06"
-        android:layout_width="325dp"
-        android:layout_height="70dp"
-        android:layout_x="0dp"
-        android:layout_y="425dp"
-        android:background="@drawable/btn_menu_normal"
-        android:gravity="center"
-        android:text="VAGON SATIŞ TAMAMLA"
+        android:text="ANA MENÜ"
         android:textColor="@color/green"
         android:textSize="20sp" />
 

@@ -1,5 +1,12 @@
 package com.etimaden.SevkiyatIslemleri;
 
+import static com.etimaden.cSabitDegerler._ipAdresi3G;
+import static com.etimaden.cSabitDegerler._sbtVerisyon;
+import static com.etimaden.cSabitDegerler._zkullaniciadi;
+import static com.etimaden.cSabitDegerler._zport3G;
+import static com.etimaden.cSabitDegerler._zportWifi;
+import static com.etimaden.cSabitDegerler._zsifre;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,10 +20,18 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
+import com.etimaden.SevkiyatIslemleri.Silobas_islemleri.frg_aktif_silobas_arac_secimi;
+import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.frg_ana_sayfa;
+import com.etimaden.genel.Genel;
+import com.etimaden.persos.Persos;
+import com.etimaden.request.request_bos;
 import com.etimaden.ugr_demo.R;
 
+import java.util.ArrayList;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class frg_sevkiyat_menu_panel extends Fragment {
@@ -40,6 +55,8 @@ public class frg_sevkiyat_menu_panel extends Fragment {
     public String _ayarbaglantituru = "";
     public String _ayarsunucuip = "";
     public String _ayarversiyon = "";
+    String _OnlineUrl = "";
+    Persos persos;
 
     public frg_sevkiyat_menu_panel() {
         // Required empty public constructor
@@ -60,6 +77,15 @@ public class frg_sevkiyat_menu_panel extends Fragment {
         _ayaraktifsunucu=_myIslem.fn_aktif_sunucu();
         _ayaraktifisletmeeslesme=_myIslem.fn_isletmeeslesme();
 
+        if(_ayarbaglantituru.equals("wifi"))
+        {
+            _OnlineUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/";
+        }
+        else
+        {
+            _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
+        }
+        persos = new Persos(_OnlineUrl);
 
     }
 
@@ -211,7 +237,13 @@ public class frg_sevkiyat_menu_panel extends Fragment {
         @Override
         public void onClick(View view)
         {
+            ((GirisSayfasi) getActivity()).fn_ModRFID();
 
+            frg_aktif_silobas_arac_secimi fragmentyeni = new frg_aktif_silobas_arac_secimi();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_aktif_silobas_arac_secimi").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
@@ -219,7 +251,13 @@ public class frg_sevkiyat_menu_panel extends Fragment {
         @Override
         public void onClick(View view)
         {
+            ((GirisSayfasi) getActivity()).fn_ModRFID();
 
+            frg_zayi_menu_panel fragmentyeni = new frg_zayi_menu_panel();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_zayi_menu_panel").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
@@ -227,7 +265,75 @@ public class frg_sevkiyat_menu_panel extends Fragment {
         @Override
         public void onClick(View view)
         {
+            try
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Onay")
+                        .setContentText("İşlem onaylandı.")
+                        .setContentTextSize(20)
+                        .setConfirmText("EVET")
+                        .setCancelText("HAYIR")
+                        .showCancelButton(true)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                                request_bos _Param1= new request_bos();
+                                _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                _Param1.set_zaktif_tesis(_ayaraktiftesis);
+                                _Param1.set_zsurum(_sbtVerisyon);
+                                _Param1.set_zkullaniciadi(_zkullaniciadi);
+                                _Param1.set_zsifre(_zsifre);
+                                _Param1.setAktif_sunucu(_ayaraktifsunucu);
+                                _Param1.setAktif_kullanici(_ayaraktifkullanici);
 
+                                Genel.showProgressDialog(getContext());
+                                boolean islem = persos.fn_guncelle_vagon_satis(_Param1);
+                                Genel.dismissProgressDialog();
+
+                                if (islem)
+                                {
+                                    boolean result=true;
+                                    while (result)
+                                    {
+                                        Genel.showProgressDialog(getContext());
+                                        result = persos.fn_guncelle_vagon_satis(_Param1);
+                                        Genel.dismissProgressDialog();
+                                    }
+                                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                                            .setTitleText("ONAY")
+                                            .setContentText("İşlem onaylandı.")
+                                            .setContentTextSize(20)
+                                            .setConfirmText("TAMAM")
+                                            .showCancelButton(false)
+                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialog sDialog) {
+                                                    sDialog.dismissWithAnimation();
+                                                }
+                                            })
+                                            .show();
+                                }
+                                else
+                                {
+                                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                            .setTitleText("HATA")
+                                            .setContentTextSize(25)
+                                            .setContentText("İşlem YAPILAMADI. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ. \r\n BAĞLANTI HATASI")
+                                            .showCancelButton(false)
+                                            .show();
+                                }
+                            }
+                        })
+                        .show();
+
+
+
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 

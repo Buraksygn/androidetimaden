@@ -2,8 +2,11 @@ package com.etimaden.persos;
 
 import android.os.StrictMode;
 
+import com.etimaden.cResponseResult.Arac;
+import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.View_sec_sevk_miktar;
 import com.etimaden.persosclass.Urun_tag;
+import com.etimaden.persosclass.Zayi;
 import com.etimaden.persosclass.etiket_no;
 import com.etimaden.persosclass.uretim_detay;
 import com.etimaden.persosclass.uretim_etiket;
@@ -18,7 +21,10 @@ import com.etimaden.request.request_paketliUret_otomatik;
 import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_sec_etiket_no;
 import com.etimaden.request.request_secetikettag;
+import com.etimaden.request.request_sevkiyat_eski_sevk_yeni_sevk;
 import com.etimaden.request.request_sevkiyat_isemri;
+import com.etimaden.request.request_sevkiyat_zayi;
+import com.etimaden.request.request_sevkiyat_zayi_arac;
 import com.etimaden.request.request_shrink_is_emri;
 import com.etimaden.request.request_shrink_onayi_al;
 import com.etimaden.request.request_string;
@@ -39,6 +45,10 @@ import com.etimaden.response.frg_paket_uretim_ekrani.View_secetikettag;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_string_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_yari_otomatik_paket_kontrol_et;
 import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
+import com.etimaden.response.sevkiyat_islemleri.View_arac;
+import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri;
+import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri_listesi;
+import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_listesi;
 import com.etimaden.servisbaglanti.frg_ambalaj_tipi_degisimi_Controller;
 import com.etimaden.servisbaglanti.frg_geribesleme_onay_Controller;
 import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_Controller;
@@ -1186,5 +1196,340 @@ public class Persos {
         }
 
         return  _Cevap;
+    }
+    //Buradan itibaren Sevkiyat yeni ekranlar.
+
+    public Sevkiyat_isemri fn_sec_aktif_silobas(request_string v_Gelen)
+    {
+        View_sevkiyat_isemri _yanit;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_sevkiyat_isemri> fn_Servis = _Servis.fn_sec_aktif_silobas(v_Gelen);
+
+            Response<View_sevkiyat_isemri> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+
+    public List<Sevkiyat_isemri> fn_sec_silobas_SevkiyatIsemriListesi(request_sevkiyat_isemri v_Gelen)
+    {
+        List<Sevkiyat_isemri> _Cevap=null ;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_sevkiyat_isemri_listesi> fn_Servis = _Servis.fn_sec_silobas_SevkiyatIsemriListesi(v_Gelen);
+
+            Response<View_sevkiyat_isemri_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                View_sevkiyat_isemri_listesi _Yanit = _Response.body();
+
+                if(_Yanit.get_zSonuc().equals("0"))
+                {
+                    _Cevap = null;
+                }
+                else
+                {
+                    _Cevap= _Yanit.get_sevk_listesi();
+                }
+            }
+            else
+            {
+                _Cevap = null;
+            }
+
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
+        return  _Cevap;
+    }
+
+    public Boolean fn_onayla_silobas_SevkIsDegisimi(request_sevkiyat_eski_sevk_yeni_sevk v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_onayla_silobas_SevkIsDegisimi(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+
+    public Arac fn_sec_arac(request_string v_Gelen)
+    {
+        View_arac _yanit;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_arac> fn_Servis = _Servis.fn_sec_arac(v_Gelen);
+
+            Response<View_arac> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+
+    public List<Zayi> fn_sec_zayi_aynı_arac(request_string v_Gelen)
+    {
+        List<Zayi> _Cevap=null ;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_sevkiyat_zayi_listesi> fn_Servis = _Servis.fn_sec_zayi_aynı_arac(v_Gelen);
+
+            Response<View_sevkiyat_zayi_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                View_sevkiyat_zayi_listesi _Yanit = _Response.body();
+
+                if(_Yanit.get_zSonuc().equals("0"))
+                {
+                    _Cevap = null;
+                }
+                else
+                {
+                    _Cevap= _Yanit.get_zayi_listesi();
+                }
+            }
+            else
+            {
+                _Cevap = null;
+            }
+
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
+        return  _Cevap;
+    }
+
+    public List<Zayi> fn_sec_zayi_farklı_arac(request_bos v_Gelen)
+    {
+        List<Zayi> _Cevap=null ;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_sevkiyat_zayi_listesi> fn_Servis = _Servis.fn_sec_zayi_farklı_arac(v_Gelen);
+
+            Response<View_sevkiyat_zayi_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                View_sevkiyat_zayi_listesi _Yanit = _Response.body();
+
+                if(_Yanit.get_zSonuc().equals("0"))
+                {
+                    _Cevap = null;
+                }
+                else
+                {
+                    _Cevap= _Yanit.get_zayi_listesi();
+                }
+            }
+            else
+            {
+                _Cevap = null;
+            }
+
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
+        return  _Cevap;
+    }
+
+    public Boolean fn_ac_zayi_arac(request_sevkiyat_zayi_arac v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_ac_zayi_arac(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+
+    public Boolean fn_guncelle_depo_zayi_arac(request_sevkiyat_zayi v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_guncelle_depo_zayi_arac(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+
+    public Boolean fn_kapat_zayi_arac(request_sevkiyat_zayi_arac v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_kapat_zayi_arac(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
+    }
+
+    public Boolean fn_guncelle_vagon_satis(request_bos v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_guncelle_vagon_satis(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+            return  null;
+        }
+
     }
 }

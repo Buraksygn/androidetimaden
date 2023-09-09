@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_arac_bulundu_indirme">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:textColor="@color/green"
+        android:layout_y="0dp"
+        android:text="frg_zayi_arac_bulundu_indirme"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/txtYazi5"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="29dp"
+        android:textColor="@color/green"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="ZAYİ ARAÇ İŞ EMRİ DETAYI"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/btnIsEmriDegistir"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="70dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="İŞEMRİ DEĞİŞTİR"
+        android:textColor="@color/green"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/txtDetaylar"
+        android:layout_width="325dp"
+        android:layout_height="300dp"
+        android:layout_x="1dp"
+        android:layout_y="135dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="ARAÇ İŞ EMRİ DETAYI"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnOnay"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="450dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="İLERİ &gt; &gt;"
+        android:textColor="@color/green"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btngeri"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="510dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed"
+        android:textSize="20sp" />
+
+
+
+
+</AbsoluteLayout>
