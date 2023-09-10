@@ -7,12 +7,14 @@ import com.etimaden.request.request_sevkiyat_eski_sevk_yeni_sevk;
 import com.etimaden.request.request_sevkiyat_isemri;
 import com.etimaden.request.request_sevkiyat_zayi;
 import com.etimaden.request.request_sevkiyat_zayi_arac;
+import com.etimaden.request.request_sevkiyat_zayi_zayiurun_list_zayiurun;
 import com.etimaden.request.request_string;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
 import com.etimaden.response.sevkiyat_islemleri.View_arac;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_listesi;
+import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_urun_listesi;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -67,5 +69,12 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
     @POST("api/guncelle_vagon_satis")
     Call<View_bool_response> fn_guncelle_vagon_satis(@Body request_bos v_Gelen);
 
+    @POST("api/sec_zayi_arac")
+    Call<View_sevkiyat_zayi_listesi> fn_sec_zayi_arac(@Body request_bos v_Gelen);
 
+    @POST("api/sec_zayi_urun_listesi")
+    Call<View_sevkiyat_zayi_urun_listesi> fn_sec_zayi_urun_listesi(@Body request_string v_Gelen);
+
+    @POST("api/ekleZayitUrun_cikarma")
+    Call<View_bool_response> fn_ekleZayitUrun_cikarma(@Body request_sevkiyat_zayi_zayiurun_list_zayiurun v_Gelen);
 }

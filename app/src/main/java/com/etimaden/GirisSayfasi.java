@@ -28,6 +28,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.etimaden.SevkiyatIslemleri.Silobas_islemleri.frg_aktif_silobas_arac_secimi;
+import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.Zayi_depo_kabul.frg_zayi_isemri_indirme;
 import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_aktif_arac_secimi;
 import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_indirme;
@@ -673,6 +674,13 @@ public class GirisSayfasi extends AppCompatActivity {
 
                                                     if (_frg_frg_uretim_iptal != null && _frg_frg_uretim_iptal.isVisible()) {
                                                         _frg_frg_uretim_iptal.fn_BarkodOkutuldu(barcode.toString());
+                                                    }else {
+                                                        frg_zayi_isemri_indirme _frg_zayi_isemri_indirme = (frg_zayi_isemri_indirme) getSupportFragmentManager().findFragmentByTag("frg_zayi_isemri_indirme");
+
+                                                        if (_frg_zayi_isemri_indirme != null && _frg_zayi_isemri_indirme.isVisible())
+                                                        {
+                                                            _frg_zayi_isemri_indirme.fn_barkodOkundu(barcode);
+                                                        }
                                                     }
                                                 }
                                             }
@@ -891,6 +899,13 @@ public class GirisSayfasi extends AppCompatActivity {
                                                                             if (_frg_zayi_aktivasyon != null && _frg_zayi_aktivasyon.isVisible())
                                                                             {
                                                                                 _frg_zayi_aktivasyon.fn_RfidOkundu(_TempEpc);
+                                                                            }else {
+                                                                                frg_zayi_isemri_indirme _frg_zayi_isemri_indirme = (frg_zayi_isemri_indirme) getSupportFragmentManager().findFragmentByTag("frg_zayi_isemri_indirme");
+
+                                                                                if (_frg_zayi_isemri_indirme != null && _frg_zayi_isemri_indirme.isVisible())
+                                                                                {
+                                                                                    _frg_zayi_isemri_indirme.fn_rfidOkundu(_TempEpc);
+                                                                                }
                                                                             }
                                                                         }
                                                                     }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.Zayi_depo_kabul.frg_zayi_aktif_isemri_secimi"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:textColor="@color/green"
+        android:text="frg_zayi_aktif_isemri_secimi"
+        android:textSize="12dp" />
+
+    <Button
+        android:id="@+id/btnIsEmriSeciminiOnayla"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="20dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="SEÇİLİ İŞE BAŞLA"
+        android:textColor="@color/green"
+        android:textSize="20sp"/>
+
+    <HorizontalScrollView
+        android:layout_width="325dp"
+        android:layout_height="340dp"
+        android:layout_x="2dp"
+        android:layout_y="100dp">
+
+        <ListView
+            android:id="@+id/aktif_is_emirleri_list"
+            android:layout_width="wrap_content"
+            android:layout_height="440dp"
+            android:listSelector="@color/colorBlackSecili"
+            android:scrollbars="horizontal|vertical"
+            android:textColor="@color/green" />
+
+    </HorizontalScrollView>
+
+
+    <Button
+        android:id="@+id/btncikis"
+        android:layout_width="324dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="500dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+</AbsoluteLayout>
