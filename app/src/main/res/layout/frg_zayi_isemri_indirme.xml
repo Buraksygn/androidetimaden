@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.Zayi_depo_kabul.frg_zayi_isemri_indirme"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:textColor="@color/green"
+        android:text="frg_zayi_isemri_indirme"
+        android:textSize="12dp" />
+
+    <ImageView
+        android:id="@+id/imgBilgi"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="20dp"
+        android:src="@mipmap/information3" />
+    <TextView
+        android:id="@+id/txtBaslik"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_x="50dp"
+        android:layout_y="20dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="ZAYİ DEPO KABUL"
+        android:textColor="@color/colorGri"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/btnTamam"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="80dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="TAMAM"
+        android:textColor="@color/green"
+        android:textSize="20sp"/>
+
+    <HorizontalScrollView
+        android:layout_width="325dp"
+        android:layout_height="320dp"
+        android:layout_x="2dp"
+        android:layout_y="140dp">
+
+        <ListView
+            android:id="@+id/zayi_urun_list"
+            android:layout_width="wrap_content"
+            android:layout_height="440dp"
+            android:listSelector="@color/colorBlackSecili"
+            android:scrollbars="horizontal|vertical"
+            android:textColor="@color/green" />
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/txtYuklemeMiktar"
+        android:layout_width="325dp"
+        android:layout_height="25dp"
+        android:layout_x="0dp"
+        android:layout_y="470dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text=""
+        android:textColor="@color/red1"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/btncikis"
+        android:layout_width="324dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="500dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+</AbsoluteLayout>

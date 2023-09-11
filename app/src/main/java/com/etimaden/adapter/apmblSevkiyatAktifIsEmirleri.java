@@ -45,7 +45,7 @@ public class apmblSevkiyatAktifIsEmirleri extends ArrayAdapter<Sevkiyat_isemri> 
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.liste_aktif_is_emirleri_item, parent, false);
+            convertView = inflater.inflate(R.layout.liste_sevkiyat_aktif_is_emirleri_item, parent, false);
 
 
             viewHolder._sira = (TextView) convertView.findViewById(R.id.sira);
