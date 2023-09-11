@@ -8,13 +8,15 @@ public class Zayi_urun_data {
 
     private Zayi_urun zayi_urun ;
     private int rowColor;
+    private Boolean bekleyen;
 
     public Zayi_urun_data() {
     }
 
-    public Zayi_urun_data(Zayi_urun zayi_urun, int rowColor) {
+    public Zayi_urun_data(Zayi_urun zayi_urun, int rowColor, Boolean bekleyen) {
         this.zayi_urun = zayi_urun;
         this.rowColor = rowColor;
+        this.bekleyen = bekleyen;
     }
 
     public Zayi_urun getZayi_urun() {
@@ -31,5 +33,13 @@ public class Zayi_urun_data {
 
     public void setRowColor(int rowColor) {
         this.rowColor = rowColor;
+    }
+
+    public Boolean getBekleyen() {
+        return bekleyen;
+    }
+
+    public void setBekleyen(Boolean bekleyen) {
+        this.bekleyen = bekleyen;
     }
 }

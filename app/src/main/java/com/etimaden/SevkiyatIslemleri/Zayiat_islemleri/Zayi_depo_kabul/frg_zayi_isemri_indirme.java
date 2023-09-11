@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ import com.etimaden.persosclass.Zayi;
 import com.etimaden.persosclass.Zayi_urun;
 import com.etimaden.request.request_bos;
 import com.etimaden.request.request_secEtiket;
+import com.etimaden.request.request_sevkiyat_zayi_arac;
 import com.etimaden.request.request_sevkiyat_zayi_zayiurun_list_zayiurun;
 import com.etimaden.request.request_string;
 import com.etimaden.ugr_demo.R;
@@ -66,6 +68,7 @@ public class frg_zayi_isemri_indirme extends Fragment {
     Persos persos;
 
 
+    ImageView _imgBilgi;
     TextView _txtBaslik;
     TextView _txtYuklemeMiktar;
     Button _btnTamam;
@@ -148,6 +151,9 @@ public class frg_zayi_isemri_indirme extends Fragment {
 
         _txtYuklemeMiktar = (TextView) getView().findViewById(R.id.txtYuklemeMiktar);
 
+        _imgBilgi = (ImageView) getView().findViewById(R.id.imgBilgi);
+        _imgBilgi.setOnClickListener(new fn_imgBilgi());
+
         _txtBaslik = (TextView) getView().findViewById(R.id.txtBaslik);
         String baslik = "ARAÇ : " + aktif_sevk_isemri.zay_eski_plaka + " - SAP KODU : " + aktif_sevk_isemri.zay_sap_kodu ;
         baslik += "\r\nMAL KABUL LİSTESİ";
@@ -165,10 +171,19 @@ public class frg_zayi_isemri_indirme extends Fragment {
         _zayi_urun_list = (ListView) getView().findViewById(R.id.zayi_urun_list);
 
         _zayi_urun_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 _Secili = urun_listesi.get(position);
+            }
+        });
+        fn_listview_longclick();
+        _zayi_urun_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                _Secili = urun_listesi.get(position);
+                fn_listview_longclick();
+                return false;
             }
         });
 
@@ -251,10 +266,10 @@ public class frg_zayi_isemri_indirme extends Fragment {
                 }
             }
             for(Zayi_urun urun : ul_bekleyen){
-                urun_listesi.add(new Zayi_urun_data(urun, Color.RED));
+                urun_listesi.add(new Zayi_urun_data(urun, Color.RED,true));
             }
             for(Zayi_urun urun : ul_indirilen){
-                urun_listesi.add(new Zayi_urun_data(urun, Color.GREEN));
+                urun_listesi.add(new Zayi_urun_data(urun, Color.GREEN,false));
                 try{ miktar += Integer.parseInt(urun.agirlik); }catch (Exception ex){ ex.printStackTrace(); }
             }
 
@@ -483,6 +498,107 @@ public class frg_zayi_isemri_indirme extends Fragment {
     }
 
     //todo Pcturebox 1,2 ve listview üzerindeyken B harfine basınca bişeyler yapıyor. Ekliycezmi?
+
+    private void fn_listview_longclick(){
+
+        if (_Secili!=null && _Secili.getBekleyen()==true)
+        {
+            Zayi_urun tag = _Secili.getZayi_urun();
+            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("SORU")
+                    .setContentText("SERİ NO : " + tag.serino + "\r\n Seri nolu ürün için kayıt değişimi yapılacak. Onaylıyor musunuz ?")
+                    .setContentTextSize(20)
+                    .setConfirmText("EVET")
+                    .setCancelText("HAYIR")
+                    .showCancelButton(true)
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+
+                            request_string _Param1= new request_string();
+                            _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
+                            _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                            _Param1.set_zaktif_tesis(_ayaraktiftesis);
+                            _Param1.set_zsurum(_sbtVerisyon);
+                            _Param1.set_zkullaniciadi(_zkullaniciadi);
+                            _Param1.set_zsifre(_zsifre);
+                            _Param1.setAktif_sunucu(_ayaraktifsunucu);
+                            _Param1.setAktif_kullanici(_ayaraktifkullanici);
+
+                            _Param1.set_value(tag.serino);
+
+                            Genel.showProgressDialog(getContext());
+                            Boolean rr = persos.fn_update_bas_etiket(_Param1);
+                            Genel.dismissProgressDialog();
+                            if(rr==true){
+                                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Onay")
+                                        .setContentText("İşlem başarı ile tamamlandı. Lütfen etikent basmayı şimdi deneyiniz.")
+                                        .setContentTextSize(20)
+                                        .setConfirmText("TAMAM")
+                                        .showCancelButton(false)
+                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sDialog) {
+                                                sDialog.dismissWithAnimation();
+                                            }
+                                        })
+                                        .show();
+                            }else{
+                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("HATA")
+                                        .setContentTextSize(25)
+                                        .setContentText("İşlem yapılamadı. Tekrar deneyiniz!")
+                                        .showCancelButton(false)
+                                        .show();
+                            }
+                        }
+                    })
+                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                            return;
+                        }
+                    })
+                    .show();
+
+
+        }
+    }
+
+    private class fn_imgBilgi implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            try
+            {
+                Genel.playButtonClikSound(getContext());
+                String str = "";
+                str += "SAP KODU : " + aktif_sevk_isemri.zay_sap_kodu;
+                str += "\r\nÜRÜN ADI : " + aktif_sevk_isemri.zay_urun_adi;
+                str += "\r\nPLAKA: " + aktif_sevk_isemri.zay_eski_plaka;
+                new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE)
+                        .setTitleText("DETAY")
+                        .setContentText(str)
+                        .setContentTextSize(20)
+                        .setConfirmText("TAMAM")
+                        .showCancelButton(false)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
+
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+    }
 
     private class fn_Geri implements View.OnClickListener {
         @Override

@@ -77,4 +77,7 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
 
     @POST("api/ekleZayitUrun_cikarma")
     Call<View_bool_response> fn_ekleZayitUrun_cikarma(@Body request_sevkiyat_zayi_zayiurun_list_zayiurun v_Gelen);
+
+    @POST("api/update_bas_etiket")
+    Call<View_bool_response> fn_update_bas_etiket(@Body request_string v_Gelen);
 }

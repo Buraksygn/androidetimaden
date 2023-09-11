@@ -77,7 +77,8 @@ public class frg_aktif_isemri_indirme  extends Fragment {
 
     private Integer imageid[] = {
             R.drawable.redpoint,
-            R.drawable.greenpoint};
+            R.drawable.greenpoint
+    };
 
 
 
