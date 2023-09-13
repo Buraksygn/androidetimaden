@@ -64,7 +64,6 @@
         android:layout_x="0dp"
         android:layout_y="210dp"
         android:background="@drawable/btn_menu_normal"
-
         android:gravity="center"
         android:text="ARA TARTIMA GÖNDER"
         android:textColor="@color/green"

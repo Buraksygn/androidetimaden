@@ -20,17 +20,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
-import com.etimaden.SevkiyatIslemleri.frg_aktif_arac_secimi;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.cResponseResult.Arac;
-import com.etimaden.frg_ana_sayfa;
+import com.etimaden.persosclass.Arac;
 import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Zayi;
 import com.etimaden.request.request_sevkiyat_zayi;
 import com.etimaden.request.request_sevkiyat_zayi_arac;
-import com.etimaden.request.request_string;
 import com.etimaden.ugr_demo.R;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;

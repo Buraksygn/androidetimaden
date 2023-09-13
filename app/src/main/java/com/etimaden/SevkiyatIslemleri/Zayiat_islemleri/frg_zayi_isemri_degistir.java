@@ -1,11 +1,8 @@
 package com.etimaden.SevkiyatIslemleri.Zayiat_islemleri;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
-import static com.etimaden.cSabitDegerler._sbtVerisyon;
-import static com.etimaden.cSabitDegerler._zkullaniciadi;
 import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
-import static com.etimaden.cSabitDegerler._zsifre;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,22 +18,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
-import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
-import com.etimaden.adapter.apmblSevkiyatAktifIsEmirleri;
 import com.etimaden.adapter.apmblSevkiyatZayiIsEmirleri;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.cResponseResult.Arac;
-import com.etimaden.cResponseResult.Sevkiyat_isemri;
+import com.etimaden.persosclass.Arac;
 import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Zayi;
-import com.etimaden.request.request_sevkiyat_eski_sevk_yeni_sevk;
-import com.etimaden.request.request_sevkiyat_isemri;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 

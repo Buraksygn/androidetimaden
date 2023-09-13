@@ -30,6 +30,8 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.etimaden.DataModel.mblBekleyenArac;
 import com.etimaden.GirisSayfasi;
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_bulundu;
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_konteyner_kamyon_esleme;
 import com.etimaden.adapter.apmblBekleyenArac;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.ViewAracAktivasyon;
@@ -51,7 +53,7 @@ import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
 import static com.etimaden.cSabitDegerler._zsifre;
 
-public class frg_arac_aktivasyon extends Fragment {
+public class frg_arac_aktivasyon_eski extends Fragment {
 
     SweetAlertDialog pDialog;
 
@@ -88,14 +90,14 @@ public class frg_arac_aktivasyon extends Fragment {
 
     private static apmblBekleyenArac adapter;
 
-    public frg_arac_aktivasyon()
+    public frg_arac_aktivasyon_eski()
     {
 
     }
 
-    public static frg_arac_aktivasyon newInstance() {
+    public static frg_arac_aktivasyon_eski newInstance() {
 
-        return new frg_arac_aktivasyon();
+        return new frg_arac_aktivasyon_eski();
     }
 
     @Override
@@ -108,7 +110,7 @@ public class frg_arac_aktivasyon extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frg_arac_aktivasyon, container, false);
+        return inflater.inflate(R.layout.frg_arac_aktivasyon_eski, container, false);
     }
 
     @Override

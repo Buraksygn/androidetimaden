@@ -1,6 +1,6 @@
 package com.etimaden.request;
 
-import com.etimaden.cResponseResult.Arac;
+import com.etimaden.persosclass.Arac;
 import com.etimaden.persosclass.Zayi;
 
 public class request_sevkiyat_zayi_arac {

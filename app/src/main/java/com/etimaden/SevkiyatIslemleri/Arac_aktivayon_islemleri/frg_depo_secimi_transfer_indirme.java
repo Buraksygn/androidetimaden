@@ -1,4 +1,4 @@
-package com.etimaden.SevkiyatIslemleri.Zayiat_islemleri;
+package com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -21,13 +21,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_arac_bulundu_indirme;
+import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_menu_panel;
+import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.adapter.apmblDepoListesi;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.persosclass.Arac;
+import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
+import com.etimaden.persosclass.Arac;
 import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.persosclass.Zayi;
+import com.etimaden.request.request_sevkiyat_isemri;
+import com.etimaden.request.request_sevkiyat_isemri_depo;
 import com.etimaden.request.requestsecDepoTanimlari;
 import com.etimaden.ugr_demo.R;
 
@@ -36,7 +42,7 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class frg_zayi_depo_secimi extends Fragment {
+public class frg_depo_secimi_transfer_indirme extends Fragment {
 
     SweetAlertDialog pDialog;
     boolean isReadable = true;
@@ -60,18 +66,17 @@ public class frg_zayi_depo_secimi extends Fragment {
 
     ArrayList<DEPOTag> depo_listesi;
     DEPOTag _Secili = null;
-    Zayi aktif_zayi = null;
-    Arac arac = null;
+    Sevkiyat_isemri aktif_sevk_isemri = null;
 
     private apmblDepoListesi adapter;
 
-    public frg_zayi_depo_secimi() {
+    public frg_depo_secimi_transfer_indirme() {
         // Required empty public constructor
     }
 
-    public static frg_zayi_depo_secimi newInstance()
+    public static frg_depo_secimi_transfer_indirme newInstance()
     {
-        return new frg_zayi_depo_secimi();
+        return new frg_depo_secimi_transfer_indirme();
     }
 
     @Override
@@ -85,7 +90,7 @@ public class frg_zayi_depo_secimi extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.frg_zayi_depo_secimi, container, false);
+        return inflater.inflate(R.layout.frg_depo_secimi_transfer_indirme, container, false);
     }
 
     @Override
@@ -115,10 +120,9 @@ public class frg_zayi_depo_secimi extends Fragment {
         persos = new Persos(_OnlineUrl);
     }
 
-    public void fn_senddata(Zayi aktif_zayi,Arac arac)
+    public void fn_senddata(Sevkiyat_isemri aktif_sevk_isemri)
     {
-        this.aktif_zayi = aktif_zayi;
-        this.arac=arac;
+        this.aktif_sevk_isemri = aktif_sevk_isemri;
     }
 
     @Override
@@ -170,13 +174,18 @@ public class frg_zayi_depo_secimi extends Fragment {
             _Param.setAktif_kullanici(_ayaraktifkullanici);
 
             _Param.setDepo_turu("0");
-            _Param.setIsletme(aktif_zayi.zay_isletme);
+            _Param.setIsletme(aktif_sevk_isemri.hedef_isletme_kodu);
             _Param.setDepo_silo_secimi("");
             _Param.setDepo_silo_secimi_kontrol(false);
 
             Genel.showProgressDialog(getContext());
             List<DEPOTag> result = persos.fn_secDepoTanimlari(_Param);
-            depo_listesi=new ArrayList<>(result);
+            depo_listesi=new ArrayList<>();
+            for(DEPOTag depo : result){
+                if(depo.getAlt_isletme_kod().equals(_ayaraktifalttesis)){
+                    depo_listesi.add(depo);
+                }
+            }
             Genel.dismissProgressDialog();
 
             updateListviewItem();
@@ -218,10 +227,11 @@ public class frg_zayi_depo_secimi extends Fragment {
     private class fn_Geri implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_zayi_menu_panel fragmentyeni = new frg_zayi_menu_panel();
+            frg_arac_onayla_indirme fragmentyeni = new frg_arac_onayla_indirme();
+            fragmentyeni.fn_senddata(aktif_sevk_isemri);
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_zayi_menu_panel").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_arac_onayla_indirme").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }
@@ -235,17 +245,99 @@ public class frg_zayi_depo_secimi extends Fragment {
             {
                 if (_Secili!=null)
                 {
-                    Genel.playButtonClikSound(getContext());
                     DEPOTag secilen_depo = _Secili;
-                    aktif_zayi.zay_depo = secilen_depo.getDepo_id();
-                    if(secilen_depo != null && secilen_depo.getDepo_id() != ""){
-                        frg_zayi_arac_bulundu_indirme fragmentyeni = new frg_zayi_arac_bulundu_indirme();
-                        fragmentyeni.fn_senddata(aktif_zayi,arac);
-                        FragmentManager fragmentManager = getFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_zayi_arac_bulundu_indirme").addToBackStack(null);
-                        fragmentTransaction.commit();
-                    } else {
+                    try
+                    {
+                        request_sevkiyat_isemri_depo _Param= new request_sevkiyat_isemri_depo();
+                        _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+                        _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                        _Param.set_zaktif_tesis(_ayaraktiftesis);
+                        _Param.set_zsurum(_sbtVerisyon);
+                        _Param.set_zkullaniciadi(_zkullaniciadi);
+                        _Param.set_zsifre(_zsifre);
+                        _Param.setAktif_sunucu(_ayaraktifsunucu);
+                        _Param.setAktif_kullanici(_ayaraktifkullanici);
+
+                        _Param.set_sevk(aktif_sevk_isemri);
+                        _Param.set_depo(secilen_depo);
+
+                        Boolean result=false;
+
+                        if (aktif_sevk_isemri.islem_id.equals(""))
+                        {
+                            Genel.showProgressDialog(getContext());
+                            result = persos.fn_ekleAracIndirmeAktivasyonu(_Param);
+                            Genel.dismissProgressDialog();
+                            if(result==true) {
+                                new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("ONAY")
+                                        .setContentText("İşlem onaylandı.")
+                                        .setContentTextSize(20)
+                                        .setConfirmText("TAMAM")
+                                        .showCancelButton(false)
+                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sDialog) {
+                                                sDialog.dismissWithAnimation();
+
+                                                frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
+                                                FragmentManager fragmentManager = getFragmentManager();
+                                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_sevkiyat_menu_panel").addToBackStack(null);
+                                                fragmentTransaction.commit();
+
+                                                return;
+                                            }
+                                        }).show();
+                                return;
+                            } else {
+                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("DEPO SEÇİMİ UYARISI")
+                                        .setContentTextSize(25)
+                                        .setContentText("DEPO SEÇİM İŞLEMİ YAPILMADI.")
+                                        .showCancelButton(false)
+                                        .show();
+                            }
+                        }
+                        else if (!aktif_sevk_isemri.islem_id.equals(""))
+                        {
+                            Genel.showProgressDialog(getContext());
+                            result = persos.fn_updateAracIndirmeAktivasyonu(_Param);
+                            Genel.dismissProgressDialog();
+                            if(result==true){
+                                new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("ONAY")
+                                        .setContentText("İşlem onaylandı.")
+                                        .setContentTextSize(20)
+                                        .setConfirmText("TAMAM")
+                                        .showCancelButton(false)
+                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sDialog) {
+                                                sDialog.dismissWithAnimation();
+
+                                                frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
+                                                FragmentManager fragmentManager = getFragmentManager();
+                                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
+                                                fragmentTransaction.commit();
+
+                                                return;
+                                            }
+                                        })
+                                        .show();
+                                return;
+                            } else {
+                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("DEPO SEÇİMİ UYARISI")
+                                        .setContentTextSize(25)
+                                        .setContentText("DEPO SEÇİM İŞLEMİ YAPILMADI.")
+                                        .showCancelButton(false)
+                                        .show();
+                            }
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                         new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                                 .setTitleText("DEPO SEÇİMİ UYARISI")
                                 .setContentTextSize(25)
@@ -253,7 +345,6 @@ public class frg_zayi_depo_secimi extends Fragment {
                                 .showCancelButton(false)
                                 .show();
                     }
-
                 }
                 else
                 {

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.etimaden.SevkiyatIslemleri.frg_arac_aktivasyon_eski">
+
+
+    <Button
+        android:id="@+id/btnBekleyenArac"
+        android:layout_width="324dp"
+        android:layout_height="69dp"
+        android:layout_x="0dp"
+        android:layout_y="30dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="ONAYLA"
+        android:textColor="@color/green"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:textColor="@color/green"
+        android:text="frg_arac_aktivasyon"
+        android:textSize="12dp" />
+
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="360dp"
+        android:layout_x="2dp"
+        android:layout_y="137dp">
+
+        <ListView
+            android:id="@+id/liste_bekleyen_arac"
+            android:layout_width="wrap_content"
+            android:layout_height="355dp"
+            android:listSelector="@color/colorBlackSecili"
+            android:scrollbars="horizontal|vertical"
+            android:textColor="@color/green" />
+
+    </HorizontalScrollView>
+
+
+
+
+    <Button
+        android:id="@+id/btngeri"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="510dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed"
+        android:textSize="20sp" />
+
+
+</AbsoluteLayout>

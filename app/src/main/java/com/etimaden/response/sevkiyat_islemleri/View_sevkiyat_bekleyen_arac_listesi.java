@@ -1,22 +1,26 @@
 package com.etimaden.response.sevkiyat_islemleri;
 
-import com.etimaden.persosclass.Arac;
+import com.etimaden.cResponseResult.Sevkiyat_isemri;
+import com.etimaden.persosclass.cBekleyen_Arac_Listesi;
 
-public class View_arac {
+import java.util.List;
+
+public class View_sevkiyat_bekleyen_arac_listesi {
+
     public String _zHataAciklama = "";
     public String _zAciklama = "";
     public String _zSonuc = "";
 
-    public Arac _result;
+    public List<cBekleyen_Arac_Listesi> _bekleyen_arac_listesi;
 
-    public View_arac() {
+    public View_sevkiyat_bekleyen_arac_listesi() {
     }
 
-    public View_arac(String _zHataAciklama, String _zAciklama, String _zSonuc, Arac _result) {
+    public View_sevkiyat_bekleyen_arac_listesi(String _zHataAciklama, String _zAciklama, String _zSonuc, List<cBekleyen_Arac_Listesi> _bekleyen_arac_listesi) {
         this._zHataAciklama = _zHataAciklama;
         this._zAciklama = _zAciklama;
         this._zSonuc = _zSonuc;
-        this._result = _result;
+        this._bekleyen_arac_listesi = _bekleyen_arac_listesi;
     }
 
     public String get_zHataAciklama() {
@@ -43,11 +47,11 @@ public class View_arac {
         this._zSonuc = _zSonuc;
     }
 
-    public Arac get_result() {
-        return _result;
+    public List<cBekleyen_Arac_Listesi> get_bekleyen_arac_listesi() {
+        return _bekleyen_arac_listesi;
     }
 
-    public void set_result(Arac _result) {
-        this._result = _result;
+    public void set_bekleyen_arac_listesi(List<cBekleyen_Arac_Listesi> _bekleyen_arac_listesi) {
+        this._bekleyen_arac_listesi = _bekleyen_arac_listesi;
     }
 }

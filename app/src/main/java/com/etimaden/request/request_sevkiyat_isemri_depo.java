@@ -1,24 +1,26 @@
 package com.etimaden.request;
 
-import com.etimaden.persosclass.Zayi;
+import com.etimaden.cResponseResult.Sevkiyat_isemri;
+import com.etimaden.persosclass.DEPOTag;
 
-public class request_sevkiyat_zayi {
+public class request_sevkiyat_isemri_depo {
 
-    private String _zsunucu_ip_adresi="";
-    private String _zaktif_alt_tesis;
-    private String _zaktif_tesis ;
-    private String _zsurum ;
-    private String _zkullaniciadi ;
-    private String _zsifre;
-    private String aktif_sunucu;
-    private String aktif_kullanici;
+    public String _zsunucu_ip_adresi;
+    public String _zaktif_alt_tesis;
+    public String _zaktif_tesis ;
+    public String _zsurum ;
+    public String _zkullaniciadi ;
+    public String _zsifre;
+    public String aktif_sunucu;
+    public String aktif_kullanici;
 
-    private Zayi _zayi;
+    private Sevkiyat_isemri _sevk;
+    private DEPOTag _depo;
 
-    public request_sevkiyat_zayi() {
+    public request_sevkiyat_isemri_depo() {
     }
 
-    public request_sevkiyat_zayi(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, Zayi _zayi) {
+    public request_sevkiyat_isemri_depo(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, Sevkiyat_isemri _sevk, DEPOTag _depo) {
         this._zsunucu_ip_adresi = _zsunucu_ip_adresi;
         this._zaktif_alt_tesis = _zaktif_alt_tesis;
         this._zaktif_tesis = _zaktif_tesis;
@@ -27,7 +29,8 @@ public class request_sevkiyat_zayi {
         this._zsifre = _zsifre;
         this.aktif_sunucu = aktif_sunucu;
         this.aktif_kullanici = aktif_kullanici;
-        this._zayi = _zayi;
+        this._sevk = _sevk;
+        this._depo = _depo;
     }
 
     public String get_zsunucu_ip_adresi() {
@@ -94,12 +97,19 @@ public class request_sevkiyat_zayi {
         this.aktif_kullanici = aktif_kullanici;
     }
 
-    public Zayi get_zayi() {
-        return _zayi;
+    public Sevkiyat_isemri get_sevk() {
+        return _sevk;
     }
 
-    public void set_zayi(Zayi _zayi) {
-        this._zayi = _zayi;
+    public void set_sevk(Sevkiyat_isemri _sevk) {
+        this._sevk = _sevk;
     }
 
+    public DEPOTag get_depo() {
+        return _depo;
+    }
+
+    public void set_depo(DEPOTag _depo) {
+        this._depo = _depo;
+    }
 }

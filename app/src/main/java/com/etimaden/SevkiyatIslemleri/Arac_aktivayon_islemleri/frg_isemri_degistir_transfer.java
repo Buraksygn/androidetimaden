@@ -1,4 +1,10 @@
-package com.etimaden.SevkiyatIslemleri;
+package com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri;
+
+import static com.etimaden.cSabitDegerler._ipAdresi3G;
+import static com.etimaden.cSabitDegerler._zkullaniciadi;
+import static com.etimaden.cSabitDegerler._zport3G;
+import static com.etimaden.cSabitDegerler._zportWifi;
+import static com.etimaden.cSabitDegerler._zsifre;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,7 +35,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.etimaden.DataModel.mdlIsemriSecimi;
 import com.etimaden.GirisSayfasi;
-import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_bulundu;
+import com.etimaden.SevkiyatIslemleri.frg_arac_aktivasyon_eski;
 import com.etimaden.adapter.apmblIsEmriSecimi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
@@ -46,13 +52,7 @@ import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-import static com.etimaden.cSabitDegerler._ipAdresi3G;
-import static com.etimaden.cSabitDegerler._zkullaniciadi;
-import static com.etimaden.cSabitDegerler._zport3G;
-import static com.etimaden.cSabitDegerler._zportWifi;
-import static com.etimaden.cSabitDegerler._zsifre;
-
-public class frg_isemri_degistir extends Fragment {
+public class frg_isemri_degistir_transfer extends Fragment {
 
     SweetAlertDialog pDialog;
 
@@ -85,13 +85,13 @@ public class frg_isemri_degistir extends Fragment {
 
     Button _btn_03;
 
-    public frg_isemri_degistir() {
+    public frg_isemri_degistir_transfer() {
         // Required empty public constructor
     }
 
-    public static frg_isemri_degistir newInstance() {
+    public static frg_isemri_degistir_transfer newInstance() {
 
-        return new frg_isemri_degistir();
+        return new frg_isemri_degistir_transfer();
     }
 
     @Override
@@ -104,7 +104,7 @@ public class frg_isemri_degistir extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frg_isemri_degistir, container, false);
+        return inflater.inflate(R.layout.frg_isemri_degistir_transfer, container, false);
     }
 
     @Override
