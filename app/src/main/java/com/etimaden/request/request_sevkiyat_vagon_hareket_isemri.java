@@ -18,11 +18,12 @@ public class request_sevkiyat_vagon_hareket_isemri {
 
     private Vagon_hareket _vagon;
     private Sevkiyat_isemri _konteyner;
+    private String _aktif_isletme_esleme;
 
     public request_sevkiyat_vagon_hareket_isemri() {
     }
 
-    public request_sevkiyat_vagon_hareket_isemri(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, Vagon_hareket _vagon, Sevkiyat_isemri _konteyner) {
+    public request_sevkiyat_vagon_hareket_isemri(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, Vagon_hareket _vagon, Sevkiyat_isemri _konteyner, String _aktif_isletme_esleme) {
         this._zsunucu_ip_adresi = _zsunucu_ip_adresi;
         this._zaktif_alt_tesis = _zaktif_alt_tesis;
         this._zaktif_tesis = _zaktif_tesis;
@@ -33,6 +34,7 @@ public class request_sevkiyat_vagon_hareket_isemri {
         this.aktif_kullanici = aktif_kullanici;
         this._vagon = _vagon;
         this._konteyner = _konteyner;
+        this._aktif_isletme_esleme = _aktif_isletme_esleme;
     }
 
     public String get_zsunucu_ip_adresi() {
@@ -113,5 +115,13 @@ public class request_sevkiyat_vagon_hareket_isemri {
 
     public void set_konteyner(Sevkiyat_isemri _konteyner) {
         this._konteyner = _konteyner;
+    }
+
+    public String get_aktif_isletme_esleme() {
+        return _aktif_isletme_esleme;
+    }
+
+    public void set_aktif_isletme_esleme(String _aktif_isletme_esleme) {
+        this._aktif_isletme_esleme = _aktif_isletme_esleme;
     }
 }

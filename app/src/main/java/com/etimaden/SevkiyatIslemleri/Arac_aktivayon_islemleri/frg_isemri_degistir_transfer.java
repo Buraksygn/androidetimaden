@@ -423,11 +423,11 @@ public class frg_isemri_degistir_transfer extends Fragment {
 
                                                     sDialog.hide();
 
-                                                    frg_arac_aktivasyon_eski fragmentyeni = new frg_arac_aktivasyon_eski();
-                                                    fragmentyeni.fn_EpcEkle(aktif_sevk_isemri.arac_rfid);
+                                                    frg_arac_bulundu fragmentyeni = new frg_arac_bulundu();
+                                                    fragmentyeni.fn_senddata(aktif_sevk_isemri);
                                                     FragmentManager fragmentManager = getFragmentManager();
                                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_arac_aktivasyon").addToBackStack(null);
+                                                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_bulundu").addToBackStack(null);
                                                     fragmentTransaction.commit();
                                                 }});
                                         }

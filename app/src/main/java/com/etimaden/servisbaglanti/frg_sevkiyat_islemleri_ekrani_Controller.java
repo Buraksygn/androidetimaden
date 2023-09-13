@@ -134,4 +134,7 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
 
     @POST("api/ekleSevkiyatUrun_cikarma")
     Call<View_bool_response> fn_ekleSevkiyatUrun_cikarma(@Body request_sevkiyat_isemri_uruntag_list_uruntag v_Gelen);
+
+    @POST("api/iptal_yerde_konteyner")
+    Call<View_bool_response> fn_iptal_yerde_konteyner(@Body request_sevkiyat_isemri v_Gelen);
 }

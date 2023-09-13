@@ -272,7 +272,12 @@ public class frg_konteyner_bulundu extends Fragment {
     private class fn_IsemirDegistir implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            frg_isemri_degistir fragmentyeni = new frg_isemri_degistir();
+            fragmentyeni.fn_senddata(aktif_sevk_isemri,1);
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_isemri_degistir").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 

@@ -225,6 +225,7 @@ public class frg_konteyner_vagon_esleme extends Fragment {
 
                                                     _Param.set_vagon(vagon);
                                                     _Param.set_konteyner(konteyner_list.get(0));
+                                                    _Param.set_aktif_isletme_esleme(_ayaraktifisletmeeslesme);
 
                                                     Genel.showProgressDialog(getContext());
                                                     Boolean result= persos.fn_vagon_konteyner_satıs_tamamla(_Param);

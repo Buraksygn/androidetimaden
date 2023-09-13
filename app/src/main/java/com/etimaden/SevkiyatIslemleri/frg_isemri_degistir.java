@@ -85,6 +85,8 @@ public class frg_isemri_degistir extends Fragment {
 
     Button _btn_03;
 
+    int process = 0;
+
     public frg_isemri_degistir() {
         // Required empty public constructor
     }
@@ -207,8 +209,7 @@ public class frg_isemri_degistir extends Fragment {
 
                                 for (int intSayac = 0; intSayac < _Yanit._zDiziaktif_sevk_isemri.size(); intSayac++) {
                                     Sevkiyat_isemri _cTemp = _Yanit._zDiziaktif_sevk_isemri.get(intSayac);
-
-                                    dataModels.add(new mdlIsemriSecimi(
+                                    mdlIsemriSecimi data= new mdlIsemriSecimi(
                                             intSayac + 1,
                                             _cTemp.isemri_detay_id + "".toString().trim(),
                                             _cTemp.isemri_id + "".toString().trim(),
@@ -259,8 +260,15 @@ public class frg_isemri_degistir extends Fragment {
                                             _cTemp.aciklama + "".toString().trim(),
                                             _cTemp.update_id + "".toString().trim(),
                                             _cTemp.vardiya + "".toString().trim()
-                                            )
                                     );
+                                    if(process==1){
+                                        if(!data.getkonteyner_turu().equals("")) {
+                                            dataModels.add(data);
+                                        }
+                                    }else{
+                                        dataModels.add(data);
+                                    }
+
                                 }
                                 adapter = new apmblIsEmriSecimi(dataModels, getContext());
 
@@ -311,6 +319,11 @@ public class frg_isemri_degistir extends Fragment {
         }
     }
 
+
+    public void fn_senddata(Sevkiyat_isemri v_aktif_sevk_isemri,int x) {
+        this.aktif_sevk_isemri = v_aktif_sevk_isemri;
+        this.process=x;
+    }
 
     public void fn_senddata(Sevkiyat_isemri v_aktif_sevk_isemri) {
         this.aktif_sevk_isemri = v_aktif_sevk_isemri;
@@ -422,13 +435,22 @@ public class frg_isemri_degistir extends Fragment {
                                                     sDialog.dismissWithAnimation();
 
                                                     sDialog.hide();
-
-                                                    frg_arac_aktivasyon_eski fragmentyeni = new frg_arac_aktivasyon_eski();
-                                                    fragmentyeni.fn_EpcEkle(aktif_sevk_isemri.arac_rfid);
-                                                    FragmentManager fragmentManager = getFragmentManager();
-                                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_arac_aktivasyon").addToBackStack(null);
-                                                    fragmentTransaction.commit();
+                                                    //todo burada iki sorgu alanı var aynı barkodu sorguluyor şimdilik böyle koyuldu
+                                                    if(process==0){
+                                                        frg_arac_bulundu fragmentyeni = new frg_arac_bulundu();
+                                                        fragmentyeni.fn_senddata(aktif_sevk_isemri);
+                                                        FragmentManager fragmentManager = getFragmentManager();
+                                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_bulundu").addToBackStack(null);
+                                                        fragmentTransaction.commit();
+                                                    }else{
+                                                        frg_konteyner_bulundu fragmentyeni = new frg_konteyner_bulundu();
+                                                        fragmentyeni.fn_senddata(aktif_sevk_isemri);
+                                                        FragmentManager fragmentManager = getFragmentManager();
+                                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_konteyner_bulundu").addToBackStack(null);
+                                                        fragmentTransaction.commit();
+                                                    }
                                                 }});
                                         }
 
