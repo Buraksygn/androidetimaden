@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_depo_secimi;
+import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_indirme;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.adapter.apmblSevkiyatZayiIsEmiriIndirme;
 import com.etimaden.adapter.apmblSevkiyatZayiIsEmirleri;
@@ -40,6 +42,8 @@ import com.etimaden.persosclass.Zayi;
 import com.etimaden.persosclass.Zayi_urun;
 import com.etimaden.request.request_bos;
 import com.etimaden.request.request_secEtiket;
+import com.etimaden.request.request_sevkiyat_isemri;
+import com.etimaden.request.request_sevkiyat_isemri_uruntag_list_uruntag;
 import com.etimaden.request.request_sevkiyat_zayi_arac;
 import com.etimaden.request.request_sevkiyat_zayi_zayiurun_list_zayiurun;
 import com.etimaden.request.request_string;
@@ -176,7 +180,6 @@ public class frg_zayi_isemri_indirme extends Fragment {
                 _Secili = urun_listesi.get(position);
             }
         });
-        fn_listview_longclick();
         _zayi_urun_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
@@ -248,9 +251,9 @@ public class frg_zayi_isemri_indirme extends Fragment {
                     if(a.serino.equals(w.serino)){
                         listedeYok=false;
                     }
-                    if(listedeYok==true){
-                        ul_bekleyen.add(w);
-                    }
+                }
+                if(listedeYok==true){
+                    ul_bekleyen.add(w);
                 }
             }
 
@@ -260,16 +263,16 @@ public class frg_zayi_isemri_indirme extends Fragment {
                     if(a.serino.equals(w.serino)){
                         listedeYok=false;
                     }
-                    if(listedeYok==false){
-                        ul_indirilen.add(w);
-                    }
+                }
+                if(listedeYok==false){
+                    ul_indirilen.add(w);
                 }
             }
             for(Zayi_urun urun : ul_bekleyen){
-                urun_listesi.add(new Zayi_urun_data(urun, Color.RED,true));
+                urun_listesi.add(new Zayi_urun_data(urun, Color.RED,R.drawable.redpoint,true));
             }
             for(Zayi_urun urun : ul_indirilen){
-                urun_listesi.add(new Zayi_urun_data(urun, Color.GREEN,false));
+                urun_listesi.add(new Zayi_urun_data(urun, Color.GREEN,R.drawable.greenpoint,false));
                 try{ miktar += Integer.parseInt(urun.agirlik); }catch (Exception ex){ ex.printStackTrace(); }
             }
 
@@ -295,7 +298,7 @@ public class frg_zayi_isemri_indirme extends Fragment {
 
         try
         {
-            barkod = barkod.substring(barkod.length()-24,24);
+            barkod = barkod.substring(barkod.length()-24);
             if (!isReadable && barkod.length() == 24)
             {
                 return;
@@ -497,74 +500,75 @@ public class frg_zayi_isemri_indirme extends Fragment {
         }
     }
 
-    //todo Pcturebox 1,2 ve listview üzerindeyken B harfine basınca bişeyler yapıyor. Ekliycezmi?
-
     private void fn_listview_longclick(){
 
-        if (_Secili!=null && _Secili.getBekleyen()==true)
-        {
-            Zayi_urun tag = _Secili.getZayi_urun();
-            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("SORU")
-                    .setContentText("SERİ NO : " + tag.serino + "\r\n Seri nolu ürün için kayıt değişimi yapılacak. Onaylıyor musunuz ?")
-                    .setContentTextSize(20)
-                    .setConfirmText("EVET")
-                    .setCancelText("HAYIR")
-                    .showCancelButton(true)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-                            sDialog.dismissWithAnimation();
+        try {
+            if (_Secili != null && _Secili.getBekleyen() == true) {
+                Zayi_urun tag = _Secili.getZayi_urun();
+                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("SORU")
+                        .setContentText("SERİ NO : " + tag.serino + "\r\n Seri nolu ürün için kayıt değişimi yapılacak. Onaylıyor musunuz ?")
+                        .setContentTextSize(20)
+                        .setConfirmText("EVET")
+                        .setCancelText("HAYIR")
+                        .showCancelButton(true)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
 
-                            request_string _Param1= new request_string();
-                            _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
-                            _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
-                            _Param1.set_zaktif_tesis(_ayaraktiftesis);
-                            _Param1.set_zsurum(_sbtVerisyon);
-                            _Param1.set_zkullaniciadi(_zkullaniciadi);
-                            _Param1.set_zsifre(_zsifre);
-                            _Param1.setAktif_sunucu(_ayaraktifsunucu);
-                            _Param1.setAktif_kullanici(_ayaraktifkullanici);
+                                request_string _Param1 = new request_string();
+                                _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                _Param1.set_zaktif_tesis(_ayaraktiftesis);
+                                _Param1.set_zsurum(_sbtVerisyon);
+                                _Param1.set_zkullaniciadi(_zkullaniciadi);
+                                _Param1.set_zsifre(_zsifre);
+                                _Param1.setAktif_sunucu(_ayaraktifsunucu);
+                                _Param1.setAktif_kullanici(_ayaraktifkullanici);
 
-                            _Param1.set_value(tag.serino);
+                                _Param1.set_value(tag.serino);
 
-                            Genel.showProgressDialog(getContext());
-                            Boolean rr = persos.fn_update_bas_etiket(_Param1);
-                            Genel.dismissProgressDialog();
-                            if(rr==true){
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                                        .setTitleText("Onay")
-                                        .setContentText("İşlem başarı ile tamamlandı. Lütfen etikent basmayı şimdi deneyiniz.")
-                                        .setContentTextSize(20)
-                                        .setConfirmText("TAMAM")
-                                        .showCancelButton(false)
-                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                            @Override
-                                            public void onClick(SweetAlertDialog sDialog) {
-                                                sDialog.dismissWithAnimation();
-                                            }
-                                        })
-                                        .show();
-                            }else{
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
-                                        .setTitleText("HATA")
-                                        .setContentTextSize(25)
-                                        .setContentText("İşlem yapılamadı. Tekrar deneyiniz!")
-                                        .showCancelButton(false)
-                                        .show();
+                                Genel.showProgressDialog(getContext());
+                                Boolean rr = persos.fn_update_bas_etiket(_Param1);
+                                Genel.dismissProgressDialog();
+                                if (rr == true) {
+                                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                            .setTitleText("Onay")
+                                            .setContentText("İşlem başarı ile tamamlandı. Lütfen etikent basmayı şimdi deneyiniz.")
+                                            .setContentTextSize(20)
+                                            .setConfirmText("TAMAM")
+                                            .showCancelButton(false)
+                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialog sDialog) {
+                                                    sDialog.dismissWithAnimation();
+                                                }
+                                            })
+                                            .show();
+                                } else {
+                                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                            .setTitleText("HATA")
+                                            .setContentTextSize(25)
+                                            .setContentText("İşlem yapılamadı. Tekrar deneyiniz!")
+                                            .showCancelButton(false)
+                                            .show();
+                                }
                             }
-                        }
-                    })
-                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-                            sDialog.dismissWithAnimation();
-                            return;
-                        }
-                    })
-                    .show();
+                        })
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                                return;
+                            }
+                        })
+                        .show();
 
 
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 

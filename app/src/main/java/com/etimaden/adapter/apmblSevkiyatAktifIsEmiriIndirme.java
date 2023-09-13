@@ -1,6 +1,5 @@
 package com.etimaden.adapter;
 
-import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -10,19 +9,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.etimaden.adapterclass.Urun_tag_data;
 import com.etimaden.adapterclass.Zayi_urun_data;
-import com.etimaden.persosclass.Zayi;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
 
-public class apmblSevkiyatZayiIsEmiriIndirme extends ArrayAdapter<Zayi_urun_data> {
+public class apmblSevkiyatAktifIsEmiriIndirme extends ArrayAdapter<Urun_tag_data> {
 
-    private ArrayList<Zayi_urun_data> dataSet;
+    private ArrayList<Urun_tag_data> dataSet;
     Context mContext;
 
-    public apmblSevkiyatZayiIsEmiriIndirme(ArrayList<Zayi_urun_data> data, Context context) {
-        super(context, R.layout.liste_sevkiyat_zayi_isemri_indirme_item, data);
+    public apmblSevkiyatAktifIsEmiriIndirme(ArrayList<Urun_tag_data> data, Context context) {
+        super(context, R.layout.liste_sevkiyat_aktif_isemri_indirme_item, data);
         this.dataSet = data;
         this.mContext=context;
 
@@ -31,14 +30,14 @@ public class apmblSevkiyatZayiIsEmiriIndirme extends ArrayAdapter<Zayi_urun_data
     private static class ViewHolder {
         ImageView _img;
         TextView _sira;
-        TextView _serino;
+        TextView _palet_kod;
         TextView _lotno;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        Zayi_urun_data dataModel = getItem(position);
+        Urun_tag_data dataModel = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         ViewHolder viewHolder; // view lookup cache stored in tag
 
@@ -48,11 +47,11 @@ public class apmblSevkiyatZayiIsEmiriIndirme extends ArrayAdapter<Zayi_urun_data
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.liste_sevkiyat_zayi_isemri_indirme_item, parent, false);
+            convertView = inflater.inflate(R.layout.liste_sevkiyat_aktif_isemri_indirme_item, parent, false);
 
             viewHolder._img = (ImageView) convertView.findViewById(R.id.img);
             viewHolder._sira = (TextView) convertView.findViewById(R.id.sira);
-            viewHolder._serino = (TextView) convertView.findViewById(R.id.serino);
+            viewHolder._palet_kod = (TextView) convertView.findViewById(R.id.palet_kod);
             viewHolder._lotno = (TextView) convertView.findViewById(R.id.lotno);
 
             result=convertView;
@@ -70,9 +69,9 @@ public class apmblSevkiyatZayiIsEmiriIndirme extends ArrayAdapter<Zayi_urun_data
         viewHolder._img.setImageDrawable(myDrawable);
         viewHolder._sira.setText(position + "" );
         viewHolder._sira.setTextColor(dataModel.getRowColor());
-        viewHolder._serino.setText(dataModel.getZayi_urun().serino);
-        viewHolder._serino.setTextColor(dataModel.getRowColor());
-        viewHolder._lotno.setText(dataModel.getZayi_urun().getLotno());
+        viewHolder._palet_kod.setText(dataModel.getUrun_tag().palet_kod);
+        viewHolder._palet_kod.setTextColor(dataModel.getRowColor());
+        viewHolder._lotno.setText(dataModel.getUrun_tag().getLotno());
         viewHolder._lotno.setTextColor(dataModel.getRowColor());
 
         return convertView;

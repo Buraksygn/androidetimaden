@@ -6,17 +6,20 @@ import com.etimaden.request.request_guncelle_sevk_hareket;
 import com.etimaden.request.request_sevkiyat_eski_sevk_yeni_sevk;
 import com.etimaden.request.request_sevkiyat_isemri;
 import com.etimaden.request.request_sevkiyat_isemri_depo;
+import com.etimaden.request.request_sevkiyat_isemri_uruntag_list_uruntag;
 import com.etimaden.request.request_sevkiyat_rota_agirlik_konteyner;
 import com.etimaden.request.request_sevkiyat_vagon_hareket_isemri;
 import com.etimaden.request.request_sevkiyat_zayi;
 import com.etimaden.request.request_sevkiyat_zayi_arac;
 import com.etimaden.request.request_sevkiyat_zayi_zayiurun_list_zayiurun;
 import com.etimaden.request.request_string;
+import com.etimaden.request.request_string_aktif_isletme_esleme;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
 import com.etimaden.response.sevkiyat_islemleri.View_arac;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_bekleyen_arac_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri_listesi;
+import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_urun_tag_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_vagon_hareket;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_urun_listesi;
@@ -57,7 +60,7 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
     Call<View_arac> fn_sec_arac(@Body request_string v_Gelen);
 
     @POST("api/sec_zayi_aynı_arac")
-    Call<View_sevkiyat_zayi_listesi> fn_sec_zayi_aynı_arac(@Body request_string v_Gelen);
+    Call<View_sevkiyat_zayi_listesi> fn_sec_zayi_aynı_arac(@Body request_string_aktif_isletme_esleme v_Gelen);
 
     @POST("api/sec_zayi_farklı_arac")
     Call<View_sevkiyat_zayi_listesi> fn_sec_zayi_farklı_arac(@Body request_bos v_Gelen);
@@ -121,4 +124,13 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
 
     @POST("api/BekleyenAracListesi")
     Call<View_sevkiyat_bekleyen_arac_listesi> fn_BekleyenAracListesi(@Body request_bos v_Gelen);
+
+    @POST("api/secYuklenenUrunListesi")
+    Call<View_sevkiyat_urun_tag_listesi> fn_secYuklenenUrunListesi(@Body request_sevkiyat_isemri v_Gelen);
+
+    @POST("api/secYuklenenUrunListesi_nakil")
+    Call<View_sevkiyat_urun_tag_listesi> fn_secYuklenenUrunListesi_nakil(@Body request_sevkiyat_isemri v_Gelen);
+
+    @POST("api/ekleSevkiyatUrun_cikarma")
+    Call<View_bool_response> fn_ekleSevkiyatUrun_cikarma(@Body request_sevkiyat_isemri_uruntag_list_uruntag v_Gelen);
 }

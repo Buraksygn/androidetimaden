@@ -1,32 +1,30 @@
 package com.etimaden.adapterclass;
 
-import android.graphics.Color;
+import com.etimaden.persosclass.Urun_tag;
 
-import com.etimaden.persosclass.Zayi_urun;
+public class Urun_tag_data {
 
-public class Zayi_urun_data {
-
-    private Zayi_urun zayi_urun ;
+    private Urun_tag urun_tag ;
     private int rowColor;
     private int rowIconDrawable;
     private Boolean bekleyen;
 
-    public Zayi_urun_data() {
+    public Urun_tag_data() {
     }
 
-    public Zayi_urun_data(Zayi_urun zayi_urun, int rowColor, int rowIconDrawable, Boolean bekleyen) {
-        this.zayi_urun = zayi_urun;
+    public Urun_tag_data(Urun_tag urun_tag, int rowColor, int rowIconDrawable, Boolean bekleyen) {
+        this.urun_tag = urun_tag;
         this.rowColor = rowColor;
         this.rowIconDrawable = rowIconDrawable;
         this.bekleyen = bekleyen;
     }
 
-    public Zayi_urun getZayi_urun() {
-        return zayi_urun;
+    public Urun_tag getUrun_tag() {
+        return urun_tag;
     }
 
-    public void setZayi_urun(Zayi_urun zayi_urun) {
-        this.zayi_urun = zayi_urun;
+    public void setUrun_tag(Urun_tag urun_tag) {
+        this.urun_tag = urun_tag;
     }
 
     public int getRowColor() {

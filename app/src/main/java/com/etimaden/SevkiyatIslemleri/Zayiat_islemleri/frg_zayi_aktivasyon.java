@@ -29,6 +29,7 @@ import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Zayi;
 import com.etimaden.request.request_bos;
 import com.etimaden.request.request_string;
+import com.etimaden.request.request_string_aktif_isletme_esleme;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
@@ -170,25 +171,37 @@ public class frg_zayi_aktivasyon extends Fragment {
                 return;
             }
 
+            request_string_aktif_isletme_esleme _Param1= new request_string_aktif_isletme_esleme();
+            _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
+            _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            _Param1.set_zaktif_tesis(_ayaraktiftesis);
+            _Param1.set_zsurum(_sbtVerisyon);
+            _Param1.set_zkullaniciadi(_zkullaniciadi);
+            _Param1.set_zsifre(_zsifre);
+            _Param1.setAktif_sunucu(_ayaraktifsunucu);
+            _Param1.setAktif_kullanici(_ayaraktifkullanici);
+
+            _Param1.set_value(v_epc);
+            _Param1.set_aktif_isletme_esleme(_ayaraktifisletmeeslesme);
             Genel.showProgressDialog(getContext());
-            List<Zayi> result = persos.fn_sec_zayi_aynı_arac(_Param);
+            List<Zayi> result = persos.fn_sec_zayi_aynı_arac(_Param1);
             ArrayList<Zayi> zayi_listesi=new ArrayList<>(result);
             Genel.dismissProgressDialog();
 
 
             if (zayi_listesi.size() == 0){
-                request_bos _Param1= new request_bos();
-                _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
-                _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
-                _Param1.set_zaktif_tesis(_ayaraktiftesis);
-                _Param1.set_zsurum(_sbtVerisyon);
-                _Param1.set_zkullaniciadi(_zkullaniciadi);
-                _Param1.set_zsifre(_zsifre);
-                _Param1.setAktif_sunucu(_ayaraktifsunucu);
-                _Param1.setAktif_kullanici(_ayaraktifkullanici);
+                request_bos _Param2= new request_bos();
+                _Param2.set_zsunucu_ip_adresi(_ayarsunucuip);
+                _Param2.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                _Param2.set_zaktif_tesis(_ayaraktiftesis);
+                _Param2.set_zsurum(_sbtVerisyon);
+                _Param2.set_zkullaniciadi(_zkullaniciadi);
+                _Param2.set_zsifre(_zsifre);
+                _Param2.setAktif_sunucu(_ayaraktifsunucu);
+                _Param2.setAktif_kullanici(_ayaraktifkullanici);
 
                 Genel.showProgressDialog(getContext());
-                result = persos.fn_sec_zayi_farklı_arac(_Param1);
+                result = persos.fn_sec_zayi_farklı_arac(_Param2);
                 zayi_listesi=new ArrayList<>(result);
                 Genel.dismissProgressDialog();
             }

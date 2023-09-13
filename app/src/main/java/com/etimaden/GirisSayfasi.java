@@ -620,7 +620,7 @@ public class GirisSayfasi extends AppCompatActivity {
 
                             if (_frg_aktif_isemri_indirme != null && _frg_aktif_isemri_indirme.isVisible())
                             {
-                                _frg_aktif_isemri_indirme.fn_BarkodOkutuldu(barcode.toString());
+                                _frg_aktif_isemri_indirme.barkodOkundu(barcode.toString());
                             }
                             else
                             {
@@ -924,6 +924,12 @@ public class GirisSayfasi extends AppCompatActivity {
 
                                                                                             if (_frg_konteyner_vagon_esleme != null && _frg_konteyner_vagon_esleme.isVisible()) {
                                                                                                 _frg_konteyner_vagon_esleme.rfidOkundu(_TempEpc);
+                                                                                            }else {
+                                                                                                frg_aktif_isemri_indirme _frg_aktif_isemri_indirme = (frg_aktif_isemri_indirme) getSupportFragmentManager().findFragmentByTag("frg_aktif_isemri_indirme");
+
+                                                                                                if (_frg_aktif_isemri_indirme != null && _frg_aktif_isemri_indirme.isVisible()) {
+                                                                                                    _frg_aktif_isemri_indirme.rfidOkundu(_TempEpc);
+                                                                                                }
                                                                                             }
                                                                                         }
                                                                                     }

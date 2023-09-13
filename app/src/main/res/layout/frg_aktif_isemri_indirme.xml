@@ -8,31 +8,6 @@
     android:background="@color/colorBlack"
     tools:context="com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_indirme">
 
-    <Button
-        android:id="@+id/btn_03"
-        android:layout_width="325dp"
-        android:layout_height="60dp"
-        android:layout_x="0dp"
-        android:layout_y="96dp"
-        android:background="@drawable/btn_menu_normal"
-        android:gravity="center"
-        android:text="TAMAM"
-        android:textColor="@color/green"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/txtYazi6"
-        android:textColor="@color/green"
-        android:layout_width="269dp"
-        android:layout_height="56dp"
-        android:layout_x="56dp"
-        android:layout_y="20dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="\nİNDİRME LİSTESİ"
-        android:textAlignment="center"
-        android:textSize="15dp"
-        android:textStyle="bold" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="325dp"
@@ -43,9 +18,52 @@
         android:text="frg_aktif_isemri_indirme"
         android:textSize="12dp" />
 
+    <TextView
+        android:id="@+id/txtBaslik"
+        android:textColor="@color/green"
+        android:layout_width="269dp"
+        android:layout_height="56dp"
+        android:layout_x="56dp"
+        android:layout_y="20dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="İNDİRME LİSTESİ"
+        android:textAlignment="center"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imgBilgi"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_x="0dp"
+        android:layout_y="20dp"
+        android:src="@mipmap/information3" />
+
+    <Button
+        android:id="@+id/btnTamam"
+        android:layout_width="245dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="96dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="TAMAM"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/btnYenile"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_x="245dp"
+        android:layout_y="92dp"
+        android:background="@drawable/btn_siyah"
+        android:padding="0dp"
+        android:src="@drawable/reload" />
+
     <HorizontalScrollView
         android:layout_width="325dp"
-        android:layout_height="315dp"
+        android:layout_height="300dp"
         android:layout_x="2dp"
         android:layout_y="165dp">
 
@@ -61,52 +79,30 @@
     </HorizontalScrollView>
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/txtYuklemeMiktar"
         android:layout_width="325dp"
-        android:layout_height="32dp"
+        android:layout_height="25dp"
         android:layout_x="0dp"
-        android:layout_y="480dp"
-        android:text="TextView"
-        android:textColor="@color/green"
+        android:layout_y="470dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text=""
+        android:textColor="@color/red1"
         android:textSize="16dp"
         android:textStyle="bold" />
 
-    <RadioGroup
+    <Button
+        android:id="@+id/btnGeri"
         android:layout_width="324dp"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="515dp"
+        android:layout_y="500dp"
         android:background="@drawable/my_button_cikis"
-        android:orientation="horizontal">
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
 
-        <RadioButton
-            android:id="@+id/radio_trigger_rfid"
-            android:layout_width="152dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:checked="false"
-            android:text="RFID"
-            android:textColor="@color/green"
-            android:textSize="18sp" />
 
-        <RadioButton
-            android:id="@+id/radio_trigger_scanner"
-            android:layout_width="142dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:checked="true"
-            android:text="KAREKOD"
-            android:textColor="@color/green"
-            android:textSize="18sp" />
-    </RadioGroup>
-
-    <ImageView
-        android:id="@+id/imgBilgi"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_x="0dp"
-        android:layout_y="20dp"
-        android:src="@mipmap/information3" />
 
 
 </AbsoluteLayout>
