@@ -27,13 +27,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_aktivasyon;
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_konteyner_kamyon_esleme;
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_konteyner_vagon_esleme;
 import com.etimaden.SevkiyatIslemleri.Silobas_islemleri.frg_aktif_silobas_arac_secimi;
 import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.Zayi_depo_kabul.frg_zayi_isemri_indirme;
 import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_aktif_arac_secimi;
 import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_indirme;
 import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_yukleme;
-import com.etimaden.SevkiyatIslemleri.frg_arac_aktivasyon;
+import com.etimaden.SevkiyatIslemleri.frg_arac_aktivasyon_eski;
 import com.etimaden.SevkiyatIslemleri.frg_konteyner_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_konteyner_yukleme_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket;
@@ -824,7 +827,7 @@ public class GirisSayfasi extends AppCompatActivity {
                             {
                                 String _TempEpc = epc.substring(epc.length() - 24, epc.length());
 
-                                frg_arac_aktivasyon fragment = (frg_arac_aktivasyon) getSupportFragmentManager().findFragmentByTag("frg_arac_aktivasyon");
+                                frg_arac_aktivasyon_eski fragment = (frg_arac_aktivasyon_eski) getSupportFragmentManager().findFragmentByTag("frg_arac_aktivasyon_eski");
 
                                 if (fragment != null && fragment.isVisible())
                                 {
@@ -905,6 +908,25 @@ public class GirisSayfasi extends AppCompatActivity {
                                                                                 if (_frg_zayi_isemri_indirme != null && _frg_zayi_isemri_indirme.isVisible())
                                                                                 {
                                                                                     _frg_zayi_isemri_indirme.fn_rfidOkundu(_TempEpc);
+                                                                                }else{
+                                                                                    frg_arac_aktivasyon _frg_arac_aktivasyon = (frg_arac_aktivasyon) getSupportFragmentManager().findFragmentByTag("frg_arac_aktivasyon");
+
+                                                                                    if (_frg_arac_aktivasyon != null && _frg_arac_aktivasyon.isVisible())
+                                                                                    {
+                                                                                        _frg_arac_aktivasyon.rfidOkundu(_TempEpc);
+                                                                                    }else {
+                                                                                        frg_konteyner_kamyon_esleme _frg_konteyner_kamyon_esleme = (frg_konteyner_kamyon_esleme) getSupportFragmentManager().findFragmentByTag("frg_konteyner_kamyon_esleme");
+
+                                                                                        if (_frg_konteyner_kamyon_esleme != null && _frg_konteyner_kamyon_esleme.isVisible()) {
+                                                                                            _frg_konteyner_kamyon_esleme.rfidOkundu(_TempEpc);
+                                                                                        }else {
+                                                                                            frg_konteyner_vagon_esleme _frg_konteyner_vagon_esleme = (frg_konteyner_vagon_esleme) getSupportFragmentManager().findFragmentByTag("frg_konteyner_vagon_esleme");
+
+                                                                                            if (_frg_konteyner_vagon_esleme != null && _frg_konteyner_vagon_esleme.isVisible()) {
+                                                                                                _frg_konteyner_vagon_esleme.rfidOkundu(_TempEpc);
+                                                                                            }
+                                                                                        }
+                                                                                    }
                                                                                 }
                                                                             }
                                                                         }

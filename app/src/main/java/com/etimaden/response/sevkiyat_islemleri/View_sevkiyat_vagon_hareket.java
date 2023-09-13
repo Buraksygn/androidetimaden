@@ -1,18 +1,18 @@
 package com.etimaden.response.sevkiyat_islemleri;
 
-import com.etimaden.persosclass.Arac;
+import com.etimaden.persosclass.Vagon_hareket;
 
-public class View_arac {
+public class View_sevkiyat_vagon_hareket {
     public String _zHataAciklama = "";
     public String _zAciklama = "";
     public String _zSonuc = "";
 
-    public Arac _result;
+    public Vagon_hareket _result;
 
-    public View_arac() {
+    public View_sevkiyat_vagon_hareket() {
     }
 
-    public View_arac(String _zHataAciklama, String _zAciklama, String _zSonuc, Arac _result) {
+    public View_sevkiyat_vagon_hareket(String _zHataAciklama, String _zAciklama, String _zSonuc, Vagon_hareket _result) {
         this._zHataAciklama = _zHataAciklama;
         this._zAciklama = _zAciklama;
         this._zSonuc = _zSonuc;
@@ -43,11 +43,11 @@ public class View_arac {
         this._zSonuc = _zSonuc;
     }
 
-    public Arac get_result() {
+    public Vagon_hareket get_result() {
         return _result;
     }
 
-    public void set_result(Arac _result) {
+    public void set_result(Vagon_hareket _result) {
         this._result = _result;
     }
 }

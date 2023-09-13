@@ -14,8 +14,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
 import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.Zayi_depo_kabul.frg_zayi_aktif_isemri_secimi;
-import com.etimaden.SevkiyatIslemleri.frg_aktif_arac_secimi;
-import com.etimaden.SevkiyatIslemleri.frg_arac_aktivasyon;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.frg_ana_sayfa;
 import com.etimaden.ugr_demo.R;

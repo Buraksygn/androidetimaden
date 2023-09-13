@@ -29,8 +29,6 @@ import com.etimaden.persos.Persos;
 import com.etimaden.request.request_bos;
 import com.etimaden.ugr_demo.R;
 
-import java.util.ArrayList;
-
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
@@ -196,7 +194,7 @@ public class frg_sevkiyat_menu_panel extends Fragment {
 
             ((GirisSayfasi) getActivity()).fn_ModRFID();
 
-            frg_arac_aktivasyon fragmentyeni = new frg_arac_aktivasyon();
+            frg_arac_aktivasyon_eski fragmentyeni = new frg_arac_aktivasyon_eski();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_arac_aktivasyon").addToBackStack(null);

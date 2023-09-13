@@ -15,6 +15,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_aktivasyon;
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_onayla_indirme;
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_isemri_degistir_transfer;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.ugr_demo.R;
@@ -22,6 +25,8 @@ import com.etimaden.ugr_demo.R;
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class frg_arac_bulundu_indirme extends Fragment {
@@ -37,15 +42,15 @@ public class frg_arac_bulundu_indirme extends Fragment {
     String _ayarbaglantituru = "";
     String _ayarsunucuip = "";
     String _ayarversiyon = "";
-    Button _btngeri;
-
     public String _OnlineUrl = "";
 
+    Button _btngeri;
+    Button _btnileri;
+    Button _btnIsemriDegistir;
     ImageView _imageView7;
-
     TextView _txtAciklama;
 
-    Sevkiyat_isemri aktif_sevk_isemri;
+    Sevkiyat_isemri aktif_sevk_isemri=null;
 
 
     public frg_arac_bulundu_indirme()
@@ -76,71 +81,8 @@ public class frg_arac_bulundu_indirme extends Fragment {
 
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        _myIslem = new VeriTabani(getContext());
-
-        _imageView7 = (ImageView)getView().findViewById(R.id.imageView7);
-        _imageView7.playSoundEffect(0);
-        _imageView7.setOnClickListener(new fn_Detay());
-
-        _btngeri=(Button)getView().findViewById(R.id.btngeri);
-        _btngeri.playSoundEffect(0);
-        _btngeri.setOnClickListener(new fn_Geri());
-
-        fn_AyarlariYukle();
-
-        ((GirisSayfasi) getActivity()).fn_ModRFID();
-
-        _txtAciklama = (TextView) getView().findViewById(R.id.txtaciklama);
-
-        fn_DetayYaz();
-    }
-
-    private void fn_DetayYaz()
-    {
-        String _Aciklama="";
-
-        _Aciklama += "ARAÇ İŞ EMRİ DETAYI\\n";
-        _Aciklama += "ARAÇ PLAKASI : " + aktif_sevk_isemri.arac_plaka + "\\n";
-
-        if (aktif_sevk_isemri.alici_isletme.equals(""))
-        {
-            _Aciklama += "ALICI : " + aktif_sevk_isemri.alici + "\\n";
-            _Aciklama += "BOOKING NO : " + aktif_sevk_isemri.bookingno  + "\\n";
-        }
-        else
-        {
-            _Aciklama +="ALICI : " + aktif_sevk_isemri.alici_isletme + "\\n";
-        }
-
-        _Aciklama +="ÜRÜN ADI : " + aktif_sevk_isemri.urun_adi + "\\n";
-
-        _txtAciklama.setText(_Aciklama);
-
-        /*
-        *
-        * String str = "ARAÇ İŞ EMRİ DETAYI" + Environment.NewLine;;
-                str += "ARAÇ PLAKASI : " + aktif_sevk_isemri.arac_plaka + Environment.NewLine;
-                if (aktif_sevk_isemri.alici_isletme.Equals(""))
-                {
-                    str += "ALICI : " + aktif_sevk_isemri.alici + Environment.NewLine;
-                    str += "BOOKING NO : " + aktif_sevk_isemri.bookingno + Environment.NewLine;
-                }
-                else
-                    str += "ALICI : " + aktif_sevk_isemri.alici_isletme + Environment.NewLine;
-                str += "ÜRÜN ADI : " + aktif_sevk_isemri.urun_adi + Environment.NewLine;
-        *
-        * */
-
-    }
-
     private void fn_AyarlariYukle()
     {
-        ((GirisSayfasi)getActivity()).fn_ModRFID();
-
         _ayarbaglantituru=_myIslem.fn_baglanti_turu();
         _ayarsunucuip=_myIslem.fn_sunucu_ip();
         _ayaraktifkullanici=_myIslem.fn_aktif_kullanici();
@@ -165,6 +107,93 @@ public class frg_arac_bulundu_indirme extends Fragment {
         aktif_sevk_isemri=v_aktif_sevk_isemri;
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        _myIslem = new VeriTabani(getContext());
+
+        _imageView7 = (ImageView)getView().findViewById(R.id.imageView7);
+        _imageView7.playSoundEffect(0);
+        _imageView7.setOnClickListener(new fn_Detay());
+
+        _btnileri=(Button)getView().findViewById(R.id.btngeri);
+        _btnileri.playSoundEffect(0);
+        _btnileri.setOnClickListener(new fn_Onay());
+
+        _btngeri=(Button)getView().findViewById(R.id.btngeri);
+        _btngeri.playSoundEffect(0);
+        _btngeri.setOnClickListener(new fn_Geri());
+
+        _btnIsemriDegistir=(Button)getView().findViewById(R.id.btnIsemriDegistir);
+        _btnIsemriDegistir.playSoundEffect(0);
+        _btnIsemriDegistir.setOnClickListener(new fn_btnIsemriDegistir());
+
+        fn_AyarlariYukle();
+
+        _txtAciklama = (TextView) getView().findViewById(R.id.txtaciklama);
+
+        fn_DetayYaz();
+    }
+
+    private void fn_DetayYaz()
+    {
+        String _Aciklama="";
+        _Aciklama += "ARAÇ İŞ EMRİ DETAYI\\n";
+        _Aciklama += "ARAÇ PLAKASI : " + aktif_sevk_isemri.arac_plaka + "\r\n";
+
+        if (aktif_sevk_isemri.alici_isletme.equals(""))
+        {
+            _Aciklama += "ALICI : " + aktif_sevk_isemri.alici + "\r\n";
+            _Aciklama += "BOOKING NO : " + aktif_sevk_isemri.bookingno  + "\r\n";
+        }
+        else
+        {
+            _Aciklama +="ALICI : " + aktif_sevk_isemri.alici_isletme + "\r\n";
+        }
+
+        _Aciklama +="ÜRÜN ADI : " + aktif_sevk_isemri.urun_adi + "\r\n";
+        _txtAciklama.setText(_Aciklama);
+
+    }
+
+    private class fn_btnIsemriDegistir implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            try
+            {
+                try
+                {
+                    if (!aktif_sevk_isemri.yapilan_adet.equals("0"))
+                    {
+                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("İŞ DEĞİŞİMİ YAPILAMAZ")
+                                .setContentTextSize(25)
+                                .setContentText("ARAÇ ÜZERİNDE YÜKLENEN ÜRÜN BULUNMAKTADIR. BU DURUMDA İŞ DEĞİŞİMİ YAPILAMAZ \r\n ÜRÜNLERİ BOŞALTTIKTAN SONRA TEKRAR DENEYİNİZ.")
+                                .showCancelButton(false)
+                                .show();
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+
+                frg_isemri_degistir_transfer fragmentyeni = new frg_isemri_degistir_transfer();
+                fragmentyeni.fn_senddata(aktif_sevk_isemri);
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_isemri_degistir_transfer").addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+    }
+
     private class fn_Detay implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -177,16 +206,33 @@ public class frg_arac_bulundu_indirme extends Fragment {
         }
     }
 
+    private class fn_Onay implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            try
+            {
+                frg_arac_onayla_indirme fragmentyeni = new frg_arac_onayla_indirme();
+                fragmentyeni.fn_senddata(aktif_sevk_isemri);
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_onayla_indirme").addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+    }
+
     private class fn_Geri implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
+            frg_arac_aktivasyon fragmentyeni = new frg_arac_aktivasyon();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_sevkiyat_menu_panel").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_aktivasyon").addToBackStack(null);
             fragmentTransaction.commit();
-
-            //Arac_aktivasyon
         }
     }
 }

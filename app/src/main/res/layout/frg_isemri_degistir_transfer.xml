@@ -6,64 +6,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBlack"
-    tools:context="com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_aktivasyon">
+    tools:context="com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_isemri_degistir_transfer">
+
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="325dp"
+        android:textColor="@color/green"
         android:layout_height="wrap_content"
         android:layout_x="0dp"
-        android:textColor="@color/green"
         android:layout_y="0dp"
-        android:text="frg_arac_aktivasyon"
+        android:text="frg_isemri_degistir_transfer"
         android:textSize="12dp" />
 
     <TextView
-        android:id="@+id/txtYazi5"
-        android:layout_width="325dp"
+        android:id="@+id/txtYazi6"
+        android:layout_width="324dp"
         android:layout_height="wrap_content"
-        android:layout_x="0dp"
-        android:layout_y="20dp"
+        android:layout_x="2dp"
+        android:layout_y="24dp"
+        android:gravity="center_horizontal"
+        android:text="AKTİF SEVKİYATLAR"
         android:textColor="@color/green"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="ARAÇ İŞ EMRİ AKTİVASYON"
-        android:textSize="20dp"
+        android:textSize="17dp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txtYazi"
-        android:layout_width="325dp"
-        android:layout_height="50dp"
-        android:layout_x="0dp"
-        android:layout_y="50dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="YÜKLEME AKTİVASYONU İÇİN ARAÇ ETİKETİ OKUTUNUZ..."
-        android:textColor="@color/red1"
-        android:textSize="16dp"
-        android:textStyle="bold" />
     <Button
-        android:id="@+id/btnBekleyenAracListesi"
+        android:id="@+id/btn_03"
         android:layout_width="325dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_x="0dp"
-        android:layout_y="110dp"
+        android:layout_y="66dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="BEKLEYEN ARAÇ LİSTESİ"
+        android:text="İŞ EMRİ DEĞİŞİMİNİ ONAYLA"
         android:textColor="@color/green"
-        android:textSize="20sp"/>
+        android:textSize="20dp" />
 
-    <ImageView
-        android:id="@+id/imageView3"
+    <HorizontalScrollView
         android:layout_width="325dp"
-        android:layout_height="350dp"
-        android:layout_x="1dp"
-        android:layout_y="155dp"
-        app:srcCompat="@mipmap/cbimage" />
+        android:layout_height="375dp"
+        android:layout_x="0dp"
+        android:layout_y="128dp">
+
+        <ListView
+            android:id="@+id/isemri_list"
+            android:layout_width="wrap_content"
+            android:layout_height="370dp"
+            android:listSelector="@color/colorBlackSecili"
+            android:scrollbars="horizontal|vertical"
+            android:textColor="@color/green" />
+
+    </HorizontalScrollView>
+
 
     <Button
         android:id="@+id/btngeri"
-        android:layout_width="325dp"
+        android:layout_width="324dp"
         android:layout_height="60dp"
         android:layout_x="0dp"
         android:layout_y="510dp"
@@ -72,6 +71,7 @@
         android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
         android:textSize="20sp" />
+
 
 
 

@@ -30,6 +30,8 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.etimaden.GirisSayfasi;
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_bulundu;
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_konteyner_kamyon_esleme;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.ViewAracAktivasyon;
 import com.etimaden.cResponseResult.Viewbekleyen_arac;
@@ -419,7 +421,7 @@ public class frg_bekleyen_arac extends Fragment {
         @Override
         public void onClick(View view)
         {
-            frg_arac_aktivasyon fragmentyeni = new frg_arac_aktivasyon();
+            frg_arac_aktivasyon_eski fragmentyeni = new frg_arac_aktivasyon_eski();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_arac_aktivasyon").addToBackStack(null);

@@ -1,4 +1,4 @@
-package com.etimaden.cResponseResult;
+package com.etimaden.persosclass;
 
 public class Arac
 {

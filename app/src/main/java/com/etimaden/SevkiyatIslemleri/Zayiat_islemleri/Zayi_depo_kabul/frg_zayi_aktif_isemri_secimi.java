@@ -22,10 +22,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_aktivasyon;
-import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_depo_secimi;
 import com.etimaden.adapter.apmblSevkiyatZayiIsEmirleri;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.cResponseResult.Arac;
 import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Zayi;

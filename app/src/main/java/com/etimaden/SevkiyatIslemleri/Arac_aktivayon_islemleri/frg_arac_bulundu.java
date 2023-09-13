@@ -1,4 +1,4 @@
-package com.etimaden.SevkiyatIslemleri;
+package com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +16,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
+import com.etimaden.SevkiyatIslemleri.frg_arac_onayla;
+import com.etimaden.SevkiyatIslemleri.frg_arac_secim_bilgi;
+import com.etimaden.SevkiyatIslemleri.frg_isemri_degistir;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.ugr_demo.R;

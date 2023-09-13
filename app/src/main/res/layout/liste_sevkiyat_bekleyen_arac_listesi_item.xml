@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:scrollbars="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="10dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text=""
+        android:textSize="20dp"
+        android:id="@+id/sira"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="skolon1"
+        android:textSize="20dp"
+        android:id="@+id/skolon1"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="skolon2"
+        android:textSize="20dp"
+        android:id="@+id/skolon2"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="skolon3"
+        android:textSize="20dp"
+        android:id="@+id/skolon3"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="skolon4"
+        android:textSize="20dp"
+        android:id="@+id/skolon4"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="skolon5"
+        android:textSize="20dp"
+        android:id="@+id/skolon5"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="skolon6"
+        android:textSize="20dp"
+        android:id="@+id/skolon6"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="skolon7"
+        android:textSize="20dp"
+        android:id="@+id/skolon7"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="skolon8"
+        android:textSize="20dp"
+        android:id="@+id/skolon8"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="skolon9"
+        android:textSize="20dp"
+        android:id="@+id/skolon9"/>
+
+</LinearLayout>

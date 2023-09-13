@@ -1,8 +1,11 @@
 package com.etimaden.request;
 
+import com.etimaden.cResponseResult.Sevkiyat_isemri;
+import com.etimaden.persosclass.Arac;
+import com.etimaden.persosclass.Vagon_hareket;
 import com.etimaden.persosclass.Zayi;
 
-public class request_sevkiyat_zayi {
+public class request_sevkiyat_vagon_hareket_isemri {
 
     private String _zsunucu_ip_adresi="";
     private String _zaktif_alt_tesis;
@@ -13,12 +16,13 @@ public class request_sevkiyat_zayi {
     private String aktif_sunucu;
     private String aktif_kullanici;
 
-    private Zayi _zayi;
+    private Vagon_hareket _vagon;
+    private Sevkiyat_isemri _konteyner;
 
-    public request_sevkiyat_zayi() {
+    public request_sevkiyat_vagon_hareket_isemri() {
     }
 
-    public request_sevkiyat_zayi(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, Zayi _zayi) {
+    public request_sevkiyat_vagon_hareket_isemri(String _zsunucu_ip_adresi, String _zaktif_alt_tesis, String _zaktif_tesis, String _zsurum, String _zkullaniciadi, String _zsifre, String aktif_sunucu, String aktif_kullanici, Vagon_hareket _vagon, Sevkiyat_isemri _konteyner) {
         this._zsunucu_ip_adresi = _zsunucu_ip_adresi;
         this._zaktif_alt_tesis = _zaktif_alt_tesis;
         this._zaktif_tesis = _zaktif_tesis;
@@ -27,7 +31,8 @@ public class request_sevkiyat_zayi {
         this._zsifre = _zsifre;
         this.aktif_sunucu = aktif_sunucu;
         this.aktif_kullanici = aktif_kullanici;
-        this._zayi = _zayi;
+        this._vagon = _vagon;
+        this._konteyner = _konteyner;
     }
 
     public String get_zsunucu_ip_adresi() {
@@ -94,12 +99,19 @@ public class request_sevkiyat_zayi {
         this.aktif_kullanici = aktif_kullanici;
     }
 
-    public Zayi get_zayi() {
-        return _zayi;
+    public Vagon_hareket get_vagon() {
+        return _vagon;
     }
 
-    public void set_zayi(Zayi _zayi) {
-        this._zayi = _zayi;
+    public void set_vagon(Vagon_hareket _vagon) {
+        this._vagon = _vagon;
     }
 
+    public Sevkiyat_isemri get_konteyner() {
+        return _konteyner;
+    }
+
+    public void set_konteyner(Sevkiyat_isemri _konteyner) {
+        this._konteyner = _konteyner;
+    }
 }

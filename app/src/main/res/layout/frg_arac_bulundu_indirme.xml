@@ -41,7 +41,7 @@
 
 
     <Button
-        android:id="@+id/btnisemridegistir"
+        android:id="@+id/btnIsemriDegistir"
         android:layout_width="324dp"
         android:layout_height="50dp"
         android:layout_x="0dp"

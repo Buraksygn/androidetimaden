@@ -17,11 +17,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.etimaden.SevkiyatIslemleri.Silobas_islemleri.frg_aktif_silobas_isemri_degistir;
-import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.cResponseResult.Arac;
-import com.etimaden.cResponseResult.Sevkiyat_isemri;
+import com.etimaden.persosclass.Arac;
 import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Zayi;
