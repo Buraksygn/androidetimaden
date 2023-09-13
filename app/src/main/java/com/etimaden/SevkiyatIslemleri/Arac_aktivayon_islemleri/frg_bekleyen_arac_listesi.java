@@ -225,8 +225,8 @@ public class frg_bekleyen_arac_listesi extends Fragment {
 
                     cBekleyen_Arac_Listesi _cTemp = _Secili;
 
-                    String _sPlaka = _cTemp.skolon1;
-                    String _sRfid = _cTemp.skolon6;
+                    final String _sPlaka = _cTemp.skolon1;
+                    final String _sRfid = _cTemp.skolon6;
 
                     new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("İŞLEM ONAYI")
