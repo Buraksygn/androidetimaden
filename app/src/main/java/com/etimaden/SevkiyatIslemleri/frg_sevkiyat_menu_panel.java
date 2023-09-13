@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.Silobas_islemleri.frg_aktif_silobas_arac_secimi;
 import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
@@ -194,7 +195,7 @@ public class frg_sevkiyat_menu_panel extends Fragment {
 
             ((GirisSayfasi) getActivity()).fn_ModRFID();
 
-            frg_arac_aktivasyon_eski fragmentyeni = new frg_arac_aktivasyon_eski();
+            frg_arac_aktivasyon fragmentyeni = new frg_arac_aktivasyon();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_arac_aktivasyon").addToBackStack(null);
