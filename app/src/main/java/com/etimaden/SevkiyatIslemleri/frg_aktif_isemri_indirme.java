@@ -137,7 +137,8 @@ public class frg_aktif_isemri_indirme  extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         //barkod,rfid,ikiside
-        ((GirisSayfasi) getActivity()).fn_ModBoth();
+        //((GirisSayfasi) getActivity()).fn_ModBoth();
+        ((GirisSayfasi) getActivity()).fn_ModBarkod();
         _myIslem = new VeriTabani(getContext());
         fn_AyarlariYukle();
         _myIslem.fn_EpcTemizle();
