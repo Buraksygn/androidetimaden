@@ -2,6 +2,7 @@ package com.etimaden.servisbaglanti;
 
 import com.etimaden.cResponseResult.View_sec_sevk_miktar;
 import com.etimaden.request.request_bos;
+import com.etimaden.request.request_bos_aktif_isletme_esleme;
 import com.etimaden.request.request_guncelle_sevk_hareket;
 import com.etimaden.request.request_sevkiyat_eski_sevk_yeni_sevk;
 import com.etimaden.request.request_sevkiyat_isemri;
@@ -78,7 +79,7 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
     Call<View_bool_response> fn_guncelle_vagon_satis(@Body request_bos v_Gelen);
 
     @POST("api/sec_zayi_arac")
-    Call<View_sevkiyat_zayi_listesi> fn_sec_zayi_arac(@Body request_bos v_Gelen);
+    Call<View_sevkiyat_zayi_listesi> fn_sec_zayi_arac(@Body request_bos_aktif_isletme_esleme v_Gelen);
 
     @POST("api/sec_zayi_urun_listesi")
     Call<View_sevkiyat_zayi_urun_listesi> fn_sec_zayi_urun_listesi(@Body request_string v_Gelen);

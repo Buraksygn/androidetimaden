@@ -28,6 +28,7 @@ import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Zayi;
 import com.etimaden.request.request_bos;
+import com.etimaden.request.request_bos_aktif_isletme_esleme;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
@@ -149,7 +150,7 @@ public class frg_zayi_aktif_isemri_secimi extends Fragment {
     {
         try
         {
-            request_bos _Param1= new request_bos();
+            request_bos_aktif_isletme_esleme _Param1= new request_bos_aktif_isletme_esleme();
             _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
             _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
             _Param1.set_zaktif_tesis(_ayaraktiftesis);

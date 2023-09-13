@@ -16,6 +16,7 @@ import com.etimaden.persosclass.uretim_detay;
 import com.etimaden.persosclass.uretim_etiket;
 import com.etimaden.request.request_ambalaj_tipi_secEtiket;
 import com.etimaden.request.request_bos;
+import com.etimaden.request.request_bos_aktif_isletme_esleme;
 import com.etimaden.request.request_get_lot_toplami;
 import com.etimaden.request.request_guncelle_sevk_hareket;
 import com.etimaden.request.request_paketliUret;
@@ -1574,7 +1575,7 @@ public class Persos {
 
     }
 
-    public List<Zayi> fn_sec_zayi_arac(request_bos v_Gelen)
+    public List<Zayi> fn_sec_zayi_arac(request_bos_aktif_isletme_esleme v_Gelen)
     {
         List<Zayi> _Cevap=null ;
 
