@@ -118,7 +118,7 @@ public class frg_uretim_detay_ekrani extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     @Override
@@ -215,7 +215,7 @@ public class frg_uretim_detay_ekrani extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 
@@ -244,7 +244,7 @@ public class frg_uretim_detay_ekrani extends Fragment {
             }
             catch (Exception ex)
             {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
 
 

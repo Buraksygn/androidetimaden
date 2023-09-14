@@ -103,7 +103,7 @@ public class frg_arac_aktivasyon extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     @Override

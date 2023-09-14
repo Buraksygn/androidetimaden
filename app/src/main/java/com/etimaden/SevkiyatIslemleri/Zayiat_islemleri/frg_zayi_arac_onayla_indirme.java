@@ -84,7 +84,7 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
 
     }
 
@@ -170,7 +170,7 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
                 _btngeri.setEnabled(false);
             }
             catch (Exception ex) {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
 
             try
@@ -282,7 +282,7 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
             catch (Exception ex)
             {
                 Genel.dismissProgressDialog();
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
             try
             {
@@ -294,7 +294,7 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
 
             }
             catch (Exception ex){
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
 
         }
@@ -374,7 +374,7 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
 
             }
             catch (Exception ex){
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
         }
     }

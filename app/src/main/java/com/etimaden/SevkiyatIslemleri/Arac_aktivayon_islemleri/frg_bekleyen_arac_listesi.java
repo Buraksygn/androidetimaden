@@ -117,7 +117,7 @@ public class frg_bekleyen_arac_listesi extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     @Override
@@ -187,7 +187,7 @@ public class frg_bekleyen_arac_listesi extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
             new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                     .setTitleText("BAL-0E1 ")
                     .setContentTextSize(25)
@@ -212,7 +212,7 @@ public class frg_bekleyen_arac_listesi extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 

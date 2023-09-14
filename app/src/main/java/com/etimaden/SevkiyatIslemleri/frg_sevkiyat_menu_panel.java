@@ -84,7 +84,7 @@ public class frg_sevkiyat_menu_panel extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
 
     }
 
@@ -331,7 +331,7 @@ public class frg_sevkiyat_menu_panel extends Fragment {
 
             }
             catch (Exception ex) {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
         }
     }

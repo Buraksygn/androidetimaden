@@ -1,7 +1,9 @@
 package com.etimaden.persos;
 
+import android.content.Context;
 import android.os.StrictMode;
 
+import com.etimaden.genel.Genel;
 import com.etimaden.persosclass.Arac;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.View_sec_sevk_miktar;
@@ -77,10 +79,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Persos {
 
     Retrofit retrofit;
+    Context context;
 
 
-    public Persos(String _OnlineUrl) {
+    public Persos(String _OnlineUrl,Context context) {
 
+        this.context=context;
         StrictMode.ThreadPolicy gfgPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(gfgPolicy);
 
@@ -606,7 +610,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -634,7 +638,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 */
@@ -665,7 +669,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -696,7 +700,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -727,7 +731,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -757,7 +761,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -788,7 +792,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -819,7 +823,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -850,7 +854,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -880,7 +884,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -911,7 +915,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -942,7 +946,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -972,7 +976,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1003,7 +1007,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1033,7 +1037,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1103,7 +1107,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1134,7 +1138,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1165,7 +1169,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1235,7 +1239,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1274,7 +1278,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
         }
 
         return  _Cevap;
@@ -1305,7 +1309,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1336,7 +1340,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1375,7 +1379,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
         }
 
         return  _Cevap;
@@ -1414,7 +1418,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
         }
 
         return  _Cevap;
@@ -1445,7 +1449,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1476,7 +1480,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1507,7 +1511,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1538,7 +1542,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1569,7 +1573,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1608,7 +1612,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
         }
 
         return  _Cevap;
@@ -1647,7 +1651,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
         }
 
         return  _Cevap;
@@ -1678,7 +1682,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1709,7 +1713,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1748,7 +1752,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
         }
 
         return  _Cevap;
@@ -1779,7 +1783,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1818,7 +1822,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
         }
 
         return  _Cevap;
@@ -1849,7 +1853,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
 
@@ -1879,7 +1883,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
     }
@@ -1917,7 +1921,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
         }
 
         return  _Cevap;
@@ -1948,7 +1952,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
     }
@@ -1978,7 +1982,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
     }
@@ -2008,7 +2012,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
     }
@@ -2038,7 +2042,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
     }
@@ -2068,7 +2072,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
     }
@@ -2106,7 +2110,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
         }
 
         return  _Cevap;
@@ -2136,7 +2140,7 @@ public class Persos {
 
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
         }
         return  _Cevap;
     }
@@ -2165,7 +2169,7 @@ public class Persos {
 
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
         }
         return  _Cevap;
     }
@@ -2195,7 +2199,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
     }
@@ -2225,7 +2229,7 @@ public class Persos {
 
         }catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,context);
             return  null;
         }
     }

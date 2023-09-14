@@ -277,7 +277,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
             _OnlineUrl = "http://" + _ipAdresi3G + ":" + _zport3G + "/";
         }
 
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     private void paketli_palet_paket_ekle(String etiket) {

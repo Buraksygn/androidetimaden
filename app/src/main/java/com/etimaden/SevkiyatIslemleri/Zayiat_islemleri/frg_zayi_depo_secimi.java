@@ -112,7 +112,7 @@ public class frg_zayi_depo_secimi extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     public void fn_senddata(Zayi aktif_zayi,Arac arac)
@@ -184,7 +184,7 @@ public class frg_zayi_depo_secimi extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
             new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                     .setTitleText("BAĞLANTI HATASI")
                     .setContentTextSize(25)
@@ -210,7 +210,7 @@ public class frg_zayi_depo_secimi extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 
@@ -265,7 +265,7 @@ public class frg_zayi_depo_secimi extends Fragment {
                             .show();
                 }
             } catch (Exception ex) {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("DEPO SEÇİMİ UYARISI")
                         .setContentTextSize(25)

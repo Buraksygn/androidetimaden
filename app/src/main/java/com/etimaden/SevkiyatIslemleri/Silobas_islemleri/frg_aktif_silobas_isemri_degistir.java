@@ -114,7 +114,7 @@ public class frg_aktif_silobas_isemri_degistir extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     public void fn_senddata(Sevkiyat_isemri  eski_sevk)
@@ -180,7 +180,7 @@ public class frg_aktif_silobas_isemri_degistir extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 
@@ -199,7 +199,7 @@ public class frg_aktif_silobas_isemri_degistir extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 
@@ -292,7 +292,7 @@ public class frg_aktif_silobas_isemri_degistir extends Fragment {
             }
             catch (Exception ex)
             {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
 
         }

@@ -111,7 +111,7 @@ public class frg_geribesleme_onay extends Fragment {
             _OnlineUrl = "http://" + _ipAdresi3G + ":" + _zport3G + "/";
         }
 
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
 

@@ -20,6 +20,7 @@ import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_onayla_i
 import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_isemri_degistir_transfer;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
+import com.etimaden.genel.Genel;
 import com.etimaden.ugr_demo.R;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
@@ -177,7 +178,7 @@ public class frg_arac_bulundu_indirme extends Fragment {
                 }
                 catch (Exception ex)
                 {
-                    ex.printStackTrace();
+                    Genel.printStackTrace(ex,getContext());
                 }
 
                 frg_isemri_degistir_transfer fragmentyeni = new frg_isemri_degistir_transfer();
@@ -189,7 +190,7 @@ public class frg_arac_bulundu_indirme extends Fragment {
             }
             catch (Exception ex)
             {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
         }
     }
@@ -220,7 +221,7 @@ public class frg_arac_bulundu_indirme extends Fragment {
             }
             catch (Exception ex)
             {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
         }
     }

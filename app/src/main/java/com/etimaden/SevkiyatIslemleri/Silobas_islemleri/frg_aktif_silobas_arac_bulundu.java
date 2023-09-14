@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
+import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.ugr_demo.R;
 
@@ -91,7 +92,7 @@ public class frg_aktif_silobas_arac_bulundu extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     public void fn_senddata(Sevkiyat_isemri  aktif_sevk_isemri)
@@ -140,7 +141,7 @@ public class frg_aktif_silobas_arac_bulundu extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 
@@ -152,7 +153,7 @@ public class frg_aktif_silobas_arac_bulundu extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 

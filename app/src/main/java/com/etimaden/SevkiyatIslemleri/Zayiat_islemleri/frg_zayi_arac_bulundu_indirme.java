@@ -94,7 +94,7 @@ public class frg_zayi_arac_bulundu_indirme extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     public void fn_senddata(Zayi aktif_zayi, Arac arac)
@@ -147,7 +147,7 @@ public class frg_zayi_arac_bulundu_indirme extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 
@@ -159,7 +159,7 @@ public class frg_zayi_arac_bulundu_indirme extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 
@@ -185,7 +185,7 @@ public class frg_zayi_arac_bulundu_indirme extends Fragment {
             }
             catch (Exception ex)
             {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
         }
     }

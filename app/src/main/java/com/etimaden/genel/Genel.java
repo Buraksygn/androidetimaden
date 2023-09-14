@@ -46,4 +46,19 @@ public class Genel {
             e.printStackTrace();
         }
     }
+
+    public static void printStackTrace(Exception ex,Context context){
+        Boolean showMessages=true;
+        dismissProgressDialog();
+        if(showMessages){
+            new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("HATA OLUŞTU")
+                    .setContentTextSize(25)
+                    .setContentText(ex.getMessage())
+                    .showCancelButton(false)
+                    .show();
+        }else{
+            ex.printStackTrace();
+        }
+    }
 }

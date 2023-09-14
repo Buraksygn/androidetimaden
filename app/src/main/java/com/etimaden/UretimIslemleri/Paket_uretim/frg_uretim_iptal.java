@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_secEtiket;
@@ -117,7 +118,7 @@ public class frg_uretim_iptal extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     @Override
@@ -173,7 +174,7 @@ public class frg_uretim_iptal extends Fragment {
 
         }
         catch (Exception ex){
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
         //Thread.Sleep(1000);
         isReadable = true;
@@ -207,7 +208,7 @@ public class frg_uretim_iptal extends Fragment {
             etiketDegerlendir(tag);
         }
         catch (Exception ex){
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
 
         isReadable = true;
@@ -347,7 +348,7 @@ public class frg_uretim_iptal extends Fragment {
 
         }
         catch (Exception ex){
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
 
 

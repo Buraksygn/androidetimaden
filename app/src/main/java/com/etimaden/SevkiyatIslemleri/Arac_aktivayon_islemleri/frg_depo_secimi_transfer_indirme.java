@@ -117,7 +117,7 @@ public class frg_depo_secimi_transfer_indirme extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     public void fn_senddata(Sevkiyat_isemri aktif_sevk_isemri)

@@ -100,7 +100,7 @@ public class frg_konteyner_vagon_esleme extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     public void fn_senddata(Vagon_hareket vagon )
@@ -303,7 +303,7 @@ public class frg_konteyner_vagon_esleme extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
             new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentTextSize(25)

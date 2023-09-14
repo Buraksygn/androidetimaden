@@ -100,7 +100,7 @@ public class frg_arac_onayla_indirme extends Fragment {
         {
             _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
-        persos = new Persos(_OnlineUrl);
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     public void fn_senddata(Sevkiyat_isemri v_aktif_sevk_isemri) {
@@ -219,7 +219,7 @@ public class frg_arac_onayla_indirme extends Fragment {
             }
             catch (Exception ex)
             {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
 
             try

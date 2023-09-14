@@ -1066,7 +1066,7 @@ public class frg_arac_onayla extends Fragment {
 
                 }
             } catch (Exception ex) {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
 
 
@@ -1095,7 +1095,7 @@ public class frg_arac_onayla extends Fragment {
 
 
             } catch (Exception ex) {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
 
         } catch (Exception ex) {
