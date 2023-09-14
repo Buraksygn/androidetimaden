@@ -153,7 +153,7 @@ public class frg_konteyner_vagon_esleme extends Fragment {
 
                 Genel.showProgressDialog(getContext());
                 List<Sevkiyat_isemri> result= persos.fn_sec_yerde_konteyner(_Param);
-                ArrayList<Sevkiyat_isemri> konteyner_list=new ArrayList<>(result);
+                final ArrayList<Sevkiyat_isemri> konteyner_list=new ArrayList<>(result);
                 Genel.dismissProgressDialog();
 
                 if (konteyner_list.size() > 0)

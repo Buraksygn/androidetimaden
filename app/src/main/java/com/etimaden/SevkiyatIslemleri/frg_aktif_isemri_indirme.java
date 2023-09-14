@@ -875,7 +875,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
         try {
 
             if (_Secili != null && _Secili.getBekleyen() == true) {
-                Urun_tag tag = _Secili.getUrun_tag();
+                final Urun_tag tag = _Secili.getUrun_tag();
                 new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("SORU")
                         .setContentText("SERİ NO : " + tag.palet_kod + "\r\n Seri nolu ürün için kayıt değişimi yapılacak. Onaylıyor musunuz ?")

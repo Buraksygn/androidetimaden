@@ -46,7 +46,7 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
     @POST("api/sevkiyatDevam2")
     Call<View_bool_response> fn_sevkiyatDevam(@Body request_sevkiyat_isemri v_Gelen);
 
-    //Burdan itibaren eklenecek
+
 
     @POST("api/sec_aktif_silobas")
     Call<View_sevkiyat_isemri> fn_sec_aktif_silobas(@Body request_string v_Gelen);
@@ -99,6 +99,8 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
     @POST("api/secKantarIndirmeIsemriListesi")
     Call<View_sevkiyat_isemri_listesi> fn_secKantarIndirmeIsemriListesi(@Body request_string v_Gelen);
 
+
+
     @POST("api/update_gemi_transfer_direct")
     Call<View_bool_response> fn_update_gemi_transfer_direct(@Body request_sevkiyat_isemri v_Gelen);
 
@@ -131,7 +133,7 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
 
     @POST("api/secYuklenenUrunListesi_nakil")
     Call<View_sevkiyat_urun_tag_listesi> fn_secYuklenenUrunListesi_nakil(@Body request_sevkiyat_isemri v_Gelen);
-
+    //Burdan itibaren eklenecek
     @POST("api/ekleSevkiyatUrun_cikarma")
     Call<View_bool_response> fn_ekleSevkiyatUrun_cikarma(@Body request_sevkiyat_isemri_uruntag_list_uruntag v_Gelen);
 

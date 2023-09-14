@@ -153,7 +153,7 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
                 _Param.set_value(rfid);
 
                 Genel.showProgressDialog(getContext());
-                Arac arac = persos.fn_sec_arac(_Param);
+                final Arac arac = persos.fn_sec_arac(_Param);
                 Genel.dismissProgressDialog();
 
                 if ( arac != null && !arac.arac_plaka.equals( ""))
