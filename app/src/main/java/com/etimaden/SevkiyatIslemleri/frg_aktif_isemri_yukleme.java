@@ -1,22 +1,21 @@
 package com.etimaden.SevkiyatIslemleri;
 
-import android.graphics.drawable.Drawable;
+import static com.etimaden.cSabitDegerler._zkullaniciadi;
+import static com.etimaden.cSabitDegerler._zport3G;
+import static com.etimaden.cSabitDegerler._zportWifi;
+import static com.etimaden.cSabitDegerler._zsifre;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -38,31 +37,21 @@ import com.etimaden.DataModel.mdlIsemriYukleme;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.adapter.apmdlIsemriYukleme;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.cIslem.ViewtestParseClass;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.Viewsec_sevkiyat_urun;
 import com.etimaden.cResponseResult.Viewsec_sevkiyat_urun_listesi;
-import com.etimaden.ugr_demo.MainActivity;
+import com.etimaden.genel.Genel;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-
-import static com.etimaden.cSabitDegerler._zkullaniciadi;
-
-import static com.etimaden.cSabitDegerler._zport3G;
-import static com.etimaden.cSabitDegerler._zportWifi;
-import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_aktif_isemri_yukleme extends Fragment {
 
@@ -181,12 +170,12 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         _txtYazi = (TextView) getView().findViewById(R.id.textView20);
         _txtYazi.setText("0");
 
-        _Liste = (ListView) getView().findViewById(R.id.isemri_list);
-
       // _Cikar=(TextView)getView().findViewById(R.id.yazi_cikar);
         _imgBilgi = (Button)getView().findViewById(R.id.imgBilgi);
         _imgBilgi.playSoundEffect(0);
         _imgBilgi.setOnClickListener(new fn_Bilgilendirme());
+
+        _Liste = (ListView) getView().findViewById(R.id.isemri_list);
 
         fn_BildirimYaz();
 
@@ -345,7 +334,8 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                                     fn_Listele();*/
                                 }catch (Exception ex)
                                 {
-                                    Toast.makeText(getContext(), ex.toString(), Toast.LENGTH_SHORT).show();
+                                    Genel.printStackTrace(ex,getContext());
+                                    //Toast.makeText(getContext(), ex.toString(), Toast.LENGTH_SHORT).show();
 
                                 }
                             }
@@ -366,7 +356,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(getContext(), "error =" + error.toString(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "error =" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -524,7 +514,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(getContext(), "error =" + error.toString(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "error =" + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -587,24 +577,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
     public void fn_cikar(View v)
     {
-        Toast.makeText(getContext(), "Clicked on Button", Toast.LENGTH_LONG).show();
-    }
-
-    private class fn_BilgiVer implements View.OnClickListener {
-        @Override
-        public void onClick(View view)
-        {
-            frg_arac_yukleme_bilgi fragmentyeni = new frg_arac_yukleme_bilgi();
-
-            fragmentyeni.fn_senddata(_caktif_sevk_isemri);
-
-            //fragmentyeni.fn_sendYanitlar(_Yanitlar);
-
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_yukleme_bilgi").addToBackStack(null);
-            fragmentTransaction.commit();
-        }
+        //Toast.makeText(getContext(), "Clicked on Button", Toast.LENGTH_LONG).show();
     }
 
     private class fn_Yenile implements View.OnClickListener {

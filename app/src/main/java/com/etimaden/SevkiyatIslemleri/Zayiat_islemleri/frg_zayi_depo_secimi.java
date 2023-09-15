@@ -176,7 +176,10 @@ public class frg_zayi_depo_secimi extends Fragment {
 
             Genel.showProgressDialog(getContext());
             List<DEPOTag> result = persos.fn_secDepoTanimlari(_Param);
-            depo_listesi=new ArrayList<>(result);
+            depo_listesi=new ArrayList<>();
+            if(result!=null) {
+                depo_listesi = new ArrayList<>(result);
+            }
             Genel.dismissProgressDialog();
 
             updateListviewItem();

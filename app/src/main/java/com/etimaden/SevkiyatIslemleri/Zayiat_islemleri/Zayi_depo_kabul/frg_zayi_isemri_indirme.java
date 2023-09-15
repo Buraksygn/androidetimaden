@@ -211,7 +211,10 @@ public class frg_zayi_isemri_indirme extends Fragment {
 
         Genel.showProgressDialog(getContext());
         List<Zayi_urun> result = persos.fn_sec_zayi_urun_listesi(_Param1);
-        urun_listesi_indirilen=new ArrayList<>(result);
+        urun_listesi_indirilen=new ArrayList<>();
+        if(result!=null) {
+            urun_listesi_indirilen = new ArrayList<>(result);
+        }
         Genel.dismissProgressDialog();
         if (urun_listesi_indirilen == null)
         {
@@ -223,7 +226,10 @@ public class frg_zayi_isemri_indirme extends Fragment {
 
         Genel.showProgressDialog(getContext());
         result = persos.fn_sec_zayi_urun_listesi(_Param1);
-        urun_listesi_yuklenen=new ArrayList<>(result);
+        urun_listesi_yuklenen=new ArrayList<>();
+        if(result!=null) {
+            urun_listesi_yuklenen = new ArrayList<>(result);
+        }
         Genel.dismissProgressDialog();
 
         if (urun_listesi_yuklenen == null)

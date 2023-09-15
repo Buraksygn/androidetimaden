@@ -185,7 +185,10 @@ public class frg_zayi_aktivasyon extends Fragment {
             _Param1.set_aktif_isletme_esleme(_ayaraktifisletmeeslesme);
             Genel.showProgressDialog(getContext());
             List<Zayi> result = persos.fn_sec_zayi_aynı_arac(_Param1);
-            ArrayList<Zayi> zayi_listesi=new ArrayList<>(result);
+            ArrayList<Zayi> zayi_listesi=new ArrayList<>();
+            if(result!=null) {
+                zayi_listesi = new ArrayList<>(result);
+            }
             Genel.dismissProgressDialog();
 
 
@@ -202,7 +205,10 @@ public class frg_zayi_aktivasyon extends Fragment {
 
                 Genel.showProgressDialog(getContext());
                 result = persos.fn_sec_zayi_farklı_arac(_Param2);
-                zayi_listesi=new ArrayList<>(result);
+                zayi_listesi=new ArrayList<>();
+                if(result!=null) {
+                    zayi_listesi = new ArrayList<>(result);
+                }
                 Genel.dismissProgressDialog();
             }
 

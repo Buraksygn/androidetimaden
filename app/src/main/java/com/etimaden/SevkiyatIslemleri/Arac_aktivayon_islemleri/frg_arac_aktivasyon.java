@@ -155,7 +155,10 @@ public class frg_arac_aktivasyon extends Fragment {
 
                 Genel.showProgressDialog(getContext());
                 List<Sevkiyat_isemri> result = persos.fn_secKantarIsemriListesi(_Param);
-                ArrayList<Sevkiyat_isemri> sevk_isemri_listesi=new ArrayList<>(result);
+                ArrayList<Sevkiyat_isemri> sevk_isemri_listesi = new ArrayList<>();
+                if(result!=null) {
+                    sevk_isemri_listesi = new ArrayList<>(result);
+                }
                 Genel.dismissProgressDialog();
 
                 Sevkiyat_isemri aktif_sevk_isemri=new Sevkiyat_isemri();
@@ -244,7 +247,10 @@ public class frg_arac_aktivasyon extends Fragment {
 
                 Genel.showProgressDialog(getContext());
                 List<Sevkiyat_isemri> result = persos.fn_secKantarIndirmeIsemriListesi(_Param);
-                ArrayList<Sevkiyat_isemri> sevk_isemri_listesi=new ArrayList<>(result);
+                ArrayList<Sevkiyat_isemri> sevk_isemri_listesi=new ArrayList<>();
+                if(result!=null) {
+                    sevk_isemri_listesi = new ArrayList<>(result);
+                }
                 Genel.dismissProgressDialog();
 
                 Sevkiyat_isemri aktif_sevk_isemri=new Sevkiyat_isemri();
@@ -371,7 +377,7 @@ public class frg_arac_aktivasyon extends Fragment {
             }
             catch (Exception exx)
             {
-                exx.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)

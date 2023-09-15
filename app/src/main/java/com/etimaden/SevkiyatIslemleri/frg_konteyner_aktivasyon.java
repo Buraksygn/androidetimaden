@@ -212,7 +212,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                         }});
 
                                                 } else {
-                                                    pDialog.hide();
+                                                    if (pDialog != null && pDialog.isShowing()) {
+                                                        pDialog.hide();
+                                                    }
 
                                                     String _Yazi = "KONTEYNER PLAKA : " + arac_plaka + " KONTEYNER AYIRMA İŞLEMİ. KONTEYNERI AYIRMA İŞLEMİNE DEVAM ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?";
 
@@ -314,6 +316,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                         parametre.put("islem_id", islem_id);
                                                                         parametre.put("rota_id", rota_id);
                                                                     } catch (JSONException e) {
+                                                                        if (pDialog != null && pDialog.isShowing()) {
+                                                                            pDialog.hide();
+                                                                        }
                                                                         e.printStackTrace();
                                                                     }
 
@@ -353,7 +358,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                                                                                                 }});
                                                                                         } else {
-                                                                                            pDialog.hide();
+                                                                                            if (pDialog != null && pDialog.isShowing()) {
+                                                                                                pDialog.hide();
+                                                                                            }
 
                                                                                             new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
                                                                                                     .setTitleText("ONAY")
@@ -382,6 +389,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                                         }
 
                                                                                     } catch (JSONException ex) {
+                                                                                        if (pDialog != null && pDialog.isShowing()) {
+                                                                                            pDialog.hide();
+                                                                                        }
                                                                                         Toast.makeText(getContext(), "error =" + ex.toString(), Toast.LENGTH_SHORT).show();
                                                                                     }
 
@@ -390,7 +400,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                             new Response.ErrorListener() {
                                                                                 @Override
                                                                                 public void onErrorResponse(VolleyError error) {
-                                                                                    pDialog.hide();
+                                                                                    if (pDialog != null && pDialog.isShowing()) {
+                                                                                        pDialog.hide();
+                                                                                    }
                                                                                     Toast.makeText(getContext(), "error =" + error, Toast.LENGTH_SHORT).show();
                                                                                 }
                                                                             });
@@ -405,6 +417,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                 }
 
                                             } catch (JSONException ex) {
+                                                if (pDialog != null && pDialog.isShowing()) {
+                                                    pDialog.hide();
+                                                }
                                                 Toast.makeText(getContext(), "error =" + ex.toString(), Toast.LENGTH_SHORT).show();
                                             }
 
@@ -413,7 +428,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            pDialog.hide();
+                                            if (pDialog != null && pDialog.isShowing()) {
+                                                pDialog.hide();
+                                            }
                                             Toast.makeText(getContext(), "error =" + error, Toast.LENGTH_SHORT).show();
                                         }
                                     }
@@ -427,6 +444,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
 
                         } catch (JSONException error) {
+                            if (pDialog != null && pDialog.isShowing()) {
+                                pDialog.hide();
+                            }
                             error.printStackTrace();
                         }
 
@@ -624,15 +644,23 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                 Toast.makeText(getContext(), ex.toString(), Toast.LENGTH_SHORT).show();
 
                                             }
-                                            pDialog.hide();
+                                            if (pDialog != null && pDialog.isShowing()) {
+                                                pDialog.hide();
+                                            }
                                         }
 
 
                                         //Toast.makeText(getApplicationContext(), "_zSayfaAdiAciklama =" + _zHataAciklamasi, Toast.LENGTH_SHORT).show();
 
                                     } catch (JsonMappingException e) {
+                                        if (pDialog != null && pDialog.isShowing()) {
+                                            pDialog.hide();
+                                        }
                                         e.printStackTrace();
                                     } catch (JsonProcessingException ex_02) {
+                                        if (pDialog != null && pDialog.isShowing()) {
+                                            pDialog.hide();
+                                        }
                                         Toast.makeText(getContext(), "error =" + ex_02.toString(), Toast.LENGTH_LONG).show();
                                     }
 
@@ -641,7 +669,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
                             new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
-                                    pDialog.hide();
+                                    if (pDialog != null && pDialog.isShowing()) {
+                                        pDialog.hide();
+                                    }
                                     Toast.makeText(getContext(), "error =" + error.toString(), Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -656,7 +686,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                 }
             } catch (Exception ex) {
-                pDialog.hide();
+                if (pDialog != null && pDialog.isShowing()) {
+                    pDialog.hide();
+                }
 
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("HATA")

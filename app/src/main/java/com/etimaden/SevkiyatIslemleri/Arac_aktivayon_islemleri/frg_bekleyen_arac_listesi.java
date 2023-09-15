@@ -264,7 +264,10 @@ public class frg_bekleyen_arac_listesi extends Fragment {
                                             List<Sevkiyat_isemri> result = persos.fn_secKantarIsemriListesi(_Param);
                                             //todo skolon1 servisten fn_PlakaCevir den geçerek gelse iyi olur.
                                             //Program.persos.fn_PlakaCevir(l.skolon1)
-                                            ArrayList<Sevkiyat_isemri> sevk_isemri_listesi = new ArrayList<>(result);
+                                            ArrayList<Sevkiyat_isemri> sevk_isemri_listesi = new ArrayList<>();
+                                            if(result!=null) {
+                                                sevk_isemri_listesi = new ArrayList<>(result);
+                                            }
                                             Genel.dismissProgressDialog();
 
                                             Sevkiyat_isemri aktif_sevk_isemri=null;

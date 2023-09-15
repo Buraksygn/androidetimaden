@@ -33,6 +33,7 @@ import com.etimaden.request.request_string;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -153,6 +154,9 @@ public class frg_konteyner_vagon_esleme extends Fragment {
 
                 Genel.showProgressDialog(getContext());
                 List<Sevkiyat_isemri> result= persos.fn_sec_yerde_konteyner(_Param);
+                if(result==null){
+                    result= Collections.emptyList();
+                }
                 final ArrayList<Sevkiyat_isemri> konteyner_list=new ArrayList<>(result);
                 Genel.dismissProgressDialog();
 
@@ -183,7 +187,10 @@ public class frg_konteyner_vagon_esleme extends Fragment {
 
                                     Genel.showProgressDialog(getContext());
                                     List<String> result= persos.fn_sec_sevk_miktar(_Param);
-                                    ArrayList<String> miktarlar=new ArrayList<>(result);
+                                    ArrayList<String> miktarlar=new ArrayList<>();
+                                    if(result!=null) {
+                                        miktarlar = new ArrayList<>(result);
+                                    }
                                     Genel.dismissProgressDialog();
 
 

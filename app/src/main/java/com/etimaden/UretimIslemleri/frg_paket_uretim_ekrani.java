@@ -202,7 +202,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
         View_string_response _yanit;
 
+        Genel.showProgressDialog(getContext());
         _yanit = persos.fn_get_lot_toplami(v_param);
+        Genel.dismissProgressDialog();
 
         if(_yanit._zSonuc.equals("0"))
         {
@@ -470,8 +472,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                 } catch (Exception ex)
                 {
-                    ex.printStackTrace();
-
+                    Genel.printStackTrace(ex,getContext());
                 }
             }
         }
@@ -709,6 +710,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
             a = a + b + (sirano + "");
 
         } catch (Exception ex) {
+            Genel.printStackTrace(ex,getContext());
         }
         return a;
     }
@@ -920,8 +922,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
                             v_param.setAktif_kullanici(_ayaraktifkullanici);
                             v_param.setAktif_sunucu(_ayaraktifsunucu);
 
-
+                            Genel.showProgressDialog(getContext());
                             Boolean uretim_onayı=persos.fn_paketliUretKontrol(v_param);
+                            Genel.dismissProgressDialog();
 
                             if (uretim_onayı)
                             {
@@ -947,7 +950,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
                                 v_param2.setAktif_sunucu(_ayaraktifsunucu);
                                 v_param2.setPaketList(pl);
 
+                                Genel.showProgressDialog(getContext());
                                 Boolean b_yanit=persos.fn_paketliUret(v_param2);
+                                Genel.dismissProgressDialog();
                                 fn_AltPanelGorunsunmu(false);
 
                                 aktif_Palet = null;
@@ -1295,6 +1300,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
         } catch (Exception ex)
         {
+            Genel.printStackTrace(ex,getContext());
             new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentText("Sistemsel hata = " + ex.toString())
@@ -1384,7 +1390,10 @@ public class frg_paket_uretim_ekrani extends Fragment {
             _Param.setAktif_sunucu(_ayaraktifsunucu);
             _Param.setAktif_kullanici(_ayaraktifkullanici);
             _Param.set_etiket(it_etiket);
-                String miktar = persos.fn_sec_toplam_dkmlot_miktar(_Param);
+
+            Genel.showProgressDialog(getContext());
+            String miktar = persos.fn_sec_toplam_dkmlot_miktar(_Param);
+            Genel.dismissProgressDialog();
 
                 if (!miktar.equals(""))
                 {
@@ -1397,7 +1406,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                     }
                     catch (Exception ex)
                     {
-                        ex.printStackTrace();
+                        Genel.printStackTrace(ex,getContext());
                         miktar_int = 0;
                         hedef_miktar = 0;
                     }
@@ -1470,7 +1479,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
 
     }
@@ -1499,7 +1508,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
                 _Param.setAktif_kullanici(_ayaraktifkullanici);
                 _Param.set_etiket(etiket);
 
+                Genel.showProgressDialog(getContext());
                 String miktar = persos.fn_sec_ambalaj_degisim_toplam_harcanan_miktar(_Param);
+                Genel.dismissProgressDialog();
 
                 if (miktar == null )
                 {
@@ -1592,7 +1603,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                     }
                     catch (Exception ex)
                     {
-                        ex.printStackTrace();
+                        Genel.printStackTrace(ex,getContext());
                     }
                 }
 
@@ -1600,7 +1611,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 
@@ -1682,7 +1693,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
         }
         catch (Exception ex) {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 
@@ -1725,11 +1736,11 @@ public class frg_paket_uretim_ekrani extends Fragment {
                 _Param.setAktif_sunucu(_ayaraktifsunucu);
                 _Param.setAktif_kullanici(_ayaraktifkullanici);
 
-                Genel.showProgressDialog(getContext());
                 _Param.set_etiket(etiket);
-                Genel.dismissProgressDialog();
 
+                Genel.showProgressDialog(getContext());
                 View_bool_response result = persos.fn_bigBag_uret(_Param);
+                Genel.dismissProgressDialog();
 
                 if (result._result==null || !result._result)
                 {
@@ -1778,7 +1789,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
             _Param.setAktif_kullanici(_ayaraktifkullanici);
             _Param.set_etiket(etiket);
 
+            Genel.showProgressDialog(getContext());
             String miktar = persos.fn_sec_ambalaj_degisim_toplam_harcanan_miktar(_Param);
+            Genel.dismissProgressDialog();
                 //String miktar = persos.sec_ambalaj_degisim_toplam_harcanan_miktar(etiket);
 
                 if (miktar == null)
@@ -1883,6 +1896,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                     }
                     catch (Exception ex)
                     {
+                        Genel.printStackTrace(ex,getContext());
                         new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                                 .setTitleText("YETERSİZ ÜRÜN MİKTARI")
                                 .setContentText("BU İŞ EMRİNE BAĞLI ÜRETİM YAPMAK İÇİN YETERLİ ÜRÜN HARCAMA İŞLEMİ YAPILMAMIŞ.. \r\n KULLANILABİLİR MİKTAR : " + miktar)
@@ -1906,6 +1920,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
         catch (Exception ex)
         {
+            Genel.printStackTrace(ex,getContext());
             new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                     .setTitleText("YETERSİZ ÜRÜN MİKTARI")
                     .setContentText("BU İŞ EMRİNE BAĞLI ÜRETİM YAPMAK İÇİN YETERLİ ÜRÜN HARCAMA İŞLEMİ YAPILMAMIŞ.. \r\n KULLANILABİLİR MİKTAR : " + 0)

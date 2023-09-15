@@ -171,7 +171,11 @@ public class frg_aktif_silobas_isemri_degistir extends Fragment {
 
             Genel.showProgressDialog(getContext());
             List<Sevkiyat_isemri> result = persos.fn_sec_silobas_SevkiyatIsemriListesi(v_Gelen);
-            sevk_listesi=new ArrayList<>(result);
+            sevk_listesi = new ArrayList<>();
+            if(result!=null) {
+
+                sevk_listesi = new ArrayList<>(result);
+            }
             Genel.dismissProgressDialog();
 
 

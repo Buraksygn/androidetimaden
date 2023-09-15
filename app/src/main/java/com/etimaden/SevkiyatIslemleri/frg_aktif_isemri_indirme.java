@@ -209,7 +209,10 @@ public class frg_aktif_isemri_indirme  extends Fragment {
 
         Genel.showProgressDialog(getContext());
         List<Urun_tag> result = persos.fn_secYuklenenUrunListesi(_Param1);
-        urun_listesi_indirilen=new ArrayList<>(result);
+        urun_listesi_indirilen=new ArrayList<>();
+        if(result!=null) {
+            urun_listesi_indirilen = new ArrayList<>(result);
+        }
         Genel.dismissProgressDialog();
         if (urun_listesi_indirilen == null)
         {
@@ -218,7 +221,10 @@ public class frg_aktif_isemri_indirme  extends Fragment {
 
         Genel.showProgressDialog(getContext());
         result = persos.fn_secYuklenenUrunListesi_nakil(_Param1);
-        urun_listesi_yuklenen=new ArrayList<>(result);
+        urun_listesi_yuklenen=new ArrayList<>();
+        if(result!=null) {
+            urun_listesi_yuklenen = new ArrayList<>(result);
+        }
         Genel.dismissProgressDialog();
 
         if (urun_listesi_yuklenen == null)
@@ -799,7 +805,10 @@ public class frg_aktif_isemri_indirme  extends Fragment {
 
                 Genel.showProgressDialog(getContext());
                 List<Urun_tag> result = persos.fn_secYuklenenUrunListesi(_Param1);
-                urun_listesi_indirilen=new ArrayList<>(result);
+                urun_listesi_indirilen=new ArrayList<>();
+                if(result!=null) {
+                    urun_listesi_indirilen = new ArrayList<>(result);
+                }
                 Genel.dismissProgressDialog();
                 if (urun_listesi_indirilen == null)
                 {
@@ -854,7 +863,10 @@ public class frg_aktif_isemri_indirme  extends Fragment {
 
                 Genel.showProgressDialog(getContext());
                 result = persos.fn_secYuklenenUrunListesi(_Param1);
-                urun_listesi_indirilen=new ArrayList<>(result);
+                urun_listesi_indirilen=new ArrayList<>();
+                if(result!=null) {
+                    urun_listesi_indirilen = new ArrayList<>(result);
+                }
                 Genel.dismissProgressDialog();
                 if (urun_listesi_indirilen == null)
                 {
