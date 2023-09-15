@@ -38,6 +38,7 @@ import com.etimaden.cResponseResult.ViewsevkiyatIptal;
 import com.etimaden.cResponseResult.viewDeger_01;
 import com.etimaden.cResponseResult.viewparsiyel_kontrol_01;
 import com.etimaden.cResponseResult.viewsevkiyatKapat;
+import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
 import com.etimaden.request.request_guncelle_sevk_hareket;
 import com.etimaden.request.request_sevkiyat_isemri;

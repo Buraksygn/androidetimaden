@@ -238,10 +238,10 @@ public class frg_zayi_aktivasyon extends Fragment {
     private class fn_Geri implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
+            frg_zayi_menu_panel fragmentyeni = new frg_zayi_menu_panel();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_zayi_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }

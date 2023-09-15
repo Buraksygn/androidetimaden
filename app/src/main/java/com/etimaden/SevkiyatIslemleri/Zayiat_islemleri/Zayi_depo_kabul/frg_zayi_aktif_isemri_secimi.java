@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_aktivasyon;
+import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_menu_panel;
 import com.etimaden.adapter.apmblSevkiyatZayiIsEmirleri;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
@@ -195,10 +196,10 @@ public class frg_zayi_aktif_isemri_secimi extends Fragment {
     private class fn_Geri implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_zayi_aktivasyon fragmentyeni = new frg_zayi_aktivasyon();
+            frg_zayi_menu_panel fragmentyeni = new frg_zayi_menu_panel();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_zayi_aktivasyon").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_zayi_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }

@@ -41,6 +41,7 @@ import org.json.JSONObject;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
+import static com.etimaden.cSabitDegerler._sbtVerisyon;
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
 import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
@@ -145,7 +146,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
             try {
 
                 //JSONObject jsonObj = new JSONObject(aktif_sevk_isemri);
-                String kont_rfid = aktif_sevk_isemri.kont_rfid.trim();
+                String kont_rfid = aktif_sevk_isemri.kont_rfid.trim();//gelmedi
                 String aktif_sunucu = _ayaraktifsunucu;
                 String aktif_kullanici = _ayaraktifkullanici;
 
@@ -156,6 +157,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                 {
                     if (kont_rfid.equals(v_epc))
                     {
+
                         try {
                             parametre.put("rfid", v_epc);
                             parametre.put("aktif_sunucu", aktif_sunucu);
@@ -163,6 +165,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                             parametre.put("_zsunucu_ip_adresi", _ayarsunucuip);
                             parametre.put("_zaktif_alt_tesis", _ayaraktifalttesis);
                             parametre.put("_zaktif_tesis", _ayaraktiftesis);
+                            parametre.put("_zsurum", _sbtVerisyon);
                             parametre.put("_zkullaniciadi", _zkullaniciadi);
                             parametre.put("_zsifre", _zsifre);
 

@@ -100,13 +100,17 @@
             android:textSize="18sp" />
     </RadioGroup>
 
-    <ImageView
+    <Button
         android:id="@+id/imgBilgi"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="55dp"
+        android:layout_height="70dp"
         android:layout_x="0dp"
-        android:layout_y="20dp"
-        android:src="@mipmap/information3" />
+        android:layout_y="16dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="Bilgi"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
 
     <ImageButton
         android:id="@+id/btnyenile"

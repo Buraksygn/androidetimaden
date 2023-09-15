@@ -109,7 +109,7 @@ public class frg_arac_yukleme_bilgi extends Fragment {
 
     private void fn_AyarlariYukle()
     {
-        ((GirisSayfasi)getActivity()).fn_ModRFID();
+        ((GirisSayfasi)getActivity()).fn_ModBarkod();
         _ayarbaglantituru=_myIslem.fn_baglanti_turu();
         _ayarsunucuip=_myIslem.fn_sunucu_ip();
         _ayaraktifkullanici=_myIslem.fn_aktif_kullanici();
@@ -137,7 +137,7 @@ public class frg_arac_yukleme_bilgi extends Fragment {
 
         _myIslem = new VeriTabani(getContext());
 
-        ((GirisSayfasi) getActivity()).fn_ModRFID();
+        ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
         _btngeri = (Button) getView().findViewById(R.id.btngeri);
         _btngeri.playSoundEffect(0);

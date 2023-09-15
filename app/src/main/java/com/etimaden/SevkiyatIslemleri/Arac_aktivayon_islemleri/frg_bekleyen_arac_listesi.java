@@ -128,10 +128,10 @@ public class frg_bekleyen_arac_listesi extends Fragment {
 
         _myIslem = new VeriTabani(getContext());
 
-        Button _btnSeciliIseBasla;
-        ListView _arac_list;
-        Button _btnGeri;
-        Button _btnYenile;
+        //Button _btnSeciliIseBasla;
+        //ListView _arac_list;
+        //Button _btnGeri;
+        //Button _btnYenile;
 
         _btnSeciliIseBasla = (Button)getView().findViewById(R.id.btnSeciliIseBasla);
         _btnSeciliIseBasla.playSoundEffect(0);
@@ -179,7 +179,11 @@ public class frg_bekleyen_arac_listesi extends Fragment {
             List<cBekleyen_Arac_Listesi> result = persos.fn_BekleyenAracListesi(_Param);
             //todo skolon1 servisten fn_PlakaCevir den geçerek gelse iyi olur.
             //Program.persos.fn_PlakaCevir(l.skolon1)
-            aracListesi=new ArrayList<>(result);
+            if(result!=null){
+                aracListesi=new ArrayList<>(result);
+            }
+
+
             Genel.dismissProgressDialog();
 
             updateListviewItem();

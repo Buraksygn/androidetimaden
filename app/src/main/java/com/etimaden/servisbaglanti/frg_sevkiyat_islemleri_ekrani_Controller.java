@@ -57,7 +57,7 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
     @POST("api/onayla_silobas_SevkIsDegisimi")
     Call<View_bool_response> fn_onayla_silobas_SevkIsDegisimi(@Body request_sevkiyat_eski_sevk_yeni_sevk v_Gelen);
 
-    @POST("api/sec_arac")
+    @POST("api/sec_arac2")
     Call<View_arac> fn_sec_arac(@Body request_string v_Gelen);
 
     @POST("api/sec_zayi_aynı_arac")
@@ -96,12 +96,12 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
     @POST("api/sec_vagon_hareket")
     Call<View_sevkiyat_vagon_hareket> fn_sec_vagon_hareket(@Body request_string v_Gelen);
 
-    @POST("api/secKantarIndirmeIsemriListesi")
+    @POST("api/secKantarIndirmeIsemriListesi2")
     Call<View_sevkiyat_isemri_listesi> fn_secKantarIndirmeIsemriListesi(@Body request_string v_Gelen);
 
 
 
-    @POST("api/update_gemi_transfer_direct")
+    @POST("api/update_gemi_transfer_direct2")
     Call<View_bool_response> fn_update_gemi_transfer_direct(@Body request_sevkiyat_isemri v_Gelen);
 
     @POST("api/guncelle_innerliner_bos")
@@ -116,7 +116,7 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
     @POST("api/sevkiyatDevam_nakil")
     Call<View_bool_response> fn_sevkiyatDevam_nakil(@Body request_sevkiyat_isemri v_Gelen);
 
-    @POST("api/sevkiyatKapat")
+    @POST("api/sevkiyatKapat2")
     Call<View_bool_response> fn_sevkiyatKapat(@Body request_sevkiyat_isemri v_Gelen);
 
     @POST("api/ekleAracIndirmeAktivasyonu")
@@ -128,13 +128,13 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
     @POST("api/BekleyenAracListesi")
     Call<View_sevkiyat_bekleyen_arac_listesi> fn_BekleyenAracListesi(@Body request_bos v_Gelen);
 
-    @POST("api/secYuklenenUrunListesi")
+    @POST("api/secYuklenenUrunListesi2")
     Call<View_sevkiyat_urun_tag_listesi> fn_secYuklenenUrunListesi(@Body request_sevkiyat_isemri v_Gelen);
 
-    @POST("api/secYuklenenUrunListesi_nakil")
+    @POST("api/secYuklenenUrunListesi_nakil2")
     Call<View_sevkiyat_urun_tag_listesi> fn_secYuklenenUrunListesi_nakil(@Body request_sevkiyat_isemri v_Gelen);
     //Burdan itibaren eklenecek
-    @POST("api/ekleSevkiyatUrun_cikarma")
+    @POST("api/ekleSevkiyatUrun_cikarma2")
     Call<View_bool_response> fn_ekleSevkiyatUrun_cikarma(@Body request_sevkiyat_isemri_uruntag_list_uruntag v_Gelen);
 
     @POST("api/iptal_yerde_konteyner")

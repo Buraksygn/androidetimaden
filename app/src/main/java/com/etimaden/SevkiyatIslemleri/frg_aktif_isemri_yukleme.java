@@ -110,7 +110,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
     public RadioButton triggerRFID;
     public RadioButton triggerScanner;
 
-    ImageView _imgBilgi;
+    Button _imgBilgi;
 
     ImageButton _btnYenile;
 
@@ -184,14 +184,15 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         _Liste = (ListView) getView().findViewById(R.id.isemri_list);
 
       // _Cikar=(TextView)getView().findViewById(R.id.yazi_cikar);
+        _imgBilgi = (Button)getView().findViewById(R.id.imgBilgi);
+        _imgBilgi.playSoundEffect(0);
+        _imgBilgi.setOnClickListener(new fn_Bilgilendirme());
 
         fn_BildirimYaz();
 
         fn_BekleyenleriGetir();
 
-        _imgBilgi = (ImageView)getView().findViewById(R.id.imgBilgi);
-        _imgBilgi.playSoundEffect(0);
-        _imgBilgi.setOnClickListener(new fn_BilgiVer());
+
 
 
         //_Cikar = (TextView) getView().findViewById(android.R.id.yazi_cikar);
@@ -204,6 +205,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
 
     private void fn_BekleyenleriGetir() {
+
 
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
 
@@ -610,6 +612,18 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         public void onClick(View v)
         {
             fn_BekleyenleriGetir();
+        }
+    }
+    private class fn_Bilgilendirme implements View.OnClickListener {
+        @Override
+        public void onClick(View v)
+        {
+            frg_arac_yukleme_bilgi fragmentyeni = new frg_arac_yukleme_bilgi();
+            fragmentyeni.fn_senddata(_caktif_sevk_isemri);
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_yukleme_bilgi").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 }

@@ -179,7 +179,8 @@ public class frg_uretim_detay_ekrani extends Fragment {
 
             List<uretim_detay> uretimDetayList =persos.fn_sec_uretim_detay(v_Gelen);
             if ( uretimDetayList!=null ){
-                dataModels = new ArrayList<>(persos.fn_sec_uretim_detay(v_Gelen));
+                dataModels = new ArrayList<>(uretimDetayList);
+                //dataModels = new ArrayList<>(persos.fn_sec_uretim_detay(v_Gelen));
             }
 
             updateListviewItem();
@@ -198,6 +199,7 @@ public class frg_uretim_detay_ekrani extends Fragment {
             //Program.giveHataMesaji("BAĞLANTI HATASI", "Üretim bilgisi alınamadı.", "");
         }
     }
+
     private void updateListviewItem()
     {
         try
