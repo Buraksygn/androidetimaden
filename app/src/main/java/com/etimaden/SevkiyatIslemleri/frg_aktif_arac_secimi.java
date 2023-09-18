@@ -230,7 +230,7 @@ public class frg_aktif_arac_secimi  extends Fragment {
                                     }
                                     else
                                     {
-                                        frg_aktif_isemri_yukleme_eski fragmentyeni = new frg_aktif_isemri_yukleme_eski();
+                                        frg_aktif_isemri_yukleme fragmentyeni = new frg_aktif_isemri_yukleme();
                                         fragmentyeni.fn_senddata(_Yanit._zsevkisemi);
                                         FragmentManager fragmentManager = getFragmentManager();
                                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
