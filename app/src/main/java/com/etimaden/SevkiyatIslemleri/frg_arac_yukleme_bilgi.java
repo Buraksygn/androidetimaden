@@ -281,7 +281,7 @@ public class frg_arac_yukleme_bilgi extends Fragment {
     private class fn_Geri implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_aktif_isemri_yukleme fragmentyeni = new frg_aktif_isemri_yukleme();
+            frg_aktif_isemri_yukleme_eski fragmentyeni = new frg_aktif_isemri_yukleme_eski();
 
             fragmentyeni.fn_senddata(aktif_sevk_isemri);
 

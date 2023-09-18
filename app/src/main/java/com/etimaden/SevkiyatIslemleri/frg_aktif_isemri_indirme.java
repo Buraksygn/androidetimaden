@@ -69,7 +69,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
     TextView _txtYuklemeMiktar;
     Button _btnTamam;
     ImageButton _btnYenile;
-    ListView _zayi_urun_list;
+    ListView _urun_list;
     Button _btngeri;
 
     ArrayList<Urun_tag> urun_listesi_indirilen;
@@ -169,19 +169,19 @@ public class frg_aktif_isemri_indirme  extends Fragment {
         _btnTamam.playSoundEffect(0);
         _btnTamam.setOnClickListener(new fn_btnTamam());
 
-        _btngeri = (Button)getView().findViewById(R.id.btncikis);
+        _btngeri = (Button)getView().findViewById(R.id.btnGeri);
         _btngeri.playSoundEffect(0);
         _btngeri.setOnClickListener(new fn_Geri());
 
-        _zayi_urun_list = (ListView) getView().findViewById(R.id.zayi_urun_list);
+        _urun_list = (ListView) getView().findViewById(R.id.indirme_list);
 
-        _zayi_urun_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        _urun_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 _Secili = urun_listesi.get(position);
             }
         });
-        _zayi_urun_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        _urun_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -283,16 +283,16 @@ public class frg_aktif_isemri_indirme  extends Fragment {
 
             if (adapter != null) {
                 adapter.clear();
-                _zayi_urun_list.setAdapter(adapter);
+                _urun_list.setAdapter(adapter);
             }
 
             adapter=new apmblSevkiyatAktifIsEmiriIndirme(urun_listesi,getContext());
-            _zayi_urun_list.setAdapter(adapter);
+            _urun_list.setAdapter(adapter);
 
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 
@@ -474,7 +474,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
         isReadable = true;
 
@@ -656,7 +656,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
         isReadable = true;
     }
@@ -781,7 +781,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
             }
             catch (Exception ex)
             {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
         }
     }
@@ -878,7 +878,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
             }
             catch (Exception ex)
             {
-                ex.printStackTrace();
+                Genel.printStackTrace(ex,getContext());
             }
         }
     }
@@ -949,7 +949,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
                         .show();
             }
         }catch (Exception ex){
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
     }
 

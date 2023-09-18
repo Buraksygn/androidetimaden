@@ -600,11 +600,11 @@ public class GirisSayfasi extends AppCompatActivity {
                 {
                     // BURASI BARKOD
 
-                    frg_aktif_isemri_yukleme fragment = (frg_aktif_isemri_yukleme) getSupportFragmentManager().findFragmentByTag("frg_aktif_isemri_yukleme");
+                    frg_aktif_isemri_yukleme _frg_aktif_isemri_yukleme = (frg_aktif_isemri_yukleme) getSupportFragmentManager().findFragmentByTag("frg_aktif_isemri_yukleme");
 
-                    if (fragment != null && fragment.isVisible())
+                    if (_frg_aktif_isemri_yukleme != null && _frg_aktif_isemri_yukleme.isVisible())
                     {
-                        fragment.fn_BarkodOkutuldu(barcode);
+                        _frg_aktif_isemri_yukleme.rfidOkundu(barcode);
                     }
                     else
                     {
@@ -848,7 +848,7 @@ public class GirisSayfasi extends AppCompatActivity {
                                             frg_aktif_isemri_yukleme _frg_aktif_isemri_yukleme = (frg_aktif_isemri_yukleme) getSupportFragmentManager().findFragmentByTag("frg_aktif_isemri_yukleme");
 
                                             if (_frg_aktif_isemri_yukleme != null && _frg_aktif_isemri_yukleme.isVisible()) {
-                                                _frg_aktif_isemri_yukleme.fn_BarkodOkutuldu(_TempEpc);
+                                                _frg_aktif_isemri_yukleme.barkodOkundu(_TempEpc);
                                             } else {
                                                 frg_aktif_arac_secimi _frg_aktif_arac_secimi = (frg_aktif_arac_secimi) getSupportFragmentManager().findFragmentByTag("frg_aktif_arac_secimi");
 

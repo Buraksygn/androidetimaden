@@ -1,62 +1,57 @@
 package com.etimaden.SevkiyatIslemleri;
 
+import static com.etimaden.cSabitDegerler._ipAdresi3G;
+import static com.etimaden.cSabitDegerler._sbtVerisyon;
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
 import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
 import static com.etimaden.cSabitDegerler._zsifre;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.android.volley.Cache;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Network;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.DiskBasedCache;
-import com.android.volley.toolbox.HurlStack;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.etimaden.DataModel.mdlIsemriYukleme;
 import com.etimaden.GirisSayfasi;
-import com.etimaden.adapter.apmdlIsemriYukleme;
+import com.etimaden.adapter.apmblSevkiyatAktifIsEmiriIndirme;
+import com.etimaden.adapter.apmblSevkiyatAktifIsEmiriYukleme;
+import com.etimaden.adapterclass.Urun_tag_data;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
-import com.etimaden.cResponseResult.Viewsec_sevkiyat_urun;
-import com.etimaden.cResponseResult.Viewsec_sevkiyat_urun_listesi;
+import com.etimaden.cResponseResult.Urun_sevkiyat;
 import com.etimaden.genel.Genel;
+import com.etimaden.persos.Persos;
+import com.etimaden.persosclass.Urun_tag;
+import com.etimaden.persosclass.aktarim;
+import com.etimaden.request.request_secEtiket;
+import com.etimaden.request.request_sevkiyat_aktarim;
+import com.etimaden.request.request_sevkiyat_isemri;
+import com.etimaden.request.request_sevkiyat_isemri_uruntag_list_uruntag;
+import com.etimaden.request.request_string;
+import com.etimaden.request.request_string_string;
 import com.etimaden.ugr_demo.R;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_aktif_isemri_yukleme extends Fragment {
 
-    //SweetAlertDialog pDialog;
-
+    boolean isReadable = true;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
     String _ayaraktifdepo = "";
@@ -67,45 +62,23 @@ public class frg_aktif_isemri_yukleme extends Fragment {
     String _ayarbaglantituru = "";
     String _ayarsunucuip = "";
     String _ayarversiyon = "";
-    Button _btn_03;
+    String _OnlineUrl = "";
+    Persos persos;
 
-    String _zhareket_id="";
-    String _zisletme="";
-    String _zurun_kodu="";
-    String _zkarakteristikler="";
-    String _zpalet_agirligi="";
-    String _zlotno="";
-    String _zisemri_id="";
-    String _zkod_sap="";
-
-    public String _OnlineUrl = "";
-    public String _BarkodOkutma = "";
-
-    //public ListAdapter adapter;
-
-    public ListView _Liste;
-
-    public String _Yanitlar="";
-
+    ImageView _imgBilgi;
     TextView _txtBaslik;
-    TextView _txtYazi;
-
-    ArrayList<mdlIsemriYukleme> dataModels;
-
-    int _BitenMiktar = 0;
-
-    int _iToplam = 0;
-
-    public RadioButton triggerRFID;
-    public RadioButton triggerScanner;
-
-    Button _imgBilgi;
-
+    TextView _txtYuklemeMiktar;
+    Button _btnTamam;
     ImageButton _btnYenile;
+    ListView _urun_list;
+    Button _btngeri;
 
-    private static apmdlIsemriYukleme adapter;
 
-    public Sevkiyat_isemri _caktif_sevk_isemri;
+    ArrayList<Urun_sevkiyat> urun_listesi;
+    Sevkiyat_isemri aktif_sevk_isemri = null;
+    Urun_sevkiyat _Secili = null;
+
+    private apmblSevkiyatAktifIsEmiriYukleme adapter;
 
     public static frg_aktif_isemri_yukleme newInstance() {
 
@@ -122,295 +95,13 @@ public class frg_aktif_isemri_yukleme extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frg_aktif_isemri_yukleme , container, false);
+        return inflater.inflate(R.layout.frg_aktif_isemri_yukleme, container, false);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
     }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        ((GirisSayfasi) getActivity()).fn_ModBarkod();
-
-        _myIslem = new VeriTabani(getContext());
-
-        fn_AyarlariYukle();
-
-        _myIslem.fn_EpcTemizle();
-
-        ((GirisSayfasi) getActivity()).fn_ListeTemizle();
-        //  ((GirisSayfasi) getActivity()).fn_GucAyarla(248);
-
-
-        triggerRFID = (RadioButton) getView().findViewById(R.id.radio_trigger_rfid);
-        triggerRFID.setOnClickListener(new fn_triggerRFID());
-
-        triggerScanner = (RadioButton) getView().findViewById(R.id.radio_trigger_scanner);
-        triggerScanner.setOnClickListener(new fn_triggerScanner());
-
-
-        _btn_03 = (Button) getView().findViewById(R.id.btn_03);
-        _btn_03.playSoundEffect(0);
-        _btn_03.setOnClickListener(new fn_btn_03());
-
-        _btnYenile = (ImageButton)getView().findViewById(R.id.btnyenile);
-        _btnYenile.playSoundEffect(0);
-        _btnYenile.setOnClickListener(new fn_Yenile());
-
-        // _btngeri = (Button) getView().findViewById(R.id.btngeri);
-        // _btngeri.playSoundEffect(0);
-        // _btngeri.setOnClickListener(new fn_Geri());
-
-        _txtBaslik = (TextView) getView().findViewById(R.id.txtYazi6);
-
-        _txtYazi = (TextView) getView().findViewById(R.id.textView20);
-        _txtYazi.setText("0");
-
-      // _Cikar=(TextView)getView().findViewById(R.id.yazi_cikar);
-        _imgBilgi = (Button)getView().findViewById(R.id.imgBilgi);
-        _imgBilgi.playSoundEffect(0);
-        _imgBilgi.setOnClickListener(new fn_Bilgilendirme());
-
-        _Liste = (ListView) getView().findViewById(R.id.isemri_list);
-
-        fn_BildirimYaz();
-
-        fn_BekleyenleriGetir();
-
-
-
-
-        //_Cikar = (TextView) getView().findViewById(android.R.id.yazi_cikar);
-        //_Cikar.setOnClickListener(new fn_BeniCikar());
-
-    }
-
-
-
-
-
-    private void fn_BekleyenleriGetir() {
-
-
-        ((GirisSayfasi) getActivity()).fn_ListeTemizle();
-
-
-        JSONObject parametre = new JSONObject();
-        try
-        {
-            parametre.put("_zsunucu_ip_adresi", _ayarsunucuip);
-            parametre.put("_zaktif_alt_tesis", _ayaraktifalttesis);
-            parametre.put("_zaktif_tesis", _ayaraktiftesis);
-            parametre.put("_zhareket_id", _zhareket_id);
-            parametre.put("_zkullaniciadi", _zkullaniciadi);
-            parametre.put("_zsifre", _zsifre);
-            parametre.put("aktif_sunucu", _ayaraktifsunucu);
-            parametre.put("aktif_kullanici", _ayaraktifkullanici);
-        }
-        catch (JSONException error)
-        {
-            error.printStackTrace();
-        }
-
-        RequestQueue mRequestQueue;
-
-        Cache cache = new DiskBasedCache(getContext().getCacheDir(), 2*1024 * 1024); // 1MB cap
-
-        Network network = new BasicNetwork(new HurlStack());
-
-        RequestQueue queue = new RequestQueue(cache, network);
-        queue.start();
-
-        JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.POST,
-                _OnlineUrl,
-                parametre,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-
-                            ObjectMapper objectMapper = new ObjectMapper();
-
-                            Viewsec_sevkiyat_urun_listesi _Yanit = objectMapper.readValue(response.toString(), Viewsec_sevkiyat_urun_listesi.class);
-
-                            if(_Yanit.equals("0"))
-                            {
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
-                                        .setTitleText("HATA")
-                                        .setContentText(_Yanit._zHataAciklama)
-                                        .show();
-
-                            }
-
-                            else
-                            {
-                                try {
-
-                                    int _Boyut = _Yanit._zDiziaktif_sevk_isemri.size();
-
-                                    dataModels= new ArrayList<>();
-
-                                    _iToplam = 0;
-
-                                    for(int iSayac = 0;iSayac<_Boyut;iSayac++)
-                                    {
-
-                                        _iToplam += Integer.parseInt(_Yanit._zDiziaktif_sevk_isemri.get(iSayac).palet_agirligi.toString());
-
-                                        dataModels.add(new mdlIsemriYukleme(
-                                                //iSayac + 1,
-                                                _Boyut-iSayac ,
-                                                "",
-                                                _Yanit._zDiziaktif_sevk_isemri.get(iSayac).kod.toString(),
-                                                _Yanit._zDiziaktif_sevk_isemri.get(iSayac).lotno.toString()
-                                        ));
-                                    }
-
-                                    adapter= new apmdlIsemriYukleme(dataModels,getContext());
-
-                                    _Liste.setAdapter(adapter);
-
-                                    _txtYazi.setText("YÜKLENEN MİKTAR = "+_iToplam);
-
-                                    _caktif_sevk_isemri.yapilan_miktar = _iToplam+"";
-                                    _caktif_sevk_isemri.yapilan_adet = _Boyut+"";
-
-
-
-/*
-                                    JSONArray _Array = response.getJSONArray("_zDiziaktif_sevk_isemri");
-
-                                    ArrayList<HashMap<String, String>> _IsEmirListesi = new ArrayList<>();
-
-                                    _myIslem.fn_IsEmirleriTemizle();
-
-                                    for (int i = 0; i < _Array.length(); i++)
-                                    {
-                                        JSONObject actor = _Array.getJSONObject(i);
-
-                                        String v_urun_kod = actor.getString("urun_kod").trim();
-                                        String v_palet_agirligi = actor.getString("palet_agirligi").trim();
-                                        String v_palet_dizim = actor.getString("palet_dizim").trim();
-                                        String v_torba_agirlik = actor.getString("torba_agirlik").trim();
-                                        String v_karakteristikler = actor.getString("karakteristikler").trim();
-                                        String v_lotno = actor.getString("lotno").trim();
-                                        String v_urun_adi = actor.getString("urun_adi").trim();
-                                        String v_rfid = actor.getString("rfid").trim();
-                                        String v_kod = actor.getString("kod").trim();
-                                        String v_palet_rfid = actor.getString("palet_rfid").trim();
-                                        String v_palet_kod = actor.getString("palet_kod").trim();
-                                        String v_islem_durumu = actor.getString("islem_durumu").trim();
-                                        String v_etiket_turu = actor.getString("etiket_turu").trim();
-                                        String v_isletme = actor.getString("isletme").trim();
-                                        String v_isletme_esleme = actor.getString("isletme_esleme").trim();
-                                        String v_isletme_adi = actor.getString("isletme_adi").trim();
-                                        String v_kilitli = actor.getString("kilitli").trim();
-
-                                        _myIslem.fn_yuklenenetiketYukle(
-                                                v_urun_kod,
-                                                v_palet_agirligi,
-                                                v_palet_dizim,
-                                                v_torba_agirlik,
-                                                v_karakteristikler,
-                                                v_lotno,
-                                                v_urun_adi,
-                                                v_rfid,
-                                                v_kod,
-                                                v_palet_rfid,
-                                                v_palet_kod,
-                                                v_islem_durumu,
-                                                v_etiket_turu,
-                                                v_isletme,
-                                                v_isletme_esleme,
-                                                v_isletme_adi,
-                                                v_kilitli);
-                                    }
-
-                                    fn_Listele();*/
-                                }catch (Exception ex)
-                                {
-                                    Genel.printStackTrace(ex,getContext());
-                                    //Toast.makeText(getContext(), ex.toString(), Toast.LENGTH_SHORT).show();
-
-                                }
-                            }
-
-
-
-                            //Toast.makeText(getApplicationContext(), "_zSayfaAdiAciklama =" + _zHataAciklamasi, Toast.LENGTH_SHORT).show();
-
-                        } catch (JsonMappingException e) {
-                            e.printStackTrace();
-                        } catch (JsonProcessingException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        //Toast.makeText(getContext(), "error =" + error.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-
-        );
-        int socketTimeout = 30000;//30 seconds - change to what you want
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        request.setRetryPolicy(policy);
-        queue.add(request);
-
-    }
-
-
-
-
-
-    private void fn_BildirimYaz() {
-
-        // JSONObject jsonObj = new JSONObject(aktif_sevk_isemri);
-
-        //String _Aciklama="ARAÇ : " + jsonObj.getString("arac_plaka") + " - SAP KODU : " +jsonObj.getString("kod_sap");
-        String _Aciklama = "ARAÇ : " + _caktif_sevk_isemri.arac_plaka + " - SAP KODU : " + _caktif_sevk_isemri.kod_sap;
-
-        _zhareket_id = _caktif_sevk_isemri.islem_id.trim();
-        _zisletme = _caktif_sevk_isemri.isletme.trim();
-        _zurun_kodu = _caktif_sevk_isemri.urun_kodu.trim();
-        _zkarakteristikler = _caktif_sevk_isemri.karakteristikler.trim();
-        _zpalet_agirligi = _caktif_sevk_isemri.palet_agirligi.trim();
-        _zlotno = _caktif_sevk_isemri.lotno.trim();
-        _zisemri_id = _caktif_sevk_isemri.isemri_id.trim();
-        _zkod_sap = _caktif_sevk_isemri.kod_sap.trim();
-
-        if (_caktif_sevk_isemri.alici_isletme.equals("")) {
-            _Aciklama += "  ALICI : " + _caktif_sevk_isemri.alici + "\n";
-            _Aciklama += "BOOKING NO : " + _caktif_sevk_isemri.bookingno + "\n";
-        } else
-            _Aciklama += "  ALICI : " + _caktif_sevk_isemri.alici_isletme + "\n";
-
-        _txtBaslik.setText(_Aciklama);
-
-
-        /*
-        *  baslik.Text = "ARAÇ : " + aktif_sevk_isemri.arac_plaka + " - SAP KODU : " + aktif_sevk_isemri.kod_sap + Environment.NewLine;
-            if (aktif_sevk_isemri.alici_isletme.Equals(""))
-            {
-                baslik.Text += "ALICI : " + aktif_sevk_isemri.alici + Environment.NewLine;
-                baslik.Text += "BOOKING NO : " + aktif_sevk_isemri.bookingno + Environment.NewLine;
-            }
-            else
-                baslik.Text += "ALICI : " + aktif_sevk_isemri.alici_isletme + Environment.NewLine;
-            baslik.Text += "YÜKLEME LİSTESİ";
-        * */
-    }
-
 
     private void fn_AyarlariYukle()
     {
@@ -423,179 +114,1175 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         _ayaraktifsunucu=_myIslem.fn_aktif_sunucu();
         _ayaraktifisletmeeslesme=_myIslem.fn_isletmeeslesme();
 
-
         if(_ayarbaglantituru.equals("wifi"))
         {
-            _OnlineUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/sec_sevkiyat_urun_listesi";
-            _BarkodOkutma = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/sec_sevkiyat_urun";
+            _OnlineUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/";
         }
         else
         {
-            _OnlineUrl = "http://88.255.50.73:"+_zport3G+"/api/sec_sevkiyat_urun_listesi";
-            _BarkodOkutma = "http://88.255.50.73:"+_zport3G+"/api/sec_sevkiyat_urun";
+            _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
         }
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
-    public void fn_senddata(Sevkiyat_isemri  v_aktif_sevk_isemri)
+    public void fn_senddata(Sevkiyat_isemri v_aktif_sevk_isemri)
     {
-        _caktif_sevk_isemri = v_aktif_sevk_isemri;
+        this.aktif_sevk_isemri=v_aktif_sevk_isemri;
     }
 
-    public void fn_BarkodOkutuldu(String barcode)
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
     {
-        JSONObject parametre = new JSONObject();
+        super.onActivityCreated(savedInstanceState);
+
+        //barkod,rfid,ikiside
+        //((GirisSayfasi) getActivity()).fn_ModBoth();
+        ((GirisSayfasi) getActivity()).fn_ModBarkod();
+        _myIslem = new VeriTabani(getContext());
+        fn_AyarlariYukle();
+        _myIslem.fn_EpcTemizle();
+        ((GirisSayfasi) getActivity()).fn_ListeTemizle();
+
+        _txtYuklemeMiktar = (TextView) getView().findViewById(R.id.txtYuklemeMiktar);
+
+        _imgBilgi = (ImageView) getView().findViewById(R.id.imgBilgi);
+        _imgBilgi.setOnClickListener(new fn_imgBilgi());
+
+        _btnYenile = (ImageButton) getView().findViewById(R.id.btnYenile);
+        _btnYenile.setOnClickListener(new fn_btnYenile());
+
+        _txtBaslik = (TextView) getView().findViewById(R.id.txtBaslik);
+        String baslik = "ARAÇ : " + aktif_sevk_isemri.arac_plaka + " - SAP KODU : " + aktif_sevk_isemri.kod_sap ;
+        if (aktif_sevk_isemri.alici_isletme.equals(""))
+        {
+            baslik += "\r\nALICI : " + aktif_sevk_isemri.alici;
+            baslik += "\r\nBOOKING NO : " + aktif_sevk_isemri.bookingno;
+        }
+        else
+            baslik += "\r\nALICI : " + aktif_sevk_isemri.alici_isletme ;
+        baslik += "\r\nYÜKLEME LİSTESİ";
+        _txtBaslik.setText(baslik);
+
+        _btnTamam = (Button)getView().findViewById(R.id.btnTamam);
+        _btnTamam.playSoundEffect(0);
+        _btnTamam.setOnClickListener(new fn_btnTamam());
+
+        _btngeri = (Button)getView().findViewById(R.id.btnGeri);
+        _btngeri.playSoundEffect(0);
+        _btngeri.setOnClickListener(new fn_Geri());
+
+        _urun_list = (ListView) getView().findViewById(R.id.yukleme_list);
+
+        _urun_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                _Secili = urun_listesi.get(position);
+            }
+        });
+        _urun_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                _Secili = urun_listesi.get(position);
+                fn_listview_longclick();
+                return false;
+            }
+        });
+
+        fn_AyarlariYukle();
+
+        urun_listesi= new ArrayList<Urun_sevkiyat>();
+
+        request_string _Param1= new request_string();
+        _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
+        _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
+        _Param1.set_zaktif_tesis(_ayaraktiftesis);
+        _Param1.set_zsurum(_sbtVerisyon);
+        _Param1.set_zkullaniciadi(_zkullaniciadi);
+        _Param1.set_zsifre(_zsifre);
+        _Param1.setAktif_sunucu(_ayaraktifsunucu);
+        _Param1.setAktif_kullanici(_ayaraktifkullanici);
+
+        _Param1.set_value(aktif_sevk_isemri.islem_id);
+
+        Genel.showProgressDialog(getContext());
+        List<Urun_sevkiyat> result = persos.fn_sec_sevkiyat_urun_listesi(_Param1);
+        urun_listesi=new ArrayList<>();
+        if(result!=null) {
+            urun_listesi = new ArrayList<>(result);
+        }
+        Genel.dismissProgressDialog();
 
         try
         {
-            parametre.put("_zkullaniciadi", _zkullaniciadi);
-            parametre.put("_zsifre", _zsifre);
-            parametre.put("_zrfid", barcode);
-            parametre.put("_zhareket_id", _zhareket_id);
-            parametre.put("_zisletme", _zisletme);
-            parametre.put("_zurun_kodu", _zurun_kodu);
-            parametre.put("_zkarakteristikler", _zkarakteristikler);
-            parametre.put("_zpalet_agirligi", _zpalet_agirligi);
-            parametre.put("_zlotno", _zlotno);
-            parametre.put("_zisemri_id", _zisemri_id);
-            parametre.put("_zkod_sap", _zkod_sap);
-            parametre.put("_zsunucu_ip_adresi", _ayarsunucuip);
-            parametre.put("_zaktif_alt_tesis", _ayaraktifalttesis);
-            parametre.put("_zaktif_tesis", _ayaraktiftesis);
-            parametre.put("aktif_sunucu", _ayaraktifsunucu);
-            parametre.put("aktif_kullanici", _ayaraktifkullanici);
+            request_string_string _Param= new request_string_string();
+            _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+            _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            _Param.set_zaktif_tesis(_ayaraktiftesis);
+            _Param.set_zsurum(_sbtVerisyon);
+            _Param.set_zkullaniciadi(_zkullaniciadi);
+            _Param.set_zsifre(_zsifre);
+            _Param.setAktif_sunucu(_ayaraktifsunucu);
+            _Param.setAktif_kullanici(_ayaraktifkullanici);
+
+            _Param.set_value(aktif_sevk_isemri.isemri_detay_id);
+            _Param.set_value2(aktif_sevk_isemri.indirmeBindirme);
+
+            Genel.showProgressDialog(getContext());
+            List<String> miktar_palet = persos.fn_aktif_sevk_kalan_miktar_palet(_Param);
+            Genel.dismissProgressDialog();
+            aktif_sevk_isemri.kalan_agirlik = miktar_palet.get(0);
+            aktif_sevk_isemri.kalan_palet_sayisi = miktar_palet.get(1);
         }
-        catch (JSONException error)
+        catch (Exception ex)
         {
-            error.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
+            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("İşlem Başarısız")
+                    .setContentTextSize(25)
+                    .setContentText("Araç detayına ulaşılamadı. Daha sonra tekrar deneyiniz \r\n \"network hata kodu = 2")
+                    .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                            frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
+                            FragmentManager fragmentManager = getFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
+                            fragmentTransaction.commit();
+                            return;
+                        }
+                    })
+                    .show();
+            return;
+        }
+        if (urun_listesi == null)
+        {
+            urun_listesi = new ArrayList<>();
+            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("İşlem Başarısız")
+                    .setContentTextSize(25)
+                    .setContentText("Araç detayına ulaşılamadı. Daha sonra tekrar deneyiniz \r\n \"network hata kodu = 2")
+                    .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                            frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
+                            FragmentManager fragmentManager = getFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
+                            fragmentTransaction.commit();
+                            return;
+                        }
+                    })
+                    .show();
+            return;
         }
 
-        RequestQueue mRequestQueue;
+        updateListviewItem();
+    }
 
-        Cache cache = new DiskBasedCache(getContext().getCacheDir(), 2*1024 * 1024); // 1MB cap
-        Network network = new BasicNetwork(new HurlStack());
+    private void updateListviewItem()
+    {
+        try
+        {
+            urun_listesi= new ArrayList<Urun_sevkiyat>();
 
-        RequestQueue queue = new RequestQueue(cache, network);
-        queue.start();
+            int miktar = 0;
 
-        JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.POST,
-                _BarkodOkutma,
-                parametre,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
+            for (Urun_sevkiyat l : urun_listesi ) {
+                miktar += Integer.parseInt(l.palet_agirligi);
+            }
 
-                            ObjectMapper objectMapper = new ObjectMapper();
+            String msg="YÜKLENEN MİKTAR = " + miktar;
+            _txtYuklemeMiktar.setText(msg);
+            aktif_sevk_isemri.yapilan_miktar = msg;
+            aktif_sevk_isemri.yapilan_adet = "" + urun_listesi.size();
 
-                            Viewsec_sevkiyat_urun _Yanit = objectMapper.readValue(response.toString(), Viewsec_sevkiyat_urun.class);
+            if (adapter != null) {
+                adapter.clear();
+                _urun_list.setAdapter(adapter);
+            }
 
-                            if(_Yanit._zSonuc.equals("0"))
-                            {
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
-                                        .setTitleText("HATA")
-                                        .setContentText(_Yanit._zHataAciklama)
-                                        .show();
+            adapter=new apmblSevkiyatAktifIsEmiriYukleme(urun_listesi,getContext());
+            _urun_list.setAdapter(adapter);
+
+        }
+        catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,getContext());
+        }
+    }
+
+    public void barkodOkundu(String barkod)
+    {
+        try
+        {
+            barkod = barkod.substring(barkod.length()-24);
+            if (!isReadable)
+            {
+                return;
+            }
+            isReadable = false;
+            Genel.playQuestionSound(getContext());
+
+            request_string v_Gelen=new request_string();
+            v_Gelen.set_value(barkod);
+            v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
+            v_Gelen.set_zkullaniciadi(_zkullaniciadi);
+            v_Gelen.set_zsifre(_zsifre);
+            v_Gelen.set_zsunucu_ip_adresi(_ayarsunucuip);
+            v_Gelen.set_zsurum(_sbtVerisyon);
+            v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
+            v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
+
+            Genel.showProgressDialog(getContext());
+            Urun_sevkiyat tag = persos.fn_sec_sevkiyat_urun(v_Gelen);
+            Genel.dismissProgressDialog();
+
+            Urun_sevkiyat urun = tag;
+
+            if (urun == null)
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Lütfen uygun bir ürün etiketi okutunuz. Ürün kaydı bulunamadı..")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+
+            if (urun.islem_durumu.equals("3"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün satılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("0"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün üretilmemiş ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("2"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün sevk edilemez ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("4"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün etiket değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("200"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün TSE tarafından ayrılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("201"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün işletme tarafından ayrılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("350"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün torba tipi değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("351"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün kirli torba değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("352"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün geribesleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("353"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün palet düzenleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("354"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün elleçleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.kilitli.equals("True"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün manipülasyon bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (tag == null || (tag.islem_durumu != "401" && tag.islem_durumu != "1" && tag.islem_durumu != "8"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir.\r\n İşleme uygun olmayan etiket.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (tag.etiket_turu == "1" || tag.etiket_turu == "0")
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
+                        .setContentTextSize(25)
+                        .setContentText("Shrinkleme işlemi yapılmamış veya Bigbag olmayan bir ürün sevk edilemez.\r\n İşleme uygun olmayan etiket.")
+                        .showCancelButton(false)
+                        .show();
+            }
+            else
+            {
+                urunDegerlendir(tag);
+            }
+        }
+        catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,getContext());
+        }
+        isReadable = true;
+    }
+
+    public void rfidOkundu(String rfid)
+    {
+        try
+        {
+            if (!isReadable)
+            {
+                return;
+            }
+            isReadable = false;
+            Genel.playQuestionSound(getContext());
+
+            request_string v_Gelen=new request_string();
+            v_Gelen.set_value(rfid);
+            v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
+            v_Gelen.set_zkullaniciadi(_zkullaniciadi);
+            v_Gelen.set_zsifre(_zsifre);
+            v_Gelen.set_zsunucu_ip_adresi(_ayarsunucuip);
+            v_Gelen.set_zsurum(_sbtVerisyon);
+            v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
+            v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
+
+            Genel.showProgressDialog(getContext());
+            Urun_sevkiyat tag = persos.fn_sec_sevkiyat_urun(v_Gelen);
+            Genel.dismissProgressDialog();
+
+            Urun_sevkiyat urun = tag;
+
+            if (urun == null)
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Lütfen uygun bir ürün etiketi okutunuz. Ürün kaydı bulunamadı..")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+
+            if (urun.islem_durumu.equals("3"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün satılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("0"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün üretilmemiş ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("2"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün sevk edilemez ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("4"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün etiket değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("200"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün TSE tarafından ayrılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("201"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün işletme tarafından ayrılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("350"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün torba tipi değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("351"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün kirli torba değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("352"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün geribesleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("353"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün palet düzenleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.islem_durumu.equals("354"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün elleçleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (urun.kilitli.equals("True"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün manipülasyon bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (tag == null || (tag.islem_durumu != "401" && tag.islem_durumu != "1" && tag.islem_durumu != "8"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir.\r\n İşleme uygun olmayan etiket.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+            }
+            else if (tag.etiket_turu == "1" || tag.etiket_turu == "0")
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
+                        .setContentTextSize(25)
+                        .setContentText("Shrinkleme işlemi yapılmamış veya Bigbag olmayan bir ürün sevk edilemez.\r\n İşleme uygun olmayan etiket.")
+                        .showCancelButton(false)
+                        .show();
+            }
+            else
+            {
+                urunDegerlendir(tag);
+            }
+        }
+        catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,getContext());
+        }
+        isReadable = true;
+    }
+
+    private void urunDegerlendir(Urun_sevkiyat tag)
+    {
+        try {
+            String[] urun_char12 = tag.karakteristikler.split(",");
+            boolean kodVar = false;
+            for (Urun_sevkiyat w : urun_listesi) {
+                if (w.kod.equals(tag.kod)) {
+                    kodVar = true;
+                }
+            }
+
+            if (kodVar == true) {
+
+                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("ÜRÜN ÇIKARMA")
+                        .setContentText(tag.kod + " SERİ NUMARALI ÜRÜNÜ YÜKLEME LİSTESİNDEN ÇIKARMAK İSTİYOR MUSUNUZ ?")
+                        .setContentTextSize(20)
+                        .setConfirmText("EVET")
+                        .setCancelText("HAYIR")
+                        .showCancelButton(true)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+
+                                aktarim akt = new aktarim();
+                                akt.akt_aktarimdurumu = "0";
+                                akt.akt_aktarimtipi = "5";
+                                akt.akt_isemri_detay = aktif_sevk_isemri.isemri_detay_id;
+                                akt.akt_isletme = aktif_sevk_isemri.isletme;
+                                akt.akt_kod_isemri = aktif_sevk_isemri.isemri_id;
+                                akt.akt_kod_sap = aktif_sevk_isemri.kod_sap;
+                                akt.akt_kod_urun = aktif_sevk_isemri.urun_kodu;
+                                akt.akt_sevk_har_id = aktif_sevk_isemri.islem_id;
+                                akt.akt_urn_palet_rfid = tag.rfid;
+                                akt.akt_urn_palet_serino = tag.palet_kod;
+                                akt.akt_urn_rfid = tag.rfid;
+                                akt.akt_urn_serino = tag.palet_kod;
+                                akt.akt_user_id = _ayaraktifkullanici;
+
+                                request_sevkiyat_aktarim _Param1 = new request_sevkiyat_aktarim();
+                                _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                _Param1.set_zaktif_tesis(_ayaraktiftesis);
+                                _Param1.set_zsurum(_sbtVerisyon);
+                                _Param1.set_zkullaniciadi(_zkullaniciadi);
+                                _Param1.set_zsifre(_zsifre);
+                                _Param1.setAktif_sunucu(_ayaraktifsunucu);
+                                _Param1.setAktif_kullanici(_ayaraktifkullanici);
+
+                                _Param1.set_aktarim(akt);
+
+                                Genel.showProgressDialog(getContext());
+                                //todo persos_aktarim classı icinde ama burda persosa ekliyorum.
+                                Boolean islem_sonucu = persos.fn_ekle_aktarim(_Param1);
+                                Genel.dismissProgressDialog();
+
+                                if (islem_sonucu == false)
+                                {
+                                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                            .setTitleText("İşlem Başarısız")
+                                            .setContentTextSize(25)
+                                            .setContentText("Kayıt yapılamadı. \r\n Veritabanı hatası")
+                                            .showCancelButton(false)
+                                            .show();
+                                }
+                                else
+                                {
+                                    for(int i=0;i<urun_listesi.size();i++){
+                                        if(urun_listesi.get(i).rfid.equals(tag.rfid)){
+                                            urun_listesi.remove(i);
+                                        }
+                                    }
+                                    updateListviewItem();
+                                }
+                                return;
                             }
-                            else
-                            {
-                                fn_BekleyenleriGetir();
+                        })
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                                return;
                             }
+                        })
+                        .show();
 
-                        } catch (JsonMappingException e) {
-                            e.printStackTrace();
-                        } catch (JsonProcessingException e) {
-                            e.printStackTrace();
+                return;
+            }
+            else if (!tag.isletme.equals(aktif_sevk_isemri.isletme))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün " + tag.isletme_adi + " ürünü olarak görünmektedir. İş emri ile işletme uyum sağlamıyor. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("3"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün satılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("2"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün sevk edilemez ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("4"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün etiket değiişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("200"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün TSE tarafından ayrılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("201"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün işletme tarafından ayrılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("350") )
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün torba tipi değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("351") || urun_char12[11].equals("360"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün kirli torba değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("352") || urun_char12[11].equals("370"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün geribesleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("353") )
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün palet düzenleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("354") || urun_char12[11].equals("390"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün elleçleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("0"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Üretilmemiş Etiket")
+                        .setContentTextSize(25)
+                        .setContentText("ÜRETİM İŞLEMİ TAMAMLANMAMIŞ ÜRÜN ETİKETİ \r\n Etiketin üretim işlemi tamamlanmamıştır.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("8"))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Yükleme İşlemi Tamamlanmış")
+                        .setContentTextSize(25)
+                        .setContentText("BAŞKA BİR ARACA YÜKLEME İŞLEMİ TAMAMLANMIŞ ÜRÜN ETİKETİ \r\n Etiketin YÜKLEME işlemi tamamlanmıştır.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (!aktif_sevk_isemri.urun_kodu.equals(tag.urun_kod))
+            {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
+                        .setContentTextSize(25)
+                        .setContentText("Yanlış ürün seçimi yapıldı. \r\n İşleme uygun olmayan ürün.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+            else if (tag.islem_durumu.equals("1") || tag.islem_durumu.equals("401"))
+            {
+                String tag_lot_array = tag.lotno.replace('.', ' ');
+                tag_lot_array = tag_lot_array.trim();
+
+                String[] sevk_char = aktif_sevk_isemri.karakteristikler.split(",");
+                String[] urun_char = tag.karakteristikler.split(",");
+
+                for (int i = 0; i < sevk_char.length; i++)
+                {
+                    if (!sevk_char[i].equals("") && (i != 4 && i != 5 && i != 1 && i != 6))
+                    {
+                        String degisken_adi = "";
+
+                        if (i == 0)
+                        {
+                            degisken_adi = " 'ALTTAN BOŞALTMALI' ";
+                        }
+                        else if (i == 2)
+                        {
+                            degisken_adi = " 'BUFFLE' ";
+                        }
+                        else if (i == 3)
+                        {
+                            degisken_adi = " 'ÇİFT KULAKÇIK' ";
                         }
 
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                        else if (i == 7)
+                        {
+                            degisken_adi = " 'TORBA BOYUTU' ";
+                        }
+                        else if (i == 8)
+                        {
+                            degisken_adi = " 'TORBALAMA TÜRÜ' ";
+                        }
+                        else if (i == 9)
+                        {
+                            degisken_adi = " 'SÜLFAT DURUMU' ";
+                        }
+                        else if (i == 10)
+                        {
+                            degisken_adi = " 'PARÇACIK BOYUTU' ";
+                        }
 
-                        //Toast.makeText(getContext(), "error =" + error.toString(), Toast.LENGTH_SHORT).show();
+                        if (!sevk_char[i].equals(urun_char[i]))
+                        {
+                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
+                                    .setContentTextSize(25)
+                                    .setContentText("Yanlış karakteristeki ürün seçimi yapıldı." + degisken_adi + " değişken değeri uyuşmuyor. \r\n İşleme uygun olmayan ürün.")
+                                    .showCancelButton(false)
+                                    .show();
+                            return;
+                        }
                     }
                 }
 
+                if (!tag.palet_agirligi.equals(aktif_sevk_isemri.palet_agirligi))
+                {
+                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
+                            .setContentTextSize(25)
+                            .setContentText("Yanlış ağırlıkta ürün seçimi yapıldı.\r\n Ürün ağırlığı : " + tag.palet_agirligi + "\r\n Sipariş ağırlığı : " + aktif_sevk_isemri.palet_agirligi + "\r\nİşleme uygun olmayan ürün.")
+                            .showCancelButton(false)
+                            .show();
+                    return;
+                }
 
-        );
-        int socketTimeout = 30000;//30 seconds - change to what you want
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        request.setRetryPolicy(policy);
-        queue.add(request);
+                else if (!kodVar)
+                {
 
+                    if (!aktif_sevk_isemri.lotno.equals("") && !aktif_sevk_isemri.lotno.contains(tag_lot_array))
+                    {
+                        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText("YANLIŞ LOT SEÇİMİ")
+                                .setContentText(aktif_sevk_isemri.lotno + " nolu lottan ürün seçimi yapılmalı. Ürün kriterleri yüklemek için uygun. Yüklemeye devam etmek istiyor musunuz ?")
+                                .setContentTextSize(20)
+                                .setConfirmText("EVET")
+                                .setCancelText("HAYIR")
+                                .showCancelButton(true)
+                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sDialog) {
+                                        sDialog.dismissWithAnimation();
+                                        aktarim akt = new aktarim();
+                                        akt.akt_aktarimdurumu = "0";
+                                        akt.akt_aktarimtipi = "4";
+                                        akt.akt_isemri_detay = aktif_sevk_isemri.isemri_detay_id;
+                                        akt.akt_isletme = aktif_sevk_isemri.isletme;
+                                        akt.akt_kod_isemri = aktif_sevk_isemri.isemri_id;
+                                        akt.akt_kod_sap = aktif_sevk_isemri.kod_sap;
+                                        akt.akt_kod_urun = aktif_sevk_isemri.urun_kodu;
+                                        akt.akt_sevk_har_id = aktif_sevk_isemri.islem_id;
+                                        akt.akt_urn_palet_rfid = tag.rfid;
+                                        akt.akt_urn_palet_serino = tag.palet_kod;
+                                        akt.akt_urn_rfid = tag.rfid;
+                                        akt.akt_urn_serino = tag.palet_kod;
+                                        akt.akt_user_id = _ayaraktifkullanici;
 
+                                        request_sevkiyat_aktarim _Param1 = new request_sevkiyat_aktarim();
+                                        _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                        _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                        _Param1.set_zaktif_tesis(_ayaraktiftesis);
+                                        _Param1.set_zsurum(_sbtVerisyon);
+                                        _Param1.set_zkullaniciadi(_zkullaniciadi);
+                                        _Param1.set_zsifre(_zsifre);
+                                        _Param1.setAktif_sunucu(_ayaraktifsunucu);
+                                        _Param1.setAktif_kullanici(_ayaraktifkullanici);
+
+                                        _Param1.set_aktarim(akt);
+
+                                        Genel.showProgressDialog(getContext());
+                                        //todo persos_aktarim classı icinde ama burda persosa ekliyorum.
+                                        Boolean islem_sonucu = persos.fn_ekle_aktarim(_Param1);
+                                        Genel.dismissProgressDialog();
+
+                                        if (!islem_sonucu)
+                                        {
+                                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("İşlem Başarısız")
+                                                    .setContentTextSize(25)
+                                                    .setContentText("Kayıt yapılamadı.\r\n Veritabanı hatası")
+                                                    .showCancelButton(false)
+                                                    .show();
+                                        }
+                                        urun_listesi.add(tag);
+                                        updateListviewItem();
+                                        return;
+                                    }
+                                })
+                                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sDialog) {
+                                        sDialog.dismissWithAnimation();
+                                        return;
+                                    }
+                                })
+                                .show();
+
+                    }
+
+                }
+            }
+            else {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
+                        .setContentTextSize(25)
+                        .setContentText("Yanlış ürün seçimi yapıldı.\r\n İşleme uygun olmayan ürün.")
+                        .showCancelButton(false)
+                        .show();
+                return;
+            }
+        } catch (Exception ex) {
+            Genel.printStackTrace(ex,getContext());
+            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("")
+                    .setContentTextSize(25)
+                    .setContentText("İlgili iş emri kaydı bulunamadı. \r\n " + ex.toString())
+                    .showCancelButton(false)
+                    .show();
+        }
     }
 
-    private class fn_Geri implements View.OnClickListener
-    {
+    private class fn_imgBilgi implements View.OnClickListener {
         @Override
-        public void onClick(View view)
-        {
-            ((GirisSayfasi) getActivity()).fn_ModRFID();
+        public void onClick(View view) {
+            try
+            {
+                Genel.playButtonClikSound(getContext());
 
-            frg_aktif_isemri_secimi fragmentyeni = new frg_aktif_isemri_secimi();
+                String str = "";
+                if (aktif_sevk_isemri.alici_isletme.equals(""))
+                {
+                    str += "ALICI : " + aktif_sevk_isemri.alici;
+                    str += "\r\nBOOKING NO : " + aktif_sevk_isemri.bookingno;
+                } else {
+                    str += "\r\nALICI : " + aktif_sevk_isemri.alici_isletme;
+                }
+                str += "\r\nARAÇ PLAKASI : " + aktif_sevk_isemri.arac_plaka;
+                if (!aktif_sevk_isemri.konteyner_turu.equals("")) {
+                    str += "\r\nKONTEYNER  : " + aktif_sevk_isemri.kont_kodu;
+                }
+                str += "\r\nSAP KODU : " + aktif_sevk_isemri.kod_sap;
+                str += "\r\nÜRÜN ADI : " + aktif_sevk_isemri.urun_adi;
+                str += "\r\nTORBA AĞIRLIĞI : " + aktif_sevk_isemri.miktar_torba;
+                str += "\r\nPALET AĞIRLIĞI : " + aktif_sevk_isemri.palet_agirligi;
+                str += "\r\nY.ADET/ İŞEMRİ K.ADET : \r\n" + aktif_sevk_isemri.yapilan_adet + " / " + aktif_sevk_isemri.kalan_palet_sayisi;
+
+                new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE)
+                        .setTitleText("DETAY")
+                        .setContentText(str)
+                        .setContentTextSize(20)
+                        .setConfirmText("TAMAM")
+                        .showCancelButton(false)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
+
+            }
+            catch (Exception ex)
+            {
+                Genel.printStackTrace(ex,getContext());
+            }
+        }
+    }
+
+    private class fn_btnYenile implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+
+        }
+    }
+
+    private void fn_listview_longclick(){
+        try {
+
+            if (_Secili != null) {
+                final Urun_sevkiyat tag = _Secili;
+                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("SORU")
+                        .setContentText("SERİ NO : " + tag.palet_kod + "\r\n Seri nolu ürün için 'İNDİRME' işlemi uygulanacak. Onaylıyor musunuz ?")
+                        .setContentTextSize(20)
+                        .setConfirmText("EVET")
+                        .setCancelText("HAYIR")
+                        .showCancelButton(true)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+
+                                aktarim akt = new aktarim();
+                                akt.akt_aktarimdurumu = "0";
+                                akt.akt_aktarimtipi = "5";
+                                akt.akt_isemri_detay = aktif_sevk_isemri.isemri_detay_id;
+                                akt.akt_isletme = aktif_sevk_isemri.isletme;
+                                akt.akt_kod_isemri = aktif_sevk_isemri.isemri_id;
+                                akt.akt_kod_sap = aktif_sevk_isemri.kod_sap;
+                                akt.akt_kod_urun = aktif_sevk_isemri.urun_kodu;
+                                akt.akt_sevk_har_id = aktif_sevk_isemri.islem_id;
+                                akt.akt_urn_palet_rfid = tag.rfid;
+                                akt.akt_urn_palet_serino = tag.palet_kod;
+                                akt.akt_urn_rfid = tag.rfid;
+                                akt.akt_urn_serino = tag.palet_kod;
+                                akt.akt_user_id = _ayaraktifkullanici;
+
+                                request_sevkiyat_aktarim _Param1 = new request_sevkiyat_aktarim();
+                                _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                _Param1.set_zaktif_tesis(_ayaraktiftesis);
+                                _Param1.set_zsurum(_sbtVerisyon);
+                                _Param1.set_zkullaniciadi(_zkullaniciadi);
+                                _Param1.set_zsifre(_zsifre);
+                                _Param1.setAktif_sunucu(_ayaraktifsunucu);
+                                _Param1.setAktif_kullanici(_ayaraktifkullanici);
+
+                                _Param1.set_aktarim(akt);
+
+                                Genel.showProgressDialog(getContext());
+                                //todo persos_aktarim classı icinde ama burda persosa ekliyorum.
+                                Boolean islem_sonucu = persos.fn_ekle_aktarim(_Param1);
+                                Genel.dismissProgressDialog();
+
+                                if (islem_sonucu) {
+                                    for(int i=0;i<urun_listesi.size();i++){
+                                        if(urun_listesi.get(i).rfid.equals(tag.rfid)){
+                                            urun_listesi.remove(i);
+                                        }
+                                    }
+                                    updateListviewItem();
+                                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                            .setTitleText("Onay")
+                                            .setContentText("İndirme işlemi başarı ile tamamlandı.")
+                                            .setContentTextSize(20)
+                                            .setConfirmText("TAMAM")
+                                            .showCancelButton(false)
+                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialog sDialog) {
+                                                    sDialog.dismissWithAnimation();
+                                                }
+                                            })
+                                            .show();
+                                } else {
+                                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                            .setTitleText("İşlem Başarısız")
+                                            .setContentTextSize(25)
+                                            .setContentText("İndirme işlemi başarısız. Kayıt yapılamadı. \r\n Veritabanı hatası")
+                                            .showCancelButton(false)
+                                            .show();
+                                }
+                            }
+                        })
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                                return;
+                            }
+                        })
+                        .show();
+            }
+        }catch (Exception ex){
+            Genel.printStackTrace(ex,getContext());
+        }
+    }
+
+    private class fn_Geri implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_aktif_isemri_secimi").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }
 
-    private class fn_btn_03 implements View.OnClickListener {
+
+    private class fn_btnTamam implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            ((GirisSayfasi) getActivity()).fn_ModRFID();
-            ((GirisSayfasi) getActivity()).fn_GucAyarla(248);
-
-            frg_aktif_isemri_secimi fragmentyeni = new frg_aktif_isemri_secimi();
+            frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_aktif_isemri_secimi").addToBackStack(null);
-            fragmentTransaction.commit();
-        }
-    }
-
-
-    private class fn_triggerRFID implements View.OnClickListener {
-        @Override
-        public void onClick(View view)
-        {
-            ((GirisSayfasi) getActivity()).fn_ModRFID();
-
-            ((GirisSayfasi) getActivity()).fn_GucAyarla(60);
-        }
-    }
-
-    private class fn_triggerScanner implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            ((GirisSayfasi) getActivity()).fn_ModBarkod();
-        }
-    }
-
-    public void fn_cikar(View v)
-    {
-        //Toast.makeText(getContext(), "Clicked on Button", Toast.LENGTH_LONG).show();
-    }
-
-    private class fn_Yenile implements View.OnClickListener {
-        @Override
-        public void onClick(View v)
-        {
-            fn_BekleyenleriGetir();
-        }
-    }
-    private class fn_Bilgilendirme implements View.OnClickListener {
-        @Override
-        public void onClick(View v)
-        {
-            frg_arac_yukleme_bilgi fragmentyeni = new frg_arac_yukleme_bilgi();
-            fragmentyeni.fn_senddata(_caktif_sevk_isemri);
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_yukleme_bilgi").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }

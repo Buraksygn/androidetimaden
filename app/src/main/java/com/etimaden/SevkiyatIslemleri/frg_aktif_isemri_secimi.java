@@ -1,8 +1,6 @@
 package com.etimaden.SevkiyatIslemleri;
 
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,9 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -32,17 +28,12 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.etimaden.DataModel.mblsEmriKonteyner;
 import com.etimaden.DataModel.mdlIsemriSecimi;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.adapter.apmblIsEmriSecimi;
-import com.etimaden.adapter.apmblKonteynerIsEmri;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.cIslem.ViewtestParseClass;
-import com.etimaden.cIslem.cBilgi;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewsevkDegerlendir;
-import com.etimaden.cResponseResult.ViewsevkDegerlendirGroup;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -53,8 +44,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -659,7 +648,7 @@ public class frg_aktif_isemri_secimi extends Fragment {
                 }
                 else
                 {
-                    frg_aktif_isemri_yukleme fragmentyeni = new frg_aktif_isemri_yukleme();
+                    frg_aktif_isemri_yukleme_eski fragmentyeni = new frg_aktif_isemri_yukleme_eski();
                     fragmentyeni.fn_senddata(_Param);
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
