@@ -138,25 +138,24 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
 
     @POST("api/secYuklenenUrunListesi_nakil2")
     Call<View_sevkiyat_urun_tag_listesi> fn_secYuklenenUrunListesi_nakil(@Body request_sevkiyat_isemri v_Gelen);
-    //Burdan itibaren eklenecek
+
     @POST("api/ekleSevkiyatUrun_cikarma2")
     Call<View_bool_response> fn_ekleSevkiyatUrun_cikarma(@Body request_sevkiyat_isemri_uruntag_list_uruntag v_Gelen);
 
     @POST("api/iptal_yerde_konteyner")
     Call<View_bool_response> fn_iptal_yerde_konteyner(@Body request_sevkiyat_isemri v_Gelen);
 
-
-
-
-    @POST("api/sec_sevkiyat_urun_listesi")
+    @POST("api/sec_sevkiyat_urun_listesi2")
     Call<View_sevkiyat_urun_sevkiyat_listesi> fn_sec_sevkiyat_urun_listesi(@Body request_string v_Gelen);
 
-    @POST("api/aktif_sevk_kalan_miktar_palet")
+    @POST("api/aktif_sevk_kalan_miktar_palet2")
     Call<View_string_list> fn_aktif_sevk_kalan_miktar_palet(@Body request_string_string v_Gelen);
 
-    @POST("api/sec_sevkiyat_urun")
+    @POST("api/sec_sevkiyat_urun2")
     Call<View_sevkiyat_urun_sevkiyat> fn_sec_sevkiyat_urun(@Body request_string v_Gelen);
 
-    @POST("api/ekle_aktarim")
+    //@POST("api/ekle_aktarim")
+    @POST("api/kayit_aktarim")
     Call<View_bool_response> fn_ekle_aktarim(@Body request_sevkiyat_aktarim v_Gelen);
+    //Burdan itibaren eklenecek
 }

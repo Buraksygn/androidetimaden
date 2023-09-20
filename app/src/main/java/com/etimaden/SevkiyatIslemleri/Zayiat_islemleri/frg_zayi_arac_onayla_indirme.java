@@ -192,7 +192,7 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
                 Boolean acZayiArac = persos.fn_ac_zayi_arac(_Param);
                 Genel.dismissProgressDialog();
 
-                if (aktif_zayi.zay_id_isemrihareket_yeni == "" && acZayiArac)
+                if (aktif_zayi.zay_id_isemrihareket_yeni.equals("") && acZayiArac)
                 {
                     request_sevkiyat_zayi _Param1= new request_sevkiyat_zayi();
                     _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
@@ -230,7 +230,7 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
                             .show();
                     return;
                 }
-                else if (aktif_zayi.zay_id_isemrihareket_yeni != "")
+                else if (!aktif_zayi.zay_id_isemrihareket_yeni.equals(""))
                 {
                     request_sevkiyat_zayi _Param1= new request_sevkiyat_zayi();
                     _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
@@ -316,7 +316,7 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
 
             try
             {
-                if (aktif_zayi.zay_id_isemrihareket_yeni== "")
+                if (aktif_zayi.zay_id_isemrihareket_yeni.equals(""))
                 {
                     return;
                 }

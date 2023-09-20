@@ -194,6 +194,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
         fn_AyarlariYukle();
 
         urun_listesi= new ArrayList<Urun_tag_data>();
+        adapter=new apmblSevkiyatAktifIsEmiriIndirme(urun_listesi,getContext());
 
         request_sevkiyat_isemri _Param1= new request_sevkiyat_isemri();
         _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
@@ -283,11 +284,9 @@ public class frg_aktif_isemri_indirme  extends Fragment {
 
             if (adapter != null) {
                 adapter.clear();
-                _urun_list.setAdapter(adapter);
+                adapter.addAll(urun_listesi);
+                adapter.notifyDataSetChanged();
             }
-
-            adapter=new apmblSevkiyatAktifIsEmiriIndirme(urun_listesi,getContext());
-            _urun_list.setAdapter(adapter);
 
         }
         catch (Exception ex)
@@ -458,7 +457,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
                 return;
             }
 
-            if (tag == null || (tag.islem_durumu != "1" && (tag.islem_durumu != "3" && tag.islem_durumu != "7")))
+            if (tag == null || (!tag.islem_durumu.equals("1") && (!tag.islem_durumu.equals("3") && !tag.islem_durumu.equals("7"))))
             {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
@@ -640,7 +639,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
                 return;
             }
 
-            if (tag == null || (tag.islem_durumu != "1" && (tag.islem_durumu != "3" && tag.islem_durumu != "7")))
+            if (tag == null || (!tag.islem_durumu.equals("1") && (!tag.islem_durumu.equals("3") && !tag.islem_durumu.equals("7"))))
             {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")

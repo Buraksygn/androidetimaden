@@ -231,7 +231,7 @@ public class frg_ambalaj_tipi_degisimi extends Fragment {
                 {
                     isemri_degerlendir(_tag);
                 }
-                else if (!isemri_secildi || _tag == null || _tag.islem_durumu != "1")
+                else if (!isemri_secildi || _tag == null || !_tag.islem_durumu.equals("1"))
                 {
                  //   Cursor.Current = Cursors.Default;
                   //  Program.giveHataMesaji("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN", "Ürün yapmak istediğiniz işlem için uygun değildir.", "İşleme uygun olmayan etiket.");

@@ -155,7 +155,7 @@ public class frg_arac_onayla_indirme extends Fragment {
         public void onClick(View view) {
             try
             {
-                if (aktif_sevk_isemri.islem_id == "")
+                if (aktif_sevk_isemri.islem_id.equals(""))
                 {
                     return;
                 }
@@ -286,7 +286,7 @@ public class frg_arac_onayla_indirme extends Fragment {
         public void onClick(View view) {
             try
             {
-                if (aktif_sevk_isemri.islem_id == "")
+                if (aktif_sevk_isemri.islem_id.equals(""))
                 {
                     return;
                 }

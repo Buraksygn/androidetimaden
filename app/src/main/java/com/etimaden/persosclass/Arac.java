@@ -8,6 +8,9 @@ public class Arac
     public String arac_istihab_haddi  = "";
     public String arac_bos_tartim = "";
 
+    public Arac() {
+    }
+
     public Arac(String arac_kod, String arac_rfid, String arac_plaka, String arac_istihab_haddi, String arac_bos_tartim) {
         this.arac_kod = arac_kod;
         this.arac_rfid = arac_rfid;

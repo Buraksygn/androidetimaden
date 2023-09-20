@@ -192,6 +192,8 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         fn_AyarlariYukle();
 
         urun_listesi= new ArrayList<Urun_sevkiyat>();
+        adapter=new apmblSevkiyatAktifIsEmiriYukleme(urun_listesi,getContext());
+        _urun_list.setAdapter(adapter);
 
         request_string _Param1= new request_string();
         _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
@@ -231,8 +233,15 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             Genel.showProgressDialog(getContext());
             List<String> miktar_palet = persos.fn_aktif_sevk_kalan_miktar_palet(_Param);
             Genel.dismissProgressDialog();
-            aktif_sevk_isemri.kalan_agirlik = miktar_palet.get(0);
-            aktif_sevk_isemri.kalan_palet_sayisi = miktar_palet.get(1);
+            if (miktar_palet!=null){
+                aktif_sevk_isemri.kalan_agirlik = miktar_palet.get(0);
+                aktif_sevk_isemri.kalan_palet_sayisi = miktar_palet.get(1);
+            }
+            else{
+                aktif_sevk_isemri.kalan_agirlik = "0";
+                aktif_sevk_isemri.kalan_palet_sayisi = "0";;
+            }
+
         }
         catch (Exception ex)
         {
@@ -288,7 +297,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
     {
         try
         {
-            urun_listesi= new ArrayList<Urun_sevkiyat>();
+
 
             int miktar = 0;
 
@@ -303,11 +312,13 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
             if (adapter != null) {
                 adapter.clear();
-                _urun_list.setAdapter(adapter);
-            }
+                //_urun_list.setAdapter(adapter);
 
-            adapter=new apmblSevkiyatAktifIsEmiriYukleme(urun_listesi,getContext());
-            _urun_list.setAdapter(adapter);
+                //adapter=new apmblSevkiyatAktifIsEmiriYukleme(urun_listesi,getContext());
+                adapter.addAll(urun_listesi);
+                //_urun_list.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
 
         }
         catch (Exception ex)
@@ -489,7 +500,8 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                 isReadable = true;
                 return;
             }
-            else if (tag == null || (tag.islem_durumu != "401" && tag.islem_durumu != "1" && tag.islem_durumu != "8"))
+           // else if (tag == null || (tag.islem_durumu != "401" && tag.islem_durumu != "1" && tag.islem_durumu != "8"))
+            else if (tag == null || (!tag.islem_durumu.equals("401")  && !tag.islem_durumu.equals("1")  && !tag.islem_durumu.equals("8")))
             {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
@@ -500,7 +512,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                 isReadable = true;
                 return;
             }
-            else if (tag.etiket_turu == "1" || tag.etiket_turu == "0")
+            else if (tag.etiket_turu.equals("1") || tag.etiket_turu.equals("0") )
             {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
@@ -693,7 +705,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                 isReadable = true;
                 return;
             }
-            else if (tag == null || (tag.islem_durumu != "401" && tag.islem_durumu != "1" && tag.islem_durumu != "8"))
+            else if (tag == null || (!tag.islem_durumu.equals("401") && !tag.islem_durumu.equals("1") && !tag.islem_durumu.equals("8")))
             {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
@@ -704,7 +716,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                 isReadable = true;
                 return;
             }
-            else if (tag.etiket_turu == "1" || tag.etiket_turu == "0")
+            else if (tag.etiket_turu.equals("1") || tag.etiket_turu.equals("0"))
             {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
@@ -725,14 +737,15 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         isReadable = true;
     }
 
-    private void urunDegerlendir(Urun_sevkiyat tag)
+    private void urunDegerlendir(final Urun_sevkiyat tag)
     {
         try {
-            String[] urun_char12 = tag.karakteristikler.split(",");
+            String[] urun_char12 = tag.karakteristikler.split(",",-1);
             boolean kodVar = false;
             for (Urun_sevkiyat w : urun_listesi) {
                 if (w.kod.equals(tag.kod)) {
                     kodVar = true;
+                    break;
                 }
             }
 
@@ -959,8 +972,8 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                 String tag_lot_array = tag.lotno.replace('.', ' ');
                 tag_lot_array = tag_lot_array.trim();
 
-                String[] sevk_char = aktif_sevk_isemri.karakteristikler.split(",");
-                String[] urun_char = tag.karakteristikler.split(",");
+                String[] sevk_char = aktif_sevk_isemri.karakteristikler.split(",",-1);
+                String[] urun_char = tag.karakteristikler.split(",",-1);
 
                 for (int i = 0; i < sevk_char.length; i++)
                 {
@@ -1093,6 +1106,52 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                                 })
                                 .show();
 
+                    }
+                    else {
+                        aktarim akt = new aktarim();
+                        akt.akt_aktarimdurumu = "0";
+                        akt.akt_aktarimtipi = "4";
+                        akt.akt_isemri_detay = aktif_sevk_isemri.isemri_detay_id;
+                        akt.akt_isletme = aktif_sevk_isemri.isletme;
+                        akt.akt_kod_isemri = aktif_sevk_isemri.isemri_id;
+                        akt.akt_kod_sap = aktif_sevk_isemri.kod_sap;
+                        akt.akt_kod_urun = aktif_sevk_isemri.urun_kodu;
+                        akt.akt_sevk_har_id = aktif_sevk_isemri.islem_id;
+                        akt.akt_urn_palet_rfid = tag.rfid;
+                        akt.akt_urn_palet_serino = tag.palet_kod;
+                        akt.akt_urn_rfid = tag.rfid;
+                        akt.akt_urn_serino = tag.palet_kod;
+                        akt.akt_user_id = _ayaraktifkullanici;
+
+                        request_sevkiyat_aktarim _Param1 = new request_sevkiyat_aktarim();
+                        _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
+                        _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                        _Param1.set_zaktif_tesis(_ayaraktiftesis);
+                        _Param1.set_zsurum(_sbtVerisyon);
+                        _Param1.set_zkullaniciadi(_zkullaniciadi);
+                        _Param1.set_zsifre(_zsifre);
+                        _Param1.setAktif_sunucu(_ayaraktifsunucu);
+                        _Param1.setAktif_kullanici(_ayaraktifkullanici);
+
+                        _Param1.set_aktarim(akt);
+
+                        Genel.showProgressDialog(getContext());
+                        //todo persos_aktarim classı icinde ama burda persosa ekliyorum.
+                        Boolean islem_sonucu = persos.fn_ekle_aktarim(_Param1);
+                        Genel.dismissProgressDialog();
+
+                        if (!islem_sonucu)
+                        {
+                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("İşlem Başarısız")
+                                    .setContentTextSize(25)
+                                    .setContentText("Kayıt yapılamadı.\r\n Veritabanı hatası")
+                                    .showCancelButton(false)
+                                    .show();
+                        }
+                        urun_listesi.add(tag);
+                        updateListviewItem();
+                        return;
                     }
 
                 }

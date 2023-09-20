@@ -359,7 +359,7 @@ public class frg_uretim_zayi extends Fragment {
                         })
                         .show();
             }
-            else if (tag.etiket_turu == "0" && !tag.lotno.equals("DKMPAKET"))
+            else if (tag.etiket_turu.equals("0") && !tag.lotno.equals("DKMPAKET"))
             {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")

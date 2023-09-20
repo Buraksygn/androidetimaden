@@ -147,7 +147,7 @@ public class frg_konteyner_onayla extends Fragment {
         public void onClick(View v) {
             try
             {
-                if (aktif_sevk_isemri.islem_id == "")
+                if (aktif_sevk_isemri.islem_id.equals(""))
                 {
                     new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("KONTEYNER TANIMI EKSİK")

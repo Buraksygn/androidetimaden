@@ -197,8 +197,8 @@ public class frg_arac_onayla extends Fragment {
             parametre.put("_zsifre", _zsifre);
 
 
-        } catch (JSONException error) {
-            error.printStackTrace();
+        } catch (JSONException ex) {
+            Genel.printStackTrace(ex,getContext());
         }
 
 
@@ -229,7 +229,7 @@ public class frg_arac_onayla extends Fragment {
                                             pDialog.hide();
                                         }
                                     } catch (Exception ex) {
-
+                                        Genel.printStackTrace(ex,getContext());
                                     }
 
                                     frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
@@ -241,8 +241,10 @@ public class frg_arac_onayla extends Fragment {
                             }
 
                         } catch (JsonMappingException ex2) {
+                            Genel.printStackTrace(ex2,getContext());
                             Toast.makeText(getContext(), "error =" + ex2.toString(), Toast.LENGTH_SHORT).show();
                         } catch (JsonProcessingException ex1) {
+                            Genel.printStackTrace(ex1,getContext());
                             Toast.makeText(getContext(), "error =" + ex1.toString(), Toast.LENGTH_SHORT).show();
                         }
 
@@ -363,7 +365,7 @@ public class frg_arac_onayla extends Fragment {
                     return;
                 }
             } catch (Exception ex) {
-
+                Genel.printStackTrace(ex,getContext());
             }
 
             if (_bDevam == true) {
@@ -401,8 +403,8 @@ public class frg_arac_onayla extends Fragment {
                         parametre.put("_zaktif_tesis", _ayaraktiftesis);
                         parametre.put("_zkullaniciadi", _zkullaniciadi);
                         parametre.put("_zsifre", _zsifre);
-                    } catch (JSONException error) {
-                        error.printStackTrace();
+                    } catch (JSONException ex) {
+                        Genel.printStackTrace(ex,getContext());
                     }
 
                     JsonObjectRequest request = new JsonObjectRequest(
@@ -452,6 +454,7 @@ public class frg_arac_onayla extends Fragment {
                                         }
 
                                     } catch (JSONException ex) {
+                                        Genel.printStackTrace(ex,getContext());
                                         Toast.makeText(getContext(), "error =" + ex.toString(), Toast.LENGTH_SHORT).show();
                                     }
 
@@ -490,8 +493,8 @@ public class frg_arac_onayla extends Fragment {
                         parametre.put("_zkullaniciadi", _zkullaniciadi);
                         parametre.put("_zsifre", _zsifre);
 
-                    } catch (JSONException error) {
-                        error.printStackTrace();
+                    } catch (JSONException ex) {
+                        Genel.printStackTrace(ex,getContext());
                     }
 
                     JsonObjectRequest request = new JsonObjectRequest(
@@ -544,6 +547,7 @@ public class frg_arac_onayla extends Fragment {
                                         }
 
                                     } catch (JSONException ex) {
+                                        Genel.printStackTrace(ex,getContext());
                                         Toast.makeText(getContext(), "error =" + ex.toString(), Toast.LENGTH_SHORT).show();
                                     }
 
@@ -636,8 +640,8 @@ public class frg_arac_onayla extends Fragment {
                     parametre.put("_zisemri_detay_id", aktif_sevk_isemri.isemri_detay_id);
                     parametre.put("aktif_sunucu", _ayaraktifsunucu);
                     parametre.put("aktif_kullanici", _ayaraktifkullanici);
-                } catch (JSONException error) {
-                    error.printStackTrace();
+                } catch (JSONException ex) {
+                    Genel.printStackTrace(ex,getContext());
                 }
 
                 RequestQueue mRequestQueue;
@@ -786,6 +790,7 @@ public class frg_arac_onayla extends Fragment {
             parametre.put("_zkont_kodu", aktif_sevk_isemri.kont_kodu);
             parametre.put("_zrota_id", aktif_sevk_isemri.rota_id);
         } catch (Exception ex) {
+            Genel.printStackTrace(ex,getContext());
         }
 
         JsonObjectRequest request = new JsonObjectRequest(
@@ -834,9 +839,9 @@ public class frg_arac_onayla extends Fragment {
 
 
                         } catch (JsonMappingException exxx) {
-                            Log.d("hata", exxx.getMessage());
+                            Genel.printStackTrace(exxx,getContext());
                         } catch (JsonProcessingException e) {
-                            e.printStackTrace();
+                            Genel.printStackTrace(e,getContext());
                         }
                     }
                 },
@@ -869,7 +874,9 @@ public class frg_arac_onayla extends Fragment {
         v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
         v_Gelen.set_sevkiyat_ismeri(aktif_sevk_isemri);
 
+        Genel.showProgressDialog(getContext());
         Boolean result = persos.fn_sevkiyatIptal(v_Gelen);
+        Genel.dismissProgressDialog();
 
         if (result != null && result != false) {
             frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
@@ -905,7 +912,9 @@ public class frg_arac_onayla extends Fragment {
         v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
         v_Gelen.set_sevkiyat_ismeri(aktif_sevk_isemri);
 
+        Genel.showProgressDialog(getContext());
         Boolean islem_sonucu = persos.fn_sevkiyatDevam(v_Gelen);
+        Genel.dismissProgressDialog();
         if (islem_sonucu) {
             new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
                     .setTitleText("İşlem Onayı")
@@ -948,7 +957,7 @@ public class frg_arac_onayla extends Fragment {
     private void fn_Ara_Tartima_YollaIslem() {
 
         try {
-            if (aktif_sevk_isemri.islem_id == "") {
+            if (aktif_sevk_isemri.islem_id.equals("")) {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("ARAÇ TANIMI EKSİK")
                         .setContentTextSize(25)
@@ -969,9 +978,9 @@ public class frg_arac_onayla extends Fragment {
             v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
             v_Gelen.set_value(aktif_sevk_isemri.islem_id);
             //Urun_tag tag = persos.fn_secEtiket(v_Gelen);
-
+            Genel.showProgressDialog(getContext());
             List<String> miktarlar = persos.fn_sec_sevk_miktar(v_Gelen);
-
+            Genel.dismissProgressDialog();
             if (miktarlar.get(0).equals("0")) {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
                         .setTitleText("YÜKLEME MİKTARI UYARISI")
@@ -1003,9 +1012,9 @@ public class frg_arac_onayla extends Fragment {
             Param.set_hareket(aktif_sevk_isemri.islem_id);
             Param.set_miktarlar(miktarlar);
 
-
+            Genel.showProgressDialog(getContext());
             Boolean result = persos.fn_guncelle_sevk_hareket(Param);
-
+            Genel.dismissProgressDialog();
 
             if (result != false || result != null) {
                 new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
@@ -1027,7 +1036,9 @@ public class frg_arac_onayla extends Fragment {
             Param2.setAktif_sunucu(_ayaraktifsunucu);
             Param2.set_value(aktif_sevk_isemri.isemri_detay_id);
 
+            Genel.showProgressDialog(getContext());
             List<String> sevk_miktarları = persos.fn_get_yukleme_palet_sayisi_miktar(Param2);
+            Genel.dismissProgressDialog();
 
             if (sevk_miktarları.size() > 0) {
                 int kalan_miktar = Integer.parseInt(sevk_miktarları.get(0));
@@ -1100,6 +1111,7 @@ public class frg_arac_onayla extends Fragment {
             }
 
         } catch (Exception ex) {
+            Genel.printStackTrace(ex,getContext());
             new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
                     .setTitleText("Onay Hatası")
                     .setContentTextSize(25)
@@ -1282,8 +1294,8 @@ public class frg_arac_onayla extends Fragment {
                 parametre.put("_zPaletSayisi", _YanitAraTartim._deger02);
 
 
-            } catch (JSONException error) {
-                error.printStackTrace();
+            } catch (JSONException ex) {
+                Genel.printStackTrace(ex,getContext());
             }
 
 
@@ -1318,15 +1330,17 @@ public class frg_arac_onayla extends Fragment {
                                             pDialog.hide();
                                         }
                                     } catch (Exception ex) {
-
+                                        Genel.printStackTrace(ex,getContext());
                                     }
 
                                     fn_get_yukleme_palet_sayisi_miktar();
                                 }
 
                             } catch (JsonMappingException ex2) {
+                                Genel.printStackTrace(ex2,getContext());
                                 Toast.makeText(getContext(), "error =" + ex2.toString(), Toast.LENGTH_SHORT).show();
                             } catch (JsonProcessingException ex1) {
+                                Genel.printStackTrace(ex1,getContext());
                                 Toast.makeText(getContext(), "error =" + ex1.toString(), Toast.LENGTH_SHORT).show();
                             }
 
@@ -1377,8 +1391,8 @@ public class frg_arac_onayla extends Fragment {
                 parametre.put("_zdetay_id", aktif_sevk_isemri.isemri_detay_id);
 
 
-            } catch (JSONException error) {
-                error.printStackTrace();
+            } catch (JSONException ex) {
+                Genel.printStackTrace(ex,getContext());
             }
 
 
@@ -1408,7 +1422,7 @@ public class frg_arac_onayla extends Fragment {
                                                 pDialog.hide();
                                             }
                                         } catch (Exception ex) {
-
+                                            Genel.printStackTrace(ex,getContext());
                                         }
 
 
@@ -1433,13 +1447,15 @@ public class frg_arac_onayla extends Fragment {
 
 
                                     } catch (Exception ex) {
-
+                                        Genel.printStackTrace(ex,getContext());
                                     }
                                 }
 
                             } catch (JsonMappingException ex2) {
+                                Genel.printStackTrace(ex2,getContext());
                                 Toast.makeText(getContext(), "error =" + ex2.toString(), Toast.LENGTH_SHORT).show();
                             } catch (JsonProcessingException ex1) {
+                                Genel.printStackTrace(ex1,getContext());
                                 Toast.makeText(getContext(), "error =" + ex1.toString(), Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -1532,8 +1548,9 @@ public class frg_arac_onayla extends Fragment {
             parametre.put("_zrota_id", aktif_sevk_isemri.rota_id);
 
 
-        } catch (JSONException error) {
-            error.printStackTrace();
+        } catch (JSONException ex) {
+
+            Genel.printStackTrace(ex,getContext());
         }
 
         JsonObjectRequest request = new JsonObjectRequest(
@@ -1580,8 +1597,10 @@ public class frg_arac_onayla extends Fragment {
                             }
 
                         } catch (JsonMappingException ex2) {
+                            Genel.printStackTrace(ex2,getContext());
                             Toast.makeText(getContext(), "error =" + ex2.toString(), Toast.LENGTH_SHORT).show();
                         } catch (JsonProcessingException ex1) {
+                            Genel.printStackTrace(ex1,getContext());
                             Toast.makeText(getContext(), "error =" + ex1.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }

@@ -604,7 +604,7 @@ public class GirisSayfasi extends AppCompatActivity {
 
                     if (_frg_aktif_isemri_yukleme != null && _frg_aktif_isemri_yukleme.isVisible())
                     {
-                        _frg_aktif_isemri_yukleme.rfidOkundu(barcode);
+                        _frg_aktif_isemri_yukleme.barkodOkundu(barcode);
                     }
                     else
                     {
@@ -848,7 +848,7 @@ public class GirisSayfasi extends AppCompatActivity {
                                             frg_aktif_isemri_yukleme _frg_aktif_isemri_yukleme = (frg_aktif_isemri_yukleme) getSupportFragmentManager().findFragmentByTag("frg_aktif_isemri_yukleme");
 
                                             if (_frg_aktif_isemri_yukleme != null && _frg_aktif_isemri_yukleme.isVisible()) {
-                                                _frg_aktif_isemri_yukleme.barkodOkundu(_TempEpc);
+                                                _frg_aktif_isemri_yukleme.rfidOkundu(_TempEpc);
                                             } else {
                                                 frg_aktif_arac_secimi _frg_aktif_arac_secimi = (frg_aktif_arac_secimi) getSupportFragmentManager().findFragmentByTag("frg_aktif_arac_secimi");
 

@@ -241,7 +241,7 @@ public class frg_zayi_depo_secimi extends Fragment {
                     Genel.playButtonClikSound(getContext());
                     DEPOTag secilen_depo = _Secili;
                     aktif_zayi.zay_depo = secilen_depo.getDepo_id();
-                    if(secilen_depo != null && secilen_depo.getDepo_id() != ""){
+                    if(secilen_depo != null && !secilen_depo.getDepo_id().equals("")){
                         frg_zayi_arac_bulundu_indirme fragmentyeni = new frg_zayi_arac_bulundu_indirme();
                         fragmentyeni.fn_senddata(aktif_zayi,arac);
                         FragmentManager fragmentManager = getFragmentManager();

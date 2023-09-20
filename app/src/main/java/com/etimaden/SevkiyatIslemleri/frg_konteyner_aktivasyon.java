@@ -30,6 +30,10 @@ import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewsecKonteyner;
+import com.etimaden.cResponseResult.viewsevkiyatKapat;
+import com.etimaden.genel.Genel;
+import com.etimaden.persosclass.Arac;
+import com.etimaden.response.sevkiyat_islemleri.View_arac;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -182,8 +186,12 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                 String _zSonuc = response.getString("_zSonuc");
                                                 String _zHataAciklama = response.getString("_zHataAciklama");
                                                 String _zAciklama = response.getString("_zAciklama");
-                                                arac_plaka = response.getString("arac_plaka");
-                                                arac_kod = response.getString("arac_kod");
+
+                                                ObjectMapper objectMapper = new ObjectMapper();
+                                                View_arac _view_arac =objectMapper.readValue(response.toString(), View_arac.class);
+
+                                                arac_plaka = _view_arac.get_result().arac_plaka;
+                                                arac_kod = _view_arac.get_result().arac_kod;
 
 
                                                 if (_zSonuc.equals("0")) {
@@ -319,7 +327,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                         if (pDialog != null && pDialog.isShowing()) {
                                                                             pDialog.hide();
                                                                         }
-                                                                        e.printStackTrace();
+                                                                        Genel.printStackTrace(e,getContext());
                                                                     }
 
                                                                     JsonObjectRequest request = new JsonObjectRequest(
@@ -393,6 +401,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                                             pDialog.hide();
                                                                                         }
                                                                                         Toast.makeText(getContext(), "error =" + ex.toString(), Toast.LENGTH_SHORT).show();
+                                                                                        Genel.printStackTrace(ex,getContext());
                                                                                     }
 
                                                                                 }
@@ -421,6 +430,11 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                     pDialog.hide();
                                                 }
                                                 Toast.makeText(getContext(), "error =" + ex.toString(), Toast.LENGTH_SHORT).show();
+                                                Genel.printStackTrace(ex,getContext());
+                                            } catch (JsonMappingException ex) {
+                                                Genel.printStackTrace(ex,getContext());
+                                            } catch (JsonProcessingException ex) {
+                                                Genel.printStackTrace(ex,getContext());
                                             }
 
                                         }
@@ -447,7 +461,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                             if (pDialog != null && pDialog.isShowing()) {
                                 pDialog.hide();
                             }
-                            error.printStackTrace();
+                            Genel.printStackTrace(error,getContext());
                         }
 
                     }
@@ -472,7 +486,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                         parametre.put("_zsifre", _zsifre);
 
                     } catch (Exception ex) {
-
+                        Genel.printStackTrace(ex,getContext());
                     }
 
 
@@ -633,7 +647,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
 
                                                         } catch (Exception ex) {
-
+                                                            Genel.printStackTrace(ex,getContext());
                                                         }
                                                     }
                                                 }
@@ -642,7 +656,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                 //fn_Listele();
                                             } catch (Exception ex) {
                                                 Toast.makeText(getContext(), ex.toString(), Toast.LENGTH_SHORT).show();
-
+                                                Genel.printStackTrace(ex,getContext());
                                             }
                                             if (pDialog != null && pDialog.isShowing()) {
                                                 pDialog.hide();
@@ -656,12 +670,13 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                         if (pDialog != null && pDialog.isShowing()) {
                                             pDialog.hide();
                                         }
-                                        e.printStackTrace();
+                                        Genel.printStackTrace(e,getContext());
                                     } catch (JsonProcessingException ex_02) {
                                         if (pDialog != null && pDialog.isShowing()) {
                                             pDialog.hide();
                                         }
                                         Toast.makeText(getContext(), "error =" + ex_02.toString(), Toast.LENGTH_LONG).show();
+                                        Genel.printStackTrace(ex_02,getContext());
                                     }
 
                                 }
