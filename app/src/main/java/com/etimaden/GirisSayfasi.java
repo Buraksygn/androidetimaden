@@ -1065,7 +1065,7 @@ public class GirisSayfasi extends AppCompatActivity {
         int keyunicode = KEvent.getUnicodeChar(KEvent.getMetaState() );
         char character = (char) keyunicode;
 
-        if(KEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER || KEvent.getKeyCode() == KeyEvent.KEYCODE_NUMPAD_ENTER || KEvent.getKeyCode() ==KeyEvent.KEYCODE_ALL_APPS)
+        if(KEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER || KEvent.getKeyCode() == KeyEvent.KEYCODE_NUMPAD_ENTER || KEvent.getKeyCode() ==KeyEvent.KEYCODE_V)
         {
             System.out.println("ENTER YAKALANDI !!!!!!");
             return true;
