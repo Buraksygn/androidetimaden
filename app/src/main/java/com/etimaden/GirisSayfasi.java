@@ -15,6 +15,7 @@ import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -1055,5 +1056,23 @@ public class GirisSayfasi extends AppCompatActivity {
 
 
         System.exit(1);
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent KEvent)
+    {
+        int keyaction = KEvent.getAction();
+
+        if(keyaction == KeyEvent.KEYCODE_ENTER || keyaction == KeyEvent.KEYCODE_NUMPAD_ENTER)
+        {
+            int keycode = KEvent.getKeyCode();
+            int keyunicode = KEvent.getUnicodeChar(KEvent.getMetaState() );
+            char character = (char) keyunicode;
+            System.out.println("DEBUG MESSAGE KEY=" + character + " KEYCODE=" +  keycode);
+            return false;
+        }
+
+
+        return super.dispatchKeyEvent(KEvent);
     }
 }
