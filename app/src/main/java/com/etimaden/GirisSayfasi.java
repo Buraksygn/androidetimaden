@@ -1069,7 +1069,7 @@ public class GirisSayfasi extends AppCompatActivity {
         if(KEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER || KEvent.getKeyCode() == KeyEvent.KEYCODE_NUMPAD_ENTER)
         {
             System.out.println("ENTER YAKALANDI !!!!!!");
-            return false;
+            return true;
         }
 
 
