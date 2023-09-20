@@ -1058,20 +1058,4 @@ public class GirisSayfasi extends AppCompatActivity {
         System.exit(1);
     }
 
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent KEvent)
-    {
-        int keycode = KEvent.getKeyCode();
-        int keyunicode = KEvent.getUnicodeChar(KEvent.getMetaState() );
-        char character = (char) keyunicode;
-
-        if(KEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER || KEvent.getKeyCode() == KeyEvent.KEYCODE_NUMPAD_ENTER || KEvent.getKeyCode() ==KeyEvent.KEYCODE_V)
-        {
-            System.out.println("ENTER YAKALANDI !!!!!!");
-            return true;
-        }
-
-
-        return super.dispatchKeyEvent(KEvent);
-    }
 }
