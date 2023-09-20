@@ -131,7 +131,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
         getView().setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                getView().clearFocus();
+                v.clearFocus();
             }
         });
 
