@@ -1,5 +1,6 @@
 package com.etimaden.UretimIslemleri;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.KeyEvent;
@@ -18,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.persosclass.Urun_tag;
@@ -41,8 +43,6 @@ import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -216,16 +216,16 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
         if(_yanit._zSonuc.equals("0"))
         {
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentText(_yanit.get_zHataAciklama())
                     .setContentTextSize(20)
                     .setConfirmText("TAMAM")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                     {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog)
+                        public void onClick(SweetAlertDialogG sDialog)
                         {
                             sDialog.dismissWithAnimation();
 
@@ -339,15 +339,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
         if (paket_listesi.size() > 0 && (!p1kontrol.equals("") || !p2kontrol.equals("") )  ) {
 
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATALI")
                     .setContentText("HTN 174258 Üretim işlemi yapılmış etiket üzerinden bir daha işlem yapamazsınız. ")
                     .setContentTextSize(20)
                     .setConfirmText("TAMAM")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
                             sDialog.dismissWithAnimation();
 
                             return;
@@ -390,14 +390,14 @@ public class frg_paket_uretim_ekrani extends Fragment {
                 int hAdet = Integer.parseInt(aktif_Palet.getPalet_dizim());
 
                 if (hAdet == tadet) {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("Hatalı İşlem")
                             .setContentText("Paket ekleme işlemi başarısız! <br/> Palet kapatma limitine ulaştınız.")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
 
                                     return;
@@ -409,14 +409,14 @@ public class frg_paket_uretim_ekrani extends Fragment {
                 }
 
                 if (!etiket.substring(6, 7).equals("0")) {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("Hatalı İşlem")
                             .setContentText("Paket ekleme işlemi başarısız! <br/> Lütfen uygun bir paket etiketi okutunuz.<br/>Hatalı işlem!! Etiket paket etiketi değil!!")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
 
                                     return;
@@ -491,34 +491,34 @@ public class frg_paket_uretim_ekrani extends Fragment {
         final uretim_etiket _urun = v_Gelen;
         final String _LotNo = lot;
 
-        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                 .setTitleText("ONAY")
                 .setContentText(_urun.getSerino_kod() + " seri nolu ürünün üretim işlemini tamamlamak istiyor musunuz ?")
                 .setCancelText("İptal")
                 .setContentTextSize(20)
                 .setConfirmText("TAMAM")
                 .showCancelButton(true)
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                 {
                     @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog)
+                    public void onClick(SweetAlertDialogG SweetAlertDialogG)
                     {
-                        sweetAlertDialog.dismissWithAnimation();
+                        SweetAlertDialogG.dismissWithAnimation();
 
 
                         if (_urun.getPaket_tipi().equals("3") || _urun.getPaket_tipi().equals("0"))
                         {
 
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                     .setTitleText("HATA")
                                     .setContentText("Üretim Yapılamadı. Paket tipi uyumsuzluğu ")
                                     .setContentTextSize(20)
                                     .setConfirmText("TAMAM")
                                     .showCancelButton(false)
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                                     {
                                         @Override
-                                        public void onClick(SweetAlertDialog sDialog_01)
+                                        public void onClick(SweetAlertDialogG sDialog_01)
                                         {
                                             sDialog_01.dismissWithAnimation();
 
@@ -531,16 +531,16 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         }
                         if (_urun.getIsemri_tipialt().equals("351"))
                         {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                     .setTitleText("HATA")
                                     .setContentText("Üretim Yapılamadı. İşemri tipi uyumsuzluğu ")
                                     .setContentTextSize(20)
                                     .setConfirmText("TAMAM")
                                     .showCancelButton(false)
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                                     {
                                         @Override
-                                        public void onClick(SweetAlertDialog sDialog_01)
+                                        public void onClick(SweetAlertDialogG sDialog_01)
                                         {
                                             sDialog_01.dismissWithAnimation();
 
@@ -571,16 +571,16 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         if(_Yanit._zSonuc.equals("0"))
                         {
 
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                     .setTitleText("HATA")
                                     .setContentText("HTN 12072023092930 "+_Yanit.get_zHataAciklama())
                                     .setContentTextSize(16)
                                     .setConfirmText("TAMAM")
                                     .showCancelButton(false)
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                                     {
                                         @Override
-                                        public void onClick(SweetAlertDialog sDialog) {
+                                        public void onClick(SweetAlertDialogG sDialog) {
                                             sDialog.dismissWithAnimation();
 
                                             return;
@@ -593,16 +593,16 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         {
                             if( _Yanit._result==null || _Yanit._result==false)
                             {
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                         .setTitleText("HATA")
                                         .setContentText("Üretim Yapılamadı.Açık palet etiketini yeniden okutunuz.")
                                         .setContentTextSize(20)
                                         .setConfirmText("TAMAM")
                                         .showCancelButton(false)
-                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                                         {
                                             @Override
-                                            public void onClick(SweetAlertDialog sDialog) {
+                                            public void onClick(SweetAlertDialogG sDialog) {
                                                 sDialog.dismissWithAnimation();
 
                                                 return;
@@ -623,10 +623,10 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         }
                     }
                 })
-                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                     @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        sweetAlertDialog.dismissWithAnimation();
+                    public void onClick(SweetAlertDialogG SweetAlertDialogG) {
+                        SweetAlertDialogG.dismissWithAnimation();
 
                         return;
                     }
@@ -660,15 +660,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
             if(eno==null)
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentText("HTN 173216 Sistemsel Hata ")
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
 
                                 return;
@@ -754,15 +754,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
     public void fn_barkodOkundu(String barkod) {
 
         if (barkod.length() < 24) {
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentText("Uygun olmayan etiket")
                     .setContentTextSize(20)
                     .setConfirmText("TAMAM")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
                             sDialog.dismissWithAnimation();
 
                         }
@@ -780,17 +780,17 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
         uretim_etiket etiket =v_etiket;
 
-        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                 .setTitleText("ONAY")
                 .setContentText(etiket.getSerino_kod()+ " seri nolu ürünün üretim işlemini tamamlamak istiyor musunuz ?")
                 .setCancelText("İptal")
                 .setContentTextSize(20)
                 .setConfirmText("TAMAM")
                 .showCancelButton(true)
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                 {
                     @Override
-                    public void onClick(SweetAlertDialog sDialog)
+                    public void onClick(SweetAlertDialogG sDialog)
                     {
                         sDialog.dismissWithAnimation();
 
@@ -842,16 +842,16 @@ public class frg_paket_uretim_ekrani extends Fragment {
                             if (paket_listesi.size() > 0 && (!p1kontrol.equals("") || !p2kontrol.equals("") )  )
                         {
 
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                     .setTitleText("HATALI")
                                     .setContentText("Üretim işlemi yapılmış etiket üzerinden bir daha işlem yapamazsınız.")
                                     .setContentTextSize(20)
                                     .setConfirmText("TAMAM")
                                     .showCancelButton(false)
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                                     {
                                         @Override
-                                        public void onClick(SweetAlertDialog sDialog)
+                                        public void onClick(SweetAlertDialogG sDialog)
                                         {
                                             sDialog.dismissWithAnimation();
 
@@ -897,16 +897,16 @@ public class frg_paket_uretim_ekrani extends Fragment {
                             if(v_gelen==null)
                             {
 
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                         .setTitleText("Üretim Yapılamadı")
                                         .setContentText("Açık palet etiketini yeniden okutunuz.")
                                         .setContentTextSize(20)
                                         .setConfirmText("TAMAM")
                                         .showCancelButton(false)
-                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                                         {
                                             @Override
-                                            public void onClick(SweetAlertDialog sDialog)
+                                            public void onClick(SweetAlertDialogG sDialog)
                                             {
                                                 sDialog.dismissWithAnimation();
 
@@ -968,16 +968,16 @@ public class frg_paket_uretim_ekrani extends Fragment {
                                 paket_listesi.clear();
                                 if(b_yanit==true)
                                 {
-                                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                             .setTitleText("TAMAM")
                                             .setContentText("İşlem başarı tamamlandı")
                                             .setContentTextSize(20)
                                             .setConfirmText("TAMAM")
                                             .showCancelButton(false)
-                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                                             {
                                                 @Override
-                                                public void onClick(SweetAlertDialog sDialog)
+                                                public void onClick(SweetAlertDialogG sDialog)
                                                 {
                                                     sDialog.dismissWithAnimation();
 
@@ -990,16 +990,16 @@ public class frg_paket_uretim_ekrani extends Fragment {
                             else
                             {
 
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                         .setTitleText("HATA")
                                         .setContentText("HTN Sistemsel bir hata oluştu")
                                         .setContentTextSize(20)
                                         .setConfirmText("TAMAM")
                                         .showCancelButton(false)
-                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                                         {
                                             @Override
-                                            public void onClick(SweetAlertDialog sDialog)
+                                            public void onClick(SweetAlertDialogG sDialog)
                                             {
                                                 sDialog.dismissWithAnimation();
 
@@ -1012,16 +1012,16 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         } else
                         {
 
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                     .setTitleText("Hatalı Palet Kapatma")
                                     .setContentText("Palet kapatma limitine ulaşılmadı.\r\n Palet kapatma sayısına ulaştıktan sonra tekrar deneyiniz")
                                     .setContentTextSize(20)
                                     .setConfirmText("TAMAM")
                                     .showCancelButton(false)
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                                     {
                                         @Override
-                                        public void onClick(SweetAlertDialog sDialog)
+                                        public void onClick(SweetAlertDialogG sDialog)
                                         {
                                             sDialog.dismissWithAnimation();
 
@@ -1036,10 +1036,10 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                     }
                 })
-                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                     @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        sweetAlertDialog.dismissWithAnimation();
+                    public void onClick(SweetAlertDialogG SweetAlertDialogG) {
+                        SweetAlertDialogG.dismissWithAnimation();
                         return;
                     }
                 })
@@ -1073,15 +1073,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                 if (etiket == null)
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("UYARI")
                             .setContentText("Lütfen uygun bir ürün etiketi okutunuz. Ürün kaydı bulunamadı..")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
 
                                     return;
@@ -1093,15 +1093,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                 else if (!etiket.getEtiket_durumu().equals("0"))
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("Üretilmiş Etiket")
                             .setContentText("Üretim için uygun olmayan etiket<br/>Etiketin üretim işlemi tamamlanmıştır.")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
 
                                     return;
@@ -1117,15 +1117,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
                     _Yazi += "<br/><b>2)</b> 3 GÜN İÇİNDE ÜRETİM KAYDI GERÇEKLEŞMEYEN ETİKET İÇİN ÜRETİM KAYDI OLUŞTURULAMAZ.";
                     _Yazi += "<br/><b>3)</b> SİSTEM İÇİNDE AYNI İŞ EMRİNE AİT EN FAZLA 2 ADET ÜRETİMİ TAMAMLANMAMIŞ LOT BULUNABİLİR.";
 
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("ONAY ALINAMADI")
                             .setContentText(_Yazi)
                             .setContentTextSize(16)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
 
                                     return;
@@ -1188,15 +1188,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
                 }
                 else
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("Üretilmiş Etiket")
                             .setContentText("Üretim için uygun olmayan etiket \r\n Etiketin üretim işlemi tamamlanmıştır.")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
 
                                     return;
@@ -1238,15 +1238,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                     if (etiket == null)
                     {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                 .setTitleText("UYARI")
                                 .setContentText("Lütfen uygun bir ürün etiketi okutunuz. Ürün kaydı bulunamadı..")
                                 .setContentTextSize(20)
                                 .setConfirmText("TAMAM")
                                 .showCancelButton(false)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
 
                                         return;
@@ -1257,15 +1257,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
                     }
                     else if (!etiket.getEtiket_durumu().equals("0"))
                     {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                 .setTitleText("Üretilmiş Etiket")
                                 .setContentText("Üretim için uygun olmayan etiket.<br/> Etiketin üretim işlemi tamamlanmıştır.")
                                 .setContentTextSize(20)
                                 .setConfirmText("TAMAM")
                                 .showCancelButton(false)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
 
                                         return;
@@ -1277,15 +1277,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
                     else if (!aktif_Palet.getSerino_rfid().equals(etiket.getSerino_rfid()))
                     {
 
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                 .setTitleText("UYARI")
                                 .setContentText("Kapatmak için aynı palet etiketini okutunuz...<br/> Aktif : "+aktif_Palet.getSerino_kod()+"<br/>Okutulan :"+etiket.getSerino_kod() )
                                 .setContentTextSize(20)
                                 .setConfirmText("TAMAM")
                                 .showCancelButton(false)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
 
                                         return;
@@ -1309,15 +1309,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
         } catch (Exception ex)
         {
             Genel.printStackTrace(ex,getContext());
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentText("Sistemsel hata = " + ex.toString())
                     .setContentTextSize(20)
                     .setConfirmText("TAMAM")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
                             sDialog.dismissWithAnimation();
                         }
                     })
@@ -1348,15 +1348,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
         if (islem_res)
         {
-            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                     .setTitleText("İŞLEM ONAYI")
                     .setContentText("PALET TOPLAMA İŞLEM KAYDI OLUŞTURULDU")
                     .setContentTextSize(20)
                     .setConfirmText("TAMAM")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
                             sDialog.dismissWithAnimation();
                         }
                     })
@@ -1366,15 +1366,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
         }
         else
         {
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("BAĞLANTI PROBLEMİ")
                     .setContentText("İŞLEM YAPILAMADI. DAHA SONRA TEKRAR DENEYİNİZ. \r\n İŞLEM KAYDI TAMAMLANAMADI.")
                     .setContentTextSize(20)
                     .setConfirmText("TAMAM")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
                             sDialog.dismissWithAnimation();
                         }
                     })
@@ -1421,7 +1421,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                     if (miktar_int > 0 && miktar_int >= hedef_miktar)
                     {
 
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                 .setTitleText("DKMPAKET LOTU PALET OLUŞTUR")
                                 .setContentText("SERİNO : " + it_etiket.getSerino_kod() +
                                         "\r\n LOTNO : " + it_etiket.getSer_lotno() +
@@ -1431,9 +1431,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
                                 .setConfirmText("TAMAM")
                                 .setCancelText("İPTAL")
                                 .showCancelButton(true)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         manipulasyon_palet_toplaOnConfirm(it_etiket);
                                         sDialog.dismissWithAnimation();
                                     }
@@ -1445,7 +1445,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                     else
                     {
 
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                 .setTitleText("DKMPAKET LOT MİKTAR UYARISI")
                                 .setContentText("DKMPAKET LOTUNDA YETERLİ MİKTARDA ÜRÜN BULUNMAMAKTADIR. " +
                                         "\r\n ÜRÜN : " + it_etiket.getUrun_kodu() + ")" +
@@ -1456,9 +1456,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
                                 .setContentTextSize(20)
                                 .setConfirmText("TAMAM")
                                 .showCancelButton(false)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
                                     }
                                 })
@@ -1468,15 +1468,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
                 }
                 else
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("BAĞLANTI PROBLEMİ")
                             .setContentText("İŞLEM YAPILAMADI. DAHA SONRA TEKRAR DENEYİNİZ.\r\n İŞLEM KAYDI TAMAMLANAMADI." )
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                 }
                             })
@@ -1522,15 +1522,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                 if (miktar == null )
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("YETERSİZ ÜRÜN MİKTARI")
                             .setContentText("BU İŞ EMRİNE BAĞLI ÜRETİM YAPMAK İÇİN YETERLİ ÜRÜN HARCAMA İŞLEMİ YAPILMAMIŞ. YETERLİ HARCAMA YAPTIKTAN SONRA İLGİLİ İŞ EMRİNE DEVAM EDEBİLİRSİNİZ. \r\n İŞLEM KAYDI TAMAMLANAMADI.")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                 }
                             })
@@ -1539,15 +1539,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
                 }
                 else if (miktar.equals(""))
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("BAĞLANTI PROBLEMİ")
                             .setContentText("İŞLEM YAPILAMADI. DAHA SONRA TEKRAR DENEYİNİZ.\r\n İŞLEM KAYDI TAMAMLANAMADI.")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                 }
                             })
@@ -1564,7 +1564,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         miktar_int = miktar_int - eklenecek_miktar;
                         if (miktar_int >= 0)
                         {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                     .setTitleText("PAKET TİPİ DEĞİŞTİR")
                                     .setContentText("SERİNO : " + etiket.getSerino_kod() +
                                             "\r\n LOTNO : " + etiket.getSer_lotno() +
@@ -1575,9 +1575,9 @@ public class frg_paket_uretim_ekrani extends Fragment {
                                     .setConfirmText("TAMAM")
                                     .setCancelText("İPTAL")
                                     .showCancelButton(true)
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                         @Override
-                                        public void onClick(SweetAlertDialog sDialog) {
+                                        public void onClick(SweetAlertDialogG sDialog) {
                                             manipulasyon_paketli_uretOnConfirm(etiket);
                                             sDialog.dismissWithAnimation();
                                         }
@@ -1590,15 +1590,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         }
                         else
                         {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                     .setTitleText("YETERSİZ ÜRÜN MİKTARI")
                                     .setContentText("BU İŞ EMRİNE BAĞLI ÜRETİM YAPMAK İÇİN YETERLİ ÜRÜN HARCAMA İŞLEMİ YAPILMAMIŞ.. \r\n KULLANILABİLİR MİKTAR : " + miktar)
                                     .setContentTextSize(20)
                                     .setConfirmText("TAMAM")
                                     .showCancelButton(false)
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                         @Override
-                                        public void onClick(SweetAlertDialog sDialog) {
+                                        public void onClick(SweetAlertDialogG sDialog) {
                                             sDialog.dismissWithAnimation();
                                         }
                                     })
@@ -1656,15 +1656,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
         if (result._result==null || !result._result)
         {
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText(result._zAciklama)
                     .setContentText(result._zHataAciklama)
                     .setContentTextSize(20)
                     .setConfirmText("TAMAM")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
                             sDialog.dismissWithAnimation();
                         }
                     })
@@ -1683,16 +1683,16 @@ public class frg_paket_uretim_ekrani extends Fragment {
         try
         {
 
-            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                     .setTitleText("ONAY")
                     .setContentText(etiket.getSerino_kod() + " seri nolu ürünün üretim işlemini tamamlamak istiyor musunuz ?")
                     .setContentTextSize(20)
                     .setConfirmText("EVET")
                     .setCancelText("HAYIR")
                     .showCancelButton(true)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
                             bigbag_uretOnConfirm(etiket);
                             sDialog.dismissWithAnimation();
                         }
@@ -1752,15 +1752,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                 if (result._result==null || !result._result)
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText(result._zAciklama)
                             .setContentText(result._zHataAciklama)
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                 }
                             })
@@ -1804,15 +1804,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                 if (miktar == null)
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("YETERSİZ ÜRÜN MİKTARI")
                             .setContentText("BU İŞ EMRİNE BAĞLI ÜRETİM YAPMAK İÇİN YETERLİ ÜRÜN HARCAMA İŞLEMİ YAPILMAMIŞ. YETERLİ HARCAMA YAPTIKTAN SONRA İLGİLİ İŞ EMRİNE DEVAM EDEBİLİRSİNİZ. \r\n İŞLEM KAYDI TAMAMLANAMADI.")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                 }
                             })
@@ -1822,15 +1822,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
                 }
                 else if (miktar.equals(""))
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("BAĞLANTI PROBLEMİ")
                             .setContentText("İŞLEM YAPILAMADI. DAHA SONRA TEKRAR DENEYİNİZ. \r\n İŞLEM KAYDI TAMAMLANAMADI.")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                 }
                             })
@@ -1847,30 +1847,30 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         miktar_int = miktar_int - eklenecek_miktar;
                         if (miktar_int >= 0)
                         {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                     .setTitleText("BİLGİLENDİRME")
                                     .setContentText("SAP KOD :" + etiket.getSap_kodu() + "\r\n KULLANILABİLİR MİKTAR : " + miktar)
                                     .setContentTextSize(20)
                                     .setConfirmText("TAMAM")
                                     .showCancelButton(false)
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                         @Override
-                                        public void onClick(SweetAlertDialog sDialog) {
+                                        public void onClick(SweetAlertDialogG sDialog) {
                                             sDialog.dismissWithAnimation();
                                         }
                                     })
                                     .show();
 
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                     .setTitleText("ONAY")
                                     .setContentText(etiket.getSerino_kod() + " seri nolu ürünün üretim işlemini tamamlamak istiyor musunuz ?")
                                     .setContentTextSize(20)
                                     .setConfirmText("TAMAM")
                                     .setCancelText("İPTAL")
                                     .showCancelButton(true)
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                         @Override
-                                        public void onClick(SweetAlertDialog sDialog) {
+                                        public void onClick(SweetAlertDialogG sDialog) {
                                             manipulasyon_bigbag_uretOnConfirm(etiket);
                                             sDialog.dismissWithAnimation();
                                         }
@@ -1884,15 +1884,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         }
                         else
                         {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                     .setTitleText("YETERSİZ ÜRÜN MİKTARI")
                                     .setContentText("BU İŞ EMRİNE BAĞLI ÜRETİM YAPMAK İÇİN YETERLİ ÜRÜN HARCAMA İŞLEMİ YAPILMAMIŞ.. \r\n KULLANILABİLİR MİKTAR : " + miktar)
                                     .setContentTextSize(20)
                                     .setConfirmText("TAMAM")
                                     .showCancelButton(false)
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                         @Override
-                                        public void onClick(SweetAlertDialog sDialog) {
+                                        public void onClick(SweetAlertDialogG sDialog) {
                                             sDialog.dismissWithAnimation();
                                         }
                                     })
@@ -1905,15 +1905,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
                     catch (Exception ex)
                     {
                         Genel.printStackTrace(ex,getContext());
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                 .setTitleText("YETERSİZ ÜRÜN MİKTARI")
                                 .setContentText("BU İŞ EMRİNE BAĞLI ÜRETİM YAPMAK İÇİN YETERLİ ÜRÜN HARCAMA İŞLEMİ YAPILMAMIŞ.. \r\n KULLANILABİLİR MİKTAR : " + miktar)
                                 .setContentTextSize(20)
                                 .setConfirmText("TAMAM")
                                 .showCancelButton(false)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
                                     }
                                 })
@@ -1929,15 +1929,15 @@ public class frg_paket_uretim_ekrani extends Fragment {
         catch (Exception ex)
         {
             Genel.printStackTrace(ex,getContext());
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("YETERSİZ ÜRÜN MİKTARI")
                     .setContentText("BU İŞ EMRİNE BAĞLI ÜRETİM YAPMAK İÇİN YETERLİ ÜRÜN HARCAMA İŞLEMİ YAPILMAMIŞ.. \r\n KULLANILABİLİR MİKTAR : " + 0)
                     .setContentTextSize(20)
                     .setConfirmText("TAMAM")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
                             sDialog.dismissWithAnimation();
                         }
                     })

@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
     tools:context="com.etimaden.UretimIslemleri.frg_paket_uretim_ekrani"
-    android:focusable="false"
     android:layout_height="match_parent">
 
     <TextView
