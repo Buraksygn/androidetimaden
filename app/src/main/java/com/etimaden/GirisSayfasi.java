@@ -1064,7 +1064,6 @@ public class GirisSayfasi extends AppCompatActivity {
         int keycode = KEvent.getKeyCode();
         int keyunicode = KEvent.getUnicodeChar(KEvent.getMetaState() );
         char character = (char) keyunicode;
-        System.out.println("DEBUG MESSAGE KEY=" + character + " KEYCODE=" +  keycode);
 
         if(KEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER || KEvent.getKeyCode() == KeyEvent.KEYCODE_NUMPAD_ENTER)
         {

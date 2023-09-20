@@ -9,6 +9,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -134,6 +135,18 @@ public class frg_aktif_isemri_yukleme extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
+
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == KeyEvent.KEYCODE_ENTER || keyCode == KeyEvent.KEYCODE_NUMPAD_ENTER)
+                {
+                    System.out.println("ENTER YAKALANDI  frg_aktif_isemri_yukleme !!!!!!");
+                    return true;
+                }
+                return false;
+            }
+        });
 
         //barkod,rfid,ikiside
         //((GirisSayfasi) getActivity()).fn_ModBoth();
