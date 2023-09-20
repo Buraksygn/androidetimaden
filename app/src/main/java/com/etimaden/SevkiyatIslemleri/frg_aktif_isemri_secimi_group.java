@@ -40,6 +40,7 @@ import com.etimaden.cIslem.ViewtestParseClass;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewsevkDegerlendirGroup;
 import com.etimaden.cResponseResult.cResultGridListe;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -53,7 +54,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
 import static com.etimaden.cSabitDegerler._zport3G;
@@ -62,7 +62,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_aktif_isemri_secimi_group  extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
 
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -181,7 +181,7 @@ public class frg_aktif_isemri_secimi_group  extends Fragment {
     }
 
     private void fn_SevkDegerlendir() {
-        pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+        pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
         pDialog.setTitleText("YÜKLENİYOR");
         pDialog.setContentText(" Kontrol ediliyor Lütfen bekleyiniz.");
         //pDialog.setContentText(_TempEpc);
@@ -231,7 +231,7 @@ public class frg_aktif_isemri_secimi_group  extends Fragment {
 
                             if (_Yanit._zSonuc.equals("0"))
                             {
-                                pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                 pDialog.setTitle("HATA");
                                 pDialog.setContentTextSize(22);
                                 pDialog.setContentText(_Yanit._zHataAciklama);

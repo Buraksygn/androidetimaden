@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
+    android:focusable="false"
     tools:context="com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_zayi"
     android:layout_height="match_parent">
 

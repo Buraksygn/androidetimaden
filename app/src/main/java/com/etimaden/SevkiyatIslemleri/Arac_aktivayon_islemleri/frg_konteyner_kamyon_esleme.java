@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persosclass.Arac;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.genel.Genel;
@@ -34,7 +35,6 @@ import static com.etimaden.cSabitDegerler._zsifre;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_konteyner_kamyon_esleme  extends Fragment {
 
@@ -158,16 +158,16 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
 
                 if ( arac != null && !arac.arac_plaka.equals( ""))
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("KONTEYNER ONAY")
                             .setContentText("KONTEYNER PLAKA : " + arac.arac_plaka + "\r\nKONTEYNER OKUNDU. EŞLEŞTİRME İŞLEMİNİ TAMAMLAMAK İSTEDİĞİNİZDEN EMİN MİSNİZ ?")
                             .setContentTextSize(20)
                             .setConfirmText("EVET")
                             .setCancelText("HAYIR")
                             .showCancelButton(true)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
 
                                     Integer toplam_agırlik = Integer.parseInt( arac.arac_bos_tartim )+ Integer.parseInt(kamyon.vardiya) - Integer.parseInt(kamyon.aciklama);
@@ -193,15 +193,15 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
 
                                     if (result)
                                     {
-                                        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                                 .setTitleText("ONAY")
                                                 .setContentText("İşlem onaylandı.")
                                                 .setContentTextSize(20)
                                                 .setConfirmText("TAMAM")
                                                 .showCancelButton(false)
-                                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                     @Override
-                                                    public void onClick(SweetAlertDialog sDialog) {
+                                                    public void onClick(SweetAlertDialogG sDialog) {
                                                         sDialog.dismissWithAnimation();
                                                         frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
                                                         FragmentManager fragmentManager = getFragmentManager();
@@ -216,7 +216,7 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
                                     }
                                     else
                                     {
-                                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                                 .setTitleText("HATA")
                                                 .setContentTextSize(25)
                                                 .setContentText("KAYIT YAPILAMADI \r\n NETWORK BAĞLANTISINI KONTROL EDİNİZ..")
@@ -226,9 +226,9 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
                                     return;
                                 }
                             })
-                            .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                     return;
                                 }
@@ -241,7 +241,7 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
             else
             {
 
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("YETKİ DIŞI İŞLEM..BU İŞLETME ÜZERİNDE KONTEYNER SATIŞI TAMAMLAYAMAZSINIZ. \r\n BU İŞLETME ÜZERİNDE KONTEYNER SATIŞI TAMAMLAYAMAZSINIZ.")
@@ -253,7 +253,7 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
         catch (Exception ex)
         {
             Genel.printStackTrace(ex,getContext());
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentTextSize(25)
                     .setContentText("Aktif konteyner bulunamadı.. \r\n Konteyner tanımlama işlemi tamamlanmamış.")

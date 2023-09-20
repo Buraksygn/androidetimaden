@@ -34,6 +34,7 @@ import com.android.volley.toolbox.Volley;
 import com.etimaden.SevkiyatIslemleri.csurumkontrol;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cIslem.Viewsistemgiris;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,7 +47,6 @@ import java.net.NetworkInterface;
 import java.util.Collections;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     public String _GirisUrl = "";
     public String _BaslangicUrl = "";
 
-    public SweetAlertDialog pDialog;
+    public SweetAlertDialogG pDialog;
 
     Button _btnCikis;
     Button _btnGiris;
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         _txtSifre = (TextView) findViewById(R.id.txtSifre);
         _txtversiyon = (TextView) findViewById(R.id.txtversiyon2);
 
-        pDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.NORMAL_TYPE);
+        pDialog = new SweetAlertDialogG(MainActivity.this, SweetAlertDialogG.NORMAL_TYPE);
         pDialog.setTitleText("YÜKLENİYOR");
         pDialog.setContentText("Ayarlar yükleniyor Lütfen bekleyiniz.");
         pDialog.setCancelable(false);
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
         }
         int _Dur = 0;
         if (_zBaglantiTuru.equals("-1")) {
-            pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+            pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
             pDialog.setTitle("HATA");
             pDialog.setContentText("Herhangi bir internet bağlantısı bulunamadı");
         } else {
@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
                 if (_IpAdresiDizi.length != 4)
                 {
 
-                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                     pDialog.setTitle("HATA");
                     pDialog.setContentText("Kablosuz Ağ Bağlantısı Bulunamadı");
                 }
@@ -406,7 +406,7 @@ int x= 1;
                                     pDialog.hide();
                                     pDialog.dismiss();
 
-                                    //pDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                                    //pDialog.changeAlertType(SweetAlertDialogG.SUCCESS_TYPE);
 
                                     //pDialog.setTitleText("TAMAMLANDI");
 
@@ -489,7 +489,7 @@ int x= 1;
         @Override
         public void onClick(View view) {
 
-            pDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+            pDialog = new SweetAlertDialogG(MainActivity.this, SweetAlertDialogG.PROGRESS_TYPE);
             pDialog.setTitleText("YÜKLENİYOR");
             pDialog.setContentText("Kontrol ediliyor. Lütfen bekleyiniz.");
             pDialog.setCancelable(false);
@@ -544,7 +544,7 @@ int x= 1;
 
                                 if (_Yanit._zSonuc.equals("0"))
                                 {
-                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                     pDialog.setTitle("HATA");
                                     pDialog.setContentText(_Yanit._zHataAciklama);
                                 }

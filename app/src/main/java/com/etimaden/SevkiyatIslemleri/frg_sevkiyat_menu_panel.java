@@ -26,11 +26,11 @@ import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.frg_ana_sayfa;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.request.request_bos;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class frg_sevkiyat_menu_panel extends Fragment {
@@ -266,16 +266,16 @@ public class frg_sevkiyat_menu_panel extends Fragment {
         {
             try
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("Onay")
                         .setContentText("Vagonların satış işlemi SAP'ye aktarılacak. Onaylıyor musunuz?")
                         .setContentTextSize(20)
                         .setConfirmText("EVET")
                         .setCancelText("HAYIR")
                         .showCancelButton(true)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
                                 request_bos _Param1= new request_bos();
                                 _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
@@ -300,15 +300,15 @@ public class frg_sevkiyat_menu_panel extends Fragment {
                                         result = persos.fn_guncelle_vagon_satis(_Param1);
                                         Genel.dismissProgressDialog();
                                     }
-                                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                             .setTitleText("ONAY")
                                             .setContentText("İşlem onaylandı.")
                                             .setContentTextSize(20)
                                             .setConfirmText("TAMAM")
                                             .showCancelButton(false)
-                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                 @Override
-                                                public void onClick(SweetAlertDialog sDialog) {
+                                                public void onClick(SweetAlertDialogG sDialog) {
                                                     sDialog.dismissWithAnimation();
                                                 }
                                             })
@@ -316,7 +316,7 @@ public class frg_sevkiyat_menu_panel extends Fragment {
                                 }
                                 else
                                 {
-                                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                             .setTitleText("HATA")
                                             .setContentTextSize(25)
                                             .setContentText("İşlem YAPILAMADI. LÜTFEN DAHA SONRA TEKRAR DENEYİNİZ. \r\n BAĞLANTI HATASI")

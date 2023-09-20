@@ -36,6 +36,7 @@ import com.etimaden.adapter.apmblBekleyenArac;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.ViewAracAktivasyon;
 import com.etimaden.cResponseResult.Viewbekleyen_arac;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -46,7 +47,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
 import static com.etimaden.cSabitDegerler._zport3G;
@@ -55,7 +55,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_arac_aktivasyon_eski extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
 
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -180,7 +180,7 @@ public class frg_arac_aktivasyon_eski extends Fragment {
             parametre.put("aktif_kullanici", _ayaraktifkullanici);
 
         } catch (JSONException error) {
-            SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+            SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
             pHataDialog.setTitleText("Hata 01");
             pHataDialog.setContentText(error.toString());
             //pDialog.setContentText(_TempEpc);
@@ -214,7 +214,7 @@ public class frg_arac_aktivasyon_eski extends Fragment {
 
                             if (_zYanit.equals("0"))
                             {
-                                pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                 pDialog.setTitle("HATA 02");
                                 pDialog.setContentText(_Yanit_01._zHataAciklama);
                             }
@@ -244,7 +244,7 @@ public class frg_arac_aktivasyon_eski extends Fragment {
 
                                 } catch (Exception ex)
                                 {
-                                    SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                                    SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
                                     pHataDialog.setTitleText("Hata 03");
                                     pHataDialog.setContentText(ex.toString());
                                     //pDialog.setContentText(_TempEpc);
@@ -256,7 +256,7 @@ public class frg_arac_aktivasyon_eski extends Fragment {
                         }
                         catch (JsonMappingException e)
                         {
-                            SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                            SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
                             pHataDialog.setTitleText("Hata 04");
                             pHataDialog.setContentText(e.toString());
                             //pDialog.setContentText(_TempEpc);
@@ -265,7 +265,7 @@ public class frg_arac_aktivasyon_eski extends Fragment {
                         }
                         catch (JsonProcessingException e)
                         {
-                            SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                            SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
                             pHataDialog.setTitleText("Hata 05");
                             pHataDialog.setContentText(e.toString());
                             //pDialog.setContentText(_TempEpc);
@@ -283,7 +283,7 @@ public class frg_arac_aktivasyon_eski extends Fragment {
                         }catch (Exception ex)
                         {
                         }
-                        SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                        SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
                         pHataDialog.setTitleText("Hata 06");
                         pHataDialog.setContentText(error.toString());
                         //pDialog.setContentText(_TempEpc);
@@ -356,7 +356,7 @@ public class frg_arac_aktivasyon_eski extends Fragment {
 
                 if (_TempEpc.startsWith("737767"))
                 {
-                    pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+                    pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
                     pDialog.setContentTextSize(25);
 
                     pDialog.setTitleText("YÜKLENİYOR");
@@ -405,14 +405,14 @@ public class frg_arac_aktivasyon_eski extends Fragment {
 
                                         if (_Yanit._zSonuc.equals("0"))
                                         {
-                                            pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                            pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                             pDialog.setTitle("HATA");
                                             //int _Font = pDialog.getContentTextSize();
 
                                             pDialog.setContentText(_Yanit._zHataAciklama);
-                                            pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            pDialog.setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                         @Override
-                                                        public void onClick(SweetAlertDialog sDialog)
+                                                        public void onClick(SweetAlertDialogG sDialog)
                                                         {
                                                             sDialog.dismissWithAnimation();
 
@@ -482,7 +482,7 @@ public class frg_arac_aktivasyon_eski extends Fragment {
                 }
             }
         } catch (Exception ex) {
-            SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+            SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
             pHataDialog.setTitleText("HATA");
             pHataDialog.setContentText("Hata Açıklaması" + ex.toString());
             //pDialog.setContentText(_TempEpc);

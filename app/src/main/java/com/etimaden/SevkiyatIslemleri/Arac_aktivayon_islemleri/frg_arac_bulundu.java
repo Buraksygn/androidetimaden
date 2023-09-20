@@ -21,16 +21,16 @@ import com.etimaden.SevkiyatIslemleri.frg_arac_secim_bilgi;
 import com.etimaden.SevkiyatIslemleri.frg_isemri_degistir;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_arac_bulundu extends Fragment {
 
     public Sevkiyat_isemri aktif_sevk_isemri ;
 
     private Handler handler;
-    //SweetAlertDialog pDialog;
+    //SweetAlertDialogG pDialog;
 
     ImageView _img;
 
@@ -194,14 +194,14 @@ public class frg_arac_bulundu extends Fragment {
         {
             if (!aktif_sevk_isemri.yapilan_adet.equals("0"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                         .setTitleText("İŞ DEĞİŞİMİ YAPILAMAZ")
                         .setContentText("ARAÇ ÜZERİNDE YÜKLENEN ÜRÜN BULUNMAKTADIR (Sayı = " + aktif_sevk_isemri.yapilan_adet + "). BU DURUMDA İŞ DEĞİŞİMİ YAPILAMAZ.ÜRÜNLERİ BOŞALTTIKTAN SONRA TEKRAR DENEYİNİZ.")
                         .setConfirmText("Tamam")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog)
+                            public void onClick(SweetAlertDialogG sDialog)
                             {
                                 sDialog.dismissWithAnimation();
 

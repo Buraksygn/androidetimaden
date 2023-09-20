@@ -21,13 +21,13 @@ import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_isemri_degist
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class frg_arac_bulundu_indirme extends Fragment {
@@ -167,7 +167,7 @@ public class frg_arac_bulundu_indirme extends Fragment {
                 {
                     if (!aktif_sevk_isemri.yapilan_adet.equals("0"))
                     {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                 .setTitleText("İŞ DEĞİŞİMİ YAPILAMAZ")
                                 .setContentTextSize(25)
                                 .setContentText("ARAÇ ÜZERİNDE YÜKLENEN ÜRÜN BULUNMAKTADIR. BU DURUMDA İŞ DEĞİŞİMİ YAPILAMAZ \r\n ÜRÜNLERİ BOŞALTTIKTAN SONRA TEKRAR DENEYİNİZ.")

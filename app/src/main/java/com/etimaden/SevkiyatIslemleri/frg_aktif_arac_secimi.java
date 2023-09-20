@@ -28,6 +28,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.ViewsecAktifSevkIsemriListesi;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -36,7 +37,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
@@ -47,7 +47,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 public class frg_aktif_arac_secimi  extends Fragment {
 
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
 
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -142,7 +142,7 @@ public class frg_aktif_arac_secimi  extends Fragment {
 
     public void fn_rfidOkundu(String tempEpc) {
 
-        pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+        pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
         pDialog.setTitleText("YÜKLENİYOR");
         pDialog.setContentText(tempEpc+ " Kontrol ediliyor Lütfen bekleyiniz.");
         //pDialog.setContentText(_TempEpc);
@@ -199,7 +199,7 @@ public class frg_aktif_arac_secimi  extends Fragment {
 
                             if(_Yanit._zSonuc.equals("0"))
                             {
-                                pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                 pDialog.setTitle("HATA");
                                 pDialog.setContentText(_Yanit._zHataAciklama);
                             }
@@ -210,7 +210,7 @@ public class frg_aktif_arac_secimi  extends Fragment {
 
                                 if(_Yanit._zsevkisemi.indirmeBindirme.equals(("")))
                                 {
-                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                     pDialog.setTitle("HATA");
                                     pDialog.setContentText(" HTN 01:Aktif araç işemri bulunamadı.. Araç kantardan geçiş işlemini tamamlamamış.");
 

@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.adapter.apmblDepoListesi;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.persosclass.uretim_etiket;
 import com.etimaden.request.requestsecDepoTanimlari;
@@ -26,7 +27,6 @@ import com.etimaden.ugr_demo.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,7 +42,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_silo_secimi extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
 
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -188,15 +188,15 @@ public class frg_silo_secimi extends Fragment {
                 List<DEPOTag> _DepoListesi= _Yanit.get_DepoListesi();
 
                 if (_Yanit.get_zSonuc().equals("0")) {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("HATA")
                             .setContentText(_Yanit.get_zHataAciklama())
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                 }
                             })
@@ -229,16 +229,16 @@ public class frg_silo_secimi extends Fragment {
 
             @Override
             public void onFailure(Call<ViewsecDepoTanimlari> call, Throwable t) {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentText("Sistemsel Hata = "+t.getMessage())
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                         {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog)
+                            public void onClick(SweetAlertDialogG sDialog)
                             {
                                 sDialog.dismissWithAnimation();
                             }
@@ -274,16 +274,16 @@ public class frg_silo_secimi extends Fragment {
             if(_Secili.getDepo_id().equals(""))
             {
 
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("HATA")
                         .setContentText("Lütfen silo seçiniz")
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                         {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog)
+                            public void onClick(SweetAlertDialogG sDialog)
                             {
                                 sDialog.dismissWithAnimation();
                             }

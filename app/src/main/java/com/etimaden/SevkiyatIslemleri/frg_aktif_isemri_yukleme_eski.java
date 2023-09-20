@@ -41,6 +41,7 @@ import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.Viewsec_sevkiyat_urun;
 import com.etimaden.cResponseResult.Viewsec_sevkiyat_urun_listesi;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -51,11 +52,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_aktif_isemri_yukleme_eski extends Fragment {
 
-    //SweetAlertDialog pDialog;
+    //SweetAlertDialogG pDialog;
 
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -240,7 +240,7 @@ public class frg_aktif_isemri_yukleme_eski extends Fragment {
 
                             if(_Yanit.equals("0"))
                             {
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                         .setTitleText("HATA")
                                         .setContentText(_Yanit._zHataAciklama)
                                         .show();
@@ -492,7 +492,7 @@ public class frg_aktif_isemri_yukleme_eski extends Fragment {
 
                             if(_Yanit._zSonuc.equals("0"))
                             {
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                         .setTitleText("HATA")
                                         .setContentText(_Yanit._zHataAciklama)
                                         .show();

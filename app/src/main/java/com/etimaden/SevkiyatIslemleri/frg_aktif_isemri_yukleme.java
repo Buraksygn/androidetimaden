@@ -34,6 +34,7 @@ import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.Urun_sevkiyat;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.persosclass.aktarim;
@@ -48,7 +49,6 @@ import com.etimaden.ugr_demo.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_aktif_isemri_yukleme extends Fragment {
 
@@ -247,14 +247,14 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         catch (Exception ex)
         {
             Genel.printStackTrace(ex,getContext());
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("İşlem Başarısız")
                     .setContentTextSize(25)
                     .setContentText("Araç detayına ulaşılamadı. Daha sonra tekrar deneyiniz \r\n \"network hata kodu = 2")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
                             sDialog.dismissWithAnimation();
                             frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
                             FragmentManager fragmentManager = getFragmentManager();
@@ -270,14 +270,14 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         if (urun_listesi == null)
         {
             urun_listesi = new ArrayList<>();
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("İşlem Başarısız")
                     .setContentTextSize(25)
                     .setContentText("Araç detayına ulaşılamadı. Daha sonra tekrar deneyiniz \r\n \"network hata kodu = 2")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
                             sDialog.dismissWithAnimation();
                             frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
                             FragmentManager fragmentManager = getFragmentManager();
@@ -359,7 +359,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
             if (urun == null)
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Lütfen uygun bir ürün etiketi okutunuz. Ürün kaydı bulunamadı..")
@@ -371,7 +371,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
             if (urun.islem_durumu.equals("3"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün satılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -382,7 +382,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("0"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün üretilmemiş ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -393,7 +393,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("2"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün sevk edilemez ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -404,7 +404,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("4"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün etiket değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -415,7 +415,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("200"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün TSE tarafından ayrılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -426,7 +426,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("201"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün işletme tarafından ayrılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -437,7 +437,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("350"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün torba tipi değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -448,7 +448,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("351"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün kirli torba değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -459,7 +459,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("352"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün geribesleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -470,7 +470,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("353"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün palet düzenleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -481,7 +481,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("354"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün elleçleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -492,7 +492,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.kilitli.equals("True"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün manipülasyon bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -504,7 +504,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
            // else if (tag == null || (tag.islem_durumu != "401" && tag.islem_durumu != "1" && tag.islem_durumu != "8"))
             else if (tag == null || (!tag.islem_durumu.equals("401")  && !tag.islem_durumu.equals("1")  && !tag.islem_durumu.equals("8")))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                         .setContentTextSize(25)
                         .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir.\r\n İşleme uygun olmayan etiket.")
@@ -515,7 +515,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.etiket_turu.equals("1") || tag.etiket_turu.equals("0") )
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                         .setContentTextSize(25)
                         .setContentText("Shrinkleme işlemi yapılmamış veya Bigbag olmayan bir ürün sevk edilemez.\r\n İşleme uygun olmayan etiket.")
@@ -564,7 +564,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
             if (urun == null)
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Lütfen uygun bir ürün etiketi okutunuz. Ürün kaydı bulunamadı..")
@@ -576,7 +576,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
             if (urun.islem_durumu.equals("3"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün satılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -587,7 +587,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("0"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün üretilmemiş ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -598,7 +598,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("2"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün sevk edilemez ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -609,7 +609,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("4"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün etiket değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -620,7 +620,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("200"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün TSE tarafından ayrılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -631,7 +631,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("201"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün işletme tarafından ayrılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -642,7 +642,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("350"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün torba tipi değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -653,7 +653,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("351"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün kirli torba değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -664,7 +664,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("352"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün geribesleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -675,7 +675,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("353"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün palet düzenleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -686,7 +686,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.islem_durumu.equals("354"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün elleçleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -697,7 +697,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (urun.kilitli.equals("True"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün manipülasyon bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -708,7 +708,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag == null || (!tag.islem_durumu.equals("401") && !tag.islem_durumu.equals("1") && !tag.islem_durumu.equals("8")))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                         .setContentTextSize(25)
                         .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir.\r\n İşleme uygun olmayan etiket.")
@@ -719,7 +719,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.etiket_turu.equals("1") || tag.etiket_turu.equals("0"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                         .setContentTextSize(25)
                         .setContentText("Shrinkleme işlemi yapılmamış veya Bigbag olmayan bir ürün sevk edilemez.\r\n İşleme uygun olmayan etiket.")
@@ -752,16 +752,16 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
             if (kodVar == true) {
 
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("ÜRÜN ÇIKARMA")
                         .setContentText(tag.kod + " SERİ NUMARALI ÜRÜNÜ YÜKLEME LİSTESİNDEN ÇIKARMAK İSTİYOR MUSUNUZ ?")
                         .setContentTextSize(20)
                         .setConfirmText("EVET")
                         .setCancelText("HAYIR")
                         .showCancelButton(true)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
 
                                 aktarim akt = new aktarim();
@@ -798,7 +798,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
                                 if (islem_sonucu == false)
                                 {
-                                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                             .setTitleText("İşlem Başarısız")
                                             .setContentTextSize(25)
                                             .setContentText("Kayıt yapılamadı. \r\n Veritabanı hatası")
@@ -817,9 +817,9 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                                 return;
                             }
                         })
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
                                 return;
                             }
@@ -830,7 +830,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (!tag.isletme.equals(aktif_sevk_isemri.isletme))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün " + tag.isletme_adi + " ürünü olarak görünmektedir. İş emri ile işletme uyum sağlamıyor. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -840,7 +840,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.islem_durumu.equals("3"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün satılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -850,7 +850,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.islem_durumu.equals("2"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün sevk edilemez ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -860,7 +860,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.islem_durumu.equals("4"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün etiket değiişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -870,7 +870,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.islem_durumu.equals("200"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün TSE tarafından ayrılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -880,7 +880,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.islem_durumu.equals("201"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün işletme tarafından ayrılmış ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -890,7 +890,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.islem_durumu.equals("350") )
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün torba tipi değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -900,7 +900,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.islem_durumu.equals("351") || urun_char12[11].equals("360"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün kirli torba değişimi bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -910,7 +910,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.islem_durumu.equals("352") || urun_char12[11].equals("370"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün geribesleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -920,7 +920,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.islem_durumu.equals("353") )
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün palet düzenleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -930,7 +930,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.islem_durumu.equals("354") || urun_char12[11].equals("390"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Ürün elleçleme bekleyen ürünler içerinde görünmektedir. Lütfen ilgili kişiye durumu bildiriniz.")
@@ -940,7 +940,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.islem_durumu.equals("0"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("Üretilmemiş Etiket")
                         .setContentTextSize(25)
                         .setContentText("ÜRETİM İŞLEMİ TAMAMLANMAMIŞ ÜRÜN ETİKETİ \r\n Etiketin üretim işlemi tamamlanmamıştır.")
@@ -950,7 +950,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (tag.islem_durumu.equals("8"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("Yükleme İşlemi Tamamlanmış")
                         .setContentTextSize(25)
                         .setContentText("BAŞKA BİR ARACA YÜKLEME İŞLEMİ TAMAMLANMIŞ ÜRÜN ETİKETİ \r\n Etiketin YÜKLEME işlemi tamamlanmıştır.")
@@ -960,7 +960,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
             else if (!aktif_sevk_isemri.urun_kodu.equals(tag.urun_kod))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                         .setContentTextSize(25)
                         .setContentText("Yanlış ürün seçimi yapıldı. \r\n İşleme uygun olmayan ürün.")
@@ -1014,7 +1014,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
                         if (!sevk_char[i].equals(urun_char[i]))
                         {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                     .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                                     .setContentTextSize(25)
                                     .setContentText("Yanlış karakteristeki ürün seçimi yapıldı." + degisken_adi + " değişken değeri uyuşmuyor. \r\n İşleme uygun olmayan ürün.")
@@ -1027,7 +1027,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
                 if (!tag.palet_agirligi.equals(aktif_sevk_isemri.palet_agirligi))
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                             .setContentTextSize(25)
                             .setContentText("Yanlış ağırlıkta ürün seçimi yapıldı.\r\n Ürün ağırlığı : " + tag.palet_agirligi + "\r\n Sipariş ağırlığı : " + aktif_sevk_isemri.palet_agirligi + "\r\nİşleme uygun olmayan ürün.")
@@ -1041,16 +1041,16 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
                     if (!aktif_sevk_isemri.lotno.equals("") && !aktif_sevk_isemri.lotno.contains(tag_lot_array))
                     {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                 .setTitleText("YANLIŞ LOT SEÇİMİ")
                                 .setContentText(aktif_sevk_isemri.lotno + " nolu lottan ürün seçimi yapılmalı. Ürün kriterleri yüklemek için uygun. Yüklemeye devam etmek istiyor musunuz ?")
                                 .setContentTextSize(20)
                                 .setConfirmText("EVET")
                                 .setCancelText("HAYIR")
                                 .showCancelButton(true)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
                                         aktarim akt = new aktarim();
                                         akt.akt_aktarimdurumu = "0";
@@ -1086,7 +1086,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
                                         if (!islem_sonucu)
                                         {
-                                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                                     .setTitleText("İşlem Başarısız")
                                                     .setContentTextSize(25)
                                                     .setContentText("Kayıt yapılamadı.\r\n Veritabanı hatası")
@@ -1098,9 +1098,9 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                                         return;
                                     }
                                 })
-                                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
                                         return;
                                     }
@@ -1143,7 +1143,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
                         if (!islem_sonucu)
                         {
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                     .setTitleText("İşlem Başarısız")
                                     .setContentTextSize(25)
                                     .setContentText("Kayıt yapılamadı.\r\n Veritabanı hatası")
@@ -1158,7 +1158,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                 }
             }
             else {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                         .setContentTextSize(25)
                         .setContentText("Yanlış ürün seçimi yapıldı.\r\n İşleme uygun olmayan ürün.")
@@ -1168,7 +1168,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             }
         } catch (Exception ex) {
             Genel.printStackTrace(ex,getContext());
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("")
                     .setContentTextSize(25)
                     .setContentText("İlgili iş emri kaydı bulunamadı. \r\n " + ex.toString())
@@ -1202,15 +1202,15 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                 str += "\r\nPALET AĞIRLIĞI : " + aktif_sevk_isemri.palet_agirligi;
                 str += "\r\nY.ADET/ İŞEMRİ K.ADET : \r\n" + aktif_sevk_isemri.yapilan_adet + " / " + aktif_sevk_isemri.kalan_palet_sayisi;
 
-                new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE)
                         .setTitleText("DETAY")
                         .setContentText(str)
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
                             }
                         })
@@ -1236,16 +1236,16 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
             if (_Secili != null) {
                 final Urun_sevkiyat tag = _Secili;
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("SORU")
                         .setContentText("SERİ NO : " + tag.palet_kod + "\r\n Seri nolu ürün için 'İNDİRME' işlemi uygulanacak. Onaylıyor musunuz ?")
                         .setContentTextSize(20)
                         .setConfirmText("EVET")
                         .setCancelText("HAYIR")
                         .showCancelButton(true)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
 
                                 aktarim akt = new aktarim();
@@ -1287,21 +1287,21 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                                         }
                                     }
                                     updateListviewItem();
-                                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                             .setTitleText("Onay")
                                             .setContentText("İndirme işlemi başarı ile tamamlandı.")
                                             .setContentTextSize(20)
                                             .setConfirmText("TAMAM")
                                             .showCancelButton(false)
-                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                 @Override
-                                                public void onClick(SweetAlertDialog sDialog) {
+                                                public void onClick(SweetAlertDialogG sDialog) {
                                                     sDialog.dismissWithAnimation();
                                                 }
                                             })
                                             .show();
                                 } else {
-                                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                             .setTitleText("İşlem Başarısız")
                                             .setContentTextSize(25)
                                             .setContentText("İndirme işlemi başarısız. Kayıt yapılamadı. \r\n Veritabanı hatası")
@@ -1310,9 +1310,9 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                                 }
                             }
                         })
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
                                 return;
                             }

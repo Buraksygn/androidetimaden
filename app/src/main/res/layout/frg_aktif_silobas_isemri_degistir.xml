@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
+    android:focusable="false"
     tools:context="com.etimaden.SevkiyatIslemleri.Silobas_islemleri.frg_aktif_silobas_isemri_degistir"
     android:layout_height="match_parent">
 

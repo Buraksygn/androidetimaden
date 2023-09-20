@@ -15,9 +15,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.frg_ana_sayfa;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -159,15 +159,15 @@ public class frg_sifre_degistir extends Fragment {
 
             if(streskisifre.length()<5 || stryenisifre.length()<5  || strtekraryenisifre.length()<5)
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("UYARI")
                         .setContentText("Lütfen ilgili alanları doldurunuz")
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
                             }
                         })
@@ -179,15 +179,15 @@ public class frg_sifre_degistir extends Fragment {
 
             if(stryenisifre!=strtekraryenisifre)
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("UYARI")
                         .setContentText("Girilen yeni şifre değerleri uyuşmuyor")
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
                             }
                         })

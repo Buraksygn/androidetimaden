@@ -20,6 +20,7 @@ import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.adapter.apmbluretimdetayAktifIsEmirleri;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.uretim_detay;
 import com.etimaden.request.request_bos;
@@ -29,7 +30,6 @@ import com.etimaden.ugr_demo.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -40,7 +40,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_uretim_detay_ekrani extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
     boolean isReadable = true;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -189,7 +189,7 @@ public class frg_uretim_detay_ekrani extends Fragment {
         catch (Exception ex)
         {
             //pDialog.hide();
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("BAĞLANTI HATASI")
                     .setContentTextSize(25)
                     .setContentText("Üretim bilgisi alınamadı.")

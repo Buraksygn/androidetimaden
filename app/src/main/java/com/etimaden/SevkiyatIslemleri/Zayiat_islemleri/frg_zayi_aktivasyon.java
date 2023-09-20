@@ -23,6 +23,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persosclass.Arac;
 import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
@@ -35,11 +36,10 @@ import com.etimaden.ugr_demo.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_zayi_aktivasyon extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
     boolean isReadable = true;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -161,7 +161,7 @@ public class frg_zayi_aktivasyon extends Fragment {
 
             if (arac == null)
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İş Bulunamadı")
                         .setContentTextSize(25)
                         .setContentText("Aranılan zayi iş detayına ulaşılamadı. \r\n Bağlantılarınızı ve iş emrini kontrol ettikten sonra devam edebilirsiniz.")
@@ -214,7 +214,7 @@ public class frg_zayi_aktivasyon extends Fragment {
 
             if (zayi_listesi.size() == 0)
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İş Bulunamadı")
                         .setContentTextSize(25)
                         .setContentText("Aranılan zayi iş detayına ulaşılamadı. \r\n Bağlantılarınızı ve iş emrini kontrol ettikten sonra devam edebilirsiniz.")

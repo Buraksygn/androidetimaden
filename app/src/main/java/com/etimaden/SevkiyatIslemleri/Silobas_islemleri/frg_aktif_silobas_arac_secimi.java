@@ -25,15 +25,15 @@ import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.request.request_string;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_aktif_silobas_arac_secimi extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
     boolean isReadable = true;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -154,7 +154,7 @@ public class frg_aktif_silobas_arac_secimi extends Fragment {
 
             if (sevk == null)
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentTextSize(25)
                         .setContentText("Aktif araç işemri bulunamadı.. \r\n Araç kantardan geçiş işlemini tamamlamamış.")
@@ -188,7 +188,7 @@ public class frg_aktif_silobas_arac_secimi extends Fragment {
         catch (Exception ex)
         {
             Genel.dismissProgressDialog();
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentTextSize(25)
                     .setContentText("Aktif araç işemri bulunamadı.. \r\n Araç kantardan geçiş işlemini tamamlamamış.")

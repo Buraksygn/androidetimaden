@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.manipulasyon.frg_manipulasyon_panel;
 import com.etimaden.persos.Persos;
@@ -23,7 +24,6 @@ import com.etimaden.request.request_ambalaj_tipi_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_ambalaj_tipi_secEtiket;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -161,15 +161,15 @@ public class frg_ambalaj_tipi_degisimi extends Fragment {
     public void fn_BarkodOkutuldu(String barkod)
     {
         if (barkod.length() < 24) {
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentText("Uygun olmayan etiket")
                     .setContentTextSize(20)
                     .setConfirmText("TAMAM")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
                             sDialog.dismissWithAnimation();
 
                         }
@@ -203,16 +203,16 @@ public class frg_ambalaj_tipi_degisimi extends Fragment {
 
             if(_yanit._zSonuc.equals("0"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentText(_yanit.get_zHataAciklama())
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                         {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog)
+                            public void onClick(SweetAlertDialogG sDialog)
                             {
                                 sDialog.dismissWithAnimation();
 
@@ -249,16 +249,16 @@ public class frg_ambalaj_tipi_degisimi extends Fragment {
             _yazi += "<br/>ÜRETİM KURALLARI";
             _yazi += "<br/>1) 3 GÜN İÇİNDE PAKET TİPİ DEĞİŞİMİ KAYDI GERÇEKLEŞMEYEN ETİKET İÇİN PAKET TİPİ DEĞİŞİMİ KAYDI OLUŞTURULAMAZ.";
 
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentText(_yazi)
                     .setContentTextSize(18)
                     .setConfirmText("TAMAM")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener()
                     {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog)
+                        public void onClick(SweetAlertDialogG sDialog)
                         {
                             sDialog.dismissWithAnimation();
 

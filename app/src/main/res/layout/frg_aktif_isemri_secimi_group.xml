@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
     android:layout_height="match_parent"
+    android:focusable="false"
     tools:context="com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_secimi_group">
 
     <Button

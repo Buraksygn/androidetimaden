@@ -17,13 +17,13 @@ import com.etimaden.GirisSayfasi;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_shrink_onayi_al;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -34,7 +34,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_shrink_onay extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
     boolean isReadable = true;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -220,7 +220,7 @@ public class frg_shrink_onay extends Fragment {
             {
                 if (tag == null )
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("BAĞLANTI PROBLEMİ")
                             .setContentTextSize(25)
                             .setContentText("ÜRÜN BİLGİSİ ALINAMADI. DAHA SONRA TEKRAR DENEYİNİZ. \r\n Etiket verisine ulaşılamadı.")
@@ -231,7 +231,7 @@ public class frg_shrink_onay extends Fragment {
                 }
                 else if ( (!tag.islem_durumu.equals("1")) || (!tag.etiket_turu.equals("1")) )
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                             .setContentTextSize(25)
                             .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir. \r\n İşleme uygun olmayan etiket.")
@@ -253,7 +253,7 @@ public class frg_shrink_onay extends Fragment {
             {
                 if (tag == null)
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("BAĞLANTI PROBLEMİ")
                             .setContentTextSize(25)
                             .setContentText("ÜRÜN BİLGİSİ ALINAMADI. DAHA SONRA TEKRAR DENEYİNİZ. \r\n Etiket verisine ulaşılamadı.")
@@ -288,15 +288,15 @@ public class frg_shrink_onay extends Fragment {
 
                     if (result)
                     {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                 .setTitleText("Onay Mesaji")
                                 .setContentText("İŞLEM BAŞARIYLA YAPILDI")
                                 .setContentTextSize(20)
                                 .setConfirmText("TAMAM")
                                 .showCancelButton(false)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
 
                                     }
@@ -313,15 +313,15 @@ public class frg_shrink_onay extends Fragment {
 
                     }
                     else
-                    {new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    {new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("Uyarı")
                             .setContentText("İşlem yapılamadı.Bağlantı ayarlarınızı kontrol ettikten sonra tekrar deneyiniz.")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
 
                                 }
@@ -333,7 +333,7 @@ public class frg_shrink_onay extends Fragment {
                 }
                 else
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("İŞLEM YAPILAMADI")
                             .setContentTextSize(25)
                             .setContentText("Ürün eşleme başarız oldu. Etiketleri kontrol ederek tekrar deneyiniz \r\n İşleme uygun olmayan etiket.")

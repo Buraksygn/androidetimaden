@@ -18,6 +18,7 @@ import com.etimaden.GirisSayfasi;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_bos;
@@ -26,7 +27,6 @@ import com.etimaden.request.request_string;
 import com.etimaden.request.request_uretim_iptali;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -181,15 +181,15 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
 
                 if (res)
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("Onay")
                             .setContentText("Ayarlar kaydedildi.")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                 }
                             })
@@ -199,15 +199,15 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
 
                 }
                 else{
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("Hata")
                             .setContentText("Kayıt yapılamadı.Lütfen bağlantı ayarlarını kontrol ediniz.")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                 }
                             })
@@ -343,16 +343,16 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
             try
             {
 
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("UYARI")
                         .setContentText("Bu işlem sonnucunda sistem sıfırlanacaktır. Bu işleme devam etmek istiyor musunuz ?" )
                         .setContentTextSize(20)
                         .setConfirmText("EVET")
                         .setCancelText("HAYIR")
                         .showCancelButton(true)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sıfırla();
                                 sDialog.dismissWithAnimation();
                             }

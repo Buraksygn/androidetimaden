@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
+    android:focusable="false"
     tools:context="com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.frg_zayi_depo_secimi"
     android:layout_height="match_parent">
 

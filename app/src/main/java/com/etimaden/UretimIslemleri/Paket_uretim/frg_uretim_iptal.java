@@ -17,13 +17,13 @@ import com.etimaden.GirisSayfasi;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_uretim_iptali;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -34,7 +34,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_uretim_iptal extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
     boolean isReadable = true;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -235,15 +235,15 @@ public class frg_uretim_iptal extends Fragment {
 
             if (result)
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("İŞLEM ONAYI")
                         .setContentText("ÜRETİM İPTAL İŞLEM KAYDI OLUŞTURULDU")
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
 
                             }
@@ -253,7 +253,7 @@ public class frg_uretim_iptal extends Fragment {
             }
             else
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("BAĞLANTI PROBLEMİ")
                         .setContentTextSize(25)
                         .setContentText("İŞLEM YAPILAMADI. DAHA SONRA TEKRAR DENEYİNİZ. \r\n İŞLEM KAYDI TAMAMLANAMADI.")
@@ -271,7 +271,7 @@ public class frg_uretim_iptal extends Fragment {
         {
             if (tag == null)
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("BAĞLANTI PROBLEMİ")
                         .setContentTextSize(25)
                         .setContentText("ÜRÜN BİLGİSİ ALINAMADI. DAHA SONRA TEKRAR DENEYİNİZ. \r\n Etiket verisine ulaşılamadı.")
@@ -283,7 +283,7 @@ public class frg_uretim_iptal extends Fragment {
             else if (!tag.islem_durumu.equals("1") )
             {
 
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                         .setContentTextSize(25)
                         .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir. \r\n İşleme uygun olmayan etiket. \r\n HATA KODU : " + tag.islem_durumu)
@@ -295,7 +295,7 @@ public class frg_uretim_iptal extends Fragment {
             else if (!tag.uretim_dakika_onayi.equals("1") )
             {
 
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("ONAY ALINAMADI")
                         .setContentTextSize(25)
                         .setContentText("ÜRETİM İPTAL ONAYI ALINAMADI. DETAYLAR KISMINDAN ÜRETİM İPTAL KURALLARINI OKUYABİLİRSİNİZ. " +
@@ -311,7 +311,7 @@ public class frg_uretim_iptal extends Fragment {
 
                 if (_iIptalOncesiDepoKontrol==1  && tag.son_depo_kod.trim().startsWith("URN"))
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN DEPO")
                             .setContentTextSize(25)
                             .setContentText("Ürünün bulunduğu depo yapmak istediğiniz işlem için uygun değildir. " +
@@ -324,16 +324,16 @@ public class frg_uretim_iptal extends Fragment {
 
                 else
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("ÜRETİM İPTALİ")
                             .setContentText("SERİNO : " + tag.kod + " \r\n LOTNO : " + tag.lotno + " \r\n ÜRÜN : " + tag.urun_adi + " \r\n ÜRETİM İPTAL İŞLEMİNE DEVAM ETMEK İSTİYOR MUSUNUZ ?")
                             .setContentTextSize(20)
                             .setConfirmText("EVET")
                             .setCancelText("HAYIR")
                             .showCancelButton(true)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                     etiketDegerlendirOnConfirm(tag);
 

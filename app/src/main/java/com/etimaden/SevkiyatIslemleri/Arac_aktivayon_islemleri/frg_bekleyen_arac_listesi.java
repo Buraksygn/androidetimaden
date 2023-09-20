@@ -29,6 +29,7 @@ import com.etimaden.adapter.apmblSevkiyatBekleyenAracListesi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Arac;
 import com.etimaden.persosclass.DEPOTag;
@@ -42,7 +43,6 @@ import com.etimaden.ugr_demo.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_bekleyen_arac_listesi extends Fragment {
 
@@ -192,7 +192,7 @@ public class frg_bekleyen_arac_listesi extends Fragment {
         catch (Exception ex)
         {
             Genel.printStackTrace(ex,getContext());
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("BAL-0E1 ")
                     .setContentTextSize(25)
                     .setContentText(ex.toString())
@@ -232,16 +232,16 @@ public class frg_bekleyen_arac_listesi extends Fragment {
                     final String _sPlaka = _cTemp.skolon1;
                     final String _sRfid = _cTemp.skolon6;
 
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("İŞLEM ONAYI")
                             .setContentText(_sPlaka+" PLAKALI ARAÇ İÇİN YAPILAN İŞLEMİ OANAYLIYOR MUSUNUZ?")
                             .setContentTextSize(20)
                             .setConfirmText("EVET")
                             .setCancelText("HAYIR")
                             .showCancelButton(true)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
 
                                     try
@@ -307,7 +307,7 @@ public class frg_bekleyen_arac_listesi extends Fragment {
                                     }
                                     catch (Exception ex)
                                     {
-                                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                                 .setTitleText("HATA")
                                                 .setContentTextSize(25)
                                                 .setContentText(ex.toString())
@@ -318,9 +318,9 @@ public class frg_bekleyen_arac_listesi extends Fragment {
                                     return;
                                 }
                             })
-                            .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                     return;
                                 }
@@ -330,15 +330,15 @@ public class frg_bekleyen_arac_listesi extends Fragment {
                 }
                 else
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("SEÇİM")
                             .setContentText("Lütfen listeden araç seçiniz!")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                     return;
                                 }
@@ -347,7 +347,7 @@ public class frg_bekleyen_arac_listesi extends Fragment {
             }
             catch (Exception ex)
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA A-AB01")
                         .setContentTextSize(25)
                         .setContentText(ex.toString())

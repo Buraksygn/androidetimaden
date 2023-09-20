@@ -23,6 +23,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.adapter.apmblDepoListesi;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persosclass.Arac;
 import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
@@ -34,11 +35,10 @@ import com.etimaden.ugr_demo.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_zayi_depo_secimi extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
     boolean isReadable = true;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -188,7 +188,7 @@ public class frg_zayi_depo_secimi extends Fragment {
         catch (Exception ex)
         {
             Genel.printStackTrace(ex,getContext());
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("BAĞLANTI HATASI")
                     .setContentTextSize(25)
                     .setContentText("Depo bilgisi alınamadı.")
@@ -249,7 +249,7 @@ public class frg_zayi_depo_secimi extends Fragment {
                         fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_zayi_arac_bulundu_indirme").addToBackStack(null);
                         fragmentTransaction.commit();
                     } else {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                 .setTitleText("DEPO SEÇİMİ UYARISI")
                                 .setContentTextSize(25)
                                 .setContentText("DEPO SEÇİM İŞLEMİ YAPILMADI.")
@@ -260,7 +260,7 @@ public class frg_zayi_depo_secimi extends Fragment {
                 }
                 else
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("DEPO SEÇİMİ UYARISI")
                             .setContentTextSize(25)
                             .setContentText("DEPO SEÇİM İŞLEMİ YAPILMADI.")
@@ -269,7 +269,7 @@ public class frg_zayi_depo_secimi extends Fragment {
                 }
             } catch (Exception ex) {
                 Genel.printStackTrace(ex,getContext());
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("DEPO SEÇİMİ UYARISI")
                         .setContentTextSize(25)
                         .setContentText("DEPO SEÇİM İŞLEMİ YAPILMADI.")

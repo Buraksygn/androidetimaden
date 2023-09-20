@@ -18,12 +18,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
@@ -33,7 +33,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 public class csurumkontrol extends AppCompatActivity  {
 
-    public SweetAlertDialog pDialog;
+    public SweetAlertDialogG pDialog;
 
     VeriTabani _myIslem;
     String _ayaraktifkullanici="";
@@ -91,7 +91,7 @@ public class csurumkontrol extends AppCompatActivity  {
     private void fn_SurumDegerGetir()
     {
 
-        pDialog = new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE);
+        pDialog = new SweetAlertDialogG(this, SweetAlertDialogG.NORMAL_TYPE);
         pDialog.setTitleText("BEKLEYİNİZ");
         pDialog.setContentText("Sürüm kontrol edilliyor. Lütfen bekleyiniz");
         pDialog.setCancelable(false);
@@ -129,7 +129,7 @@ public class csurumkontrol extends AppCompatActivity  {
                             fn_SurumKontrol();
                             pDialog.hide();
 
-                            //pDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                            //pDialog.changeAlertType(SweetAlertDialogG.SUCCESS_TYPE);
 
                             //pDialog.setTitleText("TAMAMLANDI");
 
@@ -176,14 +176,14 @@ public class csurumkontrol extends AppCompatActivity  {
         if(_zGuncellemeGerekli.equals("1"))
         {
 
-            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+            new SweetAlertDialogG(this, SweetAlertDialogG.WARNING_TYPE)
                     .setTitleText("VERSİYON UYARISI")
                     .setContentText("UYGULAMANIN YENİ SÜRÜMÜ BULUNMAKTADIR.<br><a href = '"+_Kurulum+"'>"+_Kurulum.replace("https://","")+"</a> ADRESİNDEN YENİ SÜRÜMÜ KURABİLİRSİNİZ")
                     .setConfirmText("Tamam")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog)
+                        public void onClick(SweetAlertDialogG sDialog)
                         {
 
                             sDialog.dismissWithAnimation();

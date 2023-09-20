@@ -18,13 +18,13 @@ import com.etimaden.GirisSayfasi;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_uretim_zayi;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -155,7 +155,7 @@ public class frg_uretim_zayi extends Fragment {
             { }
             else
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("UYARI")
                         .setContentTextSize(25)
                         .setContentText("UYARI : " + "Lütfen yapmak istediğiniz zayi türünü seçiniz.")
@@ -204,7 +204,7 @@ public class frg_uretim_zayi extends Fragment {
             { }
             else
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("UYARI")
                         .setContentTextSize(25)
                         .setContentText("UYARI : " + "Lütfen yapmak istediğiniz zayi türünü seçiniz.")
@@ -271,30 +271,30 @@ public class frg_uretim_zayi extends Fragment {
         if (islem_res)
         {
             if (_radioButton4.isChecked())
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("İŞLEM ONAYI")
                         .setContentText("ÜRETİM ZAYİ İPTAL İŞLEM KAYDI OLUŞTURULDU")
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
 
                             }
                         })
                         .show();
             else{
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("İŞLEM ONAYI")
                         .setContentText("ÜRETİM ZAYİ İŞLEM KAYDI OLUŞTURULDU")
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
 
                             }
@@ -304,15 +304,15 @@ public class frg_uretim_zayi extends Fragment {
         }
         else
         {
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("BAĞLANTI PROBLEMİ")
                     .setContentText("İŞLEM YAPILAMADI. DAHA SONRA TEKRAR DENEYİNİZ. \r\n İŞLEM KAYDI TAMAMLANAMADI.")
                     .setContentTextSize(20)
                     .setConfirmText("TAMAM")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
                             sDialog.dismissWithAnimation();
 
                         }
@@ -327,15 +327,15 @@ public class frg_uretim_zayi extends Fragment {
         {
             if (tag == null )
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("BAĞLANTI PROBLEMİ")
                         .setContentText("ÜRÜN BİLGİSİ ALINAMADI. DAHA SONRA TEKRAR DENEYİNİZ.\r\n Etiket verisine ulaşılamadı.")
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
 
                             }
@@ -344,15 +344,15 @@ public class frg_uretim_zayi extends Fragment {
             }
             else if ((!tag.islem_durumu.equals("1")) && (!tag.islem_durumu.equals("10")))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                         .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir.\r\n İşleme uygun olmayan etiket.\r\n HATA KODU : " + tag.islem_durumu )
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
 
                             }
@@ -361,15 +361,15 @@ public class frg_uretim_zayi extends Fragment {
             }
             else if (tag.etiket_turu.equals("0") && !tag.lotno.equals("DKMPAKET"))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                         .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir.\r\n İşleme uygun olmayan etiket.\r\n HATA KODU : " + tag.islem_durumu )
                         .setContentTextSize(20)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
 
                             }
@@ -388,15 +388,15 @@ public class frg_uretim_zayi extends Fragment {
 
                 if (tag.islem_durumu.equals("10") && _radioButton4.isChecked())
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("ÜRETİM ZAYİ")
                             .setContentText("SERİNO : " + tag.kod + "\r\n" +"LOTNO : " + tag.lotno + "\r\n" + "ÜRÜN : " + tag.urun_adi + "\r\n" + "ÜRETİM ZAYİ İPTAL İŞLEMİNE DEVAM ETMEK İSTİYOR MUSUNUZ ?")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(true)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     etiketDegerlendirOnConfirm(tag);
                                     sDialog.dismissWithAnimation();
 
@@ -407,15 +407,15 @@ public class frg_uretim_zayi extends Fragment {
 
                 else
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("ÜRETİM ZAYİ")
                             .setContentText("SERİNO : " + tag.kod + "\r\n" + "LOTNO : " + tag.lotno + "\r\n" + "ÜRÜN : " + tag.urun_adi + "\r\n" + "ÜRETİM ZAYİ İŞLEMİNE DEVAM ETMEK İSTİYOR MUSUNUZ ?")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(true)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     etiketDegerlendirOnConfirm(tag);
                                     sDialog.dismissWithAnimation();
 

@@ -41,6 +41,7 @@ import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewAracAktivasyon;
 import com.etimaden.cResponseResult.ViewonaylaSevkIsDegisimi;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,11 +51,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_isemri_degistir_transfer extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
 
     VeriTabani _myIslem;
 
@@ -151,7 +151,7 @@ public class frg_isemri_degistir_transfer extends Fragment {
 
     private void fn_IsEmirListesi() {
 
-        pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+        pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
         pDialog.setTitleText("YÜKLENİYOR");
         pDialog.setContentText("İş emir listesi yükleniyor. Lütfen bekleyiniz");
         //pDialog.setContentText(_TempEpc);
@@ -197,7 +197,7 @@ public class frg_isemri_degistir_transfer extends Fragment {
 
 
                             if (_Yanit._zSonuc.equals("0")) {
-                                pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                 pDialog.setTitle("HATA");
                                 pDialog.setContentText(_Yanit._zHataAciklama);
                             } else {
@@ -335,7 +335,7 @@ public class frg_isemri_degistir_transfer extends Fragment {
             if (_SeciliListe.getkod_sap().equals("-1")) {
 
             } else {
-                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+                pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
                 pDialog.setTitleText("YÜKLENİYOR");
                 pDialog.setContentText("İşlem yapılıyor. Lütfen bekleyinizi");
                 //pDialog.setContentText(_TempEpc);
@@ -346,7 +346,7 @@ public class frg_isemri_degistir_transfer extends Fragment {
 
 
                 if (!(aktif_sevk_isemri.yapilan_adet.equals("0") || (aktif_sevk_isemri.urun_kodu.equals(_SeciliListe.geturun_kodu())))) {
-                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                     pDialog.setTitleText("İşlem Başarısız");
                     pDialog.setContentTextSize(22);
                     pDialog.setContentText("Farklı ürün yüklemesi yapılmış işemri değişimi yapamazsınız.");
@@ -402,22 +402,22 @@ public class frg_isemri_degistir_transfer extends Fragment {
                                         ViewonaylaSevkIsDegisimi _Yanit = objectMapper.readValue(response.toString(), ViewonaylaSevkIsDegisimi.class);
 
                                         if (_Yanit._zSonuc.equals("0")) {
-                                            pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                            pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                             pDialog.setTitle("HATA");
                                             pDialog.setContentTextSize(22);
                                             pDialog.setContentText(_Yanit._zHataAciklama);
                                             pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
                                         }
                                         else {
-                                            pDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                                            pDialog.changeAlertType(SweetAlertDialogG.SUCCESS_TYPE);
                                             pDialog.setTitle("BAŞARILI");
                                             pDialog.setContentTextSize(22);
                                             pDialog.setContentText("İŞLEM BAŞARILI");
                                             pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
 
-                                            pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            pDialog.setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                 @Override
-                                                public void onClick(SweetAlertDialog sDialog)
+                                                public void onClick(SweetAlertDialogG sDialog)
                                                 {
                                                     sDialog.dismissWithAnimation();
 

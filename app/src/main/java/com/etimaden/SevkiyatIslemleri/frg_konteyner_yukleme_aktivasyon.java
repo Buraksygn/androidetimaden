@@ -29,6 +29,7 @@ import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewAracAktivasyon;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -37,7 +38,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
@@ -66,7 +66,7 @@ public class frg_konteyner_yukleme_aktivasyon  extends Fragment {
 
     public ViewAracAktivasyon _Yanit;
 
-    public SweetAlertDialog pDialog;
+    public SweetAlertDialogG pDialog;
 
     public String _OnlineUrl = "";
 
@@ -159,7 +159,7 @@ public class frg_konteyner_yukleme_aktivasyon  extends Fragment {
                     if(_TempEpc.startsWith("737767"))
                     {
 
-                        pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+                        pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
                         pDialog.setContentTextSize(25);
 
                         pDialog.setTitleText("YÜKLENİYOR");
@@ -190,7 +190,7 @@ public class frg_konteyner_yukleme_aktivasyon  extends Fragment {
 
                             _IslemVar = false;
 
-                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                     .setTitleText("HATA")
                                     .setContentTextSize(25)
                                     .setContentText("Hata : " + error.getMessage())
@@ -215,13 +215,13 @@ public class frg_konteyner_yukleme_aktivasyon  extends Fragment {
                                             {
                                                 ((GirisSayfasi)getActivity()).fn_ListeTemizle();
 
-                                                pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                                pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                                 pDialog.setTitle("HATA");
                                                 pDialog.setContentText(_Yanit._zHataAciklama + " "+_TempEpc);
 
-                                                pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                pDialog.setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                     @Override
-                                                    public void onClick(SweetAlertDialog sDialog)
+                                                    public void onClick(SweetAlertDialogG sDialog)
                                                     {
                                                         sDialog.dismissWithAnimation();
 
@@ -247,16 +247,16 @@ public class frg_konteyner_yukleme_aktivasyon  extends Fragment {
 
                                                 final String Arac_Kodu=aktif_sevk_isemri.arac_kodu;
 
-                                                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                                         .setTitleText("KONTEYNER ONAY")
                                                         .setContentText(_Aciklama)
                                                         .setContentTextSize(25)
                                                         .setCancelText("Hayır")
                                                         .setConfirmText("EVET")
                                                         .showCancelButton(true)
-                                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                             @Override
-                                                            public void onClick(SweetAlertDialog sDialog)
+                                                            public void onClick(SweetAlertDialogG sDialog)
                                                             {
                                                                 sDialog.dismissWithAnimation();
 
@@ -296,9 +296,9 @@ public class frg_konteyner_yukleme_aktivasyon  extends Fragment {
                                                                 }
                                                             }
                                                         })
-                                                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                        .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                             @Override
-                                                            public void onClick(SweetAlertDialog sDialog)
+                                                            public void onClick(SweetAlertDialogG sDialog)
                                                             {
                                                                 sDialog.cancel();
 
@@ -312,7 +312,7 @@ public class frg_konteyner_yukleme_aktivasyon  extends Fragment {
                                             //Toast.makeText(getApplicationContext(), "_zSayfaAdiAciklama =" + _zHataAciklamasi, Toast.LENGTH_SHORT).show();
 
                                         } catch (JsonMappingException exx) {
-                                            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                                     .setTitleText("HATA-02")
                                                     .setContentText(exx.toString())
                                                     .setCancelText("Hayır")
@@ -320,7 +320,7 @@ public class frg_konteyner_yukleme_aktivasyon  extends Fragment {
                                                     .showCancelButton(true)
                                                     .show();
                                         } catch (JsonProcessingException exxx) {
-                                            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                                     .setTitleText("HATA-03")
                                                     .setContentText(exxx.toString())
                                                     .setCancelText("Hayır")

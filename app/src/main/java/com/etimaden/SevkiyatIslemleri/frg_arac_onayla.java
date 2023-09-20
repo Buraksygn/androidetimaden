@@ -39,6 +39,7 @@ import com.etimaden.cResponseResult.viewDeger_01;
 import com.etimaden.cResponseResult.viewparsiyel_kontrol_01;
 import com.etimaden.cResponseResult.viewsevkiyatKapat;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.request.request_guncelle_sevk_hareket;
 import com.etimaden.request.request_sevkiyat_isemri;
@@ -53,7 +54,6 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
@@ -83,7 +83,7 @@ public class frg_arac_onayla extends Fragment {
 
     Button btn_01;
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
     Persos persos;
     public String _EkleAracAktivasyonuUrl = "";
     public String _UpdateAracAktivasyonuUrl = "";
@@ -172,7 +172,7 @@ public class frg_arac_onayla extends Fragment {
 
 
     public void fn_IptalEt() {
-        pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+        pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
         pDialog.setTitleText("YÜKLENİYOR");
         pDialog.setContentText(" Kontrol ediliyor Lütfen bekleyiniz.");
         //pDialog.setContentText(_TempEpc);
@@ -217,7 +217,7 @@ public class frg_arac_onayla extends Fragment {
                             ViewsevkiyatIptal _Yanit = objectMapper.readValue(response.toString(), ViewsevkiyatIptal.class);
 
                             if (_Yanit._zSonuc.equals("0")) {
-                                pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                 pDialog.setTitle("HATA");
                                 pDialog.setContentTextSize(20);
                                 pDialog.setContentText(_Yanit._zHataAciklama);
@@ -355,7 +355,7 @@ public class frg_arac_onayla extends Fragment {
                 aktif_kullanici = _ayaraktifkullanici;
 
                 if (!konteyner_turu.equals("") && kont_kodu.equals("")) {
-                    pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                    pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
                     pDialog.setTitleText("ARAÇ TANIMI EKSİK");
                     pDialog.setContentText("KONTEYNER TANIMLAMA VE EŞLEŞTİRME İŞLEMİ YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ.");
                     pDialog.show();
@@ -370,7 +370,7 @@ public class frg_arac_onayla extends Fragment {
 
             if (_bDevam == true) {
 
-                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
+                pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.PROGRESS_TYPE);
                 pDialog.setTitleText("KONTROL");
                 pDialog.setContentText("Kontrol ediliyor Lütfen bekleyiniz.");
                 //pDialog.setContentText(_TempEpc);
@@ -423,21 +423,21 @@ public class frg_arac_onayla extends Fragment {
 
 
                                         if (_zSonuc.equals("0")) {
-                                            pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                            pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                             pDialog.setTitle("HATA");
                                             pDialog.setContentText(_zHataAciklama);
                                             pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
                                         } else {
                                             pDialog.hide();
 
-                                            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                                     .setTitleText("TAMAMLANDI")
                                                     .setContentText("İşlem onaylandı.")
                                                     .setConfirmText("TAMAM")
                                                     .showCancelButton(false)
-                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                         @Override
-                                                        public void onClick(SweetAlertDialog sDialog) {
+                                                        public void onClick(SweetAlertDialogG sDialog) {
                                                             sDialog.dismissWithAnimation();
 
                                                             sDialog.hide();
@@ -513,22 +513,22 @@ public class frg_arac_onayla extends Fragment {
 
 
                                         if (_zSonuc.equals("0")) {
-                                            pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                            pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                             pDialog.setTitle("HATA");
                                             pDialog.setContentText(_zHataAciklama);
                                             pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
                                         } else {
                                             pDialog.hide();
 
-                                            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                                     .setTitleText("ONAY")
                                                     .setContentText("İşlem onaylandı.")
                                                     .setCancelText("Hayır")
                                                     .setConfirmText("TAMAM")
                                                     .showCancelButton(false)
-                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                         @Override
-                                                        public void onClick(SweetAlertDialog sDialog) {
+                                                        public void onClick(SweetAlertDialogG sDialog) {
                                                             sDialog.dismissWithAnimation();
 
                                                             sDialog.hide();
@@ -602,14 +602,14 @@ public class frg_arac_onayla extends Fragment {
         public void onClick(View view) {
 
             if (aktif_sevk_isemri.islem_id.equals("")) {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentText("Araç henüz açılmadığı için kapatamazsınız. Lütfen önce aracı açınız")
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
                                 sDialog.hide();
                             }
@@ -618,7 +618,7 @@ public class frg_arac_onayla extends Fragment {
 
             } else {
 
-                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+                pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
                 pDialog.setTitleText("YÜKLENİYOR");
                 pDialog.setContentText(aktif_sevk_isemri.arac_plaka + " kontrol ediliyor Lütfen bekleyiniz.");
                 //pDialog.setContentText(_TempEpc);
@@ -666,23 +666,23 @@ public class frg_arac_onayla extends Fragment {
                                     viewDeger_01 _Yanit = objectMapper.readValue(response.toString(), viewDeger_01.class);
 
                                     if (_Yanit._zSonuc.equals("0")) {
-                                        pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                        pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                         pDialog.setTitle("HATA");
                                         pDialog.setContentText(_Yanit._zHataAciklama);
                                         pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
                                     } else {
                                         if (_Yanit._zSoruSor.equals("1")) {
                                             //
-                                            pDialog.changeAlertType(SweetAlertDialog.WARNING_TYPE);
+                                            pDialog.changeAlertType(SweetAlertDialogG.WARNING_TYPE);
                                             pDialog.setTitle("UYARI");
                                             pDialog.setContentText("ARACA YÜKLEME YAPILMAMIŞ DURUMDA. BU ARACIN KAYDINI İPTAL ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?");
                                             pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
                                             pDialog.showCancelButton(true);
                                             pDialog.setCancelText("İPTAL");
                                             pDialog.setConfirmText("KAPAT");
-                                            pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            pDialog.setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                 @Override
-                                                public void onClick(SweetAlertDialog sDialog) {
+                                                public void onClick(SweetAlertDialogG sDialog) {
                                                     sDialog.dismissWithAnimation();
 
                                                     /*BEGIN------>*/
@@ -698,15 +698,15 @@ public class frg_arac_onayla extends Fragment {
                                             _Yazi = "PLAKA : " + aktif_sevk_isemri.arac_plaka + "<br>  ARAÇ İÇİNDE ;\n PALET SAYISI: " + _Yanit._zPaletSayisi +
                                                     "<br> MİKTAR: " + _Yanit._zMiktar + " KG<br>  ÜRÜN BULUNMAKTADIR !!<br>  ARACI KAPATMAK İSTİYOR MUSUNUZ ? ";
 
-                                            pDialog.changeAlertType(SweetAlertDialog.WARNING_TYPE);
+                                            pDialog.changeAlertType(SweetAlertDialogG.WARNING_TYPE);
                                             pDialog.setContentText(_Yazi);
                                             pDialog.showCancelButton(true);
                                             pDialog.setCancelText("İptal Et");
                                             pDialog.setConfirmText("ARACI KAPAT");
                                             pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
-                                            pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            pDialog.setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                 @Override
-                                                public void onClick(SweetAlertDialog sDialog) {
+                                                public void onClick(SweetAlertDialogG sDialog) {
                                                     sDialog.dismissWithAnimation();
 
                                                     /*BEGIN------>*/
@@ -723,13 +723,13 @@ public class frg_arac_onayla extends Fragment {
 
 
                                 } catch (JsonMappingException e) {
-                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                     pDialog.setTitle("HATA");
                                     pDialog.setContentText(e.toString());
                                     pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
                                     e.printStackTrace();
                                 } catch (JsonProcessingException e) {
-                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                     pDialog.setTitle("HATA");
                                     pDialog.setContentText(e.toString());
 
@@ -762,7 +762,7 @@ public class frg_arac_onayla extends Fragment {
             pDialog.hide();
         }
 
-        pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.PROGRESS_TYPE);
         pDialog.setTitleText("YÜKLENİYOR");
         pDialog.setContentText("Araç Kapatılıyor. Lütfen Bekleyiniz");
         //pDialog.setContentText(_TempEpc);
@@ -807,7 +807,7 @@ public class frg_arac_onayla extends Fragment {
                             viewsevkiyatKapat _Yanit = objectMapper.readValue(response.toString(), viewsevkiyatKapat.class);
 
                             if (_Yanit._zSonuc.equals("0")) {
-                                pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                 pDialog.setTitle("HATA");
                                 pDialog.setContentText("" + _Yanit._zHataAciklama);
                                 pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
@@ -815,14 +815,14 @@ public class frg_arac_onayla extends Fragment {
 
                                 pDialog.hide();
 
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                         .setTitleText("TAMAMLANDI")
                                         .setContentText("İşlem başarı ile tamamlanmıştır.")
                                         .setConfirmText("TAMAM")
                                         .showCancelButton(false)
-                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                             @Override
-                                            public void onClick(SweetAlertDialog sDialog) {
+                                            public void onClick(SweetAlertDialogG sDialog) {
                                                 sDialog.dismissWithAnimation();
 
                                                 sDialog.hide();
@@ -886,7 +886,7 @@ public class frg_arac_onayla extends Fragment {
             fragmentTransaction.commit();
         } else {
 
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentTextSize(25)
                     .setContentText("SEVKİYAT İPTAL İŞLEMİ GERÇEKLEŞTİRİLEMEDİ.")
@@ -916,15 +916,15 @@ public class frg_arac_onayla extends Fragment {
         Boolean islem_sonucu = persos.fn_sevkiyatDevam(v_Gelen);
         Genel.dismissProgressDialog();
         if (islem_sonucu) {
-            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                     .setTitleText("İşlem Onayı")
                     .setContentText("İşlem başarı ile tamamlanmıştır.")
                     .setContentTextSize(20)
                     .setConfirmText("TAMAM")
                     .showCancelButton(false)
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
+                        public void onClick(SweetAlertDialogG sDialog) {
 
                             frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
                             FragmentManager fragmentManager = getFragmentManager();
@@ -940,7 +940,7 @@ public class frg_arac_onayla extends Fragment {
             return;
 
         } else {
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("İşlem Başarısız")
                     .setContentTextSize(25)
                     .setContentText("Kayıt yapılamadı.\r\n Kayıt yapılamadı.")
@@ -958,7 +958,7 @@ public class frg_arac_onayla extends Fragment {
 
         try {
             if (aktif_sevk_isemri.islem_id.equals("")) {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("ARAÇ TANIMI EKSİK")
                         .setContentTextSize(25)
                         .setContentText("SEVKİYAT DETAYLARINI TAMAMLAMADAN YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ.")
@@ -982,16 +982,16 @@ public class frg_arac_onayla extends Fragment {
             List<String> miktarlar = persos.fn_sec_sevk_miktar(v_Gelen);
             Genel.dismissProgressDialog();
             if (miktarlar.get(0).equals("0")) {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.PROGRESS_TYPE)
                         .setTitleText("YÜKLEME MİKTARI UYARISI")
                         .setContentText("ARACA YÜKLEME YAPILMAMIŞ DURUMDA. BU ARACIN KAYDINI İPTAL ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?")
                         .setContentTextSize(20)
                         .setConfirmText("EVET")
                         .setCancelText("HAYIR")
                         .showCancelButton(true)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 fn_Arac_İptalOnConfirm();
                                 sDialog.dismissWithAnimation();
                             }
@@ -1017,7 +1017,7 @@ public class frg_arac_onayla extends Fragment {
             Genel.dismissProgressDialog();
 
             if (result != false || result != null) {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("Miktar Uyarısı")
                         .setContentTextSize(25)
                         .setContentText("Yükleme miktarı güncellenemedi.")
@@ -1045,7 +1045,7 @@ public class frg_arac_onayla extends Fragment {
                 int kalan_palet = Integer.parseInt(sevk_miktarları.get(1));
 
                 if (kalan_miktar < 0) {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("Miktar Uyarısı")
                             .setContentTextSize(25)
                             .setContentText("İş emrinden fazla miktarda ürün yüklemesi yapılamaz.")
@@ -1055,7 +1055,7 @@ public class frg_arac_onayla extends Fragment {
 
                 }
             } else {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("Onay Hatası")
                         .setContentTextSize(25)
                         .setContentText("Kayıt yapılamadı.Toplam miktar detayına ulaşılamadı")
@@ -1068,7 +1068,7 @@ public class frg_arac_onayla extends Fragment {
 
             try {
                 if (!aktif_sevk_isemri.konteyner_turu.equals("") && aktif_sevk_isemri.kont_rfid.equals("")) {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("ARAÇ TANIMI EKSİK")
                             .setContentTextSize(25)
                             .setContentText("KONTEYNER TANIMLAMA VE EŞLEŞTİRME İŞLEMİ YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ.")
@@ -1084,7 +1084,7 @@ public class frg_arac_onayla extends Fragment {
 
             try {
 
-                new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.PROGRESS_TYPE)
                         .setTitleText("ARA TARTIM UYARISI")
                         .setContentText("PLAKA : '" + aktif_sevk_isemri.arac_plaka + "'"
                                 + "\r\nARAÇ İÇİNDE ;"
@@ -1096,9 +1096,9 @@ public class frg_arac_onayla extends Fragment {
                         .setConfirmText("EVET")
                         .setCancelText("HAYIR")
                         .showCancelButton(true)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 fn_Ara_Tartim_IslemiOnConfirm();
                                 sDialog.dismissWithAnimation();
                             }
@@ -1112,7 +1112,7 @@ public class frg_arac_onayla extends Fragment {
 
         } catch (Exception ex) {
             Genel.printStackTrace(ex,getContext());
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("Onay Hatası")
                     .setContentTextSize(25)
                     .setContentText("Kayıt yapılamadı.\r\n Toplam miktar exception")
@@ -1130,12 +1130,12 @@ public class frg_arac_onayla extends Fragment {
 
             fn_Ara_Tartima_YollaIslem();
 //            if (aktif_sevk_isemri.islem_id.equals("")) {
-//                SweetAlertDialog pDialogUyari = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+//                SweetAlertDialogG pDialogUyari = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
 //                pDialogUyari.setTitleText("ARAÇ TANIMI EKSİK");
 //                pDialogUyari.setContentText("SEVKİYAT DETAYLARINI TAMAMLAMADAN YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ.");
 //                pDialogUyari.show();
 //            } else {
-//                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+//                pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
 //                pDialog.setTitleText("YÜKLENİYOR");
 //                pDialog.setContentText(aktif_sevk_isemri.arac_plaka + " kontrol ediliyor Lütfen bekleyiniz.");
 //                //pDialog.setContentText(_TempEpc);
@@ -1181,7 +1181,7 @@ public class frg_arac_onayla extends Fragment {
 //                                    _YanitAraTartim = objectMapper.readValue(response.toString(), viewparsiyel_kontrol_01.class);
 //
 //                                    if (_YanitAraTartim._zSonuc.equals("0")) {
-//                                        pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+//                                        pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
 //                                        pDialog.setTitle("HATA");
 //                                        pDialog.setContentTextSize(20);
 //                                        pDialog.setContentText(_YanitAraTartim._zHataAciklama);
@@ -1198,16 +1198,16 @@ public class frg_arac_onayla extends Fragment {
 //                                        /*BEGIN ----------->*/
 //
 //                                        if (_YanitAraTartim._deger01.equals("0")) {
-//                                            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+//                                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
 //                                                    .setTitleText("YÜKLEME MİKTARI UYARISI")
 //                                                    .setContentText("ARACA YÜKLEME YAPILMAMIŞ DURUMDA. BU ARACIN KAYDINI İPTAL ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?")
 //                                                    .setCancelText("Hayır")
 //                                                    .setContentTextSize(20)
 //                                                    .setConfirmText("EVET")
 //                                                    .showCancelButton(true)
-//                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
 //                                                        @Override
-//                                                        public void onClick(SweetAlertDialog sDialog) {
+//                                                        public void onClick(SweetAlertDialogG sDialog) {
 //                                                            sDialog.dismissWithAnimation();
 //
 //                                                            sDialog.hide();
@@ -1215,9 +1215,9 @@ public class frg_arac_onayla extends Fragment {
 //                                                            fn_IptalEt();
 //                                                        }
 //                                                    })
-//                                                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                                    .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
 //                                                        @Override
-//                                                        public void onClick(SweetAlertDialog sDialog) {
+//                                                        public void onClick(SweetAlertDialogG sDialog) {
 //                                                            sDialog.cancel();
 //                                                        }
 //                                                    })
@@ -1231,13 +1231,13 @@ public class frg_arac_onayla extends Fragment {
 //
 //
 //                                } catch (JsonMappingException e) {
-//                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+//                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
 //                                    pDialog.setTitle("HATA");
 //                                    pDialog.setContentText(e.toString());
 //                                    pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
 //                                    e.printStackTrace();
 //                                } catch (JsonProcessingException e) {
-//                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+//                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
 //                                    pDialog.setTitle("HATA");
 //                                    pDialog.setContentText(e.toString());
 //                                    pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
@@ -1265,7 +1265,7 @@ public class frg_arac_onayla extends Fragment {
 
 
         private void fn_guncelle_sevk_hareket() {
-            pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+            pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
             pDialog.setTitleText("YÜKLENİYOR");
             pDialog.setContentText(" Kontrol ediliyor Lütfen bekleyiniz.");
             //pDialog.setContentText(_TempEpc);
@@ -1320,7 +1320,7 @@ public class frg_arac_onayla extends Fragment {
 
 
                                 if (_Yanit._zSonuc.equals("0")) {
-                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                     pDialog.setTitle("HATA");
                                     pDialog.setContentText(_Yanit._zHataAciklama);
                                     pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
@@ -1364,7 +1364,7 @@ public class frg_arac_onayla extends Fragment {
 
         private void fn_get_yukleme_palet_sayisi_miktar() {
 
-            pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+            pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
             pDialog.setTitleText("YÜKLENİYOR");
             pDialog.setContentText(" Kontrol ediliyor Lütfen bekleyiniz.");
             //pDialog.setContentText(_TempEpc);
@@ -1411,7 +1411,7 @@ public class frg_arac_onayla extends Fragment {
                                 Viewget_yukleme_palet_sayisi_miktar _Yanit = objectMapper.readValue(response.toString(), Viewget_yukleme_palet_sayisi_miktar.class);
 
                                 if (_Yanit._zSonuc.equals("0")) {
-                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                     pDialog.setTitle("HATA");
                                     pDialog.setContentText(_Yanit._zHataAciklama);
                                     pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
@@ -1427,14 +1427,14 @@ public class frg_arac_onayla extends Fragment {
 
 
                                         if (!aktif_sevk_isemri.konteyner_turu.equals("") && aktif_sevk_isemri.kont_rfid.equals("")) {
-                                            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                                     .setTitleText("HATA")
                                                     .setContentText("ARAÇ TANIMI EKSİK.KONTEYNER TANIMLAMA VE EŞLEŞTİRME İŞLEMİ YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ")
                                                     .setConfirmText("TAMAM")
                                                     .showCancelButton(false)
-                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                         @Override
-                                                        public void onClick(SweetAlertDialog sDialog) {
+                                                        public void onClick(SweetAlertDialogG sDialog) {
                                                             sDialog.dismissWithAnimation();
 
                                                             sDialog.hide();
@@ -1488,15 +1488,15 @@ public class frg_arac_onayla extends Fragment {
                 "Aracı 'ARA TARTIM' işlemine devam etmek istiyor musunuz ? ";
 
 
-        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                 .setTitleText("ARA TARTIM ONAYI")
                 .setContentText(_Aciklama)
                 .setCancelText("İptal")
                 .setConfirmText("TAMAM")
                 .showCancelButton(true)
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                     @Override
-                    public void onClick(SweetAlertDialog sDialog) {
+                    public void onClick(SweetAlertDialogG sDialog) {
                         sDialog.dismissWithAnimation();
 
                         sDialog.hide();
@@ -1504,9 +1504,9 @@ public class frg_arac_onayla extends Fragment {
                         fn_sevkiyatDevam();
                     }
                 })
-                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                     @Override
-                    public void onClick(SweetAlertDialog sDialog) {
+                    public void onClick(SweetAlertDialogG sDialog) {
                         sDialog.cancel();
                     }
                 })
@@ -1516,7 +1516,7 @@ public class frg_arac_onayla extends Fragment {
     private void fn_sevkiyatDevam() {
 
 
-        pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+        pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
         pDialog.setTitleText("YÜKLENİYOR");
         pDialog.setContentText(" Kontrol ediliyor Lütfen bekleyiniz.");
         pDialog.setContentTextSize(20);
@@ -1568,21 +1568,21 @@ public class frg_arac_onayla extends Fragment {
                             ViewsevkiyatDevam _Yanit = objectMapper.readValue(response.toString(), ViewsevkiyatDevam.class);
 
                             if (_Yanit._zSonuc.equals("0")) {
-                                pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                 pDialog.setTitle("HATA");
                                 pDialog.setContentTextSize(20);
                                 pDialog.setContentText(_Yanit._zHataAciklama);
                                 pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
                             } else {
-                                pDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                                pDialog.changeAlertType(SweetAlertDialogG.SUCCESS_TYPE);
                                 pDialog.setTitle("TAMAM");
                                 pDialog.setContentTextSize(20);
                                 pDialog.setContentText("İşlem başarı ile tamamlanmıştır.");
                                 pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
 
-                                pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                pDialog.setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
 
                                         sDialog.hide();

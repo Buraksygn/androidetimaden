@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persosclass.Arac;
 import com.etimaden.genel.Genel;
 import com.etimaden.persos.Persos;
@@ -30,7 +31,6 @@ import com.etimaden.request.request_sevkiyat_zayi;
 import com.etimaden.request.request_sevkiyat_zayi_arac;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class frg_zayi_arac_onayla_indirme extends Fragment {
@@ -210,15 +210,15 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
                     Boolean guncelleDepoZayiArac = persos.fn_guncelle_depo_zayi_arac(_Param1);
                     Genel.dismissProgressDialog();
 
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("ONAY")
                             .setContentText("İşlem onaylandı.")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                     frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
                                     FragmentManager fragmentManager = getFragmentManager();
@@ -248,15 +248,15 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
                     Boolean guncelleDepoZayiArac = persos.fn_guncelle_depo_zayi_arac(_Param1);
                     Genel.dismissProgressDialog();
 
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("ONAY")
                             .setContentText("İşlem onaylandı.")
                             .setContentTextSize(20)
                             .setConfirmText("TAMAM")
                             .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                     frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
                                     FragmentManager fragmentManager = getFragmentManager();
@@ -270,7 +270,7 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
                 }
                 else
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("HATA")
                             .setContentTextSize(25)
                             .setContentText("İşlem yapılamadı. \r\n Veritabanı hatası.")
@@ -323,23 +323,23 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
 
                 else
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("İNDİRME MİKTARI UYARISI")
                             .setContentText("BU İŞLEMİ ONAYLARSANIZ OKUTULMAYAN ÜRÜNLER İÇİN ZAYİ İŞLEMİ UYGULANACAKTIR. BU İŞLEMİ ONAYLIYOR MUSUNUZ?")
                             .setContentTextSize(20)
                             .setConfirmText("EVET")
                             .setCancelText("HAYIR")
                             .showCancelButton(true)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                     return;
                                 }
                             })
-                            .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                     request_sevkiyat_zayi_arac _Param= new request_sevkiyat_zayi_arac();
                                     _Param.set_zsunucu_ip_adresi(_ayarsunucuip);

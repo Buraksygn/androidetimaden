@@ -36,6 +36,7 @@ import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.ViewAracAktivasyon;
 import com.etimaden.cResponseResult.Viewbekleyen_arac;
 import com.etimaden.cResponseResult.bekleyen_arac_liste;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -48,7 +49,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
@@ -59,7 +59,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_bekleyen_arac extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
 
     VeriTabani _myIslem;
 
@@ -247,7 +247,7 @@ public class frg_bekleyen_arac extends Fragment {
     {
         try
         {
-            pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+            pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
             pDialog.setTitleText("YÜKLENİYOR");
             pDialog.setContentText(" Araç Listesi Yükleniyor.Lütfen bekleyiniz.");
             //pDialog.setContentText(_TempEpc);
@@ -270,7 +270,7 @@ public class frg_bekleyen_arac extends Fragment {
                 parametre.put("aktif_kullanici", _ayaraktifkullanici);
 
             } catch (JSONException error) {
-                SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
                 pHataDialog.setTitleText("Hata 01");
                 pHataDialog.setContentText(error.toString());
                 //pDialog.setContentText(_TempEpc);
@@ -305,7 +305,7 @@ public class frg_bekleyen_arac extends Fragment {
 
                                 if (_zYanit.equals("0"))
                                 {
-                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                     pDialog.setTitle("HATA 02");
                                     pDialog.setContentText(_Yanit_01._zHataAciklama);
 
@@ -327,7 +327,7 @@ public class frg_bekleyen_arac extends Fragment {
 
                                     } catch (Exception ex)
                                     {
-                                        SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                                        SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
                                         pHataDialog.setTitleText("Hata 03");
                                         pHataDialog.setContentText(ex.toString());
                                         //pDialog.setContentText(_TempEpc);
@@ -339,7 +339,7 @@ public class frg_bekleyen_arac extends Fragment {
                             }
                             catch (JsonMappingException e)
                             {
-                                SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                                SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
                                 pHataDialog.setTitleText("Hata 04");
                                 pHataDialog.setContentText(e.toString());
                                 //pDialog.setContentText(_TempEpc);
@@ -348,7 +348,7 @@ public class frg_bekleyen_arac extends Fragment {
                             }
                             catch (JsonProcessingException e)
                             {
-                                SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                                SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
                                 pHataDialog.setTitleText("Hata 05");
                                 pHataDialog.setContentText(e.toString());
                                 //pDialog.setContentText(_TempEpc);
@@ -366,7 +366,7 @@ public class frg_bekleyen_arac extends Fragment {
                             }catch (Exception ex)
                             {
                             }
-                            SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                            SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
                             pHataDialog.setTitleText("Hata 06");
                             pHataDialog.setContentText(error.toString());
                             //pDialog.setContentText(_TempEpc);
@@ -438,7 +438,7 @@ public class frg_bekleyen_arac extends Fragment {
         public void onClick(View view) {
             if(_cSeciliArac == null)
             {
-                SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
                 pHataDialog.setTitleText("Araç Yok");
                 pHataDialog.setContentText("Lütfen araç seçiniz");
                 //pDialog.setContentText(_TempEpc);
@@ -459,7 +459,7 @@ public class frg_bekleyen_arac extends Fragment {
             final String _TempEpc = v_epc.substring(v_epc.length() - 24, v_epc.length());
 
             if (_TempEpc.startsWith("737767")) {
-                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+                pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
                 pDialog.setTitleText("YÜKLENİYOR");
                 pDialog.setContentText(_TempEpc + " Kontrol ediliyor Lütfen bekleyiniz.");
                 //pDialog.setContentText(_TempEpc);
@@ -513,7 +513,7 @@ public class frg_bekleyen_arac extends Fragment {
 */
                                     if (_Yanit._zSonuc.equals("0"))
                                     {
-                                        pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                        pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                         pDialog.setTitle("HATA");
                                         pDialog.setContentText(_Yanit._zHataAciklama);
                                     }
@@ -578,7 +578,7 @@ public class frg_bekleyen_arac extends Fragment {
 
 
         } catch (Exception ex) {
-            SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+            SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
             pHataDialog.setTitleText("HATA");
             pHataDialog.setContentText("Hata Açıklaması" + ex.toString());
             //pDialog.setContentText(_TempEpc);

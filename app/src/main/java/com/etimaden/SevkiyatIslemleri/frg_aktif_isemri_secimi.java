@@ -34,6 +34,7 @@ import com.etimaden.adapter.apmblIsEmriSecimi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewsevkDegerlendir;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -45,7 +46,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
 
@@ -55,7 +55,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_aktif_isemri_secimi extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
 
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -182,7 +182,7 @@ public class frg_aktif_isemri_secimi extends Fragment {
     }
 
     private void fn_SevkDegerlendir_Group() {
-        pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+        pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
         pDialog.setTitleText("YÜKLENİYOR");
         pDialog.setContentText(" Kontrol ediliyor Lütfen bekleyiniz.");
         //pDialog.setContentText(_TempEpc);
@@ -236,7 +236,7 @@ public class frg_aktif_isemri_secimi extends Fragment {
 
                             if(_zYanit.equals("0"))
                             {
-                                pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                 pDialog.setTitle("HATA");
                                 pDialog.setContentTextSize(23);
                                 pDialog.setContentText(_zHataAciklamasi);
@@ -354,7 +354,7 @@ public class frg_aktif_isemri_secimi extends Fragment {
     }
 
     private void fn_SevkDegerlendir() {
-        pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+        pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
         pDialog.setTitleText("YÜKLENİYOR");
         pDialog.setContentText(" Kontrol ediliyor Lütfen bekleyiniz.");
         //pDialog.setContentText(_TempEpc);
@@ -407,7 +407,7 @@ public class frg_aktif_isemri_secimi extends Fragment {
 
                             if(_zYanit.equals("0"))
                             {
-                                pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                 pDialog.setTitle("HATA");
                                 pDialog.setContentTextSize(23);
                                 pDialog.setContentText(_zHataAciklamasi);

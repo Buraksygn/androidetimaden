@@ -32,6 +32,7 @@ import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewsecKonteyner;
 import com.etimaden.cResponseResult.viewsevkiyatKapat;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persosclass.Arac;
 import com.etimaden.response.sevkiyat_islemleri.View_arac;
 import com.etimaden.ugr_demo.R;
@@ -42,7 +43,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -53,7 +53,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_konteyner_aktivasyon extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
 
     String arac_plaka="";
     String arac_kod="";
@@ -138,7 +138,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
             ((GirisSayfasi)getActivity()).fn_ListeTemizle();
 
 
-            pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+            pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
             pDialog.setTitleText("YÜKLENİYOR");
             pDialog.setContentText(v_epc + " Kontrol ediliyor Lütfen bekleyiniz.");
             //pDialog.setContentText(_TempEpc);
@@ -198,16 +198,16 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
 
 
-                                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                                     pDialog.setTitle("HATA");
                                                     pDialog.setContentText("KONTEYNER KAYDI ALINAMADI TEKRAR DENEYİNİZ. KONTEYNER AYIRMA İŞLEMİ (ARAÇ SORGULAMA).");
                                                     pDialog.showCancelButton(false);
                                                     pDialog.findViewById(R.id.cancel_button).setVisibility(View.INVISIBLE);
                                                     pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
 
-                                                    pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                    pDialog.setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                         @Override
-                                                        public void onClick(SweetAlertDialog sDialog)
+                                                        public void onClick(SweetAlertDialogG sDialog)
                                                         {
                                                             sDialog.dismissWithAnimation();
 
@@ -226,21 +226,21 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                                                     String _Yazi = "KONTEYNER PLAKA : " + arac_plaka + " KONTEYNER AYIRMA İŞLEMİ. KONTEYNERI AYIRMA İŞLEMİNE DEVAM ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?";
 
-                                                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                                             .setTitleText("KONTEYNER AYIRMA")
                                                             .setContentText(_Yazi)
                                                             .setCancelText("İptal")
                                                             .setContentTextSize(20)
                                                             .setConfirmText("TAMAM")
                                                             .showCancelButton(true)
-                                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                                 @Override
-                                                                public void onClick(SweetAlertDialog sDialog) {
+                                                                public void onClick(SweetAlertDialogG sDialog) {
                                                                     sDialog.dismissWithAnimation();
 
                                                                     //sDialog.hide();
 
-                                                                    pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+                                                                    pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
                                                                     pDialog.setTitleText("YÜKLENİYOR");
                                                                     pDialog.setContentText(" Kontrol ediliyor Lütfen bekleyiniz.");
                                                                     //pDialog.setContentText(_TempEpc);
@@ -346,15 +346,15 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
 
                                                                                         if (_zSonuc.equals("0")) {
-                                                                                            pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                                                                            pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                                                                             pDialog.setTitle("HATA");
                                                                                             pDialog.setContentText("KAYIT YAPILAMADI. DAHA SONRA TEKRAR DENEYİNİZ. KONTEYNER AYIRMA İŞLEMİ(İŞLEM KAYDI OLUŞTUR).");
                                                                                             pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
                                                                                             pDialog.findViewById(R.id.cancel_button).setVisibility(View.INVISIBLE);
 
-                                                                                            pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                                                            pDialog.setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                                                                 @Override
-                                                                                                public void onClick(SweetAlertDialog sDialog)
+                                                                                                public void onClick(SweetAlertDialogG sDialog)
                                                                                                 {
                                                                                                     sDialog.dismissWithAnimation();
 
@@ -370,16 +370,16 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                                                 pDialog.hide();
                                                                                             }
 
-                                                                                            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                                                                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                                                                                     .setTitleText("ONAY")
                                                                                                     .setContentText("İşlem onaylandı.")
                                                                                                     .setCancelText("Hayır")
                                                                                                     .setConfirmText("TAMAM")
                                                                                                     .setContentTextSize(20)
                                                                                                     .showCancelButton(false)
-                                                                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                                                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                                                                         @Override
-                                                                                                        public void onClick(SweetAlertDialog sDialog) {
+                                                                                                        public void onClick(SweetAlertDialogG sDialog) {
                                                                                                             sDialog.dismissWithAnimation();
 
                                                                                                             sDialog.hide();
@@ -512,13 +512,13 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                         final String _zYanit = _Yanit._zSonuc;
 
                                         if (_zYanit.equals("0")) {
-                                            pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                            pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                             pDialog.setTitle("HATA");
                                             pDialog.setContentTextSize(20);
                                             pDialog.setContentText(_zHataAciklamasi);
-                                            pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            pDialog.setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                 @Override
-                                                public void onClick(SweetAlertDialog sDialog)
+                                                public void onClick(SweetAlertDialogG sDialog)
                                                 {
                                                     sDialog.dismissWithAnimation();
 
@@ -553,14 +553,14 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                 v_isKonteynerAvailable = _Yanit._zisKonteynerAva.trim();
 
                                                 if (v_arac_kod.equals("")) {
-                                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                                     pDialog.setTitle("HATA");
                                                     pDialog.setContentTextSize(20);
                                                     pDialog.setContentText("Aktif konteyner bulunamadı.. Konteyner tanımlama işlemi tamamlanmamış.");
 
-                                                    pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                    pDialog.setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                         @Override
-                                                        public void onClick(SweetAlertDialog sDialog)
+                                                        public void onClick(SweetAlertDialogG sDialog)
                                                         {
                                                             sDialog.dismissWithAnimation();
 
@@ -574,12 +574,12 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                                                 } else {
                                                     if (v_alt_rota.equals("") && v_isKonteynerAvailable.equals("-1")) {
-                                                        pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                                        pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                                         pDialog.setTitle("YANLIŞ KONTEYNER");
                                                         pDialog.setContentTextSize(20);
-                                                        pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                        pDialog.setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                             @Override
-                                                            public void onClick(SweetAlertDialog sDialog)
+                                                            public void onClick(SweetAlertDialogG sDialog)
                                                             {
                                                                 sDialog.dismissWithAnimation();
 
@@ -602,31 +602,31 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                                                             String _pAciklama = "KONTEYNER PLAKA : " + v_arac_plaka + " KONTEYNER OKUNDU. İŞLEME DEVAM ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?";
 
-                                                            SweetAlertDialog pConfirm = new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE);
+                                                            SweetAlertDialogG pConfirm = new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE);
                                                             pConfirm.setTitleText("KONTEYNER ONAY");
                                                             pConfirm.setContentText(_pAciklama);
                                                             pConfirm.setCancelText("İptal");
                                                             pConfirm.setContentTextSize(20);
                                                             pConfirm.setConfirmText("DEVAM ET");
-                                                            pConfirm.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                            pConfirm.setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                                 @Override
-                                                                public void onClick(SweetAlertDialog sDialog) {
+                                                                public void onClick(SweetAlertDialogG sDialog) {
                                                                     sDialog.dismissWithAnimation();
 
                                                                     sDialog.hide();
 
                                                                     aktif_sevk_isemri.kont_kodu = _Yanit._zArac.arac_kod;
 
-                                                                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                                                             .setTitleText("ONAY")
                                                                             .setContentText("İşlem onaylandı.")
                                                                             .setCancelText("Hayır")
                                                                             .setContentTextSize(20)
                                                                             .setConfirmText("TAMAM")
                                                                             .showCancelButton(false)
-                                                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                                                 @Override
-                                                                                public void onClick(SweetAlertDialog sDialog) {
+                                                                                public void onClick(SweetAlertDialogG sDialog) {
                                                                                     sDialog.dismissWithAnimation();
 
                                                                                     sDialog.hide();
@@ -705,16 +705,16 @@ public class frg_konteyner_aktivasyon extends Fragment {
                     pDialog.hide();
                 }
 
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
                         .setContentText("Sistemsel bir hata oluştu." + ex.toString())
                         .setCancelText("Hayır")
                         .setConfirmText("TAMAM")
                         .setContentTextSize(20)
                         .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
 
                                 sDialog.hide();

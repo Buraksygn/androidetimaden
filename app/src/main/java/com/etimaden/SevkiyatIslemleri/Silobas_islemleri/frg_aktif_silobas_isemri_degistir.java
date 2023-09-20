@@ -27,6 +27,7 @@ import com.etimaden.adapter.apmblSevkiyatAktifIsEmirleri;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.request.request_sevkiyat_eski_sevk_yeni_sevk;
 import com.etimaden.request.request_sevkiyat_isemri;
@@ -35,11 +36,10 @@ import com.etimaden.ugr_demo.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_aktif_silobas_isemri_degistir extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
     boolean isReadable = true;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -251,15 +251,15 @@ public class frg_aktif_silobas_isemri_degistir extends Fragment {
 
                     if (islem_sonucu)
                     {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                 .setTitleText("İşlem Başarılı")
                                 .setContentText("İş değişim işlemi tamamlandı.")
                                 .setContentTextSize(20)
                                 .setConfirmText("TAMAM")
                                 .showCancelButton(false)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
 
                                     }
@@ -275,7 +275,7 @@ public class frg_aktif_silobas_isemri_degistir extends Fragment {
                     }
                     else
                     {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                 .setTitleText("İşlem Başarısız")
                                 .setContentTextSize(25)
                                 .setContentText("Kayıt yapılamadı. \r\n Veritabanı hatası.")
@@ -286,7 +286,7 @@ public class frg_aktif_silobas_isemri_degistir extends Fragment {
                 }
                 else
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("İş seçimi yapılmadı.")
                             .setContentTextSize(25)
                             .setContentText("Lütfen bir iş seçimi yapınız.")

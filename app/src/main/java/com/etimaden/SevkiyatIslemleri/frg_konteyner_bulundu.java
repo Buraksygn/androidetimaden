@@ -17,14 +17,14 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_konteyner_bulundu extends Fragment {
 
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
 
     String arac_plaka="";
     String arac_kod="";
@@ -243,7 +243,7 @@ public class frg_konteyner_bulundu extends Fragment {
                    if (kalan_kilo < 0)
                 {
 
-                    SweetAlertDialog pHataDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                    SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);
                     pHataDialog.setTitleText("SİPARİŞ MİKTAR UYARISI");
                     pHataDialog.setContentText("Seçilmiş iş uygun değildir.Sipariş miktarı değerlerini kontrol ediniz.Sistem üzerinde sipariş miktarı tamamlanmış veya iptal edilmiş bir iş olabilir.");
                     pHataDialog.setContentTextSize(22);

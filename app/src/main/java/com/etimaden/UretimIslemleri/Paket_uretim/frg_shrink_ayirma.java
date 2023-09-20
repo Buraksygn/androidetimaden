@@ -20,6 +20,7 @@ import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.adapter.apmblAktifIsEmirleri;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.persosclass.uretim_etiket;
@@ -29,7 +30,6 @@ import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -40,7 +40,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 public class frg_shrink_ayirma extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
     boolean isReadable = true;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -186,7 +186,7 @@ public class frg_shrink_ayirma extends Fragment {
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
             if (tag == null || (!tag.islem_durumu.equals("1")) || (!tag.etiket_turu.equals("1")))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                         .setContentTextSize(25)
                         .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir. \r\n İşleme uygun olmayan etiket.")
@@ -236,7 +236,7 @@ public class frg_shrink_ayirma extends Fragment {
 
             if (tag == null || (!tag.islem_durumu.equals("1"))  || (!tag.etiket_turu.equals("1")))
             {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                         .setContentTextSize(25)
                         .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir. \r\n İşleme uygun olmayan etiket.")
@@ -316,7 +316,7 @@ public class frg_shrink_ayirma extends Fragment {
             {
                 if (dataModels.size() == 0)
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("HATALI İŞLEM")
                             .setContentTextSize(25)
                             .setContentText("Ürün listenizde ürün bulunmamaktadır. \r\n Hatalı İşlem.")
@@ -348,15 +348,15 @@ public class frg_shrink_ayirma extends Fragment {
                     //Cursor.Current = Cursors.Default;
                     if (result)
                     {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                 .setTitleText("İşlem Onayı")
                                 .setContentText("İşlem başarı ile tamamlanmıştır.")
                                 .setContentTextSize(20)
                                 .setConfirmText("TAMAM")
                                 .showCancelButton(false)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
 
                                     }
@@ -373,15 +373,15 @@ public class frg_shrink_ayirma extends Fragment {
                     }
                     else
                     {
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                 .setTitleText("Uyarı")
                                 .setContentText("İşlem yapılamadı.Bağlantı ayarlarınızı kontrol ettikten sonra tekrar deneyiniz.")
                                 .setContentTextSize(20)
                                 .setConfirmText("TAMAM")
                                 .showCancelButton(false)
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                     @Override
-                                    public void onClick(SweetAlertDialog sDialog) {
+                                    public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
 
                                     }

@@ -28,6 +28,7 @@ import com.etimaden.adapter.apmblDepoListesi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Arac;
 import com.etimaden.persosclass.DEPOTag;
@@ -40,11 +41,10 @@ import com.etimaden.ugr_demo.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_depo_secimi_transfer_indirme extends Fragment {
 
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
     boolean isReadable = true;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -194,7 +194,7 @@ public class frg_depo_secimi_transfer_indirme extends Fragment {
         catch (Exception ex)
         {
             ex.printStackTrace();
-            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("BAĞLANTI HATASI")
                     .setContentTextSize(25)
                     .setContentText("Depo bilgisi alınamadı.")
@@ -269,15 +269,15 @@ public class frg_depo_secimi_transfer_indirme extends Fragment {
                             result = persos.fn_ekleAracIndirmeAktivasyonu(_Param);
                             Genel.dismissProgressDialog();
                             if(result==true) {
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                         .setTitleText("ONAY")
                                         .setContentText("İşlem onaylandı.")
                                         .setContentTextSize(20)
                                         .setConfirmText("TAMAM")
                                         .showCancelButton(false)
-                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                             @Override
-                                            public void onClick(SweetAlertDialog sDialog) {
+                                            public void onClick(SweetAlertDialogG sDialog) {
                                                 sDialog.dismissWithAnimation();
 
                                                 frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
@@ -291,7 +291,7 @@ public class frg_depo_secimi_transfer_indirme extends Fragment {
                                         }).show();
                                 return;
                             } else {
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                         .setTitleText("DEPO SEÇİMİ UYARISI")
                                         .setContentTextSize(25)
                                         .setContentText("DEPO SEÇİM İŞLEMİ YAPILMADI.")
@@ -305,15 +305,15 @@ public class frg_depo_secimi_transfer_indirme extends Fragment {
                             result = persos.fn_updateAracIndirmeAktivasyonu(_Param);
                             Genel.dismissProgressDialog();
                             if(result==true){
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                         .setTitleText("ONAY")
                                         .setContentText("İşlem onaylandı.")
                                         .setContentTextSize(20)
                                         .setConfirmText("TAMAM")
                                         .showCancelButton(false)
-                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                             @Override
-                                            public void onClick(SweetAlertDialog sDialog) {
+                                            public void onClick(SweetAlertDialogG sDialog) {
                                                 sDialog.dismissWithAnimation();
 
                                                 frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
@@ -328,7 +328,7 @@ public class frg_depo_secimi_transfer_indirme extends Fragment {
                                         .show();
                                 return;
                             } else {
-                                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                         .setTitleText("DEPO SEÇİMİ UYARISI")
                                         .setContentTextSize(25)
                                         .setContentText("DEPO SEÇİM İŞLEMİ YAPILMADI.")
@@ -338,7 +338,7 @@ public class frg_depo_secimi_transfer_indirme extends Fragment {
                         }
                     } catch (Exception ex) {
                         ex.printStackTrace();
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                 .setTitleText("DEPO SEÇİMİ UYARISI")
                                 .setContentTextSize(25)
                                 .setContentText("DEPO SEÇİM İŞLEMİ YAPILMADI.")
@@ -348,7 +348,7 @@ public class frg_depo_secimi_transfer_indirme extends Fragment {
                 }
                 else
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("DEPO SEÇİMİ UYARISI")
                             .setContentTextSize(25)
                             .setContentText("DEPO SEÇİM İŞLEMİ YAPILMADI.")
@@ -357,7 +357,7 @@ public class frg_depo_secimi_transfer_indirme extends Fragment {
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
-                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("DEPO SEÇİMİ UYARISI")
                         .setContentTextSize(25)
                         .setContentText("DEPO SEÇİM İŞLEMİ YAPILMADI.")

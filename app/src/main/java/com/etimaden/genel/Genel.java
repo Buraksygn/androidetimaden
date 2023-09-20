@@ -6,14 +6,13 @@ import android.view.SoundEffectConstants;
 
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Genel {
 
-    private  static SweetAlertDialog pDialog;
+    private  static SweetAlertDialogG pDialog;
 
     public static void showProgressDialog(Context context) {
-        pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog = new SweetAlertDialogG(context, SweetAlertDialogG.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(context.getResources().getColor(R.color.colorPrimary));
         pDialog.setTitleText("Yükleniyor...");
         pDialog.setCancelable(false);
@@ -51,7 +50,7 @@ public class Genel {
         Boolean showMessages=true;
         dismissProgressDialog();
         if(showMessages){
-            new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
+            new SweetAlertDialogG(context, SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA OLUŞTU")
                     .setContentTextSize(25)
                     .setContentText(ex.getMessage())

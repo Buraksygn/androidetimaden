@@ -33,6 +33,7 @@ import com.etimaden.adapter.apmblKonteynerIsEmri;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewAracAktivasyon;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -43,7 +44,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
@@ -56,7 +56,7 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
     public Sevkiyat_isemri aktif_sevk_isemri;
 
     //private Handler handler;
-    SweetAlertDialog pDialog;
+    SweetAlertDialogG pDialog;
 
     Button _btngeri;
     VeriTabani _myIslem;
@@ -155,7 +155,7 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
     }
 
     private void fn_SevkDegerlendir() {
-        pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+        pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
         pDialog.setTitleText("YÜKLENİYOR");
         pDialog.setContentText(" Kontrol ediliyor Lütfen bekleyiniz.");
         //pDialog.setContentText(_TempEpc);
@@ -203,7 +203,7 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
                             ViewAracAktivasyon _Yanit = objectMapper.readValue(response.toString(), ViewAracAktivasyon.class);
 
                             if (_Yanit._zSonuc.equals("0")) {
-                                pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                 pDialog.setTitle("HATA");
                                 pDialog.setContentText(_Yanit._zHataAciklama);
                             } else {
@@ -343,7 +343,7 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
         @Override
         public void onClick(View view) {
 
-            pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.NORMAL_TYPE);
+            pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
             pDialog.setTitleText("İŞLEM YAPILIYOR");
             pDialog.setContentText("İşlem tamamlanıyor. Lütfen Bekleyiniz");
             pDialog.setCancelable(false);
@@ -418,7 +418,7 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
                                 String _zHataAciklamasi = response.getString("_zHataAciklamasi");
                                 String _zYanit = response.getString("_zHataVarmi");
                                 if (_zYanit.equals("0")) {
-                                    pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                     pDialog.setTitle("HATA");
                                     pDialog.setContentTextSize(22);
                                     pDialog.setContentText(_zHataAciklamasi);
@@ -428,15 +428,15 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
                                     } catch (Exception ex) {
 
                                     }
-                                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                             .setTitleText("TAMAMLANDI")
                                             .setContentText("İşlem başarı ile tamamlanmıştır.")
                                             .setConfirmText("TAMAM")
                                             .setContentTextSize(22)
                                             .showCancelButton(false)
-                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                 @Override
-                                                public void onClick(SweetAlertDialog sDialog) {
+                                                public void onClick(SweetAlertDialogG sDialog) {
                                                     sDialog.dismissWithAnimation();
 
                                                     sDialog.hide();

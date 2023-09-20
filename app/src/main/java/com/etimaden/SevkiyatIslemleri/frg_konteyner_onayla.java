@@ -25,12 +25,12 @@ import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.genel.Genel;
+import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.request.request_sevkiyat_isemri;
 import com.etimaden.request.request_sevkiyat_zayi_arac;
 import com.etimaden.ugr_demo.R;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class frg_konteyner_onayla extends Fragment {
 
@@ -149,7 +149,7 @@ public class frg_konteyner_onayla extends Fragment {
             {
                 if (aktif_sevk_isemri.islem_id.equals(""))
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("KONTEYNER TANIMI EKSİK")
                             .setContentTextSize(25)
                             .setContentText("SEVKİYAT DETAYLARINI TAMAMLAMADAN YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ.")
@@ -158,16 +158,16 @@ public class frg_konteyner_onayla extends Fragment {
                 }
                 else if (aktif_sevk_isemri.yapilan_adet.equals("0"))
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("KONTEYNER İPTAL")
                             .setContentText("KONTEYNER YÜKLEME İŞLEMİNİ İPTAL ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?")
                             .setContentTextSize(20)
                             .setConfirmText("EVET")
                             .setCancelText("HAYIR")
                             .showCancelButton(true)
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                     request_sevkiyat_isemri _Param= new request_sevkiyat_isemri();
                                     _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
@@ -186,15 +186,15 @@ public class frg_konteyner_onayla extends Fragment {
                                     Genel.dismissProgressDialog();
                                     if (islem_sonucu)
                                     {
-                                        new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                                 .setTitleText("İşlem Onayı")
                                                 .setContentText("İşlem başarı ile tamamlanmıştır.")
                                                 .setContentTextSize(20)
                                                 .setConfirmText("TAMAM")
                                                 .showCancelButton(false)
-                                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                                     @Override
-                                                    public void onClick(SweetAlertDialog sDialog) {
+                                                    public void onClick(SweetAlertDialogG sDialog) {
                                                         sDialog.dismissWithAnimation();
                                                         return;
                                                     }
@@ -208,7 +208,7 @@ public class frg_konteyner_onayla extends Fragment {
                                     }
                                     else
                                     {
-                                        new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                                 .setTitleText("İşlem Başarısız")
                                                 .setContentTextSize(25)
                                                 .setContentText("Kayıt yapılamadı. \r\n Veritabanı hatası")
@@ -219,9 +219,9 @@ public class frg_konteyner_onayla extends Fragment {
                                     return;
                                 }
                             })
-                            .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
-                                public void onClick(SweetAlertDialog sDialog) {
+                                public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
                                     return;
                                 }
@@ -230,7 +230,7 @@ public class frg_konteyner_onayla extends Fragment {
                 }
                 else
                 {
-                    new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("KONTEYNER YÜKLEME UYARISI")
                             .setContentTextSize(25)
                             .setContentText("KONTEYNER İÇERİSİNDE BULUNAN ÜRÜNLERİ BOŞALTMA YAPMADAN BU İŞLEMİ GERÇEKLEŞTİREMEZSİNİZ.")
