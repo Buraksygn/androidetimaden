@@ -67,7 +67,7 @@ public class apmblSevkiyatAktifIsEmiriIndirme extends ArrayAdapter<Urun_tag_data
 
         Drawable myDrawable = this.mContext.getResources().getDrawable(dataModel.getRowIconDrawable());
         viewHolder._img.setImageDrawable(myDrawable);
-        viewHolder._sira.setText(position + "" );
+        viewHolder._sira.setText(position + 1 + "" );
         viewHolder._sira.setTextColor(dataModel.getRowColor());
         viewHolder._palet_kod.setText(dataModel.getUrun_tag().palet_kod);
         viewHolder._palet_kod.setTextColor(dataModel.getRowColor());

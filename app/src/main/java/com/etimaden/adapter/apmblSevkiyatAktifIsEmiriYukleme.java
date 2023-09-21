@@ -64,7 +64,7 @@ public class apmblSevkiyatAktifIsEmiriYukleme extends ArrayAdapter<Urun_sevkiyat
         }
 
 
-        viewHolder._sira.setText(position + "" );
+        viewHolder._sira.setText(position + 1 + "" );
         viewHolder._kod.setText(dataModel.kod);
         viewHolder._lotno.setText(dataModel.lotno);
 

@@ -77,7 +77,7 @@ public class apmblSevkiyatBekleyenAracListesi extends ArrayAdapter<cBekleyen_Ara
         }
 
 
-        viewHolder._sira.setText(position + "" );
+        viewHolder._sira.setText(position + 1 + "" );
         viewHolder._skolon1.setText(dataModel.skolon1);
         viewHolder._skolon2.setText(dataModel.skolon2);
         viewHolder._skolon3.setText(dataModel.skolon3);
