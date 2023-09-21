@@ -26,9 +26,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
-import com.etimaden.SevkiyatIslemleri.Zayiat_islemleri.Zayi_depo_kabul.frg_zayi_isemri_indirme;
 import com.etimaden.adapter.apmblSevkiyatAktifIsEmiriIndirme;
-import com.etimaden.adapter.apmblSevkiyatZayiIsEmiriIndirme;
 import com.etimaden.adapterclass.Urun_tag_data;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
@@ -36,11 +34,9 @@ import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
-import com.etimaden.persosclass.Zayi_urun;
 import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_sevkiyat_isemri;
 import com.etimaden.request.request_sevkiyat_isemri_uruntag_list_uruntag;
-import com.etimaden.request.request_sevkiyat_zayi_zayiurun_list_zayiurun;
 import com.etimaden.request.request_string;
 import com.etimaden.ugr_demo.R;
 
@@ -71,6 +67,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
     ImageButton _btnYenile;
     ListView _urun_list;
     Button _btngeri;
+    Button _btnOkuma;
 
     ArrayList<Urun_tag> urun_listesi_indirilen;
     ArrayList<Urun_tag> urun_listesi_yuklenen;
@@ -172,6 +169,11 @@ public class frg_aktif_isemri_indirme  extends Fragment {
         _btngeri = (Button)getView().findViewById(R.id.btnGeri);
         _btngeri.playSoundEffect(0);
         _btngeri.setOnClickListener(new fn_Geri());
+
+        _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
+        _btnOkuma.playSoundEffect(0);
+        _btnOkuma.setOnClickListener(new fn_okumaDegistir());
+        _btnOkuma.setText("KAREKOD");
 
         _urun_list = (ListView) getView().findViewById(R.id.indirme_list);
 
@@ -974,4 +976,21 @@ public class frg_aktif_isemri_indirme  extends Fragment {
             fragmentTransaction.commit();
         }
     }
+
+    private class fn_okumaDegistir implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Genel.showProgressDialog(getContext());
+            if(_btnOkuma.getText().toString().equals("KAREKOD")){
+                ((GirisSayfasi) getActivity()).fn_ModRFID();
+                _btnOkuma.setText("RFID");
+            }else{
+                ((GirisSayfasi) getActivity()).fn_ModBarkod();
+                _btnOkuma.setText("KAREKOD");
+            }
+            Genel.dismissProgressDialog();
+        }
+    }
+
+
 }

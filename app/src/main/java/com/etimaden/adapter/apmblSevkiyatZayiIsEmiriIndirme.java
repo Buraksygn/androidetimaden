@@ -68,7 +68,7 @@ public class apmblSevkiyatZayiIsEmiriIndirme extends ArrayAdapter<Zayi_urun_data
 
         Drawable myDrawable = this.mContext.getResources().getDrawable(dataModel.getRowIconDrawable());
         viewHolder._img.setImageDrawable(myDrawable);
-        viewHolder._sira.setText(position + "" );
+        viewHolder._sira.setText(position + 1 + "" );
         viewHolder._sira.setTextColor(dataModel.getRowColor());
         viewHolder._serino.setText(dataModel.getZayi_urun().serino);
         viewHolder._serino.setTextColor(dataModel.getRowColor());

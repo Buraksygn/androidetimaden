@@ -62,7 +62,7 @@ public class apmblAktifIsEmirleri extends ArrayAdapter<Urun_tag> {
         }
 
 
-        viewHolder._sira.setText(position + "" );
+        viewHolder._sira.setText(position + 1 + "" );
         viewHolder._etiket_id.setText(dataModel.getKod());
         viewHolder._palet_id.setText(dataModel.getPalet_kod());
 

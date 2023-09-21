@@ -65,7 +65,7 @@ public class apmblSevkiyatAktifIsEmirleri extends ArrayAdapter<Sevkiyat_isemri> 
         }
 
 
-        viewHolder._sira.setText(position + "" );
+        viewHolder._sira.setText(position + 1 + "" );
         viewHolder._silo.setText(dataModel.depo_kodu);
         viewHolder._silo_adi.setText(dataModel.depo_adi);
         viewHolder._urun_adi.setText(dataModel.urun_adi);

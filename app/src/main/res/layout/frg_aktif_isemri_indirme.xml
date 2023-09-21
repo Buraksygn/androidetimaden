@@ -93,7 +93,7 @@
 
     <Button
         android:id="@+id/btnGeri"
-        android:layout_width="324dp"
+        android:layout_width="220dp"
         android:layout_height="50dp"
         android:layout_x="0dp"
         android:layout_y="500dp"
@@ -102,6 +102,18 @@
         android:textSize="20sp"
         android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed" />
+
+    <Button
+        android:id="@+id/btnOkuma"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_x="224dp"
+        android:layout_y="500dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="KAREKOD"
+        android:textColor="@color/green" />
 
 
 

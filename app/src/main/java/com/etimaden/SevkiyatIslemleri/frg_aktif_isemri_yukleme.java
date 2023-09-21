@@ -7,9 +7,7 @@ import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
 import static com.etimaden.cSabitDegerler._zsifre;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,21 +25,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
-import com.etimaden.adapter.apmblSevkiyatAktifIsEmiriIndirme;
 import com.etimaden.adapter.apmblSevkiyatAktifIsEmiriYukleme;
-import com.etimaden.adapterclass.Urun_tag_data;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.Urun_sevkiyat;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
-import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.persosclass.aktarim;
-import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_sevkiyat_aktarim;
-import com.etimaden.request.request_sevkiyat_isemri;
-import com.etimaden.request.request_sevkiyat_isemri_uruntag_list_uruntag;
 import com.etimaden.request.request_string;
 import com.etimaden.request.request_string_string;
 import com.etimaden.ugr_demo.R;
@@ -73,6 +65,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
     ImageButton _btnYenile;
     ListView _urun_list;
     Button _btngeri;
+    Button _btnOkuma;
 
 
     ArrayList<Urun_sevkiyat> urun_listesi;
@@ -171,6 +164,11 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         _btngeri = (Button)getView().findViewById(R.id.btnGeri);
         _btngeri.playSoundEffect(0);
         _btngeri.setOnClickListener(new fn_Geri());
+
+        _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
+        _btnOkuma.playSoundEffect(0);
+        _btnOkuma.setOnClickListener(new fn_okumaDegistir());
+        _btnOkuma.setText("KAREKOD");
 
         _urun_list = (ListView) getView().findViewById(R.id.yukleme_list);
 
@@ -1093,7 +1091,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                                                     .showCancelButton(false)
                                                     .show();
                                         }
-                                        urun_listesi.add(tag);
+                                        urun_listesi.add(0,tag);
                                         updateListviewItem();
                                         return;
                                     }
@@ -1150,7 +1148,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                                     .showCancelButton(false)
                                     .show();
                         }
-                        urun_listesi.add(tag);
+                        urun_listesi.add(0,tag);
                         updateListviewItem();
                         return;
                     }
@@ -1346,4 +1344,20 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             fragmentTransaction.commit();
         }
     }
+
+    private class fn_okumaDegistir implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Genel.showProgressDialog(getContext());
+            if(_btnOkuma.getText().toString().equals("KAREKOD")){
+                ((GirisSayfasi) getActivity()).fn_ModRFID();
+                _btnOkuma.setText("RFID");
+            }else{
+                ((GirisSayfasi) getActivity()).fn_ModBarkod();
+                _btnOkuma.setText("KAREKOD");
+            }
+            Genel.dismissProgressDialog();
+        }
+    }
+
 }

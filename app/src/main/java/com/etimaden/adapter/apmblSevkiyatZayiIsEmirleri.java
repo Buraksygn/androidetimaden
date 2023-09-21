@@ -65,7 +65,7 @@ public class apmblSevkiyatZayiIsEmirleri extends ArrayAdapter<Zayi> {
         }
 
 
-        viewHolder._sira.setText(position + "" );
+        viewHolder._sira.setText(position + 1 + "" );
         viewHolder._plaka.setText(dataModel.zay_eski_plaka);
         viewHolder._sap_kodu.setText(dataModel.zay_sap_kodu);
         viewHolder._urun_adi.setText(dataModel.zay_urun_adi);
