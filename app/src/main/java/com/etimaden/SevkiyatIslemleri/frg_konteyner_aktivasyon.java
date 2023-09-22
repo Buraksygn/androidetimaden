@@ -35,6 +35,7 @@ import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persosclass.Arac;
 import com.etimaden.response.sevkiyat_islemleri.View_arac;
+import com.etimaden.response.sevkiyat_islemleri.View_arac2;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -188,10 +189,10 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                 String _zAciklama = response.getString("_zAciklama");
 
                                                 ObjectMapper objectMapper = new ObjectMapper();
-                                                View_arac _view_arac =objectMapper.readValue(response.toString(), View_arac.class);
+                                                View_arac2 _view_arac =objectMapper.readValue(response.toString(), View_arac2.class);
 
-                                                arac_plaka = _view_arac.get_result().arac_plaka;
-                                                arac_kod = _view_arac.get_result().arac_kod;
+                                                arac_plaka = _view_arac.get_zarac().arac_plaka;
+                                                arac_kod = _view_arac.get_zarac().arac_kod;
 
 
                                                 if (_zSonuc.equals("0")) {
@@ -463,6 +464,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
                             }
                             Genel.printStackTrace(error,getContext());
                         }
+
+                    }
+                    else{
 
                     }
                 }

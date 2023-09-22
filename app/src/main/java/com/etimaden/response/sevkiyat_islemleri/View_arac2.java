@@ -1,20 +1,22 @@
-package com.etimaden.cResponseResult;
+package com.etimaden.response.sevkiyat_islemleri;
 
-public class ViewonaylaSevkIsDegisimi extends ViewDefaultSonuc {
+import com.etimaden.persosclass.Arac;
 
-    public String _zHataAciklama;
-    public String _zAciklama;
-    public String _zSonuc;
-    public Boolean _result;
+public class View_arac2 {
+    public String _zHataAciklama = "";
+    public String _zAciklama = "";
+    public String _zSonuc = "";
 
-    public ViewonaylaSevkIsDegisimi() {
+    public Arac _zarac;
+
+    public View_arac2() {
     }
 
-    public ViewonaylaSevkIsDegisimi(String _zHataAciklama, String _zAciklama, String _zSonuc, Boolean _result) {
+    public View_arac2(String _zHataAciklama, String _zAciklama, String _zSonuc, Arac _zarac) {
         this._zHataAciklama = _zHataAciklama;
         this._zAciklama = _zAciklama;
         this._zSonuc = _zSonuc;
-        this._result = _result;
+        this._zarac = _zarac;
     }
 
     public String get_zHataAciklama() {
@@ -41,11 +43,11 @@ public class ViewonaylaSevkIsDegisimi extends ViewDefaultSonuc {
         this._zSonuc = _zSonuc;
     }
 
-    public Boolean get_result() {
-        return _result;
+    public Arac get_zarac() {
+        return _zarac;
     }
 
-    public void set_result(Boolean _result) {
-        this._result = _result;
+    public void set_zarac(Arac _zarac) {
+        this._zarac = _zarac;
     }
 }
