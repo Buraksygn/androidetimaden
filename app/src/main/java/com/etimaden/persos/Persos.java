@@ -31,6 +31,7 @@ import com.etimaden.request.request_sevkiyat_aktarim;
 import com.etimaden.request.request_sevkiyat_eski_sevk_yeni_sevk;
 import com.etimaden.request.request_sevkiyat_isemri;
 import com.etimaden.request.request_sevkiyat_isemri_depo;
+import com.etimaden.request.request_sevkiyat_isemri_sevkiyat_isemri;
 import com.etimaden.request.request_sevkiyat_isemri_uruntag_list_uruntag;
 import com.etimaden.request.request_sevkiyat_rota_agirlik_konteyner;
 import com.etimaden.request.request_sevkiyat_vagon_hareket_isemri;
@@ -2357,6 +2358,36 @@ public class Persos {
             frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
 
             Call<View_bool_response> fn_Servis = _Servis.fn_ekle_aktarim(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_arac_konteyner_esleme(request_sevkiyat_isemri_sevkiyat_isemri v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_arac_konteyner_esleme(v_Gelen);
 
             Response<View_bool_response> _Response = fn_Servis.execute();
 

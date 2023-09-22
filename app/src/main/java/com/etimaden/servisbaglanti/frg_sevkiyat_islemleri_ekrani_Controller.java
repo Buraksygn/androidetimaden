@@ -8,6 +8,7 @@ import com.etimaden.request.request_sevkiyat_aktarim;
 import com.etimaden.request.request_sevkiyat_eski_sevk_yeni_sevk;
 import com.etimaden.request.request_sevkiyat_isemri;
 import com.etimaden.request.request_sevkiyat_isemri_depo;
+import com.etimaden.request.request_sevkiyat_isemri_sevkiyat_isemri;
 import com.etimaden.request.request_sevkiyat_isemri_uruntag_list_uruntag;
 import com.etimaden.request.request_sevkiyat_rota_agirlik_konteyner;
 import com.etimaden.request.request_sevkiyat_vagon_hareket_isemri;
@@ -158,4 +159,7 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
     @POST("api/kayit_aktarim")
     Call<View_bool_response> fn_ekle_aktarim(@Body request_sevkiyat_aktarim v_Gelen);
     //Burdan itibaren eklenecek
+
+    @POST("api/arac_konteyner_esleme")
+    Call<View_bool_response> fn_arac_konteyner_esleme(@Body request_sevkiyat_isemri_sevkiyat_isemri v_Gelen);
 }

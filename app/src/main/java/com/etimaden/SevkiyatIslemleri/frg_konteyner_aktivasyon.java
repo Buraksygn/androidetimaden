@@ -27,13 +27,17 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.etimaden.GirisSayfasi;
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_bulundu;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewsecKonteyner;
 import com.etimaden.cResponseResult.viewsevkiyatKapat;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
+import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Arac;
+import com.etimaden.request.request_sevkiyat_isemri_sevkiyat_isemri;
+import com.etimaden.request.request_string;
 import com.etimaden.response.sevkiyat_islemleri.View_arac;
 import com.etimaden.response.sevkiyat_islemleri.View_arac2;
 import com.etimaden.ugr_demo.R;
@@ -52,6 +56,10 @@ import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
 import static com.etimaden.cSabitDegerler._zsifre;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class frg_konteyner_aktivasyon extends Fragment {
 
     SweetAlertDialogG pDialog;
@@ -69,6 +77,10 @@ public class frg_konteyner_aktivasyon extends Fragment {
     String _ayarbaglantituru = "";
     String _ayarsunucuip = "";
     String _ayarversiyon = "";
+    String _OnlineUrlP = "";
+    Persos persos;
+
+
     Button _btngeri;
 
     public Sevkiyat_isemri aktif_sevk_isemri ;
@@ -467,7 +479,230 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                     }
                     else{
+                        request_string _Param= new request_string();
+                        _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+                        _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                        _Param.set_zaktif_tesis(_ayaraktiftesis);
+                        _Param.set_zsurum(_sbtVerisyon);
+                        _Param.set_zkullaniciadi(_zkullaniciadi);
+                        _Param.set_zsifre(_zsifre);
+                        _Param.setAktif_sunucu(_ayaraktifsunucu);
+                        _Param.setAktif_kullanici(_ayaraktifkullanici);
 
+                        _Param.set_value(v_epc);
+
+                        Genel.showProgressDialog(getContext());
+                        List<Sevkiyat_isemri> result= persos.fn_sec_yerde_konteyner(_Param);
+                        if(result==null){
+                            result= Collections.emptyList();
+                        }
+                        Genel.dismissProgressDialog();
+
+                        final List<Sevkiyat_isemri> konteyner_list=result;
+
+                        if (konteyner_list.size() > 0)
+                        {
+                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+                                    .setTitleText("KONTEYNER ONAY")
+                                    .setContentText("KONTEYNER PLAKA : " + konteyner_list.get(0).arac_plaka + "\r\nKONTEYNER OKUNDU. İŞLEME DEVAM ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?")
+                                    .setContentTextSize(20)
+                                    .setConfirmText("EVET")
+                                    .setCancelText("HAYIR")
+                                    .showCancelButton(true)
+                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialogG sDialog) {
+                                            sDialog.dismissWithAnimation();
+
+                                            if (konteyner_list.get(0).islem_id.equals(""))
+                                            {
+
+                                                aktif_sevk_isemri.kont_kodu = konteyner_list.get(0).kont_kodu;
+                                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
+                                                        .setTitleText("ONAY")
+                                                        .setContentText("İşlem onaylandı.")
+                                                        .setContentTextSize(20)
+                                                        .setConfirmText("TAMAM")
+                                                        .showCancelButton(false)
+                                                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                                            @Override
+                                                            public void onClick(SweetAlertDialogG sDialog) {
+                                                                sDialog.dismissWithAnimation();
+
+                                                                frg_arac_bulundu fragmentyeni = new frg_arac_bulundu();
+                                                                fragmentyeni.fn_senddata(aktif_sevk_isemri);
+                                                                FragmentManager fragmentManager = getFragmentManager();
+                                                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_bulundu").addToBackStack(null);
+                                                                fragmentTransaction.commit();
+
+                                                                return;
+                                                            }
+                                                        }).show();
+                                                return;
+                                            }
+
+                                            if (!konteyner_list.get(0).isemri_detay_id.equals(aktif_sevk_isemri.isemri_detay_id))
+                                            {
+                                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                                        .setTitleText("HATA")
+                                                        .setContentTextSize(25)
+                                                        .setContentText("KONTEYNER SİPARİŞİ İLE ARAÇ SİPARİŞİ UYUŞMUYOR. \r\n SİPARİŞİ KONTROL EDİNİZ..")
+                                                        .showCancelButton(false)
+                                                        .show();
+                                                return;
+                                            }
+
+                                            request_string _Param= new request_string();
+                                            _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                            _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                            _Param.set_zaktif_tesis(_ayaraktiftesis);
+                                            _Param.set_zsurum(_sbtVerisyon);
+                                            _Param.set_zkullaniciadi(_zkullaniciadi);
+                                            _Param.set_zsifre(_zsifre);
+                                            _Param.setAktif_sunucu(_ayaraktifsunucu);
+                                            _Param.setAktif_kullanici(_ayaraktifkullanici);
+
+                                            _Param.set_value(konteyner_list.get(0).islem_id);
+
+                                            Genel.showProgressDialog(getContext());
+                                            List<String> result= persos.fn_sec_sevk_miktar(_Param);
+                                            ArrayList<String> miktarlar=new ArrayList<>();
+                                            if(result!=null) {
+                                                miktarlar = new ArrayList<>(result);
+                                            }
+                                            Genel.dismissProgressDialog();
+
+                                            if (miktarlar.get(0).equals("0"))
+                                            {
+                                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                                        .setTitleText("HATA")
+                                                        .setContentTextSize(25)
+                                                        .setContentText("KONTEYNER İÇERİSİNDE HERHANGİ BİR YÜKLEME BULUNMUYOR. \r\n KONTEYNER YÜKLEMESİNİ KONTROL EDİNİZ..")
+                                                        .showCancelButton(false)
+                                                        .show();
+                                                return;
+                                            }
+
+                                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+                                                    .setTitleText("KONTEYNER EŞLEŞTİRME UYARISI")
+                                                    .setContentText("KONTEYNER : '" + konteyner_list.get(0).arac_plaka + "'" +
+                                                            "\r\nKONTEYNER İÇİNDE ;\r\nPALET SAYISI: " + miktarlar.get(1) +
+                                                            "\r\nMİKTAR: " + miktarlar.get(0) + " KG\r\n ÜRÜN BULUNMAKTADIR !!" +
+                                                            "\r\n Konteyner 'YÜKLEME' kaydını tamamlamak istiyor musunuz ? ")
+                                                    .setContentTextSize(20)
+                                                    .setConfirmText("EVET")
+                                                    .setCancelText("HAYIR")
+                                                    .showCancelButton(true)
+                                                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                                        @Override
+                                                        public void onClick(SweetAlertDialogG sDialog) {
+                                                            sDialog.dismissWithAnimation();
+
+                                                            request_sevkiyat_isemri_sevkiyat_isemri _Param= new request_sevkiyat_isemri_sevkiyat_isemri();
+                                                            _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                                            _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                                            _Param.set_zaktif_tesis(_ayaraktiftesis);
+                                                            _Param.set_zsurum(_sbtVerisyon);
+                                                            _Param.set_zkullaniciadi(_zkullaniciadi);
+                                                            _Param.set_zsifre(_zsifre);
+                                                            _Param.setAktif_sunucu(_ayaraktifsunucu);
+                                                            _Param.setAktif_kullanici(_ayaraktifkullanici);
+
+                                                            _Param.setSevk_is(aktif_sevk_isemri);
+                                                            _Param.setKonteyner(konteyner_list.get(0));
+
+                                                            Genel.showProgressDialog(getContext());
+                                                            Boolean result= persos.fn_arac_konteyner_esleme(_Param);
+                                                            Genel.dismissProgressDialog();
+
+                                                            if (result)
+                                                            {
+                                                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
+                                                                        .setTitleText("ONAY")
+                                                                        .setContentText("İşlem onaylandı.")
+                                                                        .setContentTextSize(20)
+                                                                        .setConfirmText("TAMAM")
+                                                                        .showCancelButton(false)
+                                                                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                                                            @Override
+                                                                            public void onClick(SweetAlertDialogG sDialog) {
+                                                                                sDialog.dismissWithAnimation();
+
+                                                                                request_string _Param= new request_string();
+                                                                                _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                                                                _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                                                                _Param.set_zaktif_tesis(_ayaraktiftesis);
+                                                                                _Param.set_zsurum(_sbtVerisyon);
+                                                                                _Param.set_zkullaniciadi(_zkullaniciadi);
+                                                                                _Param.set_zsifre(_zsifre);
+                                                                                _Param.setAktif_sunucu(_ayaraktifsunucu);
+                                                                                _Param.setAktif_kullanici(_ayaraktifkullanici);
+
+                                                                                _Param.set_value(aktif_sevk_isemri.arac_rfid);
+
+                                                                                Genel.showProgressDialog(getContext());
+                                                                                List<Sevkiyat_isemri> result= persos.fn_secKantarIsemriListesi(_Param);
+                                                                                Sevkiyat_isemri aktif_sevk_isemri2=null;
+                                                                                if(result!=null) {
+                                                                                    for(Sevkiyat_isemri w : result){
+                                                                                        if(w.arac_rfid.equals(aktif_sevk_isemri.arac_rfid)){
+                                                                                            aktif_sevk_isemri2=w;
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                                Genel.dismissProgressDialog();
+
+                                                                                frg_arac_onayla fragmentyeni = new frg_arac_onayla();
+                                                                                fragmentyeni.fn_senddata(aktif_sevk_isemri2);
+                                                                                FragmentManager fragmentManager = getFragmentManager();
+                                                                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                                                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_onayla").addToBackStack(null);
+                                                                                fragmentTransaction.commit();
+
+                                                                                return;
+                                                                            }
+                                                                        }).show();
+
+
+                                                            }
+                                                            else
+                                                            {
+                                                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                                                        .setTitleText("HATA")
+                                                                        .setContentTextSize(25)
+                                                                        .setContentText("KAYIT YAPILAMADI \r\n NETWORK BAĞLANTISINI KONTROL EDİNİZ..")
+                                                                        .showCancelButton(false)
+                                                                        .show();
+                                                            }
+
+                                                            return;
+                                                        }
+                                                    })
+                                                    .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                                        @Override
+                                                        public void onClick(SweetAlertDialogG sDialog) {
+                                                            sDialog.dismissWithAnimation();
+                                                            return;
+                                                        }
+                                                    })
+                                                    .show();
+
+                                            return;
+                                        }
+                                    })
+                                    .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialogG sDialog) {
+                                            sDialog.dismissWithAnimation();
+                                            return;
+                                        }
+                                    })
+                                    .show();
+
+
+                        }
                     }
                 }
                 // Diğer İşletmeler
@@ -763,6 +998,16 @@ public class frg_konteyner_aktivasyon extends Fragment {
             _sevkiyat_konteyner_ayirUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sevkiyat_konteyner_ayir";
             _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/secKonteyner";
         }
+
+        if(_ayarbaglantituru.equals("wifi"))
+        {
+            _OnlineUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/";
+        }
+        else
+        {
+            _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
+        }
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
     public void fn_senddata(Sevkiyat_isemri v_aktif_sevk_isemri)
