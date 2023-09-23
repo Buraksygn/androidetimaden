@@ -550,6 +550,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                         .setContentText("KONTEYNER SİPARİŞİ İLE ARAÇ SİPARİŞİ UYUŞMUYOR. \r\n SİPARİŞİ KONTROL EDİNİZ..")
                                                         .showCancelButton(false)
                                                         .show();
+                                                _IslemVar=false;
                                                 return;
                                             }
 
@@ -581,6 +582,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                         .setContentText("KONTEYNER İÇERİSİNDE HERHANGİ BİR YÜKLEME BULUNMUYOR. \r\n KONTEYNER YÜKLEMESİNİ KONTROL EDİNİZ..")
                                                         .showCancelButton(false)
                                                         .show();
+                                                _IslemVar=false;
                                                 return;
                                             }
 
@@ -675,6 +677,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                         .setContentText("KAYIT YAPILAMADI \r\n NETWORK BAĞLANTISINI KONTROL EDİNİZ..")
                                                                         .showCancelButton(false)
                                                                         .show();
+                                                                _IslemVar=false;
                                                             }
 
                                                             return;
@@ -696,12 +699,15 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                         @Override
                                         public void onClick(SweetAlertDialogG sDialog) {
                                             sDialog.dismissWithAnimation();
+                                            _IslemVar=false;
                                             return;
                                         }
                                     })
                                     .show();
 
 
+                        }else {
+                            _IslemVar = false;
                         }
                     }
                 }
@@ -940,6 +946,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                 }
             } catch (Exception ex) {
+                Genel.printStackTrace(ex,getContext());
                 if (pDialog != null && pDialog.isShowing()) {
                     pDialog.hide();
                 }
