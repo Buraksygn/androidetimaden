@@ -479,6 +479,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                     }
                     else{
+                        if (pDialog != null && pDialog.isShowing()) {
+                            pDialog.hide();
+                        }
                         request_string _Param= new request_string();
                         _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
                         _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
