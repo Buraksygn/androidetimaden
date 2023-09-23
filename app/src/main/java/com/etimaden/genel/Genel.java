@@ -17,6 +17,11 @@ public class Genel {
         pDialog.setTitleText("Yükleniyor...");
         pDialog.setCancelable(false);
         pDialog.show();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
