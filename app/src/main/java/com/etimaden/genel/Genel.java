@@ -6,26 +6,33 @@ import android.view.SoundEffectConstants;
 
 import com.etimaden.ugr_demo.R;
 
+import java.util.Calendar;
+
 
 public class Genel {
 
     private  static SweetAlertDialogG pDialog;
+    private  static Long milis;
 
     public static void showProgressDialog(Context context) {
+        milis= Calendar.getInstance().getTimeInMillis();
         pDialog = new SweetAlertDialogG(context, SweetAlertDialogG.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(context.getResources().getColor(R.color.colorPrimary));
         pDialog.setTitleText("Yükleniyor...");
         pDialog.setCancelable(false);
         pDialog.show();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
     }
 
     public static void dismissProgressDialog() {
+        Long currMilis=Calendar.getInstance().getTimeInMillis();
+        if(currMilis-milis<100){
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         if (pDialog != null && pDialog.isShowing()) {
             pDialog.dismiss();
             pDialog.hide();
