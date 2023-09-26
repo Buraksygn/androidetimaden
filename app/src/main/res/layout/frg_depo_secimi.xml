@@ -31,7 +31,8 @@
         android:gravity="center"
         android:text="DEPO ONAYLA"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <TextView
         android:id="@+id/txtYazi6"
@@ -55,7 +56,8 @@
         android:gravity="center"
         android:textSize="20sp"
         android:text=" &lt; &lt; GERİ"
-        android:textColor="@color/colorRed" />
+        android:textColor="@color/colorRed"
+        android:focusable="false" />
 
 
     <HorizontalScrollView

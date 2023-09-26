@@ -43,7 +43,8 @@
         android:gravity="center"
         android:text="KONTEYNER İŞ EMRİ İPTAL"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btn_02"
@@ -55,7 +56,8 @@
         android:gravity="center"
         android:text="ANA MENÜ"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
 
 

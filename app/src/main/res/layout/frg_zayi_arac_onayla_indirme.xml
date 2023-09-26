@@ -29,7 +29,8 @@
         android:gravity="center"
         android:text="ARACI AKTİVE ET"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btn_02"
@@ -41,7 +42,8 @@
         android:gravity="center"
         android:text="ARA TARTIMA GÖNDER "
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btn_03"

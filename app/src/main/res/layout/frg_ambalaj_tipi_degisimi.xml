@@ -42,7 +42,8 @@
         android:gravity="center"
         android:text="AMBALAJ TİPİ DEĞİŞİMİ"
         android:textColor="@color/green"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:focusable="false"/>
 
     <TextView
         android:id="@+id/txtYazi"
@@ -82,7 +83,8 @@
         android:gravity="center"
         android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false"/>
 
 
 </AbsoluteLayout>

@@ -56,7 +56,8 @@
         android:gravity="center"
         android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
 
     <Button
@@ -69,7 +70,8 @@
         android:gravity="center"
         android:text="TÜM LİSTE"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
 
 

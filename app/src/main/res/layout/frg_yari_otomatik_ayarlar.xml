@@ -70,7 +70,8 @@
         android:gravity="center"
         android:text="KAYDET"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
 
     <TextView
@@ -106,7 +107,8 @@
         android:gravity="center"
         android:text="YENİLE"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btnSifirla"
@@ -118,7 +120,8 @@
         android:gravity="center"
         android:text="SIFIRLA"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btngeri"
@@ -130,7 +133,8 @@
         android:gravity="center"
         android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
 
 </AbsoluteLayout>

@@ -29,7 +29,8 @@
         android:gravity="center"
         android:text="SEVKİYAT"
         android:textColor="@color/green"
-        android:textSize="26sp" />
+        android:textSize="26sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btnUretim"
@@ -41,7 +42,8 @@
         android:gravity="center"
         android:text="ÜRETİM"
         android:textColor="@color/green"
-        android:textSize="26sp" />
+        android:textSize="26sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btnmanipulasyon"

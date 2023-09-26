@@ -26,7 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_x="324dp"
         android:layout_y="27dp"
-        app:srcCompat="@mipmap/exi3" />
+        app:srcCompat="@mipmap/exi3"
+        android:focusable="false" />
 
 
     <TextView
@@ -268,7 +269,8 @@
         android:background="@drawable/my_button_cikis"
         android:gravity="center"
         android:text=" KAPAT"
-        android:textColor="@color/colorRed" />
+        android:textColor="@color/colorRed"
+        android:focusable="false" />
 
 
 </AbsoluteLayout>

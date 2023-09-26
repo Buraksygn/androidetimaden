@@ -30,7 +30,8 @@
         android:gravity="center"
         android:text="YENİ ÜRETİM"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btnShrinkOlusturma"
@@ -42,7 +43,8 @@
         android:gravity="center"
         android:text="SHRINK ETİKET OLUŞTURMA"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btnShrinkEslestirme"

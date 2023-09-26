@@ -31,7 +31,8 @@
         android:gravity="center"
         android:text="&lt; AKTİF ARAÇ LİSTESİ &gt;"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -65,7 +66,8 @@
         android:gravity="center"
         android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false"/>
 
     <ImageView
         android:id="@+id/imageView3"
@@ -73,7 +75,8 @@
         android:layout_height="311dp"
         android:layout_x="0dp"
         android:layout_y="197dp"
-        app:srcCompat="@mipmap/cbimage" />
+        app:srcCompat="@mipmap/cbimage"
+        android:focusable="false"/>
 
 
 </AbsoluteLayout>

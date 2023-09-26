@@ -37,7 +37,8 @@
         android:layout_height="40dp"
         android:layout_x="0dp"
         android:layout_y="20dp"
-        app:srcCompat="@mipmap/information3" />
+        app:srcCompat="@mipmap/information3"
+        android:focusable="false" />
 
 
 
@@ -51,7 +52,8 @@
         android:gravity="center"
         android:text="İŞ EMRİ DEĞİŞTİR"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false"/>
 
     <TextView
         android:id="@+id/txtaciklama"
@@ -73,7 +75,8 @@
         android:gravity="center"
         android:text=" &gt; &gt; İLERİ"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false"/>
 
     <Button
         android:id="@+id/btngeri"
@@ -85,7 +88,8 @@
         android:gravity="center"
         android:textSize="20sp"
         android:text=" &lt; &lt; GERİ"
-        android:textColor="@color/colorRed" />
+        android:textColor="@color/colorRed"
+        android:focusable="false"/>
 
 
 

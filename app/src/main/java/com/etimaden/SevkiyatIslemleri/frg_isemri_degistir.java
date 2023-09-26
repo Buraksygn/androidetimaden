@@ -35,7 +35,10 @@ import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewAracAktivasyon;
 import com.etimaden.cResponseResult.ViewonaylaSevkIsDegisimi;
+import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
+import com.etimaden.persos.Persos;
+import com.etimaden.request.request_string;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,9 +47,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
+import static com.etimaden.cSabitDegerler._sbtVerisyon;
 import static com.etimaden.cSabitDegerler._zkullaniciadi;
 import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
@@ -67,6 +72,8 @@ public class frg_isemri_degistir extends Fragment {
     String _ayarbaglantituru = "";
     String _ayarsunucuip = "";
     String _ayarversiyon = "";
+    String _OnlineUrlP = "";
+    Persos persos;
 
     Button _btngeri;
 
@@ -112,6 +119,35 @@ public class frg_isemri_degistir extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
+    }
+
+    private void fn_AyarlariYukle() {
+        _ayarbaglantituru = _myIslem.fn_baglanti_turu();
+        _ayarsunucuip = _myIslem.fn_sunucu_ip();
+        _ayaraktifkullanici = _myIslem.fn_aktif_kullanici();
+        _ayaraktifdepo = _myIslem.fn_aktif_depo();
+        _ayaraktifalttesis = _myIslem.fn_aktif_alt_tesis();
+        _ayaraktiftesis = _myIslem.fn_aktif_tesis();
+        _ayaraktifsunucu = _myIslem.fn_aktif_sunucu();
+        _ayaraktifisletmeeslesme = _myIslem.fn_isletmeeslesme();
+
+        if (_ayarbaglantituru.equals("wifi")) {
+            _OnlineUrl = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/secSevkiyatIsemriListesi";
+            _OnlineUrlIsEmriDegistir = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/onaylaSevkIsDegisimi";
+        } else {
+            _OnlineUrl = "http://"+_ipAdresi3G+":" + _zport3G + "/api/secSevkiyatIsemriListesi";
+            _OnlineUrlIsEmriDegistir = "http://"+_ipAdresi3G+":" + _zport3G + "/api/onaylaSevkIsDegisimi";
+        }
+
+        if(_ayarbaglantituru.equals("wifi"))
+        {
+            _OnlineUrlP = "http://"+_ayarsunucuip+":"+_zportWifi+"/";
+        }
+        else
+        {
+            _OnlineUrlP = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
+        }
+        persos = new Persos(_OnlineUrlP,getContext());
     }
 
     @Override
@@ -300,24 +336,7 @@ public class frg_isemri_degistir extends Fragment {
     }
 
 
-    private void fn_AyarlariYukle() {
-        _ayarbaglantituru = _myIslem.fn_baglanti_turu();
-        _ayarsunucuip = _myIslem.fn_sunucu_ip();
-        _ayaraktifkullanici = _myIslem.fn_aktif_kullanici();
-        _ayaraktifdepo = _myIslem.fn_aktif_depo();
-        _ayaraktifalttesis = _myIslem.fn_aktif_alt_tesis();
-        _ayaraktiftesis = _myIslem.fn_aktif_tesis();
-        _ayaraktifsunucu = _myIslem.fn_aktif_sunucu();
-        _ayaraktifisletmeeslesme = _myIslem.fn_isletmeeslesme();
 
-        if (_ayarbaglantituru.equals("wifi")) {
-            _OnlineUrl = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/secSevkiyatIsemriListesi";
-            _OnlineUrlIsEmriDegistir = "http://" + _ayarsunucuip + ":" + _zportWifi + "/api/onaylaSevkIsDegisimi";
-        } else {
-            _OnlineUrl = "http://"+_ipAdresi3G+":" + _zport3G + "/api/secSevkiyatIsemriListesi";
-            _OnlineUrlIsEmriDegistir = "http://"+_ipAdresi3G+":" + _zport3G + "/api/onaylaSevkIsDegisimi";
-        }
-    }
 
 
     public void fn_senddata(Sevkiyat_isemri v_aktif_sevk_isemri,int x) {
@@ -437,19 +456,86 @@ public class frg_isemri_degistir extends Fragment {
                                                     sDialog.hide();
                                                     //todo burada iki sorgu alanı var aynı barkodu sorguluyor şimdilik böyle koyuldu
                                                     if(process==0){
-                                                        frg_arac_bulundu fragmentyeni = new frg_arac_bulundu();
-                                                        fragmentyeni.fn_senddata(aktif_sevk_isemri);
-                                                        FragmentManager fragmentManager = getFragmentManager();
-                                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_bulundu").addToBackStack(null);
-                                                        fragmentTransaction.commit();
+                                                        request_string _Param=new request_string();
+                                                        _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                                        _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                                        _Param.set_zaktif_tesis(_ayaraktiftesis);
+                                                        _Param.set_zsurum(_sbtVerisyon);
+                                                        _Param.set_zkullaniciadi(_zkullaniciadi);
+                                                        _Param.set_zsifre(_zsifre);
+                                                        _Param.setAktif_sunucu(_ayaraktifsunucu);
+                                                        _Param.setAktif_kullanici(_ayaraktifkullanici);
+
+                                                        _Param.set_value(aktif_sevk_isemri.arac_rfid);
+
+                                                        Genel.showProgressDialog(getContext());
+                                                        List<Sevkiyat_isemri> result = persos.fn_secKantarIsemriListesi(_Param);
+                                                        ArrayList<Sevkiyat_isemri> sevk_isemri_listesi = new ArrayList<>();
+                                                        if(result!=null) {
+                                                            sevk_isemri_listesi = new ArrayList<>(result);
+                                                        }
+                                                        Genel.dismissProgressDialog();
+
+                                                        Sevkiyat_isemri yeni_sevk_isemri=null;
+
+                                                        for(Sevkiyat_isemri isemri : sevk_isemri_listesi) {
+                                                            if(isemri.arac_rfid.equals(aktif_sevk_isemri.arac_rfid)) {
+                                                                yeni_sevk_isemri=isemri;
+                                                                break;
+                                                            }
+                                                        }
+
+                                                        if(yeni_sevk_isemri!=null) {
+                                                            frg_arac_bulundu fragmentyeni = new frg_arac_bulundu();
+                                                            fragmentyeni.fn_senddata(yeni_sevk_isemri);
+                                                            FragmentManager fragmentManager = getFragmentManager();
+                                                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_bulundu").addToBackStack(null);
+                                                            fragmentTransaction.commit();
+                                                        }else {
+                                                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                                                    .setTitleText("İşlem Başarısız")
+                                                                    .setContentTextSize(25)
+                                                                    .setContentText("Kayıt yapılamadı.\r\n Veritabanı hatası!!")
+                                                                    .showCancelButton(false)
+                                                                    .show();
+                                                        }
                                                     }else{
-                                                        frg_konteyner_bulundu fragmentyeni = new frg_konteyner_bulundu();
-                                                        fragmentyeni.fn_senddata(aktif_sevk_isemri);
-                                                        FragmentManager fragmentManager = getFragmentManager();
-                                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_konteyner_bulundu").addToBackStack(null);
-                                                        fragmentTransaction.commit();
+                                                        request_string _Param=new request_string();
+                                                        _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                                        _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                                        _Param.set_zaktif_tesis(_ayaraktiftesis);
+                                                        _Param.set_zsurum(_sbtVerisyon);
+                                                        _Param.set_zkullaniciadi(_zkullaniciadi);
+                                                        _Param.set_zsifre(_zsifre);
+                                                        _Param.setAktif_sunucu(_ayaraktifsunucu);
+                                                        _Param.setAktif_kullanici(_ayaraktifkullanici);
+
+                                                        _Param.set_value(aktif_sevk_isemri.arac_rfid);
+
+                                                        Genel.showProgressDialog(getContext());
+                                                        List<Sevkiyat_isemri> result = persos.fn_sec_yerde_konteyner(_Param);
+                                                        ArrayList<Sevkiyat_isemri> sevk_isemri_listesi = new ArrayList<>();
+                                                        if(result!=null) {
+                                                            sevk_isemri_listesi = new ArrayList<>(result);
+                                                        }
+                                                        Genel.dismissProgressDialog();
+                                                        if(sevk_isemri_listesi.size()>0) {
+                                                            Sevkiyat_isemri yeni_sevk_isemri=sevk_isemri_listesi.get(0);
+                                                            frg_konteyner_bulundu fragmentyeni = new frg_konteyner_bulundu();
+                                                            fragmentyeni.fn_senddata(yeni_sevk_isemri);
+                                                            FragmentManager fragmentManager = getFragmentManager();
+                                                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_konteyner_bulundu").addToBackStack(null);
+                                                            fragmentTransaction.commit();
+                                                        }else{
+                                                            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                                                    .setTitleText("İşlem Başarısız")
+                                                                    .setContentTextSize(25)
+                                                                    .setContentText("Kayıt yapılamadı.\r\n Veritabanı hatası!!")
+                                                                    .showCancelButton(false)
+                                                                    .show();
+                                                        }
                                                     }
                                                 }});
                                         }

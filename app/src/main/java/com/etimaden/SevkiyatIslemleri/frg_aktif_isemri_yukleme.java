@@ -791,7 +791,6 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                                 _Param1.set_aktarim(akt);
 
                                 Genel.showProgressDialog(getContext());
-                                //todo persos_aktarim classı icinde ama burda persosa ekliyorum.
                                 Boolean islem_sonucu = persos.fn_ekle_aktarim(_Param1);
                                 Genel.dismissProgressDialog();
 
@@ -1079,7 +1078,6 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                                         _Param1.set_aktarim(akt);
 
                                         Genel.showProgressDialog(getContext());
-                                        //todo persos_aktarim classı icinde ama burda persosa ekliyorum.
                                         Boolean islem_sonucu = persos.fn_ekle_aktarim(_Param1);
                                         Genel.dismissProgressDialog();
 
@@ -1136,7 +1134,6 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                         _Param1.set_aktarim(akt);
 
                         Genel.showProgressDialog(getContext());
-                        //todo persos_aktarim classı icinde ama burda persosa ekliyorum.
                         Boolean islem_sonucu = persos.fn_ekle_aktarim(_Param1);
                         Genel.dismissProgressDialog();
 
@@ -1276,7 +1273,6 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                                 _Param1.set_aktarim(akt);
 
                                 Genel.showProgressDialog(getContext());
-                                //todo persos_aktarim classı icinde ama burda persosa ekliyorum.
                                 Boolean islem_sonucu = persos.fn_ekle_aktarim(_Param1);
                                 Genel.dismissProgressDialog();
 

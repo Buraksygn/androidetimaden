@@ -52,7 +52,8 @@
         android:gravity="center"
         android:text="BEKLEYEN ARAÇ LİSTESİ"
         android:textColor="@color/green"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:focusable="false"/>
 
     <ImageView
         android:id="@+id/imageView3"
@@ -60,7 +61,8 @@
         android:layout_height="350dp"
         android:layout_x="1dp"
         android:layout_y="155dp"
-        app:srcCompat="@mipmap/cbimage" />
+        app:srcCompat="@mipmap/cbimage"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btngeri"
@@ -72,7 +74,8 @@
         android:gravity="center"
         android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false"/>
 
 
 

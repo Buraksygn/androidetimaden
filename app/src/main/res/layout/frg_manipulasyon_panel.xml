@@ -29,7 +29,8 @@
         android:gravity="center"
         android:text="AMBALAJ TÜRÜ DEĞİŞİMİ"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btn_02"
@@ -41,7 +42,8 @@
         android:gravity="center"
         android:text="KİRLİ AMBALAJ DEĞİŞİMİ"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btn_03"
@@ -53,7 +55,8 @@
         android:gravity="center"
         android:text="ELLEÇLEME"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btn_04"
@@ -65,7 +68,8 @@
         android:gravity="center"
         android:text="DÖKME ÜRÜNE ÇEVİR"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btn_05"
@@ -77,7 +81,8 @@
         android:gravity="center"
         android:text="PALET DAĞITMA İŞLEMİ"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
 
     <Button
@@ -90,7 +95,8 @@
         android:gravity="center"
         android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
 
 

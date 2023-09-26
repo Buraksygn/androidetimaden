@@ -19,7 +19,8 @@
         android:gravity="center"
         android:text="TAMAM"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <TextView
         android:id="@+id/txtYazi6"
@@ -111,7 +112,8 @@
         android:gravity="center"
         android:text="Bilgi"
         android:textColor="@color/green"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false"/>
 
     <ImageButton
         android:id="@+id/btnyenile"

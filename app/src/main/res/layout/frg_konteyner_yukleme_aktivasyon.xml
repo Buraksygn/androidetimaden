@@ -52,7 +52,8 @@
         android:gravity="center"
         android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -61,7 +62,8 @@
         android:layout_x="2dp"
         android:layout_y="173dp"
         android:textColor="@color/colorGreen"
-        app:srcCompat="@mipmap/konteyner" />
+        app:srcCompat="@mipmap/konteyner"
+        android:focusable="false" />
 
 
 </AbsoluteLayout>

@@ -29,7 +29,8 @@
         android:gravity="center"
         android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false" />
 
 
     <TextView
@@ -70,7 +71,8 @@
         android:gravity="center"
         android:text="ETİKETSİZ ÜRETİM"
         android:textColor="@color/green"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:focusable="false" />
 
 
     <TextView
@@ -126,7 +128,8 @@
         android:gravity="center"
         android:textSize="20sp"
         android:text="IPTAL"
-        android:textColor="@color/colorRed" />
+        android:textColor="@color/colorRed"
+        android:focusable="false" />
 
 
 </AbsoluteLayout>

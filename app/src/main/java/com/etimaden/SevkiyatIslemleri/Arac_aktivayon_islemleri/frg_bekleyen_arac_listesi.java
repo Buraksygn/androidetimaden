@@ -177,7 +177,6 @@ public class frg_bekleyen_arac_listesi extends Fragment {
 
             Genel.showProgressDialog(getContext());
             List<cBekleyen_Arac_Listesi> result = persos.fn_BekleyenAracListesi(_Param);
-            //todo skolon1 servisten fn_PlakaCevir den geçerek gelse iyi olur.
             //Program.persos.fn_PlakaCevir(l.skolon1)
             if(result!=null){
                 aracListesi=new ArrayList<>(result);
@@ -262,8 +261,6 @@ public class frg_bekleyen_arac_listesi extends Fragment {
 
                                             Genel.showProgressDialog(getContext());
                                             List<Sevkiyat_isemri> result = persos.fn_secKantarIsemriListesi(_Param);
-                                            //todo skolon1 servisten fn_PlakaCevir den geçerek gelse iyi olur.
-                                            //Program.persos.fn_PlakaCevir(l.skolon1)
                                             ArrayList<Sevkiyat_isemri> sevk_isemri_listesi = new ArrayList<>();
                                             if(result!=null) {
                                                 sevk_isemri_listesi = new ArrayList<>(result);
@@ -279,30 +276,36 @@ public class frg_bekleyen_arac_listesi extends Fragment {
                                                 }
                                             }
 
-                                            //todo aktif_sevk_listesi null gelebiliyor. Kontrol edilmeli mi ?
+                                            if(aktif_sevk_isemri!=null) {
 
-                                            String[] karakterler = aktif_sevk_isemri.karakteristikler.split(",");
+                                                String[] karakterler = aktif_sevk_isemri.karakteristikler.split(",");
 
-                                            if (karakterler[7].equals("0020"))
-                                            {
-                                                frg_konteyner_kamyon_esleme fragmentyeni = new frg_konteyner_kamyon_esleme();
-                                                fragmentyeni.fn_senddata(aktif_sevk_isemri);
-                                                FragmentManager fragmentManager = getFragmentManager();
-                                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_konteyner_kamyon_esleme").addToBackStack(null);
-                                                fragmentTransaction.commit();
-                                            }
-                                            else if (!aktif_sevk_isemri.hedef_isletme_alt_kodu.equals(_ayaraktifalttesis))
-                                            {
-                                                frg_arac_bulundu fragmentyeni = new frg_arac_bulundu();
-                                                fragmentyeni.fn_senddata(aktif_sevk_isemri);
-                                                FragmentManager fragmentManager = getFragmentManager();
-                                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_arac_bulundu").addToBackStack(null);
-                                                fragmentTransaction.commit();
-                                            }
-                                            else
-                                            {
+                                                if (karakterler[7].equals("0020")) {
+                                                    frg_konteyner_kamyon_esleme fragmentyeni = new frg_konteyner_kamyon_esleme();
+                                                    fragmentyeni.fn_senddata(aktif_sevk_isemri);
+                                                    FragmentManager fragmentManager = getFragmentManager();
+                                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_konteyner_kamyon_esleme").addToBackStack(null);
+                                                    fragmentTransaction.commit();
+                                                } else if (!aktif_sevk_isemri.hedef_isletme_alt_kodu.equals(_ayaraktifalttesis)) {
+                                                    frg_arac_bulundu fragmentyeni = new frg_arac_bulundu();
+                                                    fragmentyeni.fn_senddata(aktif_sevk_isemri);
+                                                    FragmentManager fragmentManager = getFragmentManager();
+                                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_bulundu").addToBackStack(null);
+                                                    fragmentTransaction.commit();
+                                                } else {
+
+                                                }
+
+                                            }else{
+
+                                                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                                        .setTitleText("HATA")
+                                                        .setContentTextSize(25)
+                                                        .setContentText("Seçilen işemri kantar işemri listesinde bulunamadı!!")
+                                                        .showCancelButton(false)
+                                                        .show();
 
                                             }
                                         }
@@ -312,7 +315,7 @@ public class frg_bekleyen_arac_listesi extends Fragment {
                                         new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                                 .setTitleText("HATA")
                                                 .setContentTextSize(25)
-                                                .setContentText(ex.toString())
+                                                .setContentText(ex.getMessage())
                                                 .showCancelButton(false)
                                                 .show();
                                     }

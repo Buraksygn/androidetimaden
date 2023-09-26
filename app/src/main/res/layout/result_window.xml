@@ -59,7 +59,8 @@
             android:id="@+id/btnStart"
             android:text="Start"
             android:textSize="12sp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:focusable="false" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -72,14 +73,16 @@
                 android:layout_height="35dp"
                 android:id="@+id/btnClear"
                 android:textSize="10sp"
-                android:text="Clear"/>
+                android:text="Clear"
+                android:focusable="false"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:id="@+id/btnExport"
                 android:textSize="10sp"
-                android:text="Export"/>
+                android:text="Export"
+                android:focusable="false"/>
         </LinearLayout>
     </LinearLayout>
 

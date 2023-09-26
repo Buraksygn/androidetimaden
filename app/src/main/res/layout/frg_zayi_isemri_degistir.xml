@@ -29,7 +29,8 @@
         android:gravity="center"
         android:text="İŞ EMRİ SEÇİMİNİ ONAYLA"
         android:textColor="@color/green"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:focusable="false"/>
 
     <HorizontalScrollView
         android:layout_width="325dp"
@@ -58,6 +59,7 @@
         android:gravity="center"
         android:textSize="20sp"
         android:text=" &lt; &lt; GERİ"
-        android:textColor="@color/colorRed" />
+        android:textColor="@color/colorRed"
+        android:focusable="false" />
 
 </AbsoluteLayout>
