@@ -59,7 +59,7 @@ public class Genel {
     }
 
     public static void printStackTrace(Exception ex,Context context){
-        Boolean showMessages=true;
+        Boolean showMessages=false;
         dismissProgressDialog();
         if(showMessages){
             new SweetAlertDialogG(context, SweetAlertDialogG.ERROR_TYPE)

@@ -288,7 +288,7 @@ public class frg_sevkiyat_menu_panel extends Fragment {
                                 _Param1.setAktif_kullanici(_ayaraktifkullanici);
 
                                 Genel.showProgressDialog(getContext());
-                                boolean islem = persos.fn_guncelle_vagon_satis(_Param1);
+                                boolean islem = persos.fn_guncelle_vagon_satis(_Param1);//todo buraya bakılacak false döndü
                                 Genel.dismissProgressDialog();
 
                                 if (islem)

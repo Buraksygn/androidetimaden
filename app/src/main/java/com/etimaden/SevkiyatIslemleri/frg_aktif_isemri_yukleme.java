@@ -129,6 +129,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
     {
         super.onActivityCreated(savedInstanceState);
 
+
         //barkod,rfid,ikiside
         //((GirisSayfasi) getActivity()).fn_ModBoth();
         ((GirisSayfasi) getActivity()).fn_ModBarkod();
@@ -1178,6 +1179,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
     private class fn_imgBilgi implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+
             try
             {
                 Genel.playButtonClikSound(getContext());

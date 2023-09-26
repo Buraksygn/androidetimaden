@@ -76,6 +76,7 @@ public class frg_arac_onayla extends Fragment {
     String _ayarsunucuip = "";
     String _ayarversiyon = "";
 
+
     Button btn_02;
     Button btn_04;
     Button btn_05;
@@ -101,6 +102,7 @@ public class frg_arac_onayla extends Fragment {
     public String _OnlineUrlTartimIptal = "";
     public String _OnlineUrlget_yukleme_palet_sayisi_miktar = "";
     public String _OnlineGuncelleSevkHareket = "";
+    public String _OnlineUrlp="";
     public String _zMiktar = "";
     public String _zPaletSayisi = "";
 
@@ -299,6 +301,17 @@ public class frg_arac_onayla extends Fragment {
             _OnlineUrlget_yukleme_palet_sayisi_miktar = "http://" + _ipAdresi3G + ":" + _zport3G + "/api/get_yukleme_palet_sayisi_miktar";
             _SevkiyatDevam = "http://" + _ipAdresi3G + ":" + _zport3G + "/api/sevkiyatDevam";
         }
+
+        if(_ayarbaglantituru.equals("wifi"))
+        {
+            _OnlineUrlp = "http://"+_ayarsunucuip+":"+_zportWifi+"/";
+        }
+        else
+        {
+            _OnlineUrlp = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
+        }
+        persos = new Persos(_OnlineUrlp,getContext());
+
     }
 
     public void fn_senddata(Sevkiyat_isemri v_aktif_sevk_isemri) {
@@ -1016,7 +1029,7 @@ public class frg_arac_onayla extends Fragment {
             Boolean result = persos.fn_guncelle_sevk_hareket(Param);
             Genel.dismissProgressDialog();
 
-            if (result != false || result != null) {
+            if (result == false || result == null) {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("Miktar Uyarısı")
                         .setContentTextSize(25)
@@ -1084,7 +1097,7 @@ public class frg_arac_onayla extends Fragment {
 
             try {
 
-                new SweetAlertDialogG(getContext(), SweetAlertDialogG.PROGRESS_TYPE)
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("ARA TARTIM UYARISI")
                         .setContentText("PLAKA : '" + aktif_sevk_isemri.arac_plaka + "'"
                                 + "\r\nARAÇ İÇİNDE ;"

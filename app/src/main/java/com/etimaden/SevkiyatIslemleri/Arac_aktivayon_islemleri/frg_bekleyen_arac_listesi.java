@@ -279,6 +279,8 @@ public class frg_bekleyen_arac_listesi extends Fragment {
                                                 }
                                             }
 
+                                            //todo aktif_sevk_listesi null gelebiliyor. Kontrol edilmeli mi ?
+
                                             String[] karakterler = aktif_sevk_isemri.karakteristikler.split(",");
 
                                             if (karakterler[7].equals("0020"))

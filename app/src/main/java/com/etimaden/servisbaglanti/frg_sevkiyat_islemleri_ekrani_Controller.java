@@ -158,8 +158,10 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
     //@POST("api/ekle_aktarim")
     @POST("api/kayit_aktarim")
     Call<View_bool_response> fn_ekle_aktarim(@Body request_sevkiyat_aktarim v_Gelen);
+
     //Burdan itibaren eklenecek
 
     @POST("api/arac_konteyner_esleme")
     Call<View_bool_response> fn_arac_konteyner_esleme(@Body request_sevkiyat_isemri_sevkiyat_isemri v_Gelen);
+
 }

@@ -66,7 +66,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
     String arac_plaka="";
     String arac_kod="";
-
+    String _sec_konteyner="";
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
     String _ayaraktifdepo = "";
@@ -732,6 +732,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
                         parametre.put("_zaktif_tesis", _ayaraktiftesis);
                         parametre.put("_zkullaniciadi", _zkullaniciadi);
                         parametre.put("_zsifre", _zsifre);
+                        //parametre.put("aktif_sunucu", _ayaraktifsunucu);
+                        //parametre.put("aktif_kullanici", _ayaraktifkullanici);
+
 
                     } catch (Exception ex) {
                         Genel.printStackTrace(ex,getContext());
@@ -740,7 +743,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                     JsonObjectRequest request = new JsonObjectRequest(
                             Request.Method.POST,
-                            _OnlineUrl,
+                            _sec_konteyner,
                             parametre,
                             new Response.Listener<JSONObject>() {
                                 @Override
@@ -932,6 +935,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                             new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
+                                    error.printStackTrace();
                                     if (pDialog != null && pDialog.isShowing()) {
                                         pDialog.hide();
                                     }
@@ -1000,13 +1004,13 @@ public class frg_konteyner_aktivasyon extends Fragment {
         {
             _sec_aracUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/sec_arac";
             _sevkiyat_konteyner_ayirUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/sevkiyat_konteyner_ayir";
-            _OnlineUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/secKonteyner";
+            _sec_konteyner = "http://"+_ayarsunucuip+":"+_zportWifi+"/api/secKonteyner";
         }
         else
         {
             _sec_aracUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sec_arac";
             _sevkiyat_konteyner_ayirUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/sevkiyat_konteyner_ayir";
-            _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/api/secKonteyner";
+            _sec_konteyner = "http://"+_ipAdresi3G+":"+_zport3G+"/api/secKonteyner";
         }
 
         if(_ayarbaglantituru.equals("wifi"))
