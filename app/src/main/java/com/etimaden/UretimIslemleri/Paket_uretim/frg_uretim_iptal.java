@@ -217,24 +217,24 @@ public class frg_uretim_iptal extends Fragment {
 
     private void etiketDegerlendirOnConfirm(Urun_tag tag){
 
-        request_uretim_iptali _Param= new request_uretim_iptali();
-        _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
-        _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
-        _Param.set_zaktif_tesis(_ayaraktiftesis);
-        _Param.set_zsurum(_sbtVerisyon);
-        _Param.set_zkullaniciadi(_zkullaniciadi);
-        _Param.set_zsifre(_zsifre);
-        _Param.setAktif_sunucu(_ayaraktifsunucu);
-        _Param.setAktif_kullanici(_ayaraktifkullanici);
-        _Param.setUrun_tag(tag);
+        try {
+            request_uretim_iptali _Param = new request_uretim_iptali();
+            _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+            _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            _Param.set_zaktif_tesis(_ayaraktiftesis);
+            _Param.set_zsurum(_sbtVerisyon);
+            _Param.set_zkullaniciadi(_zkullaniciadi);
+            _Param.set_zsifre(_zsifre);
+            _Param.setAktif_sunucu(_ayaraktifsunucu);
+            _Param.setAktif_kullanici(_ayaraktifkullanici);
+            _Param.setUrun_tag(tag);
 
-        //String miktar = persos.fn_sec_ambalaj_degisim_toplam_harcanan_miktar(_Param);
+            //String miktar = persos.fn_sec_ambalaj_degisim_toplam_harcanan_miktar(_Param);
 
-        Boolean result = persos.fn_uretim_iptali(_Param);
+            Boolean result = persos.fn_uretim_iptali(_Param);
             //Boolean islem_res = persos.fn_uretim_iptali(tag);
 
-            if (result)
-            {
+            if (result) {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("İŞLEM ONAYI")
                         .setContentText("ÜRETİM İPTAL İŞLEM KAYDI OLUŞTURULDU")
@@ -250,9 +250,7 @@ public class frg_uretim_iptal extends Fragment {
                         })
                         .show();
 
-            }
-            else
-            {
+            } else {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("BAĞLANTI PROBLEMİ")
                         .setContentTextSize(25)
@@ -262,7 +260,9 @@ public class frg_uretim_iptal extends Fragment {
                 return;
 
             }
-
+        }catch(Exception ex){
+            Genel.printStackTrace(ex,getContext());
+        }
 
     }
 
