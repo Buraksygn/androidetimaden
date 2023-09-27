@@ -118,7 +118,7 @@ public class frg_arac_bulundu_indirme extends Fragment {
         _imageView7.playSoundEffect(0);
         _imageView7.setOnClickListener(new fn_Detay());
 
-        _btnileri=(Button)getView().findViewById(R.id.btngeri);
+        _btnileri=(Button)getView().findViewById(R.id.btnileri);
         _btnileri.playSoundEffect(0);
         _btnileri.setOnClickListener(new fn_Onay());
 
