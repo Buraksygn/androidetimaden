@@ -207,7 +207,7 @@ public class frg_zayi_isemri_degistir extends Fragment {
                     fragmentyeni.fn_senddata(secilen_zayi,arac);
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
+                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_zayi_depo_secimi").addToBackStack(null);
                     fragmentTransaction.commit();
 
                 }

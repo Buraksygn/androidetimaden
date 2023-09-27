@@ -336,7 +336,7 @@ public class frg_arac_aktivasyon extends Fragment {
                                         fragmentyeni.fn_senddata(_aktif_sevk_isemri);
                                         FragmentManager fragmentManager = getFragmentManager();
                                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
+                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_arac_bulundu_indirme").addToBackStack(null);
                                         fragmentTransaction.commit();
                                     }
                                     else
@@ -361,7 +361,7 @@ public class frg_arac_aktivasyon extends Fragment {
                         fragmentyeni.fn_senddata(aktif_sevk_isemri);
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
+                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_arac_bulundu_indirme").addToBackStack(null);
                         fragmentTransaction.commit();
                     }
                     else
