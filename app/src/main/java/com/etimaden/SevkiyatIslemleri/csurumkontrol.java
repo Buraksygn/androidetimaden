@@ -175,7 +175,8 @@ public class csurumkontrol extends AppCompatActivity  {
 
         if(_zGuncellemeGerekli.equals("1"))
         {
-
+            //todo aşagidaki kodu acilistaki dialog gelmesin diye kapadim. versiyon kontrolunde bakıcaz.
+/*
             new SweetAlertDialogG(this, SweetAlertDialogG.WARNING_TYPE)
                     .setTitleText("VERSİYON UYARISI")
                     .setContentText("UYGULAMANIN YENİ SÜRÜMÜ BULUNMAKTADIR.<br><a href = '"+_Kurulum+"'>"+_Kurulum.replace("https://","")+"</a> ADRESİNDEN YENİ SÜRÜMÜ KURABİLİRSİNİZ")
@@ -194,7 +195,7 @@ public class csurumkontrol extends AppCompatActivity  {
                         }
                     })
                     .show();
-
+*/
 
             /*
 
