@@ -18,7 +18,9 @@ import com.etimaden.request.request_sevkiyat_zayi_zayiurun_list_zayiurun;
 import com.etimaden.request.request_string;
 import com.etimaden.request.request_string_aktif_isletme_esleme;
 import com.etimaden.request.request_string_string;
+import com.etimaden.request.requestsecDepoTanimlari;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
+import com.etimaden.response.frg_paket_uretim_ekrani.ViewsecDepoTanimlari;
 import com.etimaden.response.sevkiyat_islemleri.View_arac;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_bekleyen_arac_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri;
@@ -36,6 +38,9 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface frg_sevkiyat_islemleri_ekrani_Controller {
+
+    @POST("api/secDepoTanimlari")
+    Call<ViewsecDepoTanimlari> fn_secDepoTanimlari(@Body requestsecDepoTanimlari v_Gelen);
 
     @POST("api/sec_sevk_miktar2")
     Call<View_sec_sevk_miktar> fn_sec_sevk_miktar(@Body request_string v_Gelen);

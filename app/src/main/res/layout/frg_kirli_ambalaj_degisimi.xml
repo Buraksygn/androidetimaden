@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBlack"
     android:focusable="false"
-    tools:context="com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_secimi">
+    tools:context="com.etimaden.manipulasyon.kirliAmbalajDegisimi.frg_kirli_ambalaj_degisimi">
 
 
     <TextView
@@ -16,24 +16,9 @@
         android:layout_height="wrap_content"
         android:layout_x="0dp"
         android:layout_y="0dp"
-        android:text="frg_aktif_isemri_secimi"
+        android:text="frg_kirli_ambalaj_degisimi"
         android:textColor="@color/green"
         android:textSize="12dp" />
-
-
-    <Button
-        android:id="@+id/btn_03"
-        android:layout_width="325dp"
-        android:layout_height="60dp"
-        android:layout_x="0dp"
-        android:layout_y="65dp"
-        android:background="@drawable/btn_menu_normal"
-        android:gravity="center"
-        android:text="SEÇİLİ İŞE BAŞLA"
-        android:textColor="@color/green"
-        android:textSize="20sp"
-        android:focusable="false"/>
-
 
     <TextView
         android:id="@+id/txtYazi6"
@@ -42,24 +27,23 @@
         android:layout_x="50dp"
         android:layout_y="15dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="AKTİF SEVKİYATLAR"
+        android:text="KİRLİ AMBALAJ DEĞİŞİM İŞEMRİ OLUŞTUR"
         android:textColor="@color/green"
         android:textSize="18dp"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btngeri"
+        android:id="@+id/btn_01"
         android:layout_width="325dp"
         android:layout_height="60dp"
         android:layout_x="0dp"
-        android:layout_y="510dp"
-        android:background="@drawable/my_button_cikis"
+        android:layout_y="65dp"
+        android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text=" &lt; &lt; GERİ"
-        android:textColor="@color/colorRed"
-        android:textSize="20sp"
+        android:text="KİRLİ AMBALAJ DEĞİŞİMİNE AYIR"
+        android:textColor="@color/green"
+        android:textSize="18sp"
         android:focusable="false"/>
-
 
     <HorizontalScrollView
         android:layout_width="325dp"
@@ -77,16 +61,30 @@
 
     </HorizontalScrollView>
 
-    <ImageButton
-        android:id="@+id/btnyenile"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_x="260dp"
-        android:layout_y="0dp"
-        android:background="@drawable/btn_siyah"
-        android:padding="0dp"
-        android:src="@drawable/reload"
-        android:focusable="false"/>
+    <Button
+        android:id="@+id/btnGeri"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="500dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:focusable="false"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
 
+    <Button
+        android:id="@+id/btnOkuma"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_x="224dp"
+        android:layout_y="500dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:focusable="false"
+        android:text="KAREKOD"
+        android:textColor="@color/green" />
 
 </AbsoluteLayout>

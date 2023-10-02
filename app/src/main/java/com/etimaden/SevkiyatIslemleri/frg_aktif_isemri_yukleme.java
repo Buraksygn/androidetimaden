@@ -542,6 +542,8 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                 return;
             }
             isReadable = false;
+            _myIslem.fn_EpcTemizle();
+            ((GirisSayfasi) getActivity()).fn_ListeTemizle();
             Genel.playQuestionSound(getContext());
 
             request_string v_Gelen=new request_string();

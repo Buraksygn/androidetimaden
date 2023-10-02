@@ -148,6 +148,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
         _btnEtiketsizUretim = (Button) getView().findViewById(R.id.btnEtiketsizUretim);
         _btnEtiketsizUretim.playSoundEffect(0);
         _btnEtiketsizUretim.setOnClickListener(new fn_btnEtiketsizUretim());
+        _btnEtiketsizUretim.setEnabled(false);
 
         _btncikis = (Button) getView().findViewById(R.id.btncikis);
         _btncikis.playSoundEffect(0);
@@ -468,6 +469,11 @@ public class frg_paket_uretim_ekrani extends Fragment {
                     _txtParcaBir.setText(paket_listesi.size() + "");
 
                     _txtParcaIki.setText(aktif_Palet.getPalet_dizim() + "");
+                    if(paket_listesi.size()==0 && aktif_Palet.getPalet_dizim().equals("0")){
+                        _btnEtiketsizUretim.setEnabled(false);
+                    }else{
+                        _btnEtiketsizUretim.setEnabled(true);
+                    }
 
                     tadet = paket_listesi.size();
                     hAdet = Integer.parseInt(aktif_Palet.getPalet_dizim());
@@ -1631,6 +1637,13 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
         _txtParcaBir.setText(paket_listesi.size()+"");
         _txtParcaIki.setText(etiket.getPalet_dizim()+"");
+
+        if(paket_listesi.size()==0 && etiket.getPalet_dizim().equals("0")){
+            _btnEtiketsizUretim.setEnabled(false);
+        }else{
+            _btnEtiketsizUretim.setEnabled(true);
+        }
+
         fn_AltPanelGorunsunmu(true);
     }
 
