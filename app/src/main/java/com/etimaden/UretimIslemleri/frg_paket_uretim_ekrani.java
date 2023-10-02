@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -146,16 +147,16 @@ public class frg_paket_uretim_ekrani extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
 
         _btnEtiketsizUretim = (Button) getView().findViewById(R.id.btnEtiketsizUretim);
-        _btnEtiketsizUretim.playSoundEffect(0);
+        _btnEtiketsizUretim.playSoundEffect(SoundEffectConstants.CLICK);
         _btnEtiketsizUretim.setOnClickListener(new fn_btnEtiketsizUretim());
         _btnEtiketsizUretim.setEnabled(false);
 
         _btncikis = (Button) getView().findViewById(R.id.btncikis);
-        _btncikis.playSoundEffect(0);
+        _btncikis.playSoundEffect(SoundEffectConstants.CLICK);
         _btncikis.setOnClickListener(new fn_btncikis());
 
         _btnIptal = (Button) getView().findViewById(R.id.btnIptal);
-        _btnIptal.playSoundEffect(0);
+        _btnIptal.playSoundEffect(SoundEffectConstants.CLICK);
         _btnIptal.setOnClickListener(new fn_btnIptal());
 
         _txtParcaBir = (TextView) getView().findViewById(R.id.txtParcaBir);

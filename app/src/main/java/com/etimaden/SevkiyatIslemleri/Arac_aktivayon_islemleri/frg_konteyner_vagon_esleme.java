@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -126,7 +127,7 @@ public class frg_konteyner_vagon_esleme extends Fragment {
         ((GirisSayfasi) getActivity()).fn_GucAyarla(248);
 
         _btngeri = (Button) getView().findViewById(R.id.btngeri);
-        _btngeri.playSoundEffect(0);
+        _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
     }
 

@@ -47,7 +47,7 @@
 
 
     <Button
-        android:id="@+id/btncikis"
+        android:id="@+id/btngeri"
         android:layout_width="324dp"
         android:layout_height="60dp"
         android:layout_x="0dp"
