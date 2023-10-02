@@ -259,7 +259,6 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                     //pDialog.setContentText(_TempEpc);
                                                                     pDialog.setCancelable(false);
                                                                   try
-
                                                                   {
 
                                                                   }catch (Exception ex)
@@ -319,6 +318,8 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                         _kullaniciadi = _zkullaniciadi;
                                                                         _sifre = _zsifre;
 
+                                                                        parametre.put("_zkullaniciadi", _kullaniciadi);
+                                                                        parametre.put("_zsifre", _sifre);
                                                                         parametre.put("isemri_detay_id", isemri_detay_id);
                                                                         parametre.put("isletme_esleme", isletme_esleme);
                                                                         parametre.put("aktif_tesis", aktif_tesis);
@@ -336,6 +337,9 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                         parametre.put("urun_kodu", urun_kodu);
                                                                         parametre.put("islem_id", islem_id);
                                                                         parametre.put("rota_id", rota_id);
+                                                                        parametre.put("_zsunucu_ip_adresi", _ayarsunucuip);
+                                                                        parametre.put("aktif_sunucu", aktif_sunucu);
+                                                                        parametre.put("aktif_kullanici", aktif_kullanici);
                                                                     } catch (JSONException e) {
                                                                         if (pDialog != null && pDialog.isShowing()) {
                                                                             pDialog.hide();

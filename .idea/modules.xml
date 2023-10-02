@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/androiduygulama.iml" filepath="$PROJECT_DIR$/androiduygulama.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidProject.iml" filepath="$PROJECT_DIR$/androidProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/androidProject.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/androidProject.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/androidProject.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/androidProject.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/androidProject.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/androidProject.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/androidProject.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/androidProject.app.unitTest.iml" />
     </modules>
   </component>
 </project>

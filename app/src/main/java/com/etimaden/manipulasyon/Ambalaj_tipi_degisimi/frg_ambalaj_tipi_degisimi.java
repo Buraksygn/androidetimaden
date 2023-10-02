@@ -297,7 +297,7 @@ public class frg_ambalaj_tipi_degisimi extends Fragment {
 
     }
 
-    private void urunDegerlendir(Urun_tag tag){
+    private void urunDegerlendir( final Urun_tag tag){
         try
         {
             Boolean palet_kodVar=false;
