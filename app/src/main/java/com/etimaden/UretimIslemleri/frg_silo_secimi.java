@@ -21,7 +21,7 @@ import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.persosclass.uretim_etiket;
 import com.etimaden.request.requestsecDepoTanimlari;
 import com.etimaden.response.frg_paket_uretim_ekrani.ViewsecDepoTanimlari;
-import com.etimaden.servisbaglanti.frg_depo_secimi_interface;
+import com.etimaden.servisbaglanti.frg_sevkiyat_islemleri_ekrani_Controller;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
@@ -156,7 +156,7 @@ public class frg_silo_secimi extends Fragment {
 
     private void fn_SiloListele()
     {
-        frg_depo_secimi_interface _ApiServis = _retrofit.create(frg_depo_secimi_interface.class);
+        frg_sevkiyat_islemleri_ekrani_Controller _ApiServis = _retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
 
         requestsecDepoTanimlari _Param=new requestsecDepoTanimlari();
 

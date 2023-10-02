@@ -19,7 +19,7 @@ import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.digerislemler.frg_sifre_degistir;
-import com.etimaden.manipulasyon.frg_manipulasyon_panel;
+import com.etimaden.manipulasyon.frg_manipulasyon_menu_panel;
 import com.etimaden.ugr_demo.R;
 
 public class frg_ana_sayfa extends Fragment
@@ -182,11 +182,11 @@ public class frg_ana_sayfa extends Fragment
         @Override
         public void onClick(View v) {
 
-            //frg_manipulasyon_panel fragmentyeni = new frg_manipulasyon_panel();
-            //FragmentManager fragmentManager = getFragmentManager();
-            //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            //fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_manipulasyon_panel").addToBackStack(null);
-            //fragmentTransaction.commit();
+            frg_manipulasyon_menu_panel fragmentyeni = new frg_manipulasyon_menu_panel();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_manipulasyon_menu_panel").addToBackStack(null);
+            fragmentTransaction.commit();
 
         }
     }

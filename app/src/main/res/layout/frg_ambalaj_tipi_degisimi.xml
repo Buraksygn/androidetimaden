@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
     android:focusable="false"
-    tools:context="com.etimaden.UretimIslemleri.frg_ambalaj_tipi_degisimi"
+    tools:context="com.etimaden.manipulasyon.Ambalaj_tipi_degisimi.frg_ambalaj_tipi_degisimi"
     android:layout_height="match_parent">
 
     <TextView
@@ -27,64 +27,85 @@
         android:layout_y="25dp"
         android:gravity="center_horizontal"
         android:text="AMBALAJ TİPİ DEĞİŞİMİ"
-        android:textColor="@color/green"
+        android:textColor="@color/colorGri"
         android:textSize="18dp"
         android:textStyle="bold" />
-
 
     <Button
         android:id="@+id/btn_01"
         android:layout_width="325dp"
-        android:layout_height="95dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="90dp"
+        android:layout_y="80dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
-        android:text="AMBALAJ TİPİ DEĞİŞİMİ"
+        android:text="AMBALAJ TİPİ DEĞİŞİMİ İÇİN AYIR"
         android:textColor="@color/green"
-        android:textSize="22sp"
+        android:textSize="18sp"
+        android:visibility="invisible"
         android:focusable="false"/>
 
     <TextView
         android:id="@+id/txtYazi"
         android:layout_width="324dp"
-        android:layout_height="386dp"
+        android:layout_height="300dp"
         android:layout_x="0dp"
-        android:layout_y="85dp"
+        android:layout_y="160dp"
         android:gravity="center_horizontal|center_vertical"
         android:lineSpacingExtra="20sp"
         android:text="İŞ EMRİ SEÇİMİ İÇİN ÖNCELİKLE DÖNÜŞTÜRÜLECEK ÜRÜNÜN ETİKETİNİ OKUTUNUZ..."
-        android:textColor="@color/green"
-        android:textSize="24sp"
+        android:textColor="@color/red1"
+        android:textSize="20sp"
+        android:visibility="invisible"
         android:textStyle="bold" />
-
 
     <ListView
         android:id="@+id/listisemirleri"
         android:layout_width="324dp"
-        android:layout_height="282dp"
+        android:layout_height="300dp"
         android:layout_x="0dp"
-        android:layout_y="188dp"
+        android:layout_y="160dp"
         android:listSelector="@color/colorBlackSecili"
         android:scrollbars="horizontal|vertical"
         android:textColor="@color/green" />
 
-
-
-
+    <TextView
+        android:id="@+id/txtMiktar"
+        android:layout_width="325dp"
+        android:layout_height="25dp"
+        android:layout_x="0dp"
+        android:layout_y="470dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text=""
+        android:textColor="@color/red1"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btngeri"
-        android:layout_width="324dp"
-        android:layout_height="70dp"
+        android:id="@+id/btnGeri"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
         android:layout_y="500dp"
         android:background="@drawable/my_button_cikis"
         android:gravity="center"
-        android:text=" &lt; &lt; GERİ"
-        android:textColor="@color/colorRed"
         android:textSize="20sp"
-        android:focusable="false"/>
+        android:focusable="false"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+    <Button
+        android:id="@+id/btnOkuma"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_x="224dp"
+        android:layout_y="500dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:focusable="false"
+        android:text="KAREKOD"
+        android:textColor="@color/green" />
 
 
 </AbsoluteLayout>

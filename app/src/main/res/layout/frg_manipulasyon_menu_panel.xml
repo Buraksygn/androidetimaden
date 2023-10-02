@@ -6,23 +6,24 @@
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
     android:focusable="false"
-    tools:context="com.etimaden.manipulasyon.frg_manipulasyon_panel"
+    tools:context="com.etimaden.manipulasyon.frg_manipulasyon_menu_panel"
     android:layout_height="match_parent">
 
+
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/textView2"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_x="0dp"
         android:layout_y="0dp"
-        android:text="frg_manipulasyon_panel"
-        android:textColor="@color/colorGreen"
+        android:textColor="@color/green"
+        android:text="frg_manipulasyon_menu_panel"
         android:textSize="12dp" />
 
     <Button
-        android:id="@+id/btn_01"
+        android:id="@+id/btnAmbalajTuruDegismi"
         android:layout_width="325dp"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
         android:layout_y="25dp"
         android:background="@drawable/btn_menu_normal"
@@ -33,11 +34,11 @@
         android:focusable="false" />
 
     <Button
-        android:id="@+id/btn_02"
+        android:id="@+id/btnKirliAmbalajDegisimi"
         android:layout_width="325dp"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="115dp"
+        android:layout_y="85dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="KİRLİ AMBALAJ DEĞİŞİMİ"
@@ -46,59 +47,55 @@
         android:focusable="false" />
 
     <Button
-        android:id="@+id/btn_03"
+        android:id="@+id/btnEllecleme"
         android:layout_width="325dp"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="205dp"
+        android:layout_y="145dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="ELLEÇLEME"
         android:textColor="@color/green"
         android:textSize="20sp"
-        android:focusable="false" />
+        android:focusable="false"/>
 
     <Button
-        android:id="@+id/btn_04"
+        android:id="@+id/btnDokmeUruneCevir"
         android:layout_width="325dp"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="295dp"
+        android:layout_y="205dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="DÖKME ÜRÜNE ÇEVİR"
         android:textColor="@color/green"
         android:textSize="20sp"
-        android:focusable="false" />
+        android:focusable="false"/>
 
     <Button
-        android:id="@+id/btn_05"
+        android:id="@+id/btnPaletDagitmaIslemi"
         android:layout_width="325dp"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="385dp"
+        android:layout_y="265dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="PALET DAĞITMA İŞLEMİ"
         android:textColor="@color/green"
         android:textSize="20sp"
-        android:focusable="false" />
-
+        android:focusable="false"/>
 
     <Button
-        android:id="@+id/btngeri"
+        android:id="@+id/btnGeri"
         android:layout_width="324dp"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
         android:layout_y="500dp"
         android:background="@drawable/my_button_cikis"
         android:gravity="center"
+        android:textSize="20sp"
         android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
-        android:textSize="20sp"
-        android:focusable="false" />
-
-
-
+        android:focusable="false"/>
 
 </AbsoluteLayout>

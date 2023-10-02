@@ -6,37 +6,26 @@
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
     android:focusable="false"
-    tools:context="com.etimaden.manipulasyon.frg_geribesleme_menu_panel"
+    tools:context="com.etimaden.manipulasyon.kirliAmbalajDegisimi.frg_kirli_ambalaj_menu_panel"
     android:layout_height="match_parent">
 
+
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/textView2"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_x="0dp"
         android:layout_y="0dp"
-        android:text="frg_geribesleme_menu_panel"
-        android:textColor="@color/colorGreen"
+        android:textColor="@color/green"
+        android:text="frg_kirli_ambalaj_menu_panel"
         android:textSize="12dp" />
 
-    <TextView
-        android:id="@+id/textView222"
+    <Button
+        android:id="@+id/btnUrunAyirmaIslemi"
         android:layout_width="325dp"
-        android:layout_height="91dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
         android:layout_y="25dp"
-        android:text="DÖKME ÜRÜNE ÇEVİRME İŞLEMLERİ"
-        android:textAlignment="center"
-        android:textColor="@color/colorGreen"
-        android:textSize="24dp" />
-
-
-    <Button
-        android:id="@+id/btn_01"
-        android:layout_width="325dp"
-        android:layout_height="65dp"
-        android:layout_x="0dp"
-        android:layout_y="120dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="ÜRÜN AYIRMA İŞLEMİ"
@@ -44,33 +33,30 @@
         android:textSize="20sp"
         android:focusable="false" />
 
-
     <Button
-        android:id="@+id/btn_02"
+        android:id="@+id/btnIslemTamamla"
         android:layout_width="325dp"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="210dp"
+        android:layout_y="85dp"
         android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="İŞLEM TAMAMLA"
         android:textColor="@color/green"
-        android:textSize="20sp" />
-
+        android:textSize="20sp"
+        android:focusable="false" />
 
     <Button
-        android:id="@+id/btncikis"
+        android:id="@+id/btnGeri"
         android:layout_width="324dp"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
         android:layout_y="500dp"
         android:background="@drawable/my_button_cikis"
         android:gravity="center"
+        android:textSize="20sp"
         android:text=" &lt; &lt; GERİ"
         android:textColor="@color/colorRed"
-        android:textSize="20sp" />
-
-
-
+        android:focusable="false"/>
 
 </AbsoluteLayout>

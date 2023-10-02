@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:scrollbars="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="10dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text=""
+        android:textSize="20dp"
+        android:id="@+id/sira"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="LOT NO"
+        android:textSize="20dp"
+        android:id="@+id/lotno"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="AÇIKLAMA"
+        android:textSize="20dp"
+        android:id="@+id/aciklama"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="PALET KOD"
+        android:textSize="20dp"
+        android:id="@+id/palet_kod"/>
+
+
+</LinearLayout>

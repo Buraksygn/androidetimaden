@@ -15,7 +15,6 @@ import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,11 +44,10 @@ import com.etimaden.UretimIslemleri.Paket_uretim.frg_shrink_ayirma;
 import com.etimaden.UretimIslemleri.Paket_uretim.frg_shrink_onay;
 import com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_iptal;
 import com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_zayi;
-import com.etimaden.UretimIslemleri.frg_ambalaj_tipi_degisimi;
+import com.etimaden.manipulasyon.Ambalaj_tipi_degisimi.frg_ambalaj_tipi_degisimi;
 import com.etimaden.UretimIslemleri.frg_paket_uretim_ekrani;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.digerislemler.frg_sifre_degistir;
-import com.etimaden.manipulasyon.frg_geribesleme_onay;
 import com.etimaden.ugr_demo.AccessActivity;
 import com.etimaden.ugr_demo.ConfigPreferenceActivity;
 import com.etimaden.ugr_demo.LockActivity;
@@ -632,18 +630,18 @@ public class GirisSayfasi extends AppCompatActivity {
                                     _frg_ana_sayfa.fn_BarkodOkutuldu(barcode.toString());
                                 }
 
-                                frg_geribesleme_onay _frg_geribesleme_onay = (frg_geribesleme_onay) getSupportFragmentManager().findFragmentByTag("frg_geribesleme_onay");
+                                /*frg_geribesleme_onay _frg_geribesleme_onay = (frg_geribesleme_onay) getSupportFragmentManager().findFragmentByTag("frg_geribesleme_onay");
 
                                 if (_frg_geribesleme_onay != null && _frg_geribesleme_onay.isVisible())
                                 {
                                     _frg_geribesleme_onay.fn_BarkodOkutuldu(barcode.toString());
-                                }
+                                }*/
 
                                 frg_ambalaj_tipi_degisimi _frg_ambalaj_tipi_degisimi = (frg_ambalaj_tipi_degisimi) getSupportFragmentManager().findFragmentByTag("frg_ambalaj_tipi_degisimi");
 
                                 if (_frg_ambalaj_tipi_degisimi != null && _frg_ambalaj_tipi_degisimi.isVisible())
                                 {
-                                    _frg_ambalaj_tipi_degisimi.fn_BarkodOkutuldu(barcode.toString());
+                                    _frg_ambalaj_tipi_degisimi.barkodOkundu(barcode.toString());
                                 }
 
                                 else
@@ -930,6 +928,13 @@ public class GirisSayfasi extends AppCompatActivity {
 
                                                                                                 if (_frg_aktif_isemri_indirme != null && _frg_aktif_isemri_indirme.isVisible()) {
                                                                                                     _frg_aktif_isemri_indirme.rfidOkundu(_TempEpc);
+                                                                                                }else{
+                                                                                                    frg_ambalaj_tipi_degisimi _frg_ambalaj_tipi_degisimi = (frg_ambalaj_tipi_degisimi) getSupportFragmentManager().findFragmentByTag("frg_ambalaj_tipi_degisimi");
+
+                                                                                                    if (_frg_ambalaj_tipi_degisimi != null && _frg_ambalaj_tipi_degisimi.isVisible())
+                                                                                                    {
+                                                                                                        _frg_ambalaj_tipi_degisimi.rfidOkundu(_TempEpc);
+                                                                                                    }
                                                                                                 }
                                                                                             }
                                                                                         }

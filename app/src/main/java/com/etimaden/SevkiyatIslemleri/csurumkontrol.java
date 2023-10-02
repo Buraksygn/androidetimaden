@@ -195,15 +195,19 @@ public class csurumkontrol extends AppCompatActivity  {
                         }
                     })
                     .show();
-*/
 
-            /*
+
+
 
             Intent _frmAnaSayfa=new Intent(getApplicationContext(), kurulum.class);
             _frmAnaSayfa.putExtra("_OnlineUrl", _Kurulum);
             _frmAnaSayfa.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(_frmAnaSayfa);
         */
+
+            Intent _anasayfayaGit = new Intent(getApplicationContext(), GirisSayfasi.class);
+            _anasayfayaGit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(_anasayfayaGit);
 
         }
         else

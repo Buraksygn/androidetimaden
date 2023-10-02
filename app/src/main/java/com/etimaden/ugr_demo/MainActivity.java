@@ -31,6 +31,7 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.etimaden.GirisSayfasi;
 import com.etimaden.SevkiyatIslemleri.csurumkontrol;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cIslem.Viewsistemgiris;
@@ -562,7 +563,7 @@ int x= 1;
 
                                     pDialog.dismiss();
 
-                                     Intent _anasayfayaGit = new Intent(getApplicationContext(), csurumkontrol.class);
+                                     Intent _anasayfayaGit = new Intent(getApplicationContext(), GirisSayfasi.class);
                                     _anasayfayaGit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(_anasayfayaGit);
                                 }

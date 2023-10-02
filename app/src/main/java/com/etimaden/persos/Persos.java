@@ -26,7 +26,6 @@ import com.etimaden.request.request_paketliUret;
 import com.etimaden.request.request_paketliUretKontrol;
 import com.etimaden.request.request_paketliUret_otomatik;
 import com.etimaden.request.request_secEtiket;
-import com.etimaden.request.request_secetikettag;
 import com.etimaden.request.request_sevkiyat_aktarim;
 import com.etimaden.request.request_sevkiyat_eski_sevk_yeni_sevk;
 import com.etimaden.request.request_sevkiyat_isemri;
@@ -46,6 +45,7 @@ import com.etimaden.request.request_string_string;
 import com.etimaden.request.request_uretim_etiket;
 import com.etimaden.request.request_uretim_iptali;
 import com.etimaden.request.request_uretim_zayi;
+import com.etimaden.request.request_uruntag_list_uruntag;
 import com.etimaden.request.requestsecDepoTanimlari;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_ambalaj_tipi_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
@@ -53,7 +53,6 @@ import com.etimaden.response.frg_paket_uretim_ekrani.View_bos;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_etiket_no;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_uretim_detay;
-import com.etimaden.response.frg_paket_uretim_ekrani.View_secetikettag;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_string_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.ViewsecDepoTanimlari;
 import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
@@ -68,9 +67,7 @@ import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_vagon_hareket;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_urun_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_string_list;
-import com.etimaden.servisbaglanti.frg_ambalaj_tipi_degisimi_Controller;
-import com.etimaden.servisbaglanti.frg_depo_secimi_interface;
-import com.etimaden.servisbaglanti.frg_geribesleme_onay_Controller;
+import com.etimaden.servisbaglanti.frg_manipulasyon_islemleri_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_sevkiyat_islemleri_ekrani_Controller;
 
@@ -113,7 +110,7 @@ public class Persos {
 
         try
         {
-            frg_ambalaj_tipi_degisimi_Controller _Servis=retrofit.create(frg_ambalaj_tipi_degisimi_Controller.class);
+            frg_manipulasyon_islemleri_ekrani_Controller _Servis=retrofit.create(frg_manipulasyon_islemleri_ekrani_Controller.class);
 
             Call<View_ambalaj_tipi_secEtiket> fn_Servis = _Servis.fn_ambalaj_tipi_secEtiket(v_gelen);
 
@@ -148,44 +145,6 @@ public class Persos {
 
         }
 
-    }
-
-    public View_secetikettag fn_secetikettag(request_secetikettag v_Gelen)
-    {
-        View_secetikettag _yanit = new View_secetikettag();
-
-        try
-        {
-            frg_geribesleme_onay_Controller _Servis=retrofit.create(frg_geribesleme_onay_Controller.class);
-
-            Call<View_secetikettag> fn_Servis = _Servis.fn_secDepoTanimlari(v_Gelen);
-
-            Response<View_secetikettag> _Response = fn_Servis.execute();
-
-            if(_Response.isSuccessful())
-            {
-                _yanit = _Response.body();
-
-                return  _yanit;
-            }
-            else
-            {
-                _yanit=new View_secetikettag();
-                _yanit._zSonuc="0";
-                _yanit._zAciklama="";
-                _yanit._zHataAciklama="Sistemsel hata";
-
-                return _yanit;
-            }
-
-        }catch (Exception ex) {
-            _yanit = new View_secetikettag();
-            _yanit._zAciklama = "";
-            _yanit._zHataAciklama = ex.toString();
-            _yanit._zSonuc = "0";
-
-            return _yanit;
-        }
     }
 
 
@@ -1561,7 +1520,7 @@ public class Persos {
 
         try
         {
-            frg_depo_secimi_interface _Servis=retrofit.create(frg_depo_secimi_interface.class);
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
 
             Call<ViewsecDepoTanimlari> fn_Servis = _Servis.fn_secDepoTanimlari(v_Gelen);
 
@@ -2408,4 +2367,66 @@ public class Persos {
             return  null;
         }
     }
+    //Manipulasyon burdan basliyor
+
+    public Boolean fn_paket_ambalaj_degistir(request_uruntag_list_uruntag v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_manipulasyon_islemleri_ekrani_Controller _Servis=retrofit.create(frg_manipulasyon_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_paket_ambalaj_degistir(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public String fn_flag_islemtipi(request_string v_Gelen)
+    {
+        View_string_response _yanit;
+
+        try
+        {
+            frg_manipulasyon_islemleri_ekrani_Controller _Servis=retrofit.create(frg_manipulasyon_islemleri_ekrani_Controller.class);
+
+            Call<View_string_response> fn_Servis = _Servis.fn_flag_islemtipi(v_Gelen);
+
+            Response<View_string_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
 }
