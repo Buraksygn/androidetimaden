@@ -445,10 +445,6 @@ public class frg_aktif_isemri_secimi_group  extends Fragment {
         public void onClick(View view) {
 
             if (_Secili.getkod_sap().equals("-1") == false) {
-                if (_Secili.getindirmeBindirme().equals(("0"))) {
-
-                } else {
-
 
                     Sevkiyat_isemri v_aktif_sevk_isemri = new Sevkiyat_isemri();
                     v_aktif_sevk_isemri.isemri_detay_id = _Secili.getisemri_detay_id();
@@ -532,14 +528,24 @@ public class frg_aktif_isemri_secimi_group  extends Fragment {
                         v_aktif_sevk_isemri.dolu_konteyner_toplam_miktar  = 0 ;
                     }
 
+                if (_Secili.getindirmeBindirme().equals("0")) {
+
+                    frg_aktif_isemri_indirme fragmentyeni = new frg_aktif_isemri_indirme();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentyeni.fn_senddata(v_aktif_sevk_isemri);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_aktif_isemri_indirme").addToBackStack(null);
+                    fragmentTransaction.commit();
+                } else {
+
                     frg_aktif_isemri_secimi fragmentyeni = new frg_aktif_isemri_secimi();
                     FragmentManager fragmentManager = getFragmentManager();
                     fragmentyeni.fn_senddata(v_aktif_sevk_isemri);
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_aktif_isemri_secimi").addToBackStack(null);
                     fragmentTransaction.commit();
-                }
 
+                }
 
             }
 

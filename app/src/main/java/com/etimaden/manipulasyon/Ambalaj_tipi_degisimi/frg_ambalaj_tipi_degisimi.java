@@ -159,6 +159,9 @@ public class frg_ambalaj_tipi_degisimi extends Fragment {
         _listisemirleri=(ListView)getView().findViewById(R.id.listisemirleri);
 
         _listisemirleri.setVisibility(View.INVISIBLE);
+
+        adapter=new apmblManipulasyonAmbalajTipiDegisimi(urun_listesi,getContext());
+        _listisemirleri.setAdapter(adapter);
     }
 
     private void updateListviewItem(){
