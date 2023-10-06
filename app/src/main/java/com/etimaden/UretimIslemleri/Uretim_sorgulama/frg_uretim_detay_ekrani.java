@@ -216,9 +216,9 @@ public class frg_uretim_detay_ekrani extends Fragment {
             //pDialog.hide();
 
         }
-        catch (Exception ex2)
+        catch (Exception ex)
         {
-            Genel.printStackTrace(ex2,getContext());
+            Genel.printStackTrace(ex,getContext());
         }
     }
 

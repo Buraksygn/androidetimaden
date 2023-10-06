@@ -100,6 +100,8 @@ public class frg_paket_uretim_ekrani extends Fragment {
     //  2 : paketli palet üretim işlemi yapılıyor
     //  3 : paket üretim işlemi yapılıyor
 
+    String islemBarkod="";
+
 
     public static frg_paket_uretim_ekrani newInstance() {
 
@@ -494,7 +496,11 @@ public class frg_paket_uretim_ekrani extends Fragment {
     }
 
     private void yariotomatik_paketli_palet_uretim_tamamla(final uretim_etiket v_Gelen , String lot) {
-
+        if(!islemBarkod.equals(v_Gelen.getSerino_rfid())) {
+            islemBarkod = v_Gelen.getSerino_rfid();
+        }else{
+            return;
+        }
         final uretim_etiket _urun = v_Gelen;
         final String _LotNo = lot;
 
@@ -577,7 +583,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                         if(_Yanit._zSonuc.equals("0"))
                         {
-
+                            islemBarkod = "";
                             new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                     .setTitleText("HATA")
                                     .setContentText("HTN 12072023092930 "+_Yanit.get_zHataAciklama())
@@ -600,6 +606,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         {
                             if( _Yanit._result==null || _Yanit._result==false)
                             {
+                                islemBarkod = "";
                                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                         .setTitleText("HATA")
                                         .setContentText("Üretim Yapılamadı.Açık palet etiketini yeniden okutunuz.")
@@ -624,17 +631,18 @@ public class frg_paket_uretim_ekrani extends Fragment {
                                 fn_AltPanelGorunsunmu(false);
                                 paket_listesi.clear();
                                 aktif_Palet = null;
-
+                                islemBarkod = "";
                                 return;
                             }
                         }
+
                     }
                 })
                 .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialogG SweetAlertDialogG) {
                         SweetAlertDialogG.dismissWithAnimation();
-
+                        islemBarkod = "";
                         return;
                     }
                 })
@@ -784,7 +792,11 @@ public class frg_paket_uretim_ekrani extends Fragment {
     }
 
     private void paketli_palet_uretim_tamamla(final uretim_etiket v_etiket) {
-
+        if(!islemBarkod.equals(v_etiket.getSerino_rfid())) {
+            islemBarkod = v_etiket.getSerino_rfid();
+        }else{
+            return;
+        }
         uretim_etiket etiket =v_etiket;
 
         new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
@@ -992,11 +1004,12 @@ public class frg_paket_uretim_ekrani extends Fragment {
                                             })
                                             .show();
                                 }
+                                islemBarkod = "";
                                 return;
                             }
                             else
                             {
-
+                                islemBarkod = "";
                                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                         .setTitleText("HATA")
                                         .setContentText("HTN Sistemsel bir hata oluştu")
@@ -1018,7 +1031,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                         } else
                         {
-
+                            islemBarkod = "";
                             new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                     .setTitleText("Hatalı Palet Kapatma")
                                     .setContentText("Palet kapatma limitine ulaşılmadı.\r\n Palet kapatma sayısına ulaştıktan sonra tekrar deneyiniz")
@@ -1047,6 +1060,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                     @Override
                     public void onClick(SweetAlertDialogG SweetAlertDialogG) {
                         SweetAlertDialogG.dismissWithAnimation();
+                        islemBarkod = "";
                         return;
                     }
                 })
@@ -1696,7 +1710,11 @@ public class frg_paket_uretim_ekrani extends Fragment {
     private void bigbag_uret(final uretim_etiket etiket) {
         try
         {
-
+            if(!islemBarkod.equals(etiket.getSerino_rfid())) {
+                islemBarkod = etiket.getSerino_rfid();
+            }else{
+                return;
+            }
             new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                     .setTitleText("ONAY")
                     .setContentText(etiket.getSerino_kod() + " seri nolu ürünün üretim işlemini tamamlamak istiyor musunuz ?")
@@ -1709,6 +1727,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         public void onClick(SweetAlertDialogG sDialog) {
                             bigbag_uretOnConfirm(etiket);
                             sDialog.dismissWithAnimation();
+                            islemBarkod = "";
                         }
                     })
                     .show();
@@ -1798,6 +1817,11 @@ public class frg_paket_uretim_ekrani extends Fragment {
     private void manipulasyon_bigbag_uret(final uretim_etiket etiket) {
         try
         {
+            if(!islemBarkod.equals(etiket.getSerino_rfid())) {
+                islemBarkod = etiket.getSerino_rfid();
+            }else{
+                return;
+            }
 
                 int miktar_int = 0;
             request_uretim_etiket _Param= new request_uretim_etiket();
@@ -1887,6 +1911,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                                         public void onClick(SweetAlertDialogG sDialog) {
                                             manipulasyon_bigbag_uretOnConfirm(etiket);
                                             sDialog.dismissWithAnimation();
+                                            islemBarkod = "";
                                         }
                                     })
                                     .show();
