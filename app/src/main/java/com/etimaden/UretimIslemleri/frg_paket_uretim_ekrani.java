@@ -128,13 +128,6 @@ public class frg_paket_uretim_ekrani extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getView().clearFocus();
-        getView().setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                v.clearFocus();
-            }
-        });
 
         ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
@@ -945,7 +938,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                             {
                                 islemDurumu = 0;
 
-                                List<String> pl = new ArrayList();
+                                List<String> pl = new ArrayList<>();
 
                                 for (int i = 0; i < paket_listesi.size(); i++)
                                 {
