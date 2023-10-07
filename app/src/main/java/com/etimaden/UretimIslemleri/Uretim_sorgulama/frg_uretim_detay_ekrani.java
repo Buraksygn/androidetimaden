@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -133,11 +134,11 @@ public class frg_uretim_detay_ekrani extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ModBoth();
 
         _btnyenile = (Button)getView().findViewById(R.id.btnyenile);
-        _btnyenile.playSoundEffect(0);
+        _btnyenile.playSoundEffect(SoundEffectConstants.CLICK);
         _btnyenile.setOnClickListener(new fn_btnYenile());
 
         _btngeri = (Button)getView().findViewById(R.id.btngeri);
-        _btngeri.playSoundEffect(0);
+        _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
 
         _aktif_isemri_list = (ListView) getView().findViewById(R.id.aktif_isemri_list);
@@ -242,7 +243,7 @@ public class frg_uretim_detay_ekrani extends Fragment {
             {
                 Genel.showProgressDialog(getContext());
                 uretim_detay_degerlendir();
-                Genel.showProgressDialog(getContext());
+                Genel.dismissProgressDialog();
             }
             catch (Exception ex)
             {
