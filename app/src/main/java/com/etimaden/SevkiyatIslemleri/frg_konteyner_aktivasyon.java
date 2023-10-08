@@ -149,7 +149,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
         {
             _IslemVar = true;
 
-            ((GirisSayfasi)getActivity()).fn_ListeTemizle();
+            //((GirisSayfasi)getActivity()).fn_ListeTemizle();
 
 
             pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
@@ -227,7 +227,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                                                             sDialog.hide();
 
-                                                            ((GirisSayfasi)getActivity()).fn_ListeTemizle();
+                                                            //((GirisSayfasi)getActivity()).fn_ListeTemizle();
 
                                                             _IslemVar = false;
 
@@ -378,7 +378,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                                                                                                     sDialog.hide();
 
-                                                                                                    ((GirisSayfasi)getActivity()).fn_ListeTemizle();
+                                                                                                    //((GirisSayfasi)getActivity()).fn_ListeTemizle();
 
                                                                                                     _IslemVar = false;
 
@@ -402,7 +402,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                                                                                                             sDialog.hide();
 
-                                                                                                            ((GirisSayfasi)getActivity()).fn_ListeTemizle();
+                                                                                                            //((GirisSayfasi)getActivity()).fn_ListeTemizle();
 
                                                                                                             frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
                                                                                                             FragmentManager fragmentManager = getFragmentManager();
@@ -780,7 +780,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                                                     sDialog.hide();
 
-                                                    ((GirisSayfasi)getActivity()).fn_ListeTemizle();
+                                                    //((GirisSayfasi)getActivity()).fn_ListeTemizle();
 
                                                     _IslemVar = false;
 
@@ -822,7 +822,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                                                             sDialog.hide();
 
-                                                            ((GirisSayfasi)getActivity()).fn_ListeTemizle();
+                                                            //((GirisSayfasi)getActivity()).fn_ListeTemizle();
 
                                                             _IslemVar = false;
 
@@ -841,7 +841,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                                                                 sDialog.hide();
 
-                                                                ((GirisSayfasi)getActivity()).fn_ListeTemizle();
+                                                                //((GirisSayfasi)getActivity()).fn_ListeTemizle();
 
                                                                 _IslemVar = false;
 
@@ -980,7 +980,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                         })
                         .show();
 
-                ((GirisSayfasi)getActivity()).fn_ListeTemizle();
+                //((GirisSayfasi)getActivity()).fn_ListeTemizle();
 
                 _IslemVar = false;
             }
