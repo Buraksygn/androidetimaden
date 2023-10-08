@@ -41,4 +41,7 @@ public interface frg_manipulasyon_islemleri_ekrani_Controller
 
     @POST("api/geribesleme_onay")
     Call<View_bool_response> fn_geribesleme_onay(@Body request_uruntag_string v_Gelen);
+
+    @POST("api/palet_dagit")
+    Call<View_bool_response> fn_palet_dagit(@Body request_uruntag v_Gelen);
 }

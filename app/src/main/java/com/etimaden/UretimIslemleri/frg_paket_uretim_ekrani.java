@@ -130,13 +130,6 @@ public class frg_paket_uretim_ekrani extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getView().clearFocus();
-        getView().setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                v.clearFocus();
-            }
-        });
 
         ((GirisSayfasi) getActivity()).fn_ModBarkod();
 

@@ -54,6 +54,7 @@ import com.etimaden.manipulasyon.geribesleme.frg_geribesleme_ayirma;
 import com.etimaden.manipulasyon.geribesleme.frg_geribesleme_onay;
 import com.etimaden.manipulasyon.kirliAmbalajDegisimi.frg_kirli_ambalaj_degisim_onay;
 import com.etimaden.manipulasyon.kirliAmbalajDegisimi.frg_kirli_ambalaj_degisimi;
+import com.etimaden.manipulasyon.palet_duzenleme_islemleri.frg_palet_dagitma_islemi;
 import com.etimaden.ugr_demo.AccessActivity;
 import com.etimaden.ugr_demo.ConfigPreferenceActivity;
 import com.etimaden.ugr_demo.LockActivity;
@@ -851,6 +852,12 @@ public class GirisSayfasi extends AppCompatActivity {
             return true;
         }
 
+        frg_palet_dagitma_islemi _frg_palet_dagitma_islemi = (frg_palet_dagitma_islemi) getSupportFragmentManager().findFragmentByTag("frg_palet_dagitma_islemi");
+        if (_frg_palet_dagitma_islemi != null && _frg_palet_dagitma_islemi.isVisible()) {
+            _frg_palet_dagitma_islemi.barkodOkundu(barkod);
+            return true;
+        }
+
         return false;
     }
 
@@ -998,6 +1005,12 @@ public class GirisSayfasi extends AppCompatActivity {
         frg_geribesleme_onay _frg_geribesleme_onay = (frg_geribesleme_onay) getSupportFragmentManager().findFragmentByTag("frg_geribesleme_onay");
         if (_frg_geribesleme_onay != null && _frg_geribesleme_onay.isVisible()) {
             _frg_geribesleme_onay.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_palet_dagitma_islemi _frg_palet_dagitma_islemi = (frg_palet_dagitma_islemi) getSupportFragmentManager().findFragmentByTag("frg_palet_dagitma_islemi");
+        if (_frg_palet_dagitma_islemi != null && _frg_palet_dagitma_islemi.isVisible()) {
+            _frg_palet_dagitma_islemi.rfidOkundu(rfid);
             return true;
         }
 

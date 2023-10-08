@@ -26,9 +26,11 @@ import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.manipulasyon.ellecleme.frg_ellecleme_menu_panel;
+import com.etimaden.manipulasyon.frg_manipulasyon_menu_panel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_secEtiket;
+import com.etimaden.request.request_uruntag;
 import com.etimaden.request.request_uruntag_string;
 import com.etimaden.ugr_demo.R;
 
@@ -54,11 +56,7 @@ public class frg_palet_dagitma_islemi extends Fragment {
     Button _btnGeri;
     Button _btnOkuma;
 
-    Urun_tag aktif_etiket = null;
     boolean isReadable = true;
-    int islemDurumu = 0;
-    //  0 : etiket okutma bekleniyor
-    //  1 : 2. etiket okutması bekleniyor
 
     public frg_palet_dagitma_islemi() {
         // Required empty public constructor
@@ -165,7 +163,7 @@ public class frg_palet_dagitma_islemi extends Fragment {
             Genel.dismissProgressDialog();
 
 
-            etiketDegerlendir(tag,barkod);
+            etiketDegerlendir(tag);
 
         }
         catch (Exception ex){
@@ -198,7 +196,7 @@ public class frg_palet_dagitma_islemi extends Fragment {
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
             Genel.dismissProgressDialog();
 
-            etiketDegerlendir(tag,rfid);
+            etiketDegerlendir(tag);
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -208,171 +206,97 @@ public class frg_palet_dagitma_islemi extends Fragment {
 
     }
 
-    private void etiketDegerlendir(final Urun_tag tag,final String yeniEtiket)
+    private void etiketDegerlendir(final Urun_tag tag)
     {
         try
         {
-            if (islemDurumu == 0)
+
+            if(tag == null)
             {
-                if (tag == null || (!tag.islem_durumu.equals("390") && !tag.islem_durumu.equals("1")))
-                {
-                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                            .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
-                            .setContentTextSize(25)
-                            .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir. \r\n İşleme uygun olmayan etiket.")
-                            .showCancelButton(false)
-                            .show();
-                }
-                else
-                {
-                    aktif_etiket = tag;
-                    islemDurumu = 1;
-                    _txtYazi.setText("YENİ ETİKETİ OKUTUNUZ...");
-                    _imageTanimResmi.setImageResource(R.mipmap.tag_red);
-                }
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("BAĞLANTI HATASI")
+                        .setContentTextSize(25)
+                        .setContentText("Etiket bilgisine ulaşılamadı. \r\n Bağlantı problemi.")
+                        .showCancelButton(false)
+                        .show();
             }
-            else if (islemDurumu == 1)
+            else if (tag.islem_durumu.equals("1") && (tag.etiket_turu.equals("2") || tag.etiket_turu.equals("1")))
             {
-                if (aktif_etiket.etiket_turu.equals("3") && tag.kod.equals(aktif_etiket.kod))
-                {
-                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
-                            .setTitleText("İşlem Onay Sorgusu")
-                            .setContentText("Elleçleme işlemi gerçekleştirilecek. Bu işlemi onaylıyor musunuz? ")
-                            .setContentTextSize(20)
-                            .setConfirmText("EVET")
-                            .setCancelText("HAYIR")
-                            .showCancelButton(true)
-                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialogG sDialog) {
-                                    sDialog.dismissWithAnimation();
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+                        .setTitleText("PALET DAĞITMA")
+                        .setContentText("SERİNO : " + tag.kod + "\r\nLOTNO : " + tag.lotno + "\r\nÜRÜN : " + tag.urun_adi + "\r\nPALET DAĞITMA İŞLEMİNE DEVAM ETMEK İSTİYOR MUSUNUZ ?")
+                        .setContentTextSize(20)
+                        .setConfirmText("EVET")
+                        .setCancelText("HAYIR")
+                        .showCancelButton(true)
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialogG sDialog) {
+                                sDialog.dismissWithAnimation();
 
-                                    request_uruntag_string v_Gelen=new request_uruntag_string();
-                                    v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
-                                    v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
-                                    v_Gelen.set_zkullaniciadi(_zkullaniciadi);
-                                    v_Gelen.set_zsifre(_zsifre);
-                                    v_Gelen.set_zsunucu_ip_adresi(_ayarsunucuip);
-                                    v_Gelen.set_zsurum(_sbtVerisyon);
-                                    v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
-                                    v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
+                                request_uruntag v_Gelen=new request_uruntag();
+                                v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
+                                v_Gelen.set_zkullaniciadi(_zkullaniciadi);
+                                v_Gelen.set_zsifre(_zsifre);
+                                v_Gelen.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                v_Gelen.set_zsurum(_sbtVerisyon);
+                                v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
+                                v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
-                                    v_Gelen.setEtiket(tag);
-                                    v_Gelen.setStringValue("");
+                                v_Gelen.setEtiket(tag);
 
-                                    Genel.showProgressDialog(getContext());
-                                    Boolean islem_sonucu = persos.fn_ellecleme_onay(v_Gelen);
-                                    Genel.dismissProgressDialog();
+                                Genel.showProgressDialog(getContext());
+                                Boolean islem_res = persos.fn_palet_dagit(v_Gelen);
+                                Genel.dismissProgressDialog();
 
-                                    if (!islem_sonucu)
-                                    {
-                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                                                .setTitleText("HATA")
-                                                .setContentTextSize(25)
-                                                .setContentText("İşlem yapılamadı \r\n Veritabanı hatası")
-                                                .showCancelButton(false)
-                                                .show();
-                                        return;
-                                    }
-
-                                    aktif_etiket = null;
-                                    islemDurumu = 0;
-                                    _txtYazi.setText("ESKİ ETİKETİ OKUTUNUZ...");
-                                    _imageTanimResmi.setImageResource(R.mipmap.tag_yellow);
-
-                                    return;
+                                if (islem_res)
+                                {
+                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
+                                            .setTitleText("İŞLEM ONAYI")
+                                            .setContentText("PALET DAĞITMA İŞLEM KAYDI OLUŞTURULDU")
+                                            .setContentTextSize(20)
+                                            .setConfirmText("TAMAM")
+                                            .showCancelButton(false)
+                                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialogG sDialog) {
+                                                    sDialog.dismissWithAnimation();
+                                                    return;
+                                                }
+                                            }).show();
                                 }
-                            })
-                            .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialogG sDialog) {
-                                    sDialog.dismissWithAnimation();
-                                    return;
+                                else
+                                {
+                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                            .setTitleText("BAĞLANTI PROBLEMİ")
+                                            .setContentTextSize(25)
+                                            .setContentText("İŞLEM YAPILAMADI. DAHA SONRA TEKRAR DENEYİNİZ. \r\n İŞLEM KAYDI TAMAMLANAMADI.")
+                                            .showCancelButton(false)
+                                            .show();
                                 }
-                            })
-                            .show();
 
-                }
-                else if(aktif_etiket.etiket_turu.equals("0") && tag == null)
-                {
-                    request_uruntag_string v_Gelen=new request_uruntag_string();
-                    v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
-                    v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
-                    v_Gelen.set_zkullaniciadi(_zkullaniciadi);
-                    v_Gelen.set_zsifre(_zsifre);
-                    v_Gelen.set_zsunucu_ip_adresi(_ayarsunucuip);
-                    v_Gelen.set_zsurum(_sbtVerisyon);
-                    v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
-                    v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
+                                return;
+                            }
+                        })
+                        .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialogG sDialog) {
+                                sDialog.dismissWithAnimation();
+                                return;
+                            }
+                        })
+                        .show();
 
-                    v_Gelen.setEtiket(aktif_etiket);
-                    v_Gelen.setStringValue(yeniEtiket);
-
-                    Genel.showProgressDialog(getContext());
-                    Boolean islem_sonucu = persos.fn_ellecleme_onay(v_Gelen);
-                    Genel.dismissProgressDialog();
-
-                    if (!islem_sonucu)
-                    {
-                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                                .setTitleText("HATA")
-                                .setContentTextSize(25)
-                                .setContentText("İşlem yapılamadı \r\n Veritabanı hatası")
-                                .showCancelButton(false)
-                                .show();
-                        return;
-                    }
-
-                    aktif_etiket = null;
-                    islemDurumu = 0;
-                    _txtYazi.setText("ESKİ ETİKETİ OKUTUNUZ...");
-                    _imageTanimResmi.setImageResource(R.mipmap.tag_yellow);
-                }
-                else if ((aktif_etiket.etiket_turu.equals("1") || aktif_etiket.etiket_turu.equals("2")) && tag.kod.equals(aktif_etiket.kod) )
-                {
-                    request_uruntag_string v_Gelen=new request_uruntag_string();
-                    v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
-                    v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
-                    v_Gelen.set_zkullaniciadi(_zkullaniciadi);
-                    v_Gelen.set_zsifre(_zsifre);
-                    v_Gelen.set_zsunucu_ip_adresi(_ayarsunucuip);
-                    v_Gelen.set_zsurum(_sbtVerisyon);
-                    v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
-                    v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
-
-                    v_Gelen.setEtiket(aktif_etiket);
-                    v_Gelen.setStringValue("");
-
-                    Genel.showProgressDialog(getContext());
-                    Boolean islem_sonucu = persos.fn_ellecleme_onay(v_Gelen);
-                    Genel.dismissProgressDialog();
-
-                    if (!islem_sonucu)
-                    {
-                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                                .setTitleText("HATA")
-                                .setContentTextSize(25)
-                                .setContentText("İşlem yapılamadı \r\n Veritabanı hatası")
-                                .showCancelButton(false)
-                                .show();
-                        return;
-                    }
-
-                    aktif_etiket = null;
-                    islemDurumu = 0;
-                    _txtYazi.setText("ESKİ ETİKETİ OKUTUNUZ...");
-                    _imageTanimResmi.setImageResource(R.mipmap.tag_yellow);
-
-                }
-                else
-                {
-                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                            .setTitleText("HATALI İŞLEM")
-                            .setContentTextSize(25)
-                            .setContentText("İşleme uygun olmayan etiket.")
-                            .showCancelButton(false)
-                            .show();
-                }
+            }
+            else
+            {
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("YANLIŞ ÜRÜN SEÇİMİ")
+                        .setContentTextSize(25)
+                        .setContentText("Bu menüden sadece üretilmiş ve 25/50 palet dağıtma işlemi yapabilirsiniz. \r\n İşleme uygun olmayan etiket.")
+                        .showCancelButton(false)
+                        .show();
             }
 
         }
@@ -385,10 +309,10 @@ public class frg_palet_dagitma_islemi extends Fragment {
     private class fn_Geri implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_ellecleme_menu_panel fragmentyeni = new frg_ellecleme_menu_panel();
+            frg_manipulasyon_menu_panel fragmentyeni = new frg_manipulasyon_menu_panel();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_ellecleme_menu_panel").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_manipulasyon_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }
