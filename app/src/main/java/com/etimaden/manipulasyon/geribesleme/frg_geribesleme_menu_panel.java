@@ -1,4 +1,4 @@
-package com.etimaden.manipulasyon.kirliAmbalajDegisimi;
+package com.etimaden.manipulasyon.geribesleme;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,14 +13,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.frg_ana_sayfa;
-import com.etimaden.manipulasyon.Ambalaj_tipi_degisimi.frg_ambalaj_tipi_degisimi;
+import com.etimaden.manipulasyon.ellecleme.frg_ellecleme_ayirma;
+import com.etimaden.manipulasyon.ellecleme.frg_ellecleme_onay;
 import com.etimaden.manipulasyon.frg_manipulasyon_menu_panel;
 import com.etimaden.ugr_demo.R;
 
-import retrofit2.Retrofit;
-
-public class frg_kirli_ambalaj_menu_panel extends Fragment {
+public class frg_geribesleme_menu_panel extends Fragment {
 
     VeriTabani _myIslem;
     public String _ayaraktifkullanici = "";
@@ -51,13 +49,13 @@ public class frg_kirli_ambalaj_menu_panel extends Fragment {
 
     }
 
-    public frg_kirli_ambalaj_menu_panel() {
+    public frg_geribesleme_menu_panel() {
         // Required empty public constructor
     }
 
-    public static frg_kirli_ambalaj_menu_panel newInstance()
+    public static frg_geribesleme_menu_panel newInstance()
     {
-        return new frg_kirli_ambalaj_menu_panel();
+        return new frg_geribesleme_menu_panel();
     }
 
     @Override
@@ -70,7 +68,7 @@ public class frg_kirli_ambalaj_menu_panel extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frg_kirli_ambalaj_menu_panel, container, false);
+        return inflater.inflate(R.layout.frg_geribesleme_menu_panel, container, false);
     }
 
     @Override
@@ -103,10 +101,10 @@ public class frg_kirli_ambalaj_menu_panel extends Fragment {
     private class fn_btnUrunAyirmaIslemi implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_kirli_ambalaj_degisimi fragmentyeni = new frg_kirli_ambalaj_degisimi();
+            frg_geribesleme_ayirma fragmentyeni = new frg_geribesleme_ayirma();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_kirli_ambalaj_degisimi").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_geribesleme_ayirma").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }
@@ -114,10 +112,10 @@ public class frg_kirli_ambalaj_menu_panel extends Fragment {
     private class fn_btnIslemTamamla implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_kirli_ambalaj_degisim_onay fragmentyeni = new frg_kirli_ambalaj_degisim_onay();
+            frg_geribesleme_onay fragmentyeni = new frg_geribesleme_onay();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_kirli_ambalaj_degisimi").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_geribesleme_onay").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }

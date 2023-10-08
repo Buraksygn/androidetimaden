@@ -27,7 +27,10 @@ import com.etimaden.UretimIslemleri.frg_paket_uretim_ekrani;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.frg_ana_sayfa;
 import com.etimaden.manipulasyon.Ambalaj_tipi_degisimi.frg_ambalaj_tipi_degisimi;
+import com.etimaden.manipulasyon.ellecleme.frg_ellecleme_menu_panel;
+import com.etimaden.manipulasyon.geribesleme.frg_geribesleme_menu_panel;
 import com.etimaden.manipulasyon.kirliAmbalajDegisimi.frg_kirli_ambalaj_menu_panel;
+import com.etimaden.manipulasyon.palet_duzenleme_islemleri.frg_palet_dagitma_islemi;
 import com.etimaden.senkronResponse.ViewtoplamaTest;
 import com.etimaden.senkronResult.requesttoplamaTest;
 import com.etimaden.servisbaglanti.test_Controller;
@@ -164,14 +167,22 @@ public class frg_manipulasyon_menu_panel extends Fragment {
     private class fn_btnEllecleme implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            frg_ellecleme_menu_panel fragmentyeni = new frg_ellecleme_menu_panel();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_ellecleme_menu_panel").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
     private class fn_btnDokmeUruneCevir implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            frg_geribesleme_menu_panel fragmentyeni = new frg_geribesleme_menu_panel();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_geribesleme_menu_panel").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
@@ -179,6 +190,11 @@ public class frg_manipulasyon_menu_panel extends Fragment {
         @Override
         public void onClick(View view) {
 
+            frg_palet_dagitma_islemi fragmentyeni = new frg_palet_dagitma_islemi();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_palet_dagitma_islemi").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 

@@ -1,4 +1,4 @@
-package com.etimaden.manipulasyon.kirliAmbalajDegisimi;
+package com.etimaden.manipulasyon.ellecleme;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -13,60 +13,27 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.android.volley.Cache;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Network;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.DiskBasedCache;
-import com.android.volley.toolbox.HurlStack;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.etimaden.DataModel.mdlIsemriSecimi;
 import com.etimaden.GirisSayfasi;
-import com.etimaden.SevkiyatIslemleri.frg_aktif_arac_secimi;
-import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_indirme;
-import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_yukleme;
-import com.etimaden.adapter.apmblIsEmriSecimi;
-import com.etimaden.adapter.apmblManipulasyonAmbalajTipiDegisimi;
 import com.etimaden.adapter.apmblManipulasyonElleclemeAyirma;
-import com.etimaden.adapter.apmblManipulasyonKirliAmbalajDegisimi;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.cResponseResult.Sevkiyat_isemri;
-import com.etimaden.cResponseResult.ViewsevkDegerlendir;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
-import com.etimaden.manipulasyon.Ambalaj_tipi_degisimi.frg_ambalaj_tipi_degisimi;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_secEtiket;
-import com.etimaden.request.request_string;
+import com.etimaden.request.request_uruntag_string;
 import com.etimaden.ugr_demo.R;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class frg_kirli_ambalaj_degisimi extends Fragment {
+public class frg_ellecleme_ayirma extends Fragment {
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
     String _ayaraktifdepo = "";
@@ -89,13 +56,13 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
     boolean isReadable = true;
     ArrayList<Urun_tag> urun_listesi = new ArrayList<Urun_tag>();
 
-    private apmblManipulasyonKirliAmbalajDegisimi adapter;
+    private apmblManipulasyonElleclemeAyirma adapter;
 
 
 
-    public static frg_kirli_ambalaj_degisimi newInstance() {
+    public static frg_ellecleme_ayirma newInstance() {
 
-        return new frg_kirli_ambalaj_degisimi();
+        return new frg_ellecleme_ayirma();
     }
 
     @Override
@@ -108,7 +75,7 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frg_kirli_ambalaj_degisimi, container, false);
+        return inflater.inflate(R.layout.frg_ellecleme_ayirma, container, false);
     }
 
     @Override
@@ -169,8 +136,7 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
         _btn_01.setOnClickListener(new fn_btn_01());
 
         _listisemirleri=(ListView)getView().findViewById(R.id.listisemirleri);
-
-        adapter=new apmblManipulasyonKirliAmbalajDegisimi(urun_listesi,getContext());
+        adapter=new apmblManipulasyonElleclemeAyirma(urun_listesi,getContext());
         _listisemirleri.setAdapter(adapter);
     }
 
@@ -179,11 +145,7 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
         {
             if (adapter != null) {
                 adapter.clear();
-                for (Urun_tag l : urun_listesi ) {
-                    if(!l.etiket_turu.equals("0")){
-                        adapter.add(l);
-                    }
-                }
+                adapter.addAll(urun_listesi);
                 adapter.notifyDataSetChanged();
             }
 
@@ -220,12 +182,13 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
             Genel.showProgressDialog(getContext());
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
             Genel.dismissProgressDialog();
+
             if (tag == null || !tag.islem_durumu.equals("1"))
             {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
                         .setContentTextSize(25)
-                        .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir. \r\n İşleme uygun olmayan etiket.")
+                        .setContentText("Üretim işlemi tamamlanmamış ürün seçemezsiniz. \r\n Üretilmemiş etiket.")
                         .showCancelButton(false)
                         .show();
             }
@@ -233,7 +196,6 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
             {
                 urunDegerlendir(tag);
             }
-
 
         }
         catch (Exception ex)
@@ -270,6 +232,7 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
             Genel.showProgressDialog(getContext());
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
             Genel.dismissProgressDialog();
+
             if (tag == null || !tag.islem_durumu.equals("1"))
             {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
@@ -298,13 +261,6 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
     {
         try
         {
-            Boolean palet_kodVar=false;
-            for(Urun_tag w:urun_listesi){
-                if(w.kod.equals(tag.palet_kod)){
-                    palet_kodVar=true;
-                    break;
-                }
-            }
             Boolean kodVar=false;
             Urun_tag tmpObj=null;
             for(Urun_tag w:urun_listesi){
@@ -314,82 +270,16 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
                     break;
                 }
             }
-            if (tag.etiket_turu.equals("0") )
-            {
-                if(palet_kodVar)
-                {
-                    if (kodVar)
-                    {
-                        urun_listesi.remove(tmpObj);
-                        for(Urun_tag w:urun_listesi){
-                            if (w.kod.equals(tag.palet_kod))
-                            {
-                                int x =0;
-                                for(Urun_tag a:urun_listesi){
-                                    if(a.palet_kod.equals(tag.palet_kod)){
-                                        x++;
-                                    }
-                                }
-                                x = x - 1;
-                                if (x == 0)
-                                    x = Integer.parseInt(w.palet_dizim_sayisi);
-                                w.aciklama = "" + (x);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        urun_listesi.add(tag);
-                        for(Urun_tag w:urun_listesi){
-                            if (w.kod.equals(tag.palet_kod))
-                            {
-                                int x =0;
-                                for(Urun_tag a:urun_listesi){
-                                    if(a.palet_kod.equals(tag.palet_kod)){
-                                        x++;
-                                    }
-                                }
-                                x = x - 1;
-                                if (x == 0)
-                                    x = Integer.parseInt(w.palet_dizim_sayisi);
-                                w.aciklama = "" + (x);
-                            }
-                        }
-                    }
-                }
-                    else
-                {
-                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                            .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
-                            .setContentTextSize(25)
-                            .setContentText("İlk önce paketin bulunduğu palet etiketini okutunuz. \r\n İşleme uygun olmayan etiket.")
-                            .showCancelButton(false)
-                            .show();
 
-                }
-            }
-            else if (kodVar)
+            if (kodVar)
             {
-                Urun_tag tmpObj1=null;
-                for (Urun_tag w : urun_listesi)
-                {
-                    if(w.kod.equals(tag.kod) || w.palet_kod.equals(tag.kod)){
-                        tmpObj1=w;
-                    }
-                }
-                if(tmpObj1!=null) {
-                    urun_listesi.remove(tmpObj1);
-                }
+                urun_listesi.remove(tmpObj);
             }
             else
             {
-                if (tag.etiket_turu.equals("1") || tag.etiket_turu.equals("2")) {
-                    tag.aciklama = tag.palet_dizim_sayisi;
-                }else {
-                    tag.aciklama = "1";
-                }
                 urun_listesi.add(tag);
             }
+
             updateListviewItem();
 
         }
@@ -417,12 +307,12 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
                 }
                 else
                 {
+                    boolean islem_sonucu = false;
                     for (int i = 0; i < urun_listesi.size(); i++)
                     {
                         Urun_tag tag = urun_listesi.get(i);
-                        request_string v_Gelen=new request_string();
-                        //todo substring 10 var aynı anlama mı geliyor bak.
-                        v_Gelen.set_value(tag.rfid.substring(10));
+
+                        request_uruntag_string v_Gelen=new request_uruntag_string();
                         v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
                         v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
                         v_Gelen.set_zkullaniciadi(_zkullaniciadi);
@@ -432,13 +322,34 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
                         v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
                         v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
-                        Genel.showProgressDialog(getContext());
-                        String _FlagDurum = persos.fn_flag_islemtipi(v_Gelen);
-                        Genel.dismissProgressDialog();
+                        v_Gelen.setEtiket(tag);
 
-                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.PROGRESS_TYPE)
-                                .setTitleText("DURUM")
-                                .setContentText(_FlagDurum)
+                        Genel.showProgressDialog(getContext());
+
+                        if (tag.etiket_turu.equals("3"))
+                        {
+                            v_Gelen.setStringValue("210");
+                            islem_sonucu = persos.fn_bigBag_ellecleme(v_Gelen);
+                        }
+                        else if (tag.etiket_turu.equals("1"))
+                        {
+                            v_Gelen.setStringValue("212");
+                            islem_sonucu = persos.fn_bigBag_ellecleme(v_Gelen);
+                        }
+                        else if (tag.etiket_turu.equals("2"))
+                        {
+                            v_Gelen.setStringValue("213");
+                            islem_sonucu = persos.fn_bigBag_ellecleme(v_Gelen);
+                        }
+
+                        Genel.dismissProgressDialog();
+                    }
+
+                    if (islem_sonucu)
+                    {
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
+                                .setTitleText("ONAY")
+                                .setContentText("İşlem başarı ile tamamlanmıştır.")
                                 .setContentTextSize(20)
                                 .setConfirmText("TAMAM")
                                 .showCancelButton(false)
@@ -446,11 +357,28 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
                                     @Override
                                     public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
+
+                                        frg_ellecleme_menu_panel fragmentyeni = new frg_ellecleme_menu_panel();
+                                        FragmentManager fragmentManager = getFragmentManager();
+                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_ellecleme_menu_panel").addToBackStack(null);
+                                        fragmentTransaction.commit();
+
                                         return;
                                     }
                                 }).show();
                     }
+                    else
+                    {
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                .setTitleText("HATA")
+                                .setContentTextSize(25)
+                                .setContentText("KAYIT YAPILAMADI \r\n NETWORK BAĞLANTISINI KONTROL EDİNİZ..")
+                                .showCancelButton(false)
+                                .show();
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -463,10 +391,10 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
         @Override
         public void onClick(View view)
         {
-            frg_kirli_ambalaj_menu_panel fragmentyeni = new frg_kirli_ambalaj_menu_panel();
+            frg_ellecleme_menu_panel fragmentyeni = new frg_ellecleme_menu_panel();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_kirli_ambalaj_menu_panel").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_ellecleme_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }

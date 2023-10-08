@@ -3,8 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ambalaj_tipi_degisimi.xml" value="0.1734375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depo_secimi_transfer_indirme.xml" value="0.1734375" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ellecleme_ayirma.xml" value="0.25" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ellecleme_menu_panel.xml" value="0.33" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ellecleme_onay.xml" value="0.22395833333333334" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_geribesleme_ayirma.xml" value="0.22395833333333334" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_geribesleme_harcama_yeri_secimi.xml" value="0.22395833333333334" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_geribesleme_menu_panel.xml" value="0.22395833333333334" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_geribesleme_onay.xml" value="0.22395833333333334" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_kirli_ambalaj_degisim_onay.xml" value="0.21" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_paket_uretim_ekrani.xml" value="0.22395833333333334" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_palet_dagitma_islemi.xml" value="0.22395833333333334" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_geribesleme_harcama_yeri_secimi_item.xml" value="0.22395833333333334" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_manipulasyon_ellecleme_ayirma_item.xml" value="0.1734375" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_manipulasyon_geribesleme_ayirma_item.xml" value="0.22395833333333334" />
       </map>
     </option>
   </component>
