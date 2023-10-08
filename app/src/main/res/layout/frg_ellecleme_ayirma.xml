@@ -7,52 +7,59 @@
     android:layout_height="match_parent"
     android:background="@color/colorBlack"
     android:focusable="false"
-    tools:context="com.etimaden.manipulasyon.kirliAmbalajDegisimi.frg_kirli_ambalaj_degisim_onay">
+    tools:context="com.etimaden.manipulasyon.ellecleme.frg_ellecleme_ayirma">
+
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="325dp"
+        android:layout_width="262dp"
         android:layout_height="wrap_content"
         android:layout_x="0dp"
-        android:textColor="@color/green"
         android:layout_y="0dp"
-        android:text="frg_kirli_ambalaj_degisim_onay"
+        android:text="frg_ellecleme_ayirma"
+        android:textColor="@color/green"
         android:textSize="12dp" />
 
     <TextView
-        android:id="@+id/txtYazi5"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_x="0dp"
-        android:layout_y="29dp"
-        android:textColor="@color/green"
+        android:id="@+id/txtYazi6"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
+        android:layout_x="50dp"
+        android:layout_y="15dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="KİRLİ AMBALAJ DEĞİŞİM ONAYI"
-        android:textSize="20dp"
+        android:text="ELLEÇLEME İŞEMRİ OLUŞTUR"
+        android:textColor="@color/green"
+        android:textSize="18dp"
         android:textStyle="bold" />
 
-
-
-    <TextView
-        android:id="@+id/txtYazi"
+    <Button
+        android:id="@+id/btn_01"
         android:layout_width="325dp"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_x="0dp"
-        android:layout_y="70dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="ESKİ ETİKETİ OKUTUNUZ..."
+        android:layout_y="65dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="ELLEÇLEMEYE AYIR"
         android:textColor="@color/green"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+        android:textSize="18sp"
+        android:focusable="false"/>
 
-    <ImageView
-        android:id="@+id/imageTanimResmi"
+    <HorizontalScrollView
         android:layout_width="325dp"
-        android:layout_height="350dp"
-        android:layout_x="1dp"
-        android:layout_y="135dp"
-        app:srcCompat="@mipmap/tag_yellow"
-        android:focusable="false" />
+        android:layout_height="340dp"
+        android:layout_x="0dp"
+        android:layout_y="128dp">
+
+        <ListView
+            android:id="@+id/isemri_list"
+            android:layout_width="wrap_content"
+            android:layout_height="330dp"
+            android:listSelector="@color/colorBlackSecili"
+            android:scrollbars="horizontal|vertical"
+            android:textColor="@color/green" />
+
+    </HorizontalScrollView>
 
     <Button
         android:id="@+id/btnGeri"

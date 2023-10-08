@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorBlack"
+    android:focusable="false"
+    tools:context="com.etimaden.manipulasyon.geribesleme.frg_geribesleme_menu_panel"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:textColor="@color/green"
+        android:text="frg_geribesleme_menu_panel"
+        android:textSize="12dp" />
+
+    <Button
+        android:id="@+id/btnUrunAyirmaIslemi"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="25dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="ÜRÜN AYIRMA İŞLEMİ"
+        android:textColor="@color/green"
+        android:textSize="20sp"
+        android:focusable="false" />
+
+    <Button
+        android:id="@+id/btnIslemTamamla"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="85dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="İŞLEM TAMAMLA"
+        android:textColor="@color/green"
+        android:textSize="20sp"
+        android:focusable="false" />
+
+    <Button
+        android:id="@+id/btnGeri"
+        android:layout_width="324dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="500dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed"
+        android:focusable="false"/>
+
+</AbsoluteLayout>

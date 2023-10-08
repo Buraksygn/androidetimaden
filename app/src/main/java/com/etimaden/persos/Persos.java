@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.StrictMode;
 
 import com.etimaden.cResponseResult.Urun_sevkiyat;
+import com.etimaden.cResponseResult.Viewsec_sevkiyat_urun;
 import com.etimaden.genel.Genel;
 import com.etimaden.persosclass.Arac;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
@@ -45,7 +46,9 @@ import com.etimaden.request.request_string_string;
 import com.etimaden.request.request_uretim_etiket;
 import com.etimaden.request.request_uretim_iptali;
 import com.etimaden.request.request_uretim_zayi;
+import com.etimaden.request.request_uruntag;
 import com.etimaden.request.request_uruntag_list_uruntag;
+import com.etimaden.request.request_uruntag_string;
 import com.etimaden.request.requestsecDepoTanimlari;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_ambalaj_tipi_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
@@ -2410,6 +2413,186 @@ public class Persos {
             Call<View_string_response> fn_Servis = _Servis.fn_flag_islemtipi(v_Gelen);
 
             Response<View_string_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Urun_tag fn_kirli_ambalaj_degistir_onay(request_uruntag_string v_Gelen)
+    {
+        View_secEtiket _yanit;
+
+        try
+        {
+            frg_manipulasyon_islemleri_ekrani_Controller _Servis=retrofit.create(frg_manipulasyon_islemleri_ekrani_Controller.class);
+
+            Call<View_secEtiket> fn_Servis = _Servis.fn_kirli_ambalaj_degistir_onay(v_Gelen);
+
+            Response<View_secEtiket> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_tag();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_bigBag_ellecleme(request_uruntag_string v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_manipulasyon_islemleri_ekrani_Controller _Servis=retrofit.create(frg_manipulasyon_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_bigBag_ellecleme(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_ellecleme_onay(request_uruntag_string v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_manipulasyon_islemleri_ekrani_Controller _Servis=retrofit.create(frg_manipulasyon_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_ellecleme_onay(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_geribesleme_isaretle(request_uruntag v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_manipulasyon_islemleri_ekrani_Controller _Servis=retrofit.create(frg_manipulasyon_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_geribesleme_isaretle(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_geribesleme_onay(request_uruntag_string v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_manipulasyon_islemleri_ekrani_Controller _Servis=retrofit.create(frg_manipulasyon_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_geribesleme_onay(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_palet_dagit(request_uruntag v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_manipulasyon_islemleri_ekrani_Controller _Servis=retrofit.create(frg_manipulasyon_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_palet_dagit(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
 
             if(_Response.isSuccessful())
             {
