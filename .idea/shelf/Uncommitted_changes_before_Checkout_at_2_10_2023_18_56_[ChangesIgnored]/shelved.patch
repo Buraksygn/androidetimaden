@@ -1,0 +1,212 @@
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+--- a/.idea/modules.xml	(revision 2b8133a78b13e9baa90a77f8e333cf065302d1a6)
++++ /dev/null	(revision 2b8133a78b13e9baa90a77f8e333cf065302d1a6)
+@@ -1,9 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/androiduygulama.iml" filepath="$PROJECT_DIR$/androiduygulama.iml" />
+-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/runConfigurations.xml
+===================================================================
+diff --git a/.idea/runConfigurations.xml b/.idea/runConfigurations.xml
+deleted file mode 100644
+--- a/.idea/runConfigurations.xml	(revision 2b8133a78b13e9baa90a77f8e333cf065302d1a6)
++++ /dev/null	(revision 2b8133a78b13e9baa90a77f8e333cf065302d1a6)
+@@ -1,12 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RunConfigurationProducerService">
+-    <option name="ignoredProducers">
+-      <set>
+-        <option value="org.jetbrains.plugins.gradle.execution.test.runner.AllInPackageGradleConfigurationProducer" />
+-        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestClassGradleConfigurationProducer" />
+-        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestMethodGradleConfigurationProducer" />
+-      </set>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <compositeConfiguration>\r\n          <compositeBuild compositeDefinitionSource=\"SCRIPT\" />\r\n        </compositeConfiguration>\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n        <option name=\"testRunner\" value=\"PLATFORM\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 2b8133a78b13e9baa90a77f8e333cf065302d1a6)
++++ b/.idea/gradle.xml	(date 1696169685655)
+@@ -1,21 +1,19 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+-        <compositeConfiguration>
+-          <compositeBuild compositeDefinitionSource="SCRIPT" />
+-        </compositeConfiguration>
++        <option name="testRunner" value="GRADLE" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="gradleJvm" value="11" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$" />
+             <option value="$PROJECT_DIR$/app" />
+           </set>
+         </option>
+-        <option name="resolveModulePerSourceSet" value="false" />
+-        <option name="testRunner" value="PLATFORM" />
+       </GradleProjectSettings>
+     </option>
+   </component>
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Tue Feb 08 16:04:17 EET 2022\r\ndistributionBase=GRADLE_USER_HOME\r\ndistributionPath=wrapper/dists\r\nzipStoreBase=GRADLE_USER_HOME\r\nzipStorePath=wrapper/dists\r\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-5.4.1-all.zip\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/gradle/wrapper/gradle-wrapper.properties b/gradle/wrapper/gradle-wrapper.properties
+--- a/gradle/wrapper/gradle-wrapper.properties	(revision 2b8133a78b13e9baa90a77f8e333cf065302d1a6)
++++ b/gradle/wrapper/gradle-wrapper.properties	(date 1695748916933)
+@@ -3,4 +3,4 @@
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-5.4.1-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-7.3.3-all.zip
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_7\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 2b8133a78b13e9baa90a77f8e333cf065302d1a6)
++++ b/.idea/misc.xml	(date 1696174550554)
+@@ -1,6 +1,77 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="DesignSurface">
++    <option name="filePathToZoomLevelMap">
++      <map>
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/activity_access.xml" value="0.3546875" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/activity_main.xml" value="0.22083333333333333" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_aktif_arac_secimi.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_aktif_isemri_indirme.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_aktif_isemri_secimi.xml" value="0.225" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_aktif_isemri_yukleme.xml" value="0.22" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_aktif_isemri_yukleme_eski.xml" value="0.3546875" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_aktif_silobas_Isemri_degistir.xml" value="0.1734375" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_aktif_silobas_arac_bulundu.xml" value="0.1734375" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_aktif_silobas_arac_secimi.xml" value="0.1734375" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_aktif_silobas_isemri_degistir.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ambalaj_tipi_degisimi.xml" value="0.3546875" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ana_sayfa.xml" value="0.22083333333333333" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_arac_aktivasyon.xml" value="0.22" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_arac_aktivasyon_eski.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_arac_bulundu.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_arac_bulundu_indirme.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_arac_bulundu_indirme_detay.xml" value="0.28072916666666664" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_arac_onayla.xml" value="0.33" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_arac_onayla_indirme.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_bekleyen_arac.xml" value="0.1734375" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_bekleyen_arac_listesi.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depo_secimi_transfer_indirme.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_isemri_degistir.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_isemri_degistir_transfer.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_kirli_ambalaj_degisim_onay.xml" value="0.22083333333333333" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_kirli_ambalaj_degisimi.xml" value="0.225" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_kirli_ambalaj_menu_panel.xml" value="0.225" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_konteyner_aktivasyon.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_konteyner_bulundu.xml" value="0.26197916666666665" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_konteyner_isemri_secimi.xml" value="0.225" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_konteyner_kamyon_esleme.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_konteyner_onayla.xml" value="0.26197916666666665" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_konteyner_vagon_esleme.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_konteyner_yukleme_aktivasyon.xml" value="0.28072916666666664" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_manipulasyon_menu_panel.xml" value="0.3546875" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_paket_uretim_ekrani.xml" value="0.19166666666666668" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_sevkiyat_menu_panel.xml" value="0.25" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_shrink_ayirma.xml" value="0.1734375" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_shrink_onay.xml" value="0.1734375" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_uretim_menu_panel.xml" value="0.3546875" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_zayi_aktif_isemri_secimi.xml" value="0.17760416666666667" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_zayi_aktivasyon.xml" value="0.1734375" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_zayi_arac_bulundu_indirme.xml" value="0.2604166666666667" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_zayi_arac_onayla_indirme.xml" value="0.2604166666666667" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_zayi_depo_secimi.xml" value="0.2604166666666667" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_zayi_isemri_degistir.xml" value="0.2604166666666667" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_zayi_isemri_indirme.xml" value="0.28072916666666664" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_zayi_menu_panel.xml" value="0.1734375" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/layoutkurulum.xml" value="0.22083333333333333" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/layoutsurumkontrol.xml" value="0.22083333333333333" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_aktif_is_emirleri_item.xml" value="0.1734375" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_bekleyen_arac.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_depo_secimi.xml" value="0.2604166666666667" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_manipulasyon_ambalaj_tipi_degisimi_item.xml" value="0.225" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_manipulasyon_kirli_ambalaj_degisimi_item.xml" value="0.225" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sevkiyat_aktif_is_emirleri_item.xml" value="0.1734375" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sevkiyat_aktif_isemri_indirme_item.xml" value="0.2635416666666667" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sevkiyat_aktif_isemri_yukleme_item.xml" value="0.4142335766423358" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sevkiyat_bekleyen_arac_listesi_item.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sevkiyat_zayi_aktif_is_emirleri_item.xml" value="0.17760416666666667" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sevkiyat_zayi_is_emirleri_item.xml" value="0.2604166666666667" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sevkiyat_zayi_isemri_indirme_item.xml" value="0.2640625" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_yuklenen_etiket.xml" value="0.19166666666666668" />
++        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/lst_konteyner_isemri_listesi.xml" value="0.225" />
++      </map>
++    </option>
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>*.iml\r\n.gradle\r\n/local.properties\r\n/.idea/workspace.xml\r\n/.idea/libraries\r\n.DS_Store\r\n/build\r\n/captures\r\n.externalNativeBuild\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision 2b8133a78b13e9baa90a77f8e333cf065302d1a6)
++++ b/.gitignore	(date 1695748916953)
+@@ -7,3 +7,4 @@
+ /build
+ /captures
+ .externalNativeBuild
++/.idea/
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\r\n\r\nbuildscript {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n    }\r\n    dependencies {\r\n        classpath 'com.android.tools.build:gradle:3.5.3'\r\n        classpath \"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version\"\r\n\r\n\r\n        // NOTE: Do not place your application dependencies here; they belong\r\n        // in the individual module build.gradle files\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n    }\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+--- a/build.gradle	(revision 0da97de00107744805ddfcbc7c79340997f590a0)
++++ b/build.gradle	(date 1696169724278)
+@@ -6,8 +6,7 @@
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.5.3'
+-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
++        classpath 'com.android.tools.build:gradle:7.2.0'
+ 
+ 
+         // NOTE: Do not place your application dependencies here; they belong
