@@ -246,6 +246,12 @@ public class frg_geribesleme_harcama_yeri_secimi extends Fragment {
                             public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
 
+                                String depoIdSecili=secilenDepo.getDepo_id();
+                                int idx=depoIdSecili.indexOf("*");
+                                if(idx!=-1){
+                                    depoIdSecili=depoIdSecili.substring(0,idx);
+                                }
+
                                 request_uruntag_string v_Gelen=new request_uruntag_string();
                                 v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
                                 v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
@@ -257,7 +263,7 @@ public class frg_geribesleme_harcama_yeri_secimi extends Fragment {
                                 v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
                                 v_Gelen.setEtiket(aktif_tag);
-                                v_Gelen.setStringValue(secilenDepo.getDepo_id());
+                                v_Gelen.setStringValue(depoIdSecili);
 
                                 Genel.showProgressDialog(getContext());
                                 Boolean islem_sonucu = persos.fn_geribesleme_onay(v_Gelen);
