@@ -51,7 +51,7 @@
         <ListView
             android:id="@+id/arac_list"
             android:layout_width="wrap_content"
-            android:layout_height="440dp"
+            android:layout_height="wrap_content"
             android:listSelector="@color/colorBlackSecili"
             android:scrollbars="horizontal|vertical"
             android:textColor="@color/green" />

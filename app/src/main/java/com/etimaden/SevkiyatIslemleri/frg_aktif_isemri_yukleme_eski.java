@@ -584,6 +584,7 @@ public class frg_aktif_isemri_yukleme_eski extends Fragment {
         @Override
         public void onClick(View v)
         {
+            Genel.lockButtonClick(v,getActivity());
             fn_BekleyenleriGetir();
         }
     }

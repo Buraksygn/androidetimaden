@@ -35,12 +35,12 @@
     <TextView
         android:id="@+id/txtYazi"
         android:layout_width="325dp"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:textColor="@color/colorGreen"
         android:layout_x="0dp"
         android:layout_y="90dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="EŞLEŞTİRME İŞLEMİNİ TAMAMLAMAK İÇİN KONTEYNER ETİKETİ OKUTUNUZ..."
+        android:text="---- KODLU ----- PLAKALI EŞLEŞTİRME İŞLEMİNİ TAMAMLAMAK İÇİN KONTEYNER ETİKETİ OKUTUNUZ..."
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -61,10 +61,10 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
         android:layout_x="34dp"
-        android:layout_y="160dp"
+        android:layout_y="190dp"
         app:srcCompat="@mipmap/konteyner"
         android:focusable="false" />
 

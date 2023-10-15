@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -125,11 +126,11 @@ public class frg_geribesleme_onay extends Fragment {
         _imageTanimResmi = (ImageView) getView().findViewById(R.id.imageTanimResmi);
 
         _btnGeri = (Button)getView().findViewById(R.id.btnGeri);
-        _btnGeri.playSoundEffect(0);
+        _btnGeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btnGeri.setOnClickListener(new fn_Geri());
 
         _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
-        _btnOkuma.playSoundEffect(0);
+        _btnOkuma.playSoundEffect(SoundEffectConstants.CLICK);
         _btnOkuma.setOnClickListener(new fn_okumaDegistir());
         _btnOkuma.setText("KAREKOD");
 
@@ -231,6 +232,7 @@ public class frg_geribesleme_onay extends Fragment {
             }
             else if (tag.islem_durumu.equals("1") || tag.islem_durumu.equals("370"))
             {
+                //todo mükerrer kayıta buradan gidiyor.
                 frg_geribesleme_harcama_yeri_secimi fragmentyeni = new frg_geribesleme_harcama_yeri_secimi();
                 fragmentyeni.fn_senddata(tag);
                 FragmentManager fragmentManager = getFragmentManager();

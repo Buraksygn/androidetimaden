@@ -21,6 +21,7 @@ import com.etimaden.SevkiyatIslemleri.frg_arac_secim_bilgi;
 import com.etimaden.SevkiyatIslemleri.frg_isemri_degistir;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
+import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 
@@ -192,6 +193,7 @@ public class frg_arac_bulundu extends Fragment {
         @Override
         public void onClick(View view)
         {
+            Genel.lockButtonClick(view,getActivity());
             if (!aktif_sevk_isemri.yapilan_adet.equals("0"))
             {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)

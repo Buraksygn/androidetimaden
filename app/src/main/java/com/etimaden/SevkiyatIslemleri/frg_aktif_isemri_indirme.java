@@ -747,6 +747,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
         public void onClick(View view) {
             try
             {
+                Genel.lockButtonClick(view,getActivity());
                 Genel.playButtonClikSound(getContext());
 
                 String str = "";
@@ -794,6 +795,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
         public void onClick(View view) {
             try
             {
+                Genel.lockButtonClick(view,getActivity());
                 request_sevkiyat_isemri _Param1= new request_sevkiyat_isemri();
                 _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
                 _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);

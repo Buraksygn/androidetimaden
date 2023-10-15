@@ -145,6 +145,7 @@ public class frg_konteyner_onayla extends Fragment {
     private class fn_btnIsEmriIptal implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            Genel.lockButtonClick(v,getActivity());
             try
             {
                 if (aktif_sevk_isemri.islem_id.equals(""))

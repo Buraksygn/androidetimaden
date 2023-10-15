@@ -547,7 +547,7 @@ int x= 1;
                                 {
                                     pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                     pDialog.setTitle("HATA");
-                                    pDialog.setContentText(_Yanit._zHataAciklama);
+                                    pDialog.setContentText("Genel merkeze bağlanılamadı!");
                                 }
                                 else
                                 {

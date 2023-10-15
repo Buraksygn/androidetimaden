@@ -193,7 +193,7 @@ public class frg_depo_secimi_transfer_indirme extends Fragment {
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
             new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("BAĞLANTI HATASI")
                     .setContentTextSize(25)
@@ -240,7 +240,7 @@ public class frg_depo_secimi_transfer_indirme extends Fragment {
     private class fn_btnDepoOnayla implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
             try
             {
                 if (_Secili!=null)

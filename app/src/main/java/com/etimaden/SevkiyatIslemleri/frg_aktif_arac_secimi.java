@@ -28,6 +28,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.ViewsecAktifSevkIsemriListesi;
+import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -285,7 +286,7 @@ public class frg_aktif_arac_secimi  extends Fragment {
     private class fn_btn_05 implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
             if (_ayaraktiftesis.toString().equals("5002"))
             {
 

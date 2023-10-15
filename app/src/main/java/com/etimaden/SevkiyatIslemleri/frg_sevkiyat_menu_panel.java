@@ -264,6 +264,7 @@ public class frg_sevkiyat_menu_panel extends Fragment {
         @Override
         public void onClick(View view)
         {
+            Genel.lockButtonClick(view,getActivity());
             try
             {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)

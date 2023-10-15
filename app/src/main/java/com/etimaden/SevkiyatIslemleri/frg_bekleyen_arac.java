@@ -36,6 +36,7 @@ import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.ViewAracAktivasyon;
 import com.etimaden.cResponseResult.Viewbekleyen_arac;
 import com.etimaden.cResponseResult.bekleyen_arac_liste;
+import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -436,6 +437,7 @@ public class frg_bekleyen_arac extends Fragment {
     private class fn_btn_03 implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             if(_cSeciliArac == null)
             {
                 SweetAlertDialogG pHataDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);

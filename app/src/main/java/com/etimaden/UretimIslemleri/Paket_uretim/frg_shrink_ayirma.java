@@ -183,7 +183,9 @@ public class frg_shrink_ayirma extends Fragment {
             v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
             v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
+            Genel.showProgressDialog(getContext());
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
+            Genel.dismissProgressDialog();
             if (tag == null || (!tag.islem_durumu.equals("1")) || (!tag.etiket_turu.equals("1")))
             {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
@@ -232,7 +234,9 @@ public class frg_shrink_ayirma extends Fragment {
             v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
             v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
+            Genel.showProgressDialog(getContext());
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
+            Genel.dismissProgressDialog();
 
             if (tag == null || (!tag.islem_durumu.equals("1"))  || (!tag.etiket_turu.equals("1")))
             {
@@ -310,8 +314,8 @@ public class frg_shrink_ayirma extends Fragment {
 
     private class fn_btnShrinkOlustur implements View.OnClickListener {
         @Override
-        public void onClick(View view) {
-
+        public void onClick(final View view) {
+            view.setEnabled(false);
             try
             {
                 if (dataModels.size() == 0)
@@ -321,7 +325,15 @@ public class frg_shrink_ayirma extends Fragment {
                             .setContentTextSize(25)
                             .setContentText("Ürün listenizde ürün bulunmamaktadır. \r\n Hatalı İşlem.")
                             .showCancelButton(false)
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialogG sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                    view.setEnabled(true);
+                                }
+                            })
                             .show();
+
                     return;
 
                 }
@@ -364,6 +376,7 @@ public class frg_shrink_ayirma extends Fragment {
                                 .show();
                         //Program.giveUyariMesaji("İşlem Onayı", "İşlem başarı ile tamamlanmıştır.");
 
+                        view.setEnabled(true);
                         frg_uretim_menu_panel fragmentyeni = new frg_uretim_menu_panel();
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -383,10 +396,12 @@ public class frg_shrink_ayirma extends Fragment {
                                     @Override
                                     public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
-
+                                        view.setEnabled(true);
                                     }
                                 })
                                 .show();
+
+
                         //Program.giveUyariMesaji("Uyarı", "İşlem yapılamadı.Bağlantı ayarlarınızı kontrol ettikten sonra tekrar deneyiniz.");
                     }
                 }
@@ -394,6 +409,7 @@ public class frg_shrink_ayirma extends Fragment {
             catch (Exception ex)
             {
                 Genel.printStackTrace(ex,getContext());
+                view.setEnabled(true);
             }
 
 

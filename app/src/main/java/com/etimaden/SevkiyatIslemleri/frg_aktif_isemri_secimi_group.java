@@ -40,6 +40,7 @@ import com.etimaden.cIslem.ViewtestParseClass;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewsevkDegerlendirGroup;
 import com.etimaden.cResponseResult.cResultGridListe;
+import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -443,7 +444,7 @@ public class frg_aktif_isemri_secimi_group  extends Fragment {
     private class fn_Btn_03 implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
             if (_Secili.getkod_sap().equals("-1") == false) {
 
                     Sevkiyat_isemri v_aktif_sevk_isemri = new Sevkiyat_isemri();

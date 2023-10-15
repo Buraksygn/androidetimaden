@@ -576,6 +576,7 @@ public class frg_zayi_isemri_indirme extends Fragment {
     private class fn_imgBilgi implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             try
             {
                 Genel.playButtonClikSound(getContext());

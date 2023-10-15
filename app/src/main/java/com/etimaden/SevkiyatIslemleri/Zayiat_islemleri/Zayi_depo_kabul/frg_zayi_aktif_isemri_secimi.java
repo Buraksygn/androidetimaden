@@ -211,7 +211,7 @@ public class frg_zayi_aktif_isemri_secimi extends Fragment {
     private class fn_btnIsEmriSeciminiOnayla implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
             try
             {
                 if (_Secili!=null){

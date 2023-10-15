@@ -34,6 +34,7 @@ import com.etimaden.adapter.apmblIsEmriSecimi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewsevkDegerlendir;
+import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -579,6 +580,7 @@ public class frg_aktif_isemri_secimi extends Fragment {
     private class fn_btn_03 implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             //Toast.makeText(getContext(), _SeciliKod, Toast.LENGTH_SHORT).show();
 
             String _Yanitlar = "";
@@ -663,6 +665,7 @@ public class frg_aktif_isemri_secimi extends Fragment {
         @Override
         public void onClick(View v)
         {
+            Genel.lockButtonClick(v,getActivity());
             fn_SevkiyatlariYukle();
         }
     }

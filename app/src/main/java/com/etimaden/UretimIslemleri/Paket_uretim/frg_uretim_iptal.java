@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
+import com.etimaden.manipulasyon.ellecleme.frg_ellecleme_onay;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_secEtiket;
@@ -53,6 +55,7 @@ public class frg_uretim_iptal extends Fragment {
     //Button _btnShrinkOlustur;
     //ListView _isemri_list;
     Button _btngeri;
+    Button _btnOkuma;
     TextView _txtYazi;
 
 
@@ -130,14 +133,19 @@ public class frg_uretim_iptal extends Fragment {
         _myIslem = new VeriTabani(getContext());
 
         //barkod,rfid,ikiside
-        ((GirisSayfasi) getActivity()).fn_ModBoth();
+        ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
         _txtYazi=(TextView)getView().findViewById(R.id.txtYazi);
 
 
-        _btngeri = (Button)getView().findViewById(R.id.btngeri);
-        _btngeri.playSoundEffect(0);
+        _btngeri = (Button)getView().findViewById(R.id.btnGeri);
+        _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
+
+        _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
+        _btnOkuma.playSoundEffect(SoundEffectConstants.CLICK);
+        _btnOkuma.setOnClickListener(new fn_okumaDegistir());
+        _btnOkuma.setText("KAREKOD");
 
 
         fn_AyarlariYukle();
@@ -167,7 +175,9 @@ public class frg_uretim_iptal extends Fragment {
             v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
             v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
+            Genel.showProgressDialog(getContext());
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
+            Genel.dismissProgressDialog();
 
 
             etiketDegerlendir(tag);
@@ -177,7 +187,7 @@ public class frg_uretim_iptal extends Fragment {
             Genel.printStackTrace(ex,getContext());
         }
         //Thread.Sleep(1000);
-        isReadable = true;
+        //isReadable = true;
 
 
     }
@@ -204,14 +214,17 @@ public class frg_uretim_iptal extends Fragment {
             v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
             v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
+            Genel.showProgressDialog(getContext());
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
+            Genel.dismissProgressDialog();
+
             etiketDegerlendir(tag);
         }
         catch (Exception ex){
             Genel.printStackTrace(ex,getContext());
         }
 
-        isReadable = true;
+        //isReadable = true;
 
     }
 
@@ -230,8 +243,9 @@ public class frg_uretim_iptal extends Fragment {
             _Param.setUrun_tag(tag);
 
             //String miktar = persos.fn_sec_ambalaj_degisim_toplam_harcanan_miktar(_Param);
-
+            Genel.showProgressDialog(getContext());
             Boolean result = persos.fn_uretim_iptali(_Param);
+            Genel.dismissProgressDialog();
             //Boolean islem_res = persos.fn_uretim_iptali(tag);
 
             if (result) {
@@ -249,6 +263,7 @@ public class frg_uretim_iptal extends Fragment {
                             }
                         })
                         .show();
+                isReadable = true;
 
             } else {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
@@ -257,10 +272,12 @@ public class frg_uretim_iptal extends Fragment {
                         .setContentText("İŞLEM YAPILAMADI. DAHA SONRA TEKRAR DENEYİNİZ. \r\n İŞLEM KAYDI TAMAMLANAMADI.")
                         .showCancelButton(false)
                         .show();
+                isReadable = true;
                 return;
 
             }
         }catch(Exception ex){
+            isReadable = true;
             Genel.printStackTrace(ex,getContext());
         }
 
@@ -289,6 +306,7 @@ public class frg_uretim_iptal extends Fragment {
                         .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir. \r\n İşleme uygun olmayan etiket. \r\n HATA KODU : " + tag.islem_durumu)
                         .showCancelButton(false)
                         .show();
+                isReadable = true;
                 return;
 
                }
@@ -303,6 +321,7 @@ public class frg_uretim_iptal extends Fragment {
                                 "\r\n 1) 3 GÜN İÇİNDE ÜRETİM İPTAL KAYDI GERÇEKLEŞMEYEN ETİKET İÇİN ÜRETİM İPTAL KAYDI OLUŞTURULAMAZ.")
                         .showCancelButton(false)
                         .show();
+                isReadable = true;
                 return;
 
             }
@@ -319,9 +338,9 @@ public class frg_uretim_iptal extends Fragment {
                                     "\r\n DEPO KODU :" + tag.son_depo_kod)
                             .showCancelButton(false)
                             .show();
+                    isReadable = true;
 
-                    }
-
+                }
                 else
                 {
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
@@ -348,6 +367,7 @@ public class frg_uretim_iptal extends Fragment {
 
         }
         catch (Exception ex){
+            isReadable = true;
             Genel.printStackTrace(ex,getContext());
         }
 
@@ -362,6 +382,21 @@ public class frg_uretim_iptal extends Fragment {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_uretim_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
+        }
+    }
+
+    private class fn_okumaDegistir implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Genel.showProgressDialog(getContext());
+            if(_btnOkuma.getText().toString().equals("KAREKOD")){
+                ((GirisSayfasi) getActivity()).fn_ModRFID();
+                _btnOkuma.setText("RFID");
+            }else{
+                ((GirisSayfasi) getActivity()).fn_ModBarkod();
+                _btnOkuma.setText("KAREKOD");
+            }
+            Genel.dismissProgressDialog();
         }
     }
 

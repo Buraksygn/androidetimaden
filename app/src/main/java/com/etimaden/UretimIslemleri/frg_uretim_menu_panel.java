@@ -23,6 +23,7 @@ import com.etimaden.UretimIslemleri.Uretim_sorgulama.frg_uretim_detay_ekrani;
 import com.etimaden.UretimIslemleri.Yari_otomatik.frg_yari_otomatik_ayarlar;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.frg_ana_sayfa;
+import com.etimaden.genel.Genel;
 import com.etimaden.senkronResponse.ViewtoplamaTest;
 import com.etimaden.senkronResult.requesttoplamaTest;
 import com.etimaden.servisbaglanti.test_Controller;
@@ -271,6 +272,7 @@ SweetAlertDialog pDialog;
         @Override
         public void onClick(View v)
         {
+            Genel.lockButtonClick(v,getActivity());
             int _Sayi_01=0;
             int _Sayi_02=0;
             int _Sayi_03=0;

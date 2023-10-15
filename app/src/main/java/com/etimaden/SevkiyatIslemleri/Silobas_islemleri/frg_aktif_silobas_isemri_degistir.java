@@ -223,7 +223,7 @@ public class frg_aktif_silobas_isemri_degistir extends Fragment {
     private class fn_btnIsEmriDegisiminiOnayla implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
             try
             {
                 if (_Secili!=null){

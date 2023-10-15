@@ -18,17 +18,18 @@ import retrofit2.http.POST;
 
 public interface frg_manipulasyon_islemleri_ekrani_Controller
 {
+    //TODO response zaten var. View_secEtiket. burası hiç kullanılmamış neden var ?
     @POST("api/ambalaj_tipi_secEtiket")
     Call<View_ambalaj_tipi_secEtiket> fn_ambalaj_tipi_secEtiket(@Body request_ambalaj_tipi_secEtiket v_Gelen);
 
     @POST("api/paket_ambalaj_degistir")
     Call<View_bool_response> fn_paket_ambalaj_degistir(@Body request_uruntag_list_uruntag v_Gelen);
 
-    @POST("api/fn_flag_islemtipi")
+    @POST("api/flag_islemtipi")
     Call<View_string_response> fn_flag_islemtipi(@Body request_string v_Gelen);
 
     @POST("api/kirli_ambalaj_degistir_onay")
-    Call<View_secEtiket> fn_kirli_ambalaj_degistir_onay(@Body request_uruntag_string v_Gelen);
+    Call<View_bool_response> fn_kirli_ambalaj_degistir_onay(@Body request_uruntag_string v_Gelen);
 
     @POST("api/bigBag_ellecleme")
     Call<View_bool_response> fn_bigBag_ellecleme(@Body request_uruntag_string v_Gelen);
@@ -44,4 +45,5 @@ public interface frg_manipulasyon_islemleri_ekrani_Controller
 
     @POST("api/palet_dagit")
     Call<View_bool_response> fn_palet_dagit(@Body request_uruntag v_Gelen);
+    //Buraya kadar yapıldı.
 }

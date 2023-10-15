@@ -33,6 +33,7 @@ import com.etimaden.adapter.apmblKonteynerIsEmri;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewAracAktivasyon;
+import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -342,7 +343,7 @@ public class frg_konteyner_isemri_secimi  extends Fragment {
     private class fn_btn_3 implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
             pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
             pDialog.setTitleText("İŞLEM YAPILIYOR");
             pDialog.setContentText("İşlem tamamlanıyor. Lütfen Bekleyiniz");

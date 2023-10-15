@@ -364,6 +364,7 @@ public class frg_isemri_degistir extends Fragment {
     private class fn_btn_03 implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             if (_SeciliListe.getkod_sap().equals("-1")) {
 
             } else {

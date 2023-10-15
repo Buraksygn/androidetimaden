@@ -233,7 +233,7 @@ public class frg_zayi_depo_secimi extends Fragment {
     private class fn_btnDepoOnayla implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
             try
             {
                 if (_Secili!=null)

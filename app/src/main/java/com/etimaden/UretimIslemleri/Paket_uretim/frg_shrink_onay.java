@@ -165,7 +165,9 @@ public class frg_shrink_onay extends Fragment {
             v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
             v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
+            Genel.showProgressDialog(getContext());
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
+            Genel.dismissProgressDialog();
 
 
             etiketDegerlendir(tag);
@@ -202,7 +204,9 @@ public class frg_shrink_onay extends Fragment {
             v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
             v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
+            Genel.showProgressDialog(getContext());
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
+            Genel.dismissProgressDialog();
             etiketDegerlendir(tag);
         }
         catch (Exception ex){

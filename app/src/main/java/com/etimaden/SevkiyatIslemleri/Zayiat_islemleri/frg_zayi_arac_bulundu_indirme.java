@@ -166,14 +166,14 @@ public class frg_zayi_arac_bulundu_indirme extends Fragment {
     private class fn_btnIsEmriDegistir implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
         }
     }
 
     private class fn_btnOnay implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Genel.playButtonClikSound(getContext());
+            Genel.lockButtonClick(view,getActivity());
             try
             {
                 frg_zayi_arac_onayla_indirme fragmentyeni = new frg_zayi_arac_onayla_indirme();

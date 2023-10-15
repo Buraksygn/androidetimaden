@@ -152,7 +152,10 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
         _Param.setAktif_sunucu(_ayaraktifsunucu);
         _Param.setAktif_kullanici(_ayaraktifkullanici);
 
+        Genel.showProgressDialog(getContext());
         String paletDizimText = persos.fn_sec_palet_dizim(_Param);
+        Genel.dismissProgressDialog();
+
         paletDizimText = paletDizimText==null ? "" : paletDizimText;
         _editTextPaletDizim.setText(paletDizimText);
     }
@@ -161,6 +164,7 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
     private class fn_btnKaydet implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             try
             {
 
@@ -177,7 +181,9 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
                 _Param.setAktif_kullanici(_ayaraktifkullanici);
                 _Param.set_value(_editTextPaletDizim.getText().toString().trim());
 
+                Genel.showProgressDialog(getContext());
                 Boolean res = persos.fn_guncelle_palet_dizim(_Param);
+                Genel.dismissProgressDialog();
 
                 if (res)
                 {
@@ -239,6 +245,7 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
                 _Param.set_zsifre(_zsifre);
                 _Param.setAktif_sunucu(_ayaraktifsunucu);
                 _Param.setAktif_kullanici(_ayaraktifkullanici);
+
                 String palet_sirano =persos.fn_sec_palet_sirano_acilis(_Param);
 
                 if(palet_sirano!=null){
@@ -292,7 +299,9 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
                 _Param.set_zsifre(_zsifre);
                 _Param.setAktif_sunucu(_ayaraktifsunucu);
                 _Param.setAktif_kullanici(_ayaraktifkullanici);
+
                 String palet_sirano =persos.fn_sec_palet_sirano(_Param);
+
 
                 if(palet_sirano!=null){
                     request_string _Param1= new request_string();
@@ -322,7 +331,6 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
             }
             catch (Exception ex)
             {
-                Genel.dismissProgressDialog();
                 Genel.printStackTrace(ex,getContext());
             }
 
@@ -331,6 +339,7 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
     private class fn_btnYenile implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             yenile();
 
         }
@@ -339,7 +348,7 @@ public class frg_yari_otomatik_ayarlar extends Fragment {
     private class fn_btnSifirla implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
             try
             {
 

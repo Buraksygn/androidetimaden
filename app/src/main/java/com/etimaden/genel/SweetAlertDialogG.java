@@ -106,7 +106,7 @@ public class SweetAlertDialogG extends Dialog implements View.OnClickListener {
     public SweetAlertDialogG(Context context, int alertType) {
         super(context, DARK_STYLE ? R.style.alert_dialog_dark : R.style.alert_dialog_light);
         setCancelable(true);
-        setCanceledOnTouchOutside(true); //TODO was false
+        setCanceledOnTouchOutside(false); //TODO was false
         mProgressHelper = new ProgressHelper(context);
         mAlertType = alertType;
         mErrorInAnim = OptAnimationLoader.loadAnimation(getContext(), R.anim.error_frame_in);
@@ -321,6 +321,11 @@ public class SweetAlertDialogG extends Dialog implements View.OnClickListener {
 
     public SweetAlertDialogG setTitleText(int resId) {
         return setTitleText(getContext().getResources().getString(resId));
+    }
+
+    public SweetAlertDialogG setCanceledOnTouchOutsideValue(boolean value) {
+        setCanceledOnTouchOutside(value);
+        return this;
     }
 
     public SweetAlertDialogG setCustomImage(Drawable drawable) {
@@ -552,6 +557,7 @@ public class SweetAlertDialogG extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        v.setEnabled(false);
         if (v.getId() == R.id.cancel_button) {
             if (mCancelClickListener != null) {
                 mCancelClickListener.onClick(SweetAlertDialogG.this);

@@ -2432,23 +2432,23 @@ public class Persos {
         }
     }
 
-    public Urun_tag fn_kirli_ambalaj_degistir_onay(request_uruntag_string v_Gelen)
+    public Boolean fn_kirli_ambalaj_degistir_onay(request_uruntag_string v_Gelen)
     {
-        View_secEtiket _yanit;
+        View_bool_response _yanit;
 
         try
         {
             frg_manipulasyon_islemleri_ekrani_Controller _Servis=retrofit.create(frg_manipulasyon_islemleri_ekrani_Controller.class);
 
-            Call<View_secEtiket> fn_Servis = _Servis.fn_kirli_ambalaj_degistir_onay(v_Gelen);
+            Call<View_bool_response> fn_Servis = _Servis.fn_kirli_ambalaj_degistir_onay(v_Gelen);
 
-            Response<View_secEtiket> _Response = fn_Servis.execute();
+            Response<View_bool_response> _Response = fn_Servis.execute();
 
             if(_Response.isSuccessful())
             {
                 _yanit = _Response.body();
 
-                return  _yanit.get_tag();
+                return  _yanit.get_result();
             }
             else
             {

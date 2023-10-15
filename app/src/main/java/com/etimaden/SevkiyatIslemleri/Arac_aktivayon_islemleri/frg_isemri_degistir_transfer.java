@@ -41,6 +41,7 @@ import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewAracAktivasyon;
 import com.etimaden.cResponseResult.ViewonaylaSevkIsDegisimi;
+import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -332,6 +333,7 @@ public class frg_isemri_degistir_transfer extends Fragment {
     private class fn_btn_03 implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             if (_SeciliListe.getkod_sap().equals("-1")) {
 
             } else {

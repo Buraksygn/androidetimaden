@@ -183,7 +183,10 @@ public class frg_uretim_zayi extends Fragment {
             v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
             v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
+            Genel.showProgressDialog(getContext());
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
+            Genel.dismissProgressDialog();
+
             etiketDegerlendir(tag);
         }
         catch (Exception ex)
@@ -231,7 +234,10 @@ public class frg_uretim_zayi extends Fragment {
             v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
             v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
+            Genel.showProgressDialog(getContext());
             Urun_tag tag = persos.fn_secEtiket(v_Gelen);
+            Genel.dismissProgressDialog();
+
             etiketDegerlendir(tag);
         }
         catch (Exception ex)
@@ -266,7 +272,10 @@ public class frg_uretim_zayi extends Fragment {
         v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
         v_Gelen.set_Urun_tag(tag);
         v_Gelen.set_islem_turu(islem_turu);
+
+        Genel.showProgressDialog(getContext());
         Boolean islem_res = persos.fn_uretim_zayi(v_Gelen);
+        Genel.dismissProgressDialog();
 
         if (islem_res)
         {

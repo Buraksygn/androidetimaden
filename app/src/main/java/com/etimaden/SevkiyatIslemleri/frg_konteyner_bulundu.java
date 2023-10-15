@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.GirisSayfasi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
+import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 
@@ -208,7 +209,7 @@ public class frg_konteyner_bulundu extends Fragment {
     private class fn_Ileri implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
 
             int kalan_palet_sayisi = 0;
             int kalan_kilo = 0;

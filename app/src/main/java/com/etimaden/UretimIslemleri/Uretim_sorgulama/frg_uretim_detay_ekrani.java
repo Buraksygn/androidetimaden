@@ -238,9 +238,9 @@ public class frg_uretim_detay_ekrani extends Fragment {
     private class fn_btnYenile implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
             try
             {
+                Genel.lockButtonClick(view,getActivity());
                 Genel.showProgressDialog(getContext());
                 uretim_detay_degerlendir();
                 Genel.dismissProgressDialog();

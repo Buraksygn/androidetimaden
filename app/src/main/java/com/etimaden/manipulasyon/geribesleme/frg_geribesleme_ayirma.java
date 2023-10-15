@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -126,20 +127,20 @@ public class frg_geribesleme_ayirma extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
 
         _btnGeri = (Button)getView().findViewById(R.id.btnGeri);
-        _btnGeri.playSoundEffect(0);
+        _btnGeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btnGeri.setOnClickListener(new fn_Geri());
 
         _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
-        _btnOkuma.playSoundEffect(0);
+        _btnOkuma.playSoundEffect(SoundEffectConstants.CLICK);
         _btnOkuma.setOnClickListener(new fn_okumaDegistir());
         _btnOkuma.setText("KAREKOD");
 
         _btn_01= (Button)getView().findViewById(R.id.btn_01);
-        _btn_01.playSoundEffect(0);
+        _btn_01.playSoundEffect(SoundEffectConstants.CLICK);
         _btn_01.setOnClickListener(new fn_btn_01());
 
-        _listisemirleri=(ListView)getView().findViewById(R.id.listisemirleri);
-        adapter=new apmblManipulasyonGeribeslemeAyirma(urun_listesi,getContext());
+        _listisemirleri=(ListView)getView().findViewById(R.id.isemri_list);
+        adapter=new apmblManipulasyonGeribeslemeAyirma(new ArrayList<Urun_tag>(),getContext());
         _listisemirleri.setAdapter(adapter);
     }
 
@@ -309,6 +310,7 @@ public class frg_geribesleme_ayirma extends Fragment {
         {
             try
             {
+                Genel.lockButtonClick(view,getActivity());
                 if (urun_listesi.size() == 0)
                 {
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)

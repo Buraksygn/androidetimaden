@@ -334,6 +334,7 @@ public class frg_arac_onayla extends Fragment {
     private class fn_arac_aktive_et implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             Boolean _bDevam = true;
 
             String konteyner_turu = "";
@@ -613,7 +614,7 @@ public class frg_arac_onayla extends Fragment {
     private class fn_btn_04 implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
             if (aktif_sevk_isemri.islem_id.equals("")) {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
@@ -1140,7 +1141,7 @@ public class frg_arac_onayla extends Fragment {
     private class fn_Ara_Tartima_Yolla implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
             fn_Ara_Tartima_YollaIslem();
 //            if (aktif_sevk_isemri.islem_id.equals("")) {
 //                SweetAlertDialogG pDialogUyari = new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE);

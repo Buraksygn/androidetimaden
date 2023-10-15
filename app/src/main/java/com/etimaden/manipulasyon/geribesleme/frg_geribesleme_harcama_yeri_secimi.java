@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -135,14 +136,14 @@ public class frg_geribesleme_harcama_yeri_secimi extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
 
         _btnGeri = (Button)getView().findViewById(R.id.btnGeri);
-        _btnGeri.playSoundEffect(0);
+        _btnGeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btnGeri.setOnClickListener(new fn_Geri());
 
         _btn_01= (Button)getView().findViewById(R.id.btn_01);
-        _btn_01.playSoundEffect(0);
+        _btn_01.playSoundEffect(SoundEffectConstants.CLICK);
         _btn_01.setOnClickListener(new fn_btn_01());
 
-        _listisemirleri=(ListView)getView().findViewById(R.id.listisemirleri);
+        _listisemirleri=(ListView)getView().findViewById(R.id.isemri_list);
         _listisemirleri.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -223,6 +224,7 @@ public class frg_geribesleme_harcama_yeri_secimi extends Fragment {
         {
             try
             {
+                Genel.lockButtonClick(view,getActivity());
                 if (_Secili.getDepo_id().equals(""))
                 {
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
@@ -245,7 +247,7 @@ public class frg_geribesleme_harcama_yeri_secimi extends Fragment {
                             @Override
                             public void onClick(SweetAlertDialogG sDialog) {
                                 sDialog.dismissWithAnimation();
-
+//todo burada mükerrer kayıt atıyor
                                 String depoIdSecili=secilenDepo.getDepo_id();
                                 int idx=depoIdSecili.indexOf("*");
                                 if(idx!=-1){
@@ -265,11 +267,13 @@ public class frg_geribesleme_harcama_yeri_secimi extends Fragment {
                                 v_Gelen.setEtiket(aktif_tag);
                                 v_Gelen.setStringValue(depoIdSecili);
 
+
                                 Genel.showProgressDialog(getContext());
                                 Boolean islem_sonucu = persos.fn_geribesleme_onay(v_Gelen);
                                 Genel.dismissProgressDialog();
 
                                 if (!islem_sonucu)
+                                //if (false)
                                 {
                                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                             .setTitleText("HATA")

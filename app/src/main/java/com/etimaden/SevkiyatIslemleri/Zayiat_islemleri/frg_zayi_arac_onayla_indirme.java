@@ -161,7 +161,7 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
         @Override
         public void onClick(View view)
         {
-            Genel.playButtonClikSound(getContext());
+            Genel.lockButtonClick(view,getActivity());
             try {
                 _btn_01.setEnabled(false);
                 _btn_02.setEnabled(false);
@@ -210,24 +210,33 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
                     Boolean guncelleDepoZayiArac = persos.fn_guncelle_depo_zayi_arac(_Param1);
                     Genel.dismissProgressDialog();
 
-                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
-                            .setTitleText("ONAY")
-                            .setContentText("İşlem onaylandı.")
-                            .setContentTextSize(20)
-                            .setConfirmText("TAMAM")
-                            .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialogG sDialog) {
-                                    sDialog.dismissWithAnimation();
-                                    frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
-                                    FragmentManager fragmentManager = getFragmentManager();
-                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
-                                    fragmentTransaction.commit();
-                                }
-                            })
-                            .show();
+                    if(guncelleDepoZayiArac) {
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+                                .setTitleText("ONAY")
+                                .setContentText("İşlem onaylandı.")
+                                .setContentTextSize(20)
+                                .setConfirmText("TAMAM")
+                                .showCancelButton(false)
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialogG sDialog) {
+                                        sDialog.dismissWithAnimation();
+                                        frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
+                                        FragmentManager fragmentManager = getFragmentManager();
+                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_sevkiyat_menu_panel").addToBackStack(null);
+                                        fragmentTransaction.commit();
+                                    }
+                                })
+                                .show();
+                    } else {
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                .setTitleText("HATA")
+                                .setContentTextSize(25)
+                                .setContentText("KAYIT YAPILAMADI \r\n NETWORK BAĞLANTISINI KONTROL EDİNİZ..")
+                                .showCancelButton(false)
+                                .show();
+                    }
                     return;
                 }
                 else if (!aktif_zayi.zay_id_isemrihareket_yeni.equals(""))
@@ -248,6 +257,7 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
                     Boolean guncelleDepoZayiArac = persos.fn_guncelle_depo_zayi_arac(_Param1);
                     Genel.dismissProgressDialog();
 
+                    if(guncelleDepoZayiArac){
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                             .setTitleText("ONAY")
                             .setContentText("İşlem onaylandı.")
@@ -266,6 +276,14 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
                                 }
                             })
                             .show();
+                    } else {
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                .setTitleText("HATA")
+                                .setContentTextSize(25)
+                                .setContentText("KAYIT YAPILAMADI \r\n NETWORK BAĞLANTISINI KONTROL EDİNİZ..")
+                                .showCancelButton(false)
+                                .show();
+                    }
                     return;
                 }
                 else
@@ -312,7 +330,7 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
         @Override
         public void onClick(View view)
         {
-            Genel.playButtonClikSound(getContext());
+            Genel.lockButtonClick(view,getActivity());
 
             try
             {
@@ -358,12 +376,20 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
                                     Boolean kapatZayiArac = persos.fn_kapat_zayi_arac(_Param);
                                     Genel.dismissProgressDialog();
 
-
-                                    frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
-                                    FragmentManager fragmentManager = getFragmentManager();
-                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
-                                    fragmentTransaction.commit();
+                                    if(kapatZayiArac){
+                                        frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
+                                        FragmentManager fragmentManager = getFragmentManager();
+                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
+                                        fragmentTransaction.commit();
+                                    } else {
+                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                                .setTitleText("HATA")
+                                                .setContentTextSize(25)
+                                                .setContentText("KAYIT YAPILAMADI \r\n NETWORK BAĞLANTISINI KONTROL EDİNİZ..")
+                                                .showCancelButton(false)
+                                                .show();
+                                    }
 
                                 }
                             })

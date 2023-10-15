@@ -55,17 +55,30 @@
         android:focusable="false" />
 
     <Button
-        android:id="@+id/btngeri"
-        android:layout_width="325dp"
-        android:layout_height="60dp"
+        android:id="@+id/btnGeri"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="510dp"
+        android:layout_y="500dp"
         android:background="@drawable/my_button_cikis"
         android:gravity="center"
-        android:text=" &lt; &lt; GERİ"
-        android:textColor="@color/colorRed"
         android:textSize="20sp"
-        android:focusable="false" />
+        android:focusable="false"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+    <Button
+        android:id="@+id/btnOkuma"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_x="224dp"
+        android:layout_y="500dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:focusable="false"
+        android:text="KAREKOD"
+        android:textColor="@color/green" />
 
 
 

@@ -15,6 +15,7 @@ import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -55,6 +56,8 @@ public class frg_konteyner_vagon_esleme extends Fragment {
     Persos persos;
 
     Button _btngeri;
+    TextView _txtYazi;
+
 
     boolean okunabilir = true;
     Vagon_hareket vagon = null;
@@ -126,9 +129,12 @@ public class frg_konteyner_vagon_esleme extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
         ((GirisSayfasi) getActivity()).fn_GucAyarla(248);
 
+        _txtYazi = (TextView) getView().findViewById(R.id.txtYazi);
+
         _btngeri = (Button) getView().findViewById(R.id.btngeri);
         _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
+        _txtYazi.setText( vagon.vagon_kod +" KODLU " + vagon.vagon_plaka + " PLAKALI VAGONUN EŞLEŞTİRME İŞLEMİNİ TAMAMLAMAK İÇİN KONTEYNER ETİKETİ OKUTUNUZ...");
     }
 
     public void rfidOkundu(String rfid)

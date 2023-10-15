@@ -36,6 +36,7 @@ import com.etimaden.adapter.apmblBekleyenArac;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.ViewAracAktivasyon;
 import com.etimaden.cResponseResult.Viewbekleyen_arac;
+import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -501,6 +502,7 @@ public class frg_arac_aktivasyon_eski extends Fragment {
         @Override
         public void onClick(View view)
         {
+            Genel.lockButtonClick(view,getActivity());
             String _Epc = _Secili.getrfidkod();
 
             if(_Epc.equals("-1")==false)

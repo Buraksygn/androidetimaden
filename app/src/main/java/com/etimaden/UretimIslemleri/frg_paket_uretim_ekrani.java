@@ -647,6 +647,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
     private class fn_btnEtiketsizUretim implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            Genel.lockButtonClick(v,getActivity());
             int hAdet = Integer.parseInt(aktif_Palet.getPalet_dizim());
 
             request_string _Param = new request_string();
@@ -791,7 +792,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
             return;
         }
         uretim_etiket etiket =v_etiket;
-
+//buraya giriyor
         new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                 .setTitleText("ONAY")
                 .setContentText(etiket.getSerino_kod()+ " seri nolu ürünün üretim işlemini tamamlamak istiyor musunuz ?")
@@ -980,6 +981,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                                 paket_listesi.clear();
                                 if(b_yanit==true)
                                 {
+                                    //buraya giriyor.
                                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                             .setTitleText("TAMAM")
                                             .setContentText("İşlem başarı tamamlandı")
@@ -1578,6 +1580,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                         miktar_int = miktar_int - eklenecek_miktar;
                         if (miktar_int >= 0)
                         {
+                            //buraya giriyor
                             new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                                     .setTitleText("PAKET TİPİ DEĞİŞTİR")
                                     .setContentText("SERİNO : " + etiket.getSerino_kod() +

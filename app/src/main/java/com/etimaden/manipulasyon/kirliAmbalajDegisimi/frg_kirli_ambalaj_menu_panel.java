@@ -117,7 +117,7 @@ public class frg_kirli_ambalaj_menu_panel extends Fragment {
             frg_kirli_ambalaj_degisim_onay fragmentyeni = new frg_kirli_ambalaj_degisim_onay();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_kirli_ambalaj_degisimi").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_kirli_ambalaj_degisim_onay").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }

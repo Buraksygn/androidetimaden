@@ -117,15 +117,11 @@ public class frg_zayi_menu_panel extends Fragment {
         @Override
         public void onClick(View view)
         {
-
-            ((GirisSayfasi) getActivity()).fn_ModRFID();
-
             frg_zayi_aktivasyon fragmentyeni = new frg_zayi_aktivasyon();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_zayi_aktivasyon").addToBackStack(null);
             fragmentTransaction.commit();
-
         }
     }
 
@@ -133,8 +129,6 @@ public class frg_zayi_menu_panel extends Fragment {
         @Override
         public void onClick(View view)
         {
-            ((GirisSayfasi) getActivity()).fn_ModRFID();
-
             frg_zayi_aktif_isemri_secimi fragmentyeni = new frg_zayi_aktif_isemri_secimi();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

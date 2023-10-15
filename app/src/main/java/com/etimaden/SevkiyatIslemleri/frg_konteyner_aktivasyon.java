@@ -145,6 +145,8 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
     public void fn_arac_ac(String v_epc) {
 
+        final FragmentManager fragmentManager=getFragmentManager();
+
         if (_IslemVar == false)
         {
             _IslemVar = true;
@@ -233,7 +235,8 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                                                         }});
 
-                                                } else {
+                                                } else
+                                                {
                                                     if (pDialog != null && pDialog.isShowing()) {
                                                         pDialog.hide();
                                                     }
@@ -269,7 +272,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                   }
 
 
-                                                                    pDialog.findViewById(R.id.confirm_button).setVisibility(View.GONE);
+                                                                    //pDialog.findViewById(R.id.confirm_button).setVisibility(View.GONE);
 
                                                                     RequestQueue queue = Volley.newRequestQueue(getContext());
                                                                     JSONObject parametre = new JSONObject();
@@ -391,7 +394,6 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                                             new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                                                                                     .setTitleText("ONAY")
                                                                                                     .setContentText("İşlem onaylandı.")
-                                                                                                    .setCancelText("Hayır")
                                                                                                     .setConfirmText("TAMAM")
                                                                                                     .setContentTextSize(20)
                                                                                                     .showCancelButton(false)
@@ -405,7 +407,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                                                             //((GirisSayfasi)getActivity()).fn_ListeTemizle();
 
                                                                                                             frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
-                                                                                                            FragmentManager fragmentManager = getFragmentManager();
+                                                                                                            //FragmentManager fragmentManager = getFragmentManager();
                                                                                                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                                                                                             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_sevkiyat_menu_panel");
                                                                                                             fragmentTransaction.commit();
@@ -911,12 +913,13 @@ public class frg_konteyner_aktivasyon extends Fragment {
 
                                                 //fn_Listele();
                                             } catch (Exception ex) {
+                                                if (pDialog != null && pDialog.isShowing()) {
+                                                    pDialog.hide();
+                                                }
                                                 Toast.makeText(getContext(), ex.toString(), Toast.LENGTH_SHORT).show();
                                                 Genel.printStackTrace(ex,getContext());
                                             }
-                                            if (pDialog != null && pDialog.isShowing()) {
-                                                pDialog.hide();
-                                            }
+
                                         }
 
 

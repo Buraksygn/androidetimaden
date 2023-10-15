@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -138,16 +139,16 @@ public class frg_ambalaj_tipi_degisimi extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
 
         _btnGeri = (Button)getView().findViewById(R.id.btnGeri);
-        _btnGeri.playSoundEffect(0);
+        _btnGeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btnGeri.setOnClickListener(new fn_Geri());
 
         _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
-        _btnOkuma.playSoundEffect(0);
+        _btnOkuma.playSoundEffect(SoundEffectConstants.CLICK);
         _btnOkuma.setOnClickListener(new fn_okumaDegistir());
         _btnOkuma.setText("KAREKOD");
 
         _btn_01= (Button)getView().findViewById(R.id.btn_01);
-        _btn_01.playSoundEffect(0);
+        _btn_01.playSoundEffect(SoundEffectConstants.CLICK);
         _btn_01.setOnClickListener(new fn_btn_01());
 
         _txtYazi=(TextView)getView().findViewById(R.id.txtYazi);
@@ -160,7 +161,7 @@ public class frg_ambalaj_tipi_degisimi extends Fragment {
 
         _listisemirleri.setVisibility(View.INVISIBLE);
 
-        adapter=new apmblManipulasyonAmbalajTipiDegisimi(urun_listesi,getContext());
+        adapter=new apmblManipulasyonAmbalajTipiDegisimi(new ArrayList<Urun_tag>(),getContext());
         _listisemirleri.setAdapter(adapter);
     }
 
@@ -276,6 +277,7 @@ public class frg_ambalaj_tipi_degisimi extends Fragment {
             if (!isemri_secildi && tag != null && (tag.uretim_isemri_tipi_alt.equals("350") || tag.uretim_isemri_tipi_alt.equals("351")))
             {
                 isemri_degerlendir(tag);
+
             }
             else if (!isemri_secildi || tag == null || !tag.islem_durumu.equals("1"))
             {
@@ -289,6 +291,7 @@ public class frg_ambalaj_tipi_degisimi extends Fragment {
             else
             {
                 urunDegerlendir(tag);
+
             }
 
         }
@@ -505,6 +508,7 @@ public class frg_ambalaj_tipi_degisimi extends Fragment {
 
             try
             {
+                Genel.lockButtonClick(v,getActivity());
                 if (urun_listesi.size() == 0)
                 {
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)

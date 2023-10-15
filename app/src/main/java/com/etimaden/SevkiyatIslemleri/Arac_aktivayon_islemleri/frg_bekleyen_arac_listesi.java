@@ -222,6 +222,7 @@ public class frg_bekleyen_arac_listesi extends Fragment {
     private class fn_btnSeciliIseBasla implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             try
             {
                 if(_Secili!=null) {
@@ -242,7 +243,7 @@ public class frg_bekleyen_arac_listesi extends Fragment {
                                 @Override
                                 public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
-
+                                    System.out.println("--------------------------------------------------ONAYLA ÇALIŞTI--------------------------------------------------------");
                                     try
                                     {
                                         if (!_sRfid.startsWith("737767302"))
@@ -357,6 +358,7 @@ public class frg_bekleyen_arac_listesi extends Fragment {
                         .setContentTextSize(25)
                         .setContentText(ex.toString())
                         .showCancelButton(false)
+                        .setCanceledOnTouchOutsideValue(true)
                         .show();
             }
         }
@@ -376,6 +378,7 @@ public class frg_bekleyen_arac_listesi extends Fragment {
     private class fn_btnYenile implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             fnAracListele();
         }
     }

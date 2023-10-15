@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.adapter.apmblDepoListesi;
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.persosclass.uretim_etiket;
@@ -271,6 +272,7 @@ public class frg_silo_secimi extends Fragment {
     private class fn_btn_03 implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             if(_Secili.getDepo_id().equals(""))
             {
 

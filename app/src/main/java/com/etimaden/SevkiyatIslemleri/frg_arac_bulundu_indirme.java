@@ -161,6 +161,7 @@ public class frg_arac_bulundu_indirme extends Fragment {
     private class fn_btnIsemriDegistir implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             try
             {
                 try

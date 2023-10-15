@@ -153,6 +153,7 @@ public class frg_arac_onayla_indirme extends Fragment {
     private class fn_btn_02 implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             try
             {
                 if (aktif_sevk_isemri.islem_id.equals(""))
@@ -284,6 +285,7 @@ public class frg_arac_onayla_indirme extends Fragment {
     private class fn_btn_03 implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Genel.lockButtonClick(view,getActivity());
             try
             {
                 if (aktif_sevk_isemri.islem_id.equals(""))

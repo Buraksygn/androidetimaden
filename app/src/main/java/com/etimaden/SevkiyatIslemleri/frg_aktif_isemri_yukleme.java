@@ -1178,7 +1178,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
     private class fn_imgBilgi implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
             try
             {
                 Genel.playButtonClikSound(getContext());
@@ -1226,7 +1226,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
     private class fn_btnYenile implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            Genel.lockButtonClick(view,getActivity());
         }
     }
 

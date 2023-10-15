@@ -135,8 +135,8 @@ public class frg_ellecleme_ayirma extends Fragment {
         _btn_01.playSoundEffect(0);
         _btn_01.setOnClickListener(new fn_btn_01());
 
-        _listisemirleri=(ListView)getView().findViewById(R.id.listisemirleri);
-        adapter=new apmblManipulasyonElleclemeAyirma(urun_listesi,getContext());
+        _listisemirleri=(ListView)getView().findViewById(R.id.isemri_list);
+        adapter=new apmblManipulasyonElleclemeAyirma(new ArrayList<Urun_tag>(),getContext());
         _listisemirleri.setAdapter(adapter);
     }
 
@@ -296,6 +296,7 @@ public class frg_ellecleme_ayirma extends Fragment {
         {
             try
             {
+                Genel.lockButtonClick(view,getActivity());
                 if (urun_listesi.size() == 0)
                 {
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
