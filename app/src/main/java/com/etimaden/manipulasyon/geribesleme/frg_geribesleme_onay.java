@@ -202,7 +202,7 @@ public class frg_geribesleme_onay extends Fragment {
             etiketDegerlendir(tag);
         }
         catch (Exception ex){
-            ex.printStackTrace();
+            Genel.printStackTrace(ex,getContext());
         }
 
         isReadable = true;
