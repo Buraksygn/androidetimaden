@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -78,19 +79,19 @@ public class frg_ana_sayfa extends Fragment
         ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
         _btnCikis=(ImageView)getView().findViewById(R.id.imgCikis);
-        _btnCikis.playSoundEffect(0);
+        _btnCikis.playSoundEffect(SoundEffectConstants.CLICK);
         _btnCikis.setOnClickListener(new fn_Cikis());
 
         _imgsifredegistir=(ImageView)getView().findViewById(R.id.imgsifredegistir);
-        _imgsifredegistir.playSoundEffect(0);
+        _imgsifredegistir.playSoundEffect(SoundEffectConstants.CLICK);
         _imgsifredegistir.setOnClickListener(new fn_sifredegistir());
 
         _btnSevkiyat=(Button)getView().findViewById(R.id.btnSevkiyat);
-        _btnSevkiyat.playSoundEffect(0);
+        _btnSevkiyat.playSoundEffect(SoundEffectConstants.CLICK);
         _btnSevkiyat.setOnClickListener(new fn_Sevkiyat());
 
         _btnUretim= (Button)getView().findViewById(R.id.btnUretim);
-        _btnUretim.playSoundEffect(0);
+        _btnUretim.playSoundEffect(SoundEffectConstants.CLICK);
         _btnUretim.setOnClickListener(new fn_Uretim());
 
         //_btnSatilmisEtiket= (Button)getView().findViewById(R.id.btnSatilmisEtiket);
@@ -98,7 +99,7 @@ public class frg_ana_sayfa extends Fragment
         //_btnSatilmisEtiket.setOnClickListener(new fn_btnSatilmisEtiket());
 
         _btnmanipulasyon= (Button)getView().findViewById(R.id.btnmanipulasyon);
-        _btnmanipulasyon.playSoundEffect(0);
+        _btnmanipulasyon.playSoundEffect(SoundEffectConstants.CLICK);
         _btnmanipulasyon.setOnClickListener(new fn_btnmanipulasyon());
 
     }

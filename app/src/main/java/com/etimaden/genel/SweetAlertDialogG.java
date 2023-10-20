@@ -350,7 +350,10 @@ public class SweetAlertDialogG extends Dialog implements View.OnClickListener {
      */
     public SweetAlertDialogG setContentText(String text) {
         mContentText = text;
-        if (mContentTextView != null && mContentText != null) {
+        if (mContentTextView != null) {
+            if(mContentText==null){
+                mContentText="";
+            }
             showContentText(true);
             if (contentTextSize != 0) {
                 mContentTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, spToPx(contentTextSize, getContext()));

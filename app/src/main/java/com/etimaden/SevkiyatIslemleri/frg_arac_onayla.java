@@ -682,7 +682,8 @@ public class frg_arac_onayla extends Fragment {
                                     if (_Yanit._zSonuc.equals("0")) {
                                         pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
                                         pDialog.setTitle("HATA");
-                                        pDialog.setContentText(_Yanit._zHataAciklama);
+                                        String hataText=_Yanit._zHataAciklama==null? "Servis Hatası!" : _Yanit._zHataAciklama;
+                                        pDialog.setContentText(hataText);
                                         pDialog.findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
                                     } else {
                                         if (_Yanit._zSoruSor.equals("1")) {

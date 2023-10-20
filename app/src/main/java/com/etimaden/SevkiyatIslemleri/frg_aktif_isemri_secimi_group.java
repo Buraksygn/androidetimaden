@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -79,7 +80,7 @@ public class frg_aktif_isemri_secimi_group  extends Fragment {
 
     public String _OnlineUrl = "";
 
-    public ListAdapter adapter;
+    public apmblIsEmriGroupSecimi adapter;
 
     public ListView _Liste;
 
@@ -131,11 +132,11 @@ public class frg_aktif_isemri_secimi_group  extends Fragment {
         ((GirisSayfasi) getActivity()).fn_GucAyarla(248);
 
         _btngeri = (Button) getView().findViewById(R.id.btngeri);
-        _btngeri.playSoundEffect(0);
+        _btngeri.playSoundEffect(SoundEffectConstants.CLICK );
         _btngeri.setOnClickListener(new fn_Geri());
 
         _btn_03 = (Button) getView().findViewById(R.id.btn_03);
-        _btn_03.playSoundEffect(0);
+        _btn_03.playSoundEffect(SoundEffectConstants.CLICK);
         _btn_03.setOnClickListener(new fn_Btn_03());
 
         _Secili=new mdlIsemriGroupSecimi("-1");
@@ -155,6 +156,8 @@ public class frg_aktif_isemri_secimi_group  extends Fragment {
             }
         });
 
+        adapter= new apmblIsEmriGroupSecimi(new ArrayList<mdlIsemriGroupSecimi>(),getContext());
+        _Liste.setAdapter(adapter);
 
 /*
         _Liste = (ListView) getView().findViewById(R.id.isemri_list);
@@ -357,9 +360,9 @@ public class frg_aktif_isemri_secimi_group  extends Fragment {
                                         dataModels.add(_Temp);
                                     }
 
-                                    adapter= new apmblIsEmriGroupSecimi(dataModels,getContext());
-
-                                    _Liste.setAdapter(adapter);
+                                    adapter.clear();
+                                    adapter.addAll(dataModels);
+                                    adapter.notifyDataSetChanged();
 
                                     //fn_Listele();
                                 }
@@ -413,21 +416,6 @@ public class frg_aktif_isemri_secimi_group  extends Fragment {
         } else {
             _OnlineUrl = "http://88.255.50.73:" + _zport3G + "/api/sevkDegerlendirGroup";
         }
-    }
-
-    private void fn_Listele() {
-        // ArrayList<HashMap<String, String>> _GorevListe = _myIslem.fn_ListeSevkListesiGrupIsEmri();
-        _GorevListe = _myIslem.fn_ListeSevkListesiGrupIsEmri();
-
-        int count = _GorevListe.size();
-
-        adapter = new SimpleAdapter(getContext(), _GorevListe,
-                R.layout.liste_isemri_secimi_grup,
-                //new String[]{"Sap Kodu","Aktif Adet","Booking No","Ürün Adı","Kalan Miktar","Kalan Adet"},
-                new String[]{"kod_sap", "count", "dolu_konteyner_sayisi", "dolu_konteyner_toplam_miktar", "bos_konteyner_sayisi", "bookingno", "urun_adi", "kalan_agirlik", "kalan_palet_sayisi"},
-                new int[]{R.id.yazi_kod_sap, R.id.yazi_aktif_adet, R.id.yazi_dolu_konteyner_adet, R.id.yazi_dolu_konteyner_miktar, R.id.yazi_bos_konteyner_adet, R.id.yazi_bookingno, R.id.yazi_urun_adi, R.id.yazi_kalan_miktar, R.id.yazi_kalan_adet});
-
-        _Liste.setAdapter(adapter);
     }
 
     private class fn_Geri implements View.OnClickListener {

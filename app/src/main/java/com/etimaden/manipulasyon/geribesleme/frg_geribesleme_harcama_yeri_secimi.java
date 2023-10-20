@@ -249,10 +249,10 @@ public class frg_geribesleme_harcama_yeri_secimi extends Fragment {
                                 sDialog.dismissWithAnimation();
 //todo burada mükerrer kayıt atıyor
                                 String depoIdSecili=secilenDepo.getDepo_id();
-                                int idx=depoIdSecili.indexOf("*");
-                                if(idx!=-1){
-                                    depoIdSecili=depoIdSecili.substring(0,idx);
-                                }
+                                //int idx=depoIdSecili.indexOf("*");
+                                //if(idx!=-1){
+                                   // depoIdSecili=depoIdSecili.substring(0,idx);
+                                //}
 
                                 request_uruntag_string v_Gelen=new request_uruntag_string();
                                 v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);

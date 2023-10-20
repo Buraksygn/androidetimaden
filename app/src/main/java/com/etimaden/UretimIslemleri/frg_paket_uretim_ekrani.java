@@ -1129,7 +1129,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
 
                     String _Yazi = "";
                     _Yazi += "ÜRETİM ONAYI ALINAMADI.";
-                    _Yazi += "<br/><b>1)</b> İLK 5 DAKİKA İÇİNDE ÜRETİM İŞLEMİNİ GERÇEKLEŞTİREMEZSİNİZ.";
+                    _Yazi += "<br/><b>1)</b> İLK 2 DAKİKA İÇİNDE ÜRETİM İŞLEMİNİ GERÇEKLEŞTİREMEZSİNİZ.";
                     _Yazi += "<br/><b>2)</b> 3 GÜN İÇİNDE ÜRETİM KAYDI GERÇEKLEŞMEYEN ETİKET İÇİN ÜRETİM KAYDI OLUŞTURULAMAZ.";
                     _Yazi += "<br/><b>3)</b> SİSTEM İÇİNDE AYNI İŞ EMRİNE AİT EN FAZLA 2 ADET ÜRETİMİ TAMAMLANMAMIŞ LOT BULUNABİLİR.";
 
