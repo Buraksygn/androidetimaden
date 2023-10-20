@@ -29,3 +29,10 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+//detaylı hata aciklamasi icin acilacak kisim
+/*allprojects {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+    }
+}*/

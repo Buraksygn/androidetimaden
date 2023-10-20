@@ -951,7 +951,7 @@ public class frg_paket_uretim_ekrani extends Fragment {
                             {
                                 islemDurumu = 0;
 
-                                List<String> pl = new ArrayList();
+                                List<String> pl = new ArrayList<>();
 
                                 for (int i = 0; i < paket_listesi.size(); i++)
                                 {
