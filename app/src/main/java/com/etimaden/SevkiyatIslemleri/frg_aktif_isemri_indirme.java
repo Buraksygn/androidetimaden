@@ -716,6 +716,8 @@ public class frg_aktif_isemri_indirme  extends Fragment {
                             .showCancelButton(false)
                             .show();
                     return;
+                }else{
+                    urun_listesi_indirilen.add(tag);
                 }
             } else {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)

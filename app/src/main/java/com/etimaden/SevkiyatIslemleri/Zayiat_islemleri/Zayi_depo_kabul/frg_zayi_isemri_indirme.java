@@ -464,6 +464,8 @@ public class frg_zayi_isemri_indirme extends Fragment {
                             .showCancelButton(false)
                             .show();
                     return;
+                }else{
+                    urun_listesi_indirilen.add(zay_urn);
                 }
             }
                 else

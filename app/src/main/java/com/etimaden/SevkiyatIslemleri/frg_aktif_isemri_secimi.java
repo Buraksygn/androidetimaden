@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -135,15 +136,15 @@ public class frg_aktif_isemri_secimi extends Fragment {
         ((GirisSayfasi) getActivity()).fn_GucAyarla(248);
 
         _btngeri = (Button) getView().findViewById(R.id.btngeri);
-        _btngeri.playSoundEffect(0);
+        _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
 
         _btn_03 = (Button) getView().findViewById(R.id.btn_03);
-        _btn_03.playSoundEffect(0);
+        _btn_03.playSoundEffect(SoundEffectConstants.CLICK);
         _btn_03.setOnClickListener(new fn_btn_03());
 
         _btnYenile= (ImageButton) getView().findViewById(R.id.btnyenile);
-        _btnYenile.playSoundEffect(0);
+        _btnYenile.playSoundEffect(SoundEffectConstants.CLICK);
         _btnYenile.setOnClickListener(new fn_Yenile());
 
 
