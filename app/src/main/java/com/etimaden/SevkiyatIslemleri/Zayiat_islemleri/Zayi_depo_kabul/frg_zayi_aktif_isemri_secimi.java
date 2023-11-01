@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -125,11 +126,11 @@ public class frg_zayi_aktif_isemri_secimi extends Fragment {
 
 
         _btnIsEmriSeciminiOnayla = (Button)getView().findViewById(R.id.btnIsEmriSeciminiOnayla);
-        _btnIsEmriSeciminiOnayla.playSoundEffect(0);
+        _btnIsEmriSeciminiOnayla.playSoundEffect(SoundEffectConstants.CLICK);
         _btnIsEmriSeciminiOnayla.setOnClickListener(new fn_btnIsEmriSeciminiOnayla());
 
         _btngeri = (Button)getView().findViewById(R.id.btncikis);
-        _btngeri.playSoundEffect(0);
+        _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
 
         _aktif_is_emirleri_list = (ListView) getView().findViewById(R.id.aktif_is_emirleri_list);

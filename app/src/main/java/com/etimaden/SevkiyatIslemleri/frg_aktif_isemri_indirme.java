@@ -797,6 +797,8 @@ public class frg_aktif_isemri_indirme  extends Fragment {
         public void onClick(View view) {
             try
             {
+                //todo Burası sadece yenileme işlemi için kullanılacak hale gelecek.
+                /*
                 Genel.lockButtonClick(view,getActivity());
                 request_sevkiyat_isemri _Param1= new request_sevkiyat_isemri();
                 _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
@@ -866,6 +868,8 @@ public class frg_aktif_isemri_indirme  extends Fragment {
                                 .show();
 
                     }
+
+                    urun_listesi_indirilen.add(ul_bekleyen.get(i));
                 }
 
                 Genel.showProgressDialog(getContext());
@@ -881,7 +885,7 @@ public class frg_aktif_isemri_indirme  extends Fragment {
                 }
 
                 updateListviewItem();
-
+*/
             }
             catch (Exception ex)
             {

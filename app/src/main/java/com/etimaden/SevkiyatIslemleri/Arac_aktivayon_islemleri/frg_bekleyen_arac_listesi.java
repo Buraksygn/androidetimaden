@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -134,15 +135,15 @@ public class frg_bekleyen_arac_listesi extends Fragment {
         //Button _btnYenile;
 
         _btnSeciliIseBasla = (Button)getView().findViewById(R.id.btnSeciliIseBasla);
-        _btnSeciliIseBasla.playSoundEffect(0);
+        _btnSeciliIseBasla.playSoundEffect(SoundEffectConstants.CLICK);
         _btnSeciliIseBasla.setOnClickListener(new fn_btnSeciliIseBasla());
 
         _btnYenile = (Button)getView().findViewById(R.id.btnYenile);
-        _btnYenile.playSoundEffect(0);
+        _btnYenile.playSoundEffect(SoundEffectConstants.CLICK);
         _btnYenile.setOnClickListener(new fn_btnYenile());
 
         _btnGeri = (Button)getView().findViewById(R.id.btnGeri);
-        _btnGeri.playSoundEffect(0);
+        _btnGeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btnGeri.setOnClickListener(new fn_btnGeri());
 
         _arac_list = (ListView) getView().findViewById(R.id.arac_list);
