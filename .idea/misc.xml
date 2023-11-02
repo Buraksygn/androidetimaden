@@ -1,9 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/activity_main.xml" value="0.2109375" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_aktif_arac_secimi.xml" value="0.2109375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ambalaj_tipi_degisimi.xml" value="0.1734375" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ana_sayfa.xml" value="0.2109375" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depo_secimi_transfer.xml" value="0.2109375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depo_secimi_transfer_indirme.xml" value="0.1734375" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depolar_arasi_transfer_menu_panel.xml" value="0.2109375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ellecleme_ayirma.xml" value="0.25" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ellecleme_menu_panel.xml" value="0.33" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ellecleme_onay.xml" value="0.22395833333333334" />
@@ -14,6 +20,7 @@
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_kirli_ambalaj_degisim_onay.xml" value="0.21" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_paket_uretim_ekrani.xml" value="0.22395833333333334" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_palet_dagitma_islemi.xml" value="0.22395833333333334" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_shrink_onay.xml" value="0.2109375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_uretim_iptal.xml" value="0.1734375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_geribesleme_harcama_yeri_secimi_item.xml" value="0.22395833333333334" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_manipulasyon_ellecleme_ayirma_item.xml" value="0.1734375" />
