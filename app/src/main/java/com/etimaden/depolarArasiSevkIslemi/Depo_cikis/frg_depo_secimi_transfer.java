@@ -21,17 +21,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_onayla_indirme;
-import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.adapter.apmblDepoListesi;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.depolarArasiSevkIslemi.frg_depolar_arasi_transfer_menu_panel;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.DEPOTag;
-import com.etimaden.request.request_sevkiyat_isemri_depo;
 import com.etimaden.request.requestsecDepoTanimlari;
 import com.etimaden.ugr_demo.R;
 
@@ -41,8 +37,6 @@ import java.util.List;
 
 public class frg_depo_secimi_transfer extends Fragment {
 
-    SweetAlertDialogG pDialog;
-    boolean isReadable = true;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
     String _ayaraktifdepo = "";
@@ -229,7 +223,7 @@ public class frg_depo_secimi_transfer extends Fragment {
                 if (_Secili!=null) {
                     DEPOTag secilen_depo = _Secili;
 
-                    frg_depo_transfer_ekranı fragmentyeni = new frg_depo_transfer_ekranı();
+                    frg_depo_transfer_ekrani fragmentyeni = new frg_depo_transfer_ekrani();
                     fragmentyeni.fn_senddata(secilen_depo);
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

@@ -47,6 +47,7 @@ import com.etimaden.request.request_uretim_etiket;
 import com.etimaden.request.request_uretim_iptali;
 import com.etimaden.request.request_uretim_zayi;
 import com.etimaden.request.request_uruntag;
+import com.etimaden.request.request_uruntag_depotag;
 import com.etimaden.request.request_uruntag_list_uruntag;
 import com.etimaden.request.request_uruntag_string;
 import com.etimaden.request.requestsecDepoTanimlari;
@@ -70,6 +71,7 @@ import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_vagon_hareket;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_urun_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_string_list;
+import com.etimaden.servisbaglanti.frg_depolar_arasi_sevk_islemleri_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_manipulasyon_islemleri_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_sevkiyat_islemleri_ekrani_Controller;
@@ -2591,6 +2593,69 @@ public class Persos {
             frg_manipulasyon_islemleri_ekrani_Controller _Servis=retrofit.create(frg_manipulasyon_islemleri_ekrani_Controller.class);
 
             Call<View_bool_response> fn_Servis = _Servis.fn_palet_dagit(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+
+    //Depolar arasi Sevk Baslangici
+    public Urun_tag fn_secDepoSevkEtiket(request_string v_Gelen)
+    {
+        View_secEtiket _yanit;
+
+        try
+        {
+            frg_depolar_arasi_sevk_islemleri_ekrani_Controller _Servis=retrofit.create(frg_depolar_arasi_sevk_islemleri_ekrani_Controller.class);
+
+            Call<View_secEtiket> fn_Servis = _Servis.fn_secDepoSevkEtiket(v_Gelen);
+
+            Response<View_secEtiket> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_tag();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+
+    }
+
+    public Boolean fn_depoSevkTamamla(request_uruntag_depotag v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_depolar_arasi_sevk_islemleri_ekrani_Controller _Servis=retrofit.create(frg_depolar_arasi_sevk_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_depoSevkTamamla(v_Gelen);
 
             Response<View_bool_response> _Response = fn_Servis.execute();
 

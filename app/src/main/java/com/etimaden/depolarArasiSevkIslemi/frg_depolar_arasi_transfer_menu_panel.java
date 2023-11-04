@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.cIslem.VeriTabani;
+import com.etimaden.depolarArasiSevkIslemi.Depo_cikis.frg_depo_secimi_transfer;
 import com.etimaden.frg_ana_sayfa;
 import com.etimaden.manipulasyon.Ambalaj_tipi_degisimi.frg_ambalaj_tipi_degisimi;
 import com.etimaden.manipulasyon.ellecleme.frg_ellecleme_menu_panel;
@@ -128,7 +129,11 @@ public class frg_depolar_arasi_transfer_menu_panel extends Fragment {
     private class fn_btnDepoTransferIslemleri implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            frg_depo_secimi_transfer fragmentyeni = new frg_depo_secimi_transfer();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_depo_secimi_transfer").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
