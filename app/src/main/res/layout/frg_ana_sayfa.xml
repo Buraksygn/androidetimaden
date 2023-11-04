@@ -58,19 +58,19 @@
         android:textSize="16sp" />
 
     <Button
-        android:id="@+id/btndepoduzenleme2"
+        android:id="@+id/btndepoduzenleme"
         android:layout_width="140dp"
         android:layout_height="100dp"
         android:layout_x="184dp"
         android:layout_y="146dp"
-        android:background="@drawable/my_button_cikis"
+        android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="DEPO DÜZENLEME İŞLEMLERİ"
-        android:textColor="@color/colorGri"
+        android:textColor="@color/green"
         android:textSize="14sp" />
 
     <Button
-        android:id="@+id/btneldensatis"
+        android:id="@+id/btnsatis"
         android:layout_width="140dp"
         android:layout_height="100dp"
         android:layout_x="0dp"
@@ -83,7 +83,7 @@
 
 
     <Button
-        android:id="@+id/btndepoduzenleme"
+        android:id="@+id/btneldensatis"
         android:layout_width="140dp"
         android:layout_height="100dp"
         android:layout_x="184dp"

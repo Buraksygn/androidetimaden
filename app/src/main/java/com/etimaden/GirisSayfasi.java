@@ -44,6 +44,12 @@ import com.etimaden.UretimIslemleri.Paket_uretim.frg_shrink_ayirma;
 import com.etimaden.UretimIslemleri.Paket_uretim.frg_shrink_onay;
 import com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_iptal;
 import com.etimaden.UretimIslemleri.Paket_uretim.frg_uretim_zayi;
+import com.etimaden.depolarArasiSevkIslemi.Depo_cikis.frg_depo_transfer_ekrani;
+import com.etimaden.depolarArasiSevkIslemi.Depo_giris.frg_lot_degistirme_onayi;
+import com.etimaden.depolarArasiSevkIslemi.Lot_detay_sorgulama.frg_lot_sorgulama;
+import com.etimaden.depolarArasiSevkIslemi.Urun_sorgulama.frg_urun_sorgulama;
+import com.etimaden.depolarArasiSevkIslemi.sayilamayan_aktivasyon.frg_sayilamayan_ayirma;
+import com.etimaden.depolarArasiSevkIslemi.sayilamayan_aktivasyon.frg_sayilamayan_onay;
 import com.etimaden.manipulasyon.Ambalaj_tipi_degisimi.frg_ambalaj_tipi_degisimi;
 import com.etimaden.UretimIslemleri.frg_paket_uretim_ekrani;
 import com.etimaden.cIslem.VeriTabani;
@@ -858,6 +864,42 @@ public class GirisSayfasi extends AppCompatActivity {
             return true;
         }
 
+        frg_depo_transfer_ekrani _frg_depo_transfer_ekrani = (frg_depo_transfer_ekrani) getSupportFragmentManager().findFragmentByTag("frg_depo_transfer_ekrani");
+        if (_frg_depo_transfer_ekrani != null && _frg_depo_transfer_ekrani.isVisible()) {
+            _frg_depo_transfer_ekrani.barkodOkundu(barkod);
+            return true;
+        }
+
+        frg_lot_degistirme_onayi _frg_lot_degistirme_onayi = (frg_lot_degistirme_onayi) getSupportFragmentManager().findFragmentByTag("frg_lot_degistirme_onayi");
+        if (_frg_lot_degistirme_onayi != null && _frg_lot_degistirme_onayi.isVisible()) {
+            _frg_lot_degistirme_onayi.barkodOkundu(barkod);
+            return true;
+        }
+
+        frg_urun_sorgulama _frg_urun_sorgulama = (frg_urun_sorgulama) getSupportFragmentManager().findFragmentByTag("frg_urun_sorgulama");
+        if (_frg_urun_sorgulama != null && _frg_urun_sorgulama.isVisible()) {
+            _frg_urun_sorgulama.barkodOkundu(barkod);
+            return true;
+        }
+
+        frg_sayilamayan_ayirma _frg_sayilamayan_ayirma = (frg_sayilamayan_ayirma) getSupportFragmentManager().findFragmentByTag("frg_sayilamayan_ayirma");
+        if (_frg_sayilamayan_ayirma != null && _frg_sayilamayan_ayirma.isVisible()) {
+            _frg_sayilamayan_ayirma.barkodOkundu(barkod);
+            return true;
+        }
+
+        frg_sayilamayan_onay _frg_sayilamayan_onay = (frg_sayilamayan_onay) getSupportFragmentManager().findFragmentByTag("frg_sayilamayan_onay");
+        if (_frg_sayilamayan_onay != null && _frg_sayilamayan_onay.isVisible()) {
+            _frg_sayilamayan_onay.barkodOkundu(barkod);
+            return true;
+        }
+
+        frg_lot_sorgulama _frg_lot_sorgulama = (frg_lot_sorgulama) getSupportFragmentManager().findFragmentByTag("frg_lot_sorgulama");
+        if (_frg_lot_sorgulama != null && _frg_lot_sorgulama.isVisible()) {
+            _frg_lot_sorgulama.barkodOkundu(barkod);
+            return true;
+        }
+
         return false;
     }
 
@@ -1011,6 +1053,42 @@ public class GirisSayfasi extends AppCompatActivity {
         frg_palet_dagitma_islemi _frg_palet_dagitma_islemi = (frg_palet_dagitma_islemi) getSupportFragmentManager().findFragmentByTag("frg_palet_dagitma_islemi");
         if (_frg_palet_dagitma_islemi != null && _frg_palet_dagitma_islemi.isVisible()) {
             _frg_palet_dagitma_islemi.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_depo_transfer_ekrani _frg_depo_transfer_ekrani = (frg_depo_transfer_ekrani) getSupportFragmentManager().findFragmentByTag("frg_depo_transfer_ekrani");
+        if (_frg_depo_transfer_ekrani != null && _frg_depo_transfer_ekrani.isVisible()) {
+            _frg_depo_transfer_ekrani.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_lot_degistirme_onayi _frg_lot_degistirme_onayi = (frg_lot_degistirme_onayi) getSupportFragmentManager().findFragmentByTag("frg_lot_degistirme_onayi");
+        if (_frg_lot_degistirme_onayi != null && _frg_lot_degistirme_onayi.isVisible()) {
+            _frg_lot_degistirme_onayi.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_urun_sorgulama _frg_urun_sorgulama = (frg_urun_sorgulama) getSupportFragmentManager().findFragmentByTag("frg_urun_sorgulama");
+        if (_frg_urun_sorgulama != null && _frg_urun_sorgulama.isVisible()) {
+            _frg_urun_sorgulama.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_sayilamayan_ayirma _frg_sayilamayan_ayirma = (frg_sayilamayan_ayirma) getSupportFragmentManager().findFragmentByTag("frg_sayilamayan_ayirma");
+        if (_frg_sayilamayan_ayirma != null && _frg_sayilamayan_ayirma.isVisible()) {
+            _frg_sayilamayan_ayirma.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_sayilamayan_onay _frg_sayilamayan_onay = (frg_sayilamayan_onay) getSupportFragmentManager().findFragmentByTag("frg_sayilamayan_onay");
+        if (_frg_sayilamayan_onay != null && _frg_sayilamayan_onay.isVisible()) {
+            _frg_sayilamayan_onay.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_lot_sorgulama _frg_lot_sorgulama = (frg_lot_sorgulama) getSupportFragmentManager().findFragmentByTag("frg_lot_sorgulama");
+        if (_frg_lot_sorgulama != null && _frg_lot_sorgulama.isVisible()) {
+            _frg_lot_sorgulama.rfidOkundu(rfid);
             return true;
         }
 

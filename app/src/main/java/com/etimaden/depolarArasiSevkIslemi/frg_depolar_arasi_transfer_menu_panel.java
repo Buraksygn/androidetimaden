@@ -15,6 +15,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.depolarArasiSevkIslemi.Depo_cikis.frg_depo_secimi_transfer;
+import com.etimaden.depolarArasiSevkIslemi.Depo_giris.frg_lot_degistirme_onayi;
+import com.etimaden.depolarArasiSevkIslemi.Lot_detay_sorgulama.frg_lot_sorgulama;
+import com.etimaden.depolarArasiSevkIslemi.Urun_sorgulama.frg_urun_sorgulama;
+import com.etimaden.depolarArasiSevkIslemi.sayilamayan_aktivasyon.frg_sayilamayan_ayirma;
+import com.etimaden.depolarArasiSevkIslemi.sayilamayan_aktivasyon.frg_sayilamayan_onay;
 import com.etimaden.frg_ana_sayfa;
 import com.etimaden.manipulasyon.Ambalaj_tipi_degisimi.frg_ambalaj_tipi_degisimi;
 import com.etimaden.manipulasyon.ellecleme.frg_ellecleme_menu_panel;
@@ -140,35 +145,55 @@ public class frg_depolar_arasi_transfer_menu_panel extends Fragment {
     private class fn_btnLotDegisimi implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            frg_lot_degistirme_onayi fragmentyeni = new frg_lot_degistirme_onayi();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_lot_degistirme_onayi").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
     private class fn_btnUrunSorgulama implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            frg_urun_sorgulama fragmentyeni = new frg_urun_sorgulama();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_urun_sorgulama").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
     private class fn_btnSatilamayanEtiketAyirma implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            frg_sayilamayan_ayirma fragmentyeni = new frg_sayilamayan_ayirma();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sayilamayan_ayirma").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
     private class fn_btnSatilamayanEtiketDegisimi implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            frg_sayilamayan_onay fragmentyeni = new frg_sayilamayan_onay();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sayilamayan_onay").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
     private class fn_btnLotDetaySorgulama implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            frg_lot_sorgulama fragmentyeni = new frg_lot_sorgulama();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_lot_sorgulama").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 

@@ -16,6 +16,7 @@ import com.etimaden.persosclass.Zayi;
 import com.etimaden.persosclass.Zayi_urun;
 import com.etimaden.persosclass.cBekleyen_Arac_Listesi;
 import com.etimaden.persosclass.etiket_no;
+import com.etimaden.persosclass.lot_detay;
 import com.etimaden.persosclass.uretim_detay;
 import com.etimaden.persosclass.uretim_etiket;
 import com.etimaden.request.request_ambalaj_tipi_secEtiket;
@@ -48,9 +49,11 @@ import com.etimaden.request.request_uretim_iptali;
 import com.etimaden.request.request_uretim_zayi;
 import com.etimaden.request.request_uruntag;
 import com.etimaden.request.request_uruntag_depotag;
+import com.etimaden.request.request_uruntag_list;
 import com.etimaden.request.request_uruntag_list_uruntag;
 import com.etimaden.request.request_uruntag_string;
 import com.etimaden.request.requestsecDepoTanimlari;
+import com.etimaden.response.depolar_arasi_sevk.View_lot_detay_list;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_ambalaj_tipi_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bos;
@@ -2675,6 +2678,135 @@ public class Persos {
             Genel.printStackTrace(ex,context);
             return  null;
         }
+    }
+
+    public Boolean fn_lotDeğişimiOnayla(request_uruntag v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_depolar_arasi_sevk_islemleri_ekrani_Controller _Servis=retrofit.create(frg_depolar_arasi_sevk_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_lotDeğişimiOnayla(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_sayilamayan_etiket_is_emri(request_uruntag_list v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_depolar_arasi_sevk_islemleri_ekrani_Controller _Servis=retrofit.create(frg_depolar_arasi_sevk_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_sayilamayan_etiket_is_emri(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_sayilamayan_etiket_onayi_al(request_uruntag v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_depolar_arasi_sevk_islemleri_ekrani_Controller _Servis=retrofit.create(frg_depolar_arasi_sevk_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_sayilamayan_etiket_onayi_al(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public List<lot_detay> fn_sec_lot_detay(request_string v_Gelen)
+    {
+        List<lot_detay> _Cevap=null ;
+
+        try
+        {
+            frg_depolar_arasi_sevk_islemleri_ekrani_Controller _Servis=retrofit.create(frg_depolar_arasi_sevk_islemleri_ekrani_Controller.class);
+
+            Call<View_lot_detay_list> fn_Servis = _Servis.fn_sec_lot_detay(v_Gelen);
+
+            Response<View_lot_detay_list> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                View_lot_detay_list _Yanit = _Response.body();
+
+                if(_Yanit.get_zSonuc().equals("0"))
+                {
+                    _Cevap = null;
+                }
+                else
+                {
+                    _Cevap= _Yanit.get_list();
+                }
+            }
+            else
+            {
+                _Cevap = null;
+            }
+
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+        }
+
+        return  _Cevap;
     }
 
 }

@@ -227,7 +227,7 @@ public class frg_depo_secimi_transfer extends Fragment {
                     fragmentyeni.fn_senddata(secilen_depo);
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_depo_transfer_ekranı").addToBackStack(null);
+                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_depo_transfer_ekrani").addToBackStack(null);
                     fragmentTransaction.commit();
                 }
                 else
