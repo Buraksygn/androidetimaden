@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.etimaden.Elden_satis_islemi.frg_perakende_satis_is_emri_secimi;
 import com.etimaden.SevkiyatIslemleri.frg_isemri_degistir;
 import com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
@@ -35,6 +36,7 @@ public class frg_ana_sayfa extends Fragment
     Button _btnmanipulasyon;
     Button _btnTest;
     Button _btndepoduzenleme;
+    Button _btneldensatis;
 
 
 
@@ -106,6 +108,10 @@ public class frg_ana_sayfa extends Fragment
         _btndepoduzenleme= (Button)getView().findViewById(R.id.btndepoduzenleme);
         _btndepoduzenleme.playSoundEffect(SoundEffectConstants.CLICK);
         _btndepoduzenleme.setOnClickListener(new fn_btndepoduzenleme());
+
+        _btneldensatis= (Button)getView().findViewById(R.id.btneldensatis);
+        _btneldensatis.playSoundEffect(SoundEffectConstants.CLICK);
+        _btneldensatis.setOnClickListener(new fn_btneldensatis());
 
     }
 
@@ -205,6 +211,19 @@ public class frg_ana_sayfa extends Fragment
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_depolar_arasi_transfer_menu_panel").addToBackStack(null);
+            fragmentTransaction.commit();
+
+        }
+    }
+
+    private class fn_btneldensatis implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+            frg_perakende_satis_is_emri_secimi fragmentyeni = new frg_perakende_satis_is_emri_secimi();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_perakende_satis_is_emri_secimi").addToBackStack(null);
             fragmentTransaction.commit();
 
         }

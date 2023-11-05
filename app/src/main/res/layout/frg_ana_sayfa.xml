@@ -70,14 +70,14 @@
         android:textSize="14sp" />
 
     <Button
-        android:id="@+id/btnsatis"
+        android:id="@+id/btnsayim"
         android:layout_width="140dp"
         android:layout_height="100dp"
         android:layout_x="0dp"
         android:layout_y="265dp"
         android:background="@drawable/my_button_cikis"
         android:gravity="center"
-        android:text="SATIŞ"
+        android:text="SAYIM"
         android:textColor="@color/colorGri"
         android:textSize="25sp" />
 
@@ -88,11 +88,11 @@
         android:layout_height="100dp"
         android:layout_x="184dp"
         android:layout_y="265dp"
-        android:background="@drawable/my_button_cikis"
+        android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="ELDEN SATIŞ"
-        android:textColor="@color/colorGri"
-        android:textSize="14sp" />
+        android:textColor="@color/green"
+        android:textSize="18sp" />
 
 
 
