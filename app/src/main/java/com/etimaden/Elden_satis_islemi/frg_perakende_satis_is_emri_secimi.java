@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -130,11 +131,11 @@ public class frg_perakende_satis_is_emri_secimi extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
 
         _btnGeri = (Button)getView().findViewById(R.id.btnGeri);
-        _btnGeri.playSoundEffect(0);
+        _btnGeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btnGeri.setOnClickListener(new fn_Geri());
 
         _btn_01= (Button)getView().findViewById(R.id.btn_01);
-        _btn_01.playSoundEffect(0);
+        _btn_01.playSoundEffect(SoundEffectConstants.CLICK);
         _btn_01.setOnClickListener(new fn_btn_01());
 
         _listisemirleri=(ListView)getView().findViewById(R.id.isemri_list);

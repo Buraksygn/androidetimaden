@@ -288,21 +288,20 @@ public class frg_urun_sorgulama extends Fragment {
 
                 String str = "";
                 str = " ÜRÜN SERİ NO : " +      tag.kod +
-                        "\r\n LOT NO : " + tag.lotno +
-                        "\r\n ÜRÜN ADI : " + tag.urun_adi +
-                        "\r\n PALET KOD : " + tag.palet_kod +
-                        "\r\n VARDİYA : " + tag.vardiya +
-                        "\r\n TOPLAM AĞIRLIĞI : " + tag.palet_agirligi +
-                        "\r\n PAKET AĞIRLIĞI : " + tag.torba_agirlik +
-                        "\r\n İŞLETME : " + tag.isletme_adi +
-                        "\r\n SON DEPO : " + tag.son_depo_adi +
-                        "\r\n DURUM : " + durum +
-                        "\r\n VERSIYON : " + _ayarversiyon;
+                        "<br> LOT NO : " + tag.lotno +
+                        "<br> ÜRÜN ADI : " + tag.urun_adi +
+                        "<br> PALET KOD : " + tag.palet_kod +
+                        "<br> VARDİYA : " + tag.vardiya +
+                        "<br> TOPLAM AĞIRLIĞI : " + tag.palet_agirligi +
+                        "<br> PAKET AĞIRLIĞI : " + tag.torba_agirlik +
+                        "<br> İŞLETME : " + tag.isletme_adi +
+                        "<br> SON DEPO : " + tag.son_depo_adi +
+                        "<br> DURUM : " + durum ;
+
 
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
-                        .setTitleText("ÜRÜN DETAYI")
-                        .setContentText(str)
-                        .setContentTextSize(20)
+                        .setTitleText(str)
+                        .setContentTextSize(14)
                         .setConfirmText("TAMAM")
                         .showCancelButton(false)
                         .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {

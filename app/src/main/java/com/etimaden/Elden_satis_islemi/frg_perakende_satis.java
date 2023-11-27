@@ -311,7 +311,7 @@ public class frg_perakende_satis extends Fragment {
                 v_Gelen.set_value3(aktif_sevk_isemri.isletme);
 
                 Genel.showProgressDialog(getContext());
-                String toplam_mikar = persos.fn_sec_toplam_dkmlot_miktar(v_Gelen);
+                String toplam_mikar = persos.fn_sec_toplam_dkmlot_miktar_satis(v_Gelen);
                 Genel.dismissProgressDialog();
                 int toplam_dkm_mikar = 0;
                 try
@@ -383,7 +383,7 @@ public class frg_perakende_satis extends Fragment {
                     v_Gelen.set_value3(aktif_sevk_isemri.isletme);
 
                     Genel.showProgressDialog(getContext());
-                    String toplam_mikar = persos.fn_sec_toplam_dkmlot_miktar(v_Gelen);
+                    String toplam_mikar = persos.fn_sec_toplam_dkmlot_miktar_satis(v_Gelen);
                     Genel.dismissProgressDialog();
 
                     int toplam_dkm_mikar = 0;

@@ -25,8 +25,8 @@ public interface frg_elden_satis_islemi_Controller
     Call<View_sevkiyat_isemri_listesi> fn_sec_perakende_satis_isemri_listesi(@Body request_bos v_Gelen);
 
     //todo aynı isimde request_uretim_etiket tipinde parametre alan bi servis daha var.alt satirdaki ismi tanimamana göre ayarlarsın
-    @POST("api/sec_toplam_dkmlot_miktar")
-    Call<View_string_response> fn_sec_toplam_dkmlot_miktar(@Body request_string_string_string v_Gelen);
+    @POST("api/sec_toplam_dkmlot_miktar_satis")
+    Call<View_string_response> fn_sec_toplam_dkmlot_miktar_satis(@Body request_string_string_string v_Gelen);
 
     @POST("api/sec_dkm_etiket_listesi")
     Call<View_string_list> fn_sec_dkm_etiket_listesi(@Body request_integer_sevkiyat_isemri v_Gelen);

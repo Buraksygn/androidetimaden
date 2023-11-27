@@ -2852,7 +2852,7 @@ public class Persos {
         return  _Cevap;
     }
 
-    public String fn_sec_toplam_dkmlot_miktar(request_string_string_string v_Gelen)
+    public String fn_sec_toplam_dkmlot_miktar_satis(request_string_string_string v_Gelen)
     {
         View_string_response _yanit;
 
@@ -2860,7 +2860,7 @@ public class Persos {
         {
             frg_elden_satis_islemi_Controller _Servis=retrofit.create(frg_elden_satis_islemi_Controller.class);
 
-            Call<View_string_response> fn_Servis = _Servis.fn_sec_toplam_dkmlot_miktar(v_Gelen);
+            Call<View_string_response> fn_Servis = _Servis.fn_sec_toplam_dkmlot_miktar_satis(v_Gelen);
 
             Response<View_string_response> _Response = fn_Servis.execute();
 
