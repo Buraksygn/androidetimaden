@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:scrollbars="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text=""
+        android:textSize="20dp"
+        android:id="@+id/sira"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="4dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="KOD SAP"
+        android:textSize="16dp"
+        android:id="@+id/kod_sap"/>
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="4dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="ÜRÜN ADI"
+        android:textSize="14dp"
+        android:id="@+id/urun_adi"/>
+
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="4dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="KALAN AĞIRLIK"
+        android:textSize="16dp"
+        android:id="@+id/kalan_agirlik"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="4dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="KALAN PALET SAYISI"
+        android:textSize="16dp"
+        android:id="@+id/kalan_palet_sayisi"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="4dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="YAPILAN MİKTAR"
+        android:textSize="16dp"
+        android:id="@+id/yapilan_miktar"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="4dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="YAPILAN ADET"
+        android:textSize="16dp"
+        android:id="@+id/yapilan_adet"/>
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="4dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="BOOKINGNO"
+        android:textSize="16dp"
+        android:id="@+id/bookingno"/>
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="4dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="ALICI"
+        android:textSize="16dp"
+        android:id="@+id/alici"/>
+
+
+</LinearLayout>

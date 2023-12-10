@@ -322,10 +322,14 @@ public class MainActivity extends AppCompatActivity {
                     {
                         _Ayarlar.fn_setAnkara(getApplicationContext());
                     }
-                    else
+                    else if(regionCode.equals("9"))
                     {
+                        _Ayarlar.fn_setTest(getApplicationContext());
+                    }
+                    else{
                         _Ayarlar.fn_setGenel(getApplicationContext());
                     }
+
 
                     pDialog.hide();
                     pDialog.dismiss();

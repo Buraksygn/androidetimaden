@@ -16,6 +16,7 @@ import com.etimaden.persosclass.Zayi;
 import com.etimaden.persosclass.Zayi_urun;
 import com.etimaden.persosclass.cBekleyen_Arac_Listesi;
 import com.etimaden.persosclass.etiket_no;
+import com.etimaden.persosclass.lot_detay;
 import com.etimaden.persosclass.uretim_detay;
 import com.etimaden.persosclass.uretim_etiket;
 import com.etimaden.request.request_ambalaj_tipi_secEtiket;
@@ -23,6 +24,8 @@ import com.etimaden.request.request_bos;
 import com.etimaden.request.request_bos_aktif_isletme_esleme;
 import com.etimaden.request.request_get_lot_toplami;
 import com.etimaden.request.request_guncelle_sevk_hareket;
+import com.etimaden.request.request_integer_sevkiyat_isemri;
+import com.etimaden.request.request_integer_sevkiyat_isemri_stringlist;
 import com.etimaden.request.request_paketliUret;
 import com.etimaden.request.request_paketliUretKontrol;
 import com.etimaden.request.request_paketliUret_otomatik;
@@ -43,13 +46,17 @@ import com.etimaden.request.request_shrink_onayi_al;
 import com.etimaden.request.request_string;
 import com.etimaden.request.request_string_aktif_isletme_esleme;
 import com.etimaden.request.request_string_string;
+import com.etimaden.request.request_string_string_string;
 import com.etimaden.request.request_uretim_etiket;
 import com.etimaden.request.request_uretim_iptali;
 import com.etimaden.request.request_uretim_zayi;
 import com.etimaden.request.request_uruntag;
+import com.etimaden.request.request_uruntag_depotag;
+import com.etimaden.request.request_uruntag_list;
 import com.etimaden.request.request_uruntag_list_uruntag;
 import com.etimaden.request.request_uruntag_string;
 import com.etimaden.request.requestsecDepoTanimlari;
+import com.etimaden.response.depolar_arasi_sevk.View_lot_detay_list;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_ambalaj_tipi_secEtiket;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bos;
@@ -70,6 +77,8 @@ import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_vagon_hareket;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_urun_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_string_list;
+import com.etimaden.servisbaglanti.frg_depolar_arasi_sevk_islemleri_ekrani_Controller;
+import com.etimaden.servisbaglanti.frg_elden_satis_islemi_Controller;
 import com.etimaden.servisbaglanti.frg_manipulasyon_islemleri_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_sevkiyat_islemleri_ekrani_Controller;
@@ -2612,4 +2621,335 @@ public class Persos {
         }
     }
 
+
+    //Depolar arasi Sevk Baslangici
+    public Urun_tag fn_secDepoSevkEtiket(request_string v_Gelen)
+    {
+        View_secEtiket _yanit;
+
+        try
+        {
+            frg_depolar_arasi_sevk_islemleri_ekrani_Controller _Servis=retrofit.create(frg_depolar_arasi_sevk_islemleri_ekrani_Controller.class);
+
+            Call<View_secEtiket> fn_Servis = _Servis.fn_secDepoSevkEtiket(v_Gelen);
+
+            Response<View_secEtiket> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_tag();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+
+    }
+
+    public Boolean fn_depoSevkTamamla(request_uruntag_depotag v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_depolar_arasi_sevk_islemleri_ekrani_Controller _Servis=retrofit.create(frg_depolar_arasi_sevk_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_depoSevkTamamla(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_lotDeğişimiOnayla(request_uruntag v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_depolar_arasi_sevk_islemleri_ekrani_Controller _Servis=retrofit.create(frg_depolar_arasi_sevk_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_lotDeğişimiOnayla(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_sayilamayan_etiket_is_emri(request_uruntag_list v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_depolar_arasi_sevk_islemleri_ekrani_Controller _Servis=retrofit.create(frg_depolar_arasi_sevk_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_sayilamayan_etiket_is_emri(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_sayilamayan_etiket_onayi_al(request_uruntag v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_depolar_arasi_sevk_islemleri_ekrani_Controller _Servis=retrofit.create(frg_depolar_arasi_sevk_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_sayilamayan_etiket_onayi_al(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public List<lot_detay> fn_sec_lot_detay(request_string v_Gelen)
+    {
+        List<lot_detay> _Cevap=null ;
+
+        try
+        {
+            frg_depolar_arasi_sevk_islemleri_ekrani_Controller _Servis=retrofit.create(frg_depolar_arasi_sevk_islemleri_ekrani_Controller.class);
+
+            Call<View_lot_detay_list> fn_Servis = _Servis.fn_sec_lot_detay(v_Gelen);
+
+            Response<View_lot_detay_list> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                View_lot_detay_list _Yanit = _Response.body();
+
+                if(_Yanit.get_zSonuc().equals("0"))
+                {
+                    _Cevap = null;
+                }
+                else
+                {
+                    _Cevap= _Yanit.get_list();
+                }
+            }
+            else
+            {
+                _Cevap = null;
+            }
+
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+        }
+
+        return  _Cevap;
+    }
+
+    public List<Sevkiyat_isemri> fn_sec_perakende_satis_isemri_listesi(request_bos v_Gelen)
+    {
+        List<Sevkiyat_isemri> _Cevap=null ;
+
+        try
+        {
+            frg_elden_satis_islemi_Controller _Servis=retrofit.create(frg_elden_satis_islemi_Controller.class);
+
+            Call<View_sevkiyat_isemri_listesi> fn_Servis = _Servis.fn_sec_perakende_satis_isemri_listesi(v_Gelen);
+
+            Response<View_sevkiyat_isemri_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                View_sevkiyat_isemri_listesi _Yanit = _Response.body();
+
+                if(_Yanit.get_zSonuc().equals("0"))
+                {
+                    _Cevap = null;
+                }
+                else
+                {
+                    _Cevap= _Yanit.get_sevk_listesi();
+                }
+            }
+            else
+            {
+                _Cevap = null;
+            }
+
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+        }
+
+        return  _Cevap;
+    }
+
+    public String fn_sec_toplam_dkmlot_miktar_satis(request_string_string_string v_Gelen)
+    {
+        View_string_response _yanit;
+
+        try
+        {
+            frg_elden_satis_islemi_Controller _Servis=retrofit.create(frg_elden_satis_islemi_Controller.class);
+
+            Call<View_string_response> fn_Servis = _Servis.fn_sec_toplam_dkmlot_miktar_satis(v_Gelen);
+
+            Response<View_string_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+
+    }
+
+    public List<String> fn_sec_dkm_etiket_listesi(request_integer_sevkiyat_isemri v_Gelen)
+    {
+        List<String> _Cevap=null ;
+
+        try
+        {
+            frg_elden_satis_islemi_Controller _Servis=retrofit.create(frg_elden_satis_islemi_Controller.class);
+
+            Call<View_string_list> fn_Servis = _Servis.fn_sec_dkm_etiket_listesi(v_Gelen);
+
+            Response<View_string_list> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                View_string_list _Yanit = _Response.body();
+
+                if(_Yanit.get_zSonuc().equals("0"))
+                {
+                    _Cevap = null;
+                }
+                else
+                {
+                    _Cevap= _Yanit.get_list();
+                }
+            }
+            else
+            {
+                _Cevap = null;
+            }
+
+
+        }catch (Exception ex)
+        {
+
+        }
+
+        return  _Cevap;
+    }
+
+
+    public Boolean fn_onayla_perakende_satis(request_integer_sevkiyat_isemri_stringlist v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_elden_satis_islemi_Controller _Servis=retrofit.create(frg_elden_satis_islemi_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_onayla_perakende_satis(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
 }
