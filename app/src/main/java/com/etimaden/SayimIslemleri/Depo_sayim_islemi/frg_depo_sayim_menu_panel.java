@@ -121,11 +121,11 @@ public class frg_depo_sayim_menu_panel extends Fragment {
     private class fn_btnUrunuSayimDisiBirak implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            /*frg_lot_degistirme_onayi fragmentyeni = new frg_lot_degistirme_onayi();
+            frg_sayim_islemi_urun_aktivasyon fragmentyeni = new frg_sayim_islemi_urun_aktivasyon();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_lot_degistirme_onayi").addToBackStack(null);
-            fragmentTransaction.commit();*/
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sayim_islemi_urun_aktivasyon").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
