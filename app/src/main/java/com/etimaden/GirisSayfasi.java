@@ -28,6 +28,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.etimaden.Elden_satis_islemi.frg_perakende_satis;
+import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_depo_sayim_islemi;
+import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_sayim_islemi_urun_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_konteyner_kamyon_esleme;
 import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_konteyner_vagon_esleme;
@@ -907,6 +909,12 @@ public class GirisSayfasi extends AppCompatActivity {
             return true;
         }
 
+        frg_sayim_islemi_urun_aktivasyon _frg_sayim_islemi_urun_aktivasyon = (frg_sayim_islemi_urun_aktivasyon) getSupportFragmentManager().findFragmentByTag("frg_sayim_islemi_urun_aktivasyon");
+        if (_frg_sayim_islemi_urun_aktivasyon != null && _frg_sayim_islemi_urun_aktivasyon.isVisible()) {
+            _frg_sayim_islemi_urun_aktivasyon.barkodOkundu(barkod);
+            return true;
+        }
+
         return false;
     }
 
@@ -1102,6 +1110,18 @@ public class GirisSayfasi extends AppCompatActivity {
         frg_perakende_satis _frg_perakende_satis = (frg_perakende_satis) getSupportFragmentManager().findFragmentByTag("frg_perakende_satis");
         if (_frg_perakende_satis != null && _frg_perakende_satis.isVisible()) {
             _frg_perakende_satis.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_depo_sayim_islemi _frg_depo_sayim_islemi = (frg_depo_sayim_islemi) getSupportFragmentManager().findFragmentByTag("frg_depo_sayim_islemi");
+        if (_frg_depo_sayim_islemi != null && _frg_depo_sayim_islemi.isVisible()) {
+            _frg_depo_sayim_islemi.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_sayim_islemi_urun_aktivasyon _frg_sayim_islemi_urun_aktivasyon = (frg_sayim_islemi_urun_aktivasyon) getSupportFragmentManager().findFragmentByTag("frg_sayim_islemi_urun_aktivasyon");
+        if (_frg_sayim_islemi_urun_aktivasyon != null && _frg_sayim_islemi_urun_aktivasyon.isVisible()) {
+            _frg_sayim_islemi_urun_aktivasyon.rfidOkundu(rfid);
             return true;
         }
 

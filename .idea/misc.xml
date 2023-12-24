@@ -8,9 +8,13 @@
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_aktif_depo_sayim_isemri_secimi.xml" value="0.21822916666666667" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ambalaj_tipi_degisimi.xml" value="0.1734375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ana_sayfa.xml" value="0.2109375" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_arac_bulundu_indirme.xml" value="0.21822916666666667" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_arac_secim_bilgi.xml" value="0.21822916666666667" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depo_sayim_islemi.xml" value="0.25" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depo_sayim_menu_panel.xml" value="0.21822916666666667" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depo_secimi_transfer.xml" value="0.2109375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depo_secimi_transfer_indirme.xml" value="0.1734375" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depo_transfer_ekrani.xml" value="0.21822916666666667" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depo_transfer_ekranı.xml" value="0.2109375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depolar_arasi_transfer_menu_panel.xml" value="0.2109375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ellecleme_ayirma.xml" value="0.25" />
@@ -23,9 +27,12 @@
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_kirli_ambalaj_degisim_onay.xml" value="0.21" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_lot_degistirme_onayi.xml" value="0.22395833333333334" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_lot_degistirme_onayı.xml" value="0.2109375" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_lot_sorgulama.xml" value="0.21822916666666667" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_manipulasyon_menu_panel.xml" value="0.21822916666666667" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_paket_uretim_ekrani.xml" value="0.22395833333333334" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_palet_dagitma_islemi.xml" value="0.22395833333333334" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_sayilamayan_ayirma.xml" value="0.21822916666666667" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_sayim_islemi_urun_aktivasyon.xml" value="0.21822916666666667" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_sayim_menu_panel.xml" value="0.21822916666666667" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_shrink_onay.xml" value="0.2109375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_uretim_iptal.xml" value="0.1734375" />
@@ -34,6 +41,8 @@
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_manipulasyon_ellecleme_ayirma_item.xml" value="0.1734375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_manipulasyon_geribesleme_ayirma_item.xml" value="0.22395833333333334" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sayim_islemleri_aktif_depo_sayim_isemri_secimi_item.xml" value="0.21822916666666667" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sayim_islemleri_depo_sayim_islemi_item.xml" value="0.21822916666666667" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sayim_islemleri_sayim_islemi_urun_aktivasyon_item.xml" value="0.21822916666666667" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/xml/config_preference.xml" value="0.22395833333333334" />
       </map>
     </option>

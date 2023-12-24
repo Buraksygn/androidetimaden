@@ -17,8 +17,10 @@ import com.etimaden.persosclass.Zayi_urun;
 import com.etimaden.persosclass.cBekleyen_Arac_Listesi;
 import com.etimaden.persosclass.etiket_no;
 import com.etimaden.persosclass.lot_detay;
+import com.etimaden.persosclass.malzeme_sayim_isemri;
 import com.etimaden.persosclass.uretim_detay;
 import com.etimaden.persosclass.uretim_etiket;
+import com.etimaden.request.request_aktarim_list;
 import com.etimaden.request.request_ambalaj_tipi_secEtiket;
 import com.etimaden.request.request_bos;
 import com.etimaden.request.request_bos_aktif_isletme_esleme;
@@ -66,6 +68,7 @@ import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_uretim_detay;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_string_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.ViewsecDepoTanimlari;
 import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
+import com.etimaden.response.sayim_islemleri.View_malzeme_sayim_isemri_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_arac;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_bekleyen_arac_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri;
@@ -81,6 +84,7 @@ import com.etimaden.servisbaglanti.frg_depolar_arasi_sevk_islemleri_ekrani_Contr
 import com.etimaden.servisbaglanti.frg_elden_satis_islemi_Controller;
 import com.etimaden.servisbaglanti.frg_manipulasyon_islemleri_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_Controller;
+import com.etimaden.servisbaglanti.frg_sayim_islemleri_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_sevkiyat_islemleri_ekrani_Controller;
 
 import java.util.List;
@@ -2952,4 +2956,128 @@ public class Persos {
             return  null;
         }
     }
+
+    // Sayim İslemleri Baslangici
+    public List<malzeme_sayim_isemri> fn_sec_malzeme_sayim_isemri(request_bos v_Gelen)
+    {
+        View_malzeme_sayim_isemri_listesi _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_malzeme_sayim_isemri_listesi> fn_Servis = _Servis.fn_sec_malzeme_sayim_isemri(v_Gelen);
+
+            Response<View_malzeme_sayim_isemri_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_malzeme_sayim_isemri_listesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+
+    }
+
+    public String fn_sorgula_sayım_uygunluk(request_string v_Gelen)
+    {
+        View_string_response _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_string_response> fn_Servis = _Servis.fn_sorgula_sayım_uygunluk(v_Gelen);
+
+            Response<View_string_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+
+    }
+
+    public Boolean fn_aktar_malzeme_sayim_listesi(request_aktarim_list v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_aktar_malzeme_sayim_listesi(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_sayim_sırasinda_devre_disi_bırak(request_uruntag_list v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_sayim_sırasinda_devre_disi_bırak(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
 }

@@ -194,10 +194,9 @@ public class frg_aktif_depo_sayim_isemri_secimi extends Fragment {
         {
             if (adapter != null) {
                 adapter.clear();
+                adapter.addAll(sayim_listesi);
+                adapter.notifyDataSetChanged();
             }
-
-            adapter.addAll(sayim_listesi);
-            adapter.notifyDataSetChanged();
 
         }
         catch (Exception ex)
