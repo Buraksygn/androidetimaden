@@ -133,44 +133,48 @@ public class frg_demirbas_sayim_menu_panel extends Fragment {
     private class fn_btnDemirbasSorgula implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_demirbas_sorgula fragmentyeni = new frg_demirbas_sorgula();
+            /*frg_demirbas_sorgula fragmentyeni = new frg_demirbas_sorgula();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_demirbas_sorgula").addToBackStack(null);
             fragmentTransaction.commit();
+
+             */
         }
     }
 
     private class fn_btnEtiketBasimKontrol implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_db_isletme_secimi fragmentyeni = new frg_db_isletme_secimi();
+            /*frg_db_isletme_secimi fragmentyeni = new frg_db_isletme_secimi();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_db_isletme_secimi").addToBackStack(null);
-            fragmentTransaction.commit();
+            fragmentTransaction.commit();*/
         }
     }
 
     private class fn_btnDemirbasSayimiOlustur implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_ds_isletme_secimi fragmentyeni = new frg_ds_isletme_secimi();
+            /*frg_ds_isletme_secimi fragmentyeni = new frg_ds_isletme_secimi();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_ds_isletme_secimi").addToBackStack(null);
-            fragmentTransaction.commit();
+            fragmentTransaction.commit();*/
         }
     }
 
     private class fn_btnDemirbasSay implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_ds_isemri_secimi fragmentyeni = new frg_ds_isemri_secimi();
+            /*frg_ds_isemri_secimi fragmentyeni = new frg_ds_isemri_secimi();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_ds_isemri_secimi").addToBackStack(null);
             fragmentTransaction.commit();
+
+             */
         }
     }
 

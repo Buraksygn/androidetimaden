@@ -117,11 +117,11 @@ public class frg_demirbas_arama_menu_panel extends Fragment {
     private class fn_btnDemirbasNoIleDemirbasArama implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_da_demirbasno_girisi fragmentyeni = new frg_da_demirbasno_girisi();
+            /*frg_da_demirbasno_girisi fragmentyeni = new frg_da_demirbasno_girisi();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_da_demirbasno_girisi").addToBackStack(null);
-            fragmentTransaction.commit();
+            fragmentTransaction.commit();*/
         }
     }
 

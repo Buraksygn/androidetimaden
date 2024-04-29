@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
+import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Sayim_islemleri.frg_ds_sayim_islemi;
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.frg_demirbas_sayim_menu_panel;
 import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_depo_sayim_islemi;
 import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_depo_sayim_menu_panel;
@@ -326,12 +327,14 @@ public class frg_da_isemri_secimi extends Fragment {
                 if (_Secili!=null) {
                     Demirbas_Konum secilen_oda = _Secili;
 
-                    frg_da_sayim_islemi fragmentyeni = new frg_da_sayim_islemi();
+                    /*frg_da_sayim_islemi fragmentyeni = new frg_da_sayim_islemi();
                     fragmentyeni.fn_senddata(secilen_oda);
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_da_sayim_islemi").addToBackStack(null);
                     fragmentTransaction.commit();
+
+                     */
                 }
                 else
                 {
