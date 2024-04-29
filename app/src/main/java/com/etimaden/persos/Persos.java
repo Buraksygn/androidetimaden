@@ -2958,7 +2958,7 @@ public class Persos {
     }
 
     // Sayim İslemleri Baslangici
-    public List<malzeme_sayim_isemri> fn_sec_malzeme_sayim_isemri(request_bos v_Gelen)
+    public List<malzeme_sayim_isemri> fn_sec_malzeme_sayim_isemri(request_bos_aktif_isletme_esleme v_Gelen)
     {
         View_malzeme_sayim_isemri_listesi _yanit;
 
@@ -2989,7 +2989,7 @@ public class Persos {
 
     }
 
-    public String fn_sorgula_sayım_uygunluk(request_string v_Gelen)
+    public String fn_sorgula_sayım_uygunluk(request_string_aktif_isletme_esleme v_Gelen)
     {
         View_string_response _yanit;
 

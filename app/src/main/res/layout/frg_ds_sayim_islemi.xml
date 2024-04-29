@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorBlack"
+    android:focusable="false"
+    tools:context="com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Sayim_islemleri.frg_ds_sayim_islemi"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:textColor="@color/green"
+        android:text="frg_ds_sayim_islemi"
+        android:textSize="12dp" />
+
+    <ImageView
+        android:id="@+id/imgBilgi"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_x="0dp"
+        android:layout_y="20dp"
+        android:src="@mipmap/information3"
+        android:focusable="false" />
+    <TextView
+        android:id="@+id/txtBaslik"
+        android:layout_width="285dp"
+        android:layout_height="35dp"
+        android:layout_x="40dp"
+        android:layout_y="20dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="SAYIM LİSTESİ"
+        android:textColor="@color/green"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnListeyiKaydet"
+        android:layout_width="325dp"
+        android:layout_height="40dp"
+        android:layout_x="0dp"
+        android:layout_y="60dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="LİSTEYİ KAYDET"
+        android:textColor="@color/green"
+        android:textSize="20sp"
+        android:focusable="false"/>
+
+    <HorizontalScrollView
+        android:layout_width="325dp"
+        android:layout_height="340dp"
+        android:layout_x="2dp"
+        android:layout_y="102dp">
+
+        <ListView
+            android:id="@+id/aktif_is_emirleri_list"
+            android:layout_width="wrap_content"
+            android:layout_height="440dp"
+            android:listSelector="@color/colorBlackSecili"
+            android:scrollbars="horizontal|vertical"
+            android:textColor="@color/green" >
+
+
+        </ListView>
+
+    </HorizontalScrollView>
+    <SeekBar
+        android:id="@+id/sbPower"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_x="0dp"
+        android:layout_y="450dp"
+        android:focusable="false"
+        android:progress="250"
+        android:min="100"
+        android:max="300"
+        android:progressBackgroundTint="@color/white"
+        android:progressTint="@color/white"
+        android:thumbTint="@color/white"/>
+    <TextView
+        android:id="@+id/txtPower"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_x="250dp"
+        android:layout_y="450dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="250 DB"
+        android:textColor="@color/red1"
+        android:textSize="14sp" />
+    <TextView
+        android:id="@+id/txtHepsi"
+        android:layout_width="81dp"
+        android:layout_height="30dp"
+        android:layout_x="0dp"
+        android:layout_y="480dp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="HEPSİ"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+    <ImageView
+        android:id="@+id/imgHepsi"
+        android:layout_width="81dp"
+        android:layout_height="30dp"
+        android:layout_x="0dp"
+        android:layout_y="510dp"
+        android:background="@drawable/btn_menu_pasif"
+        android:src="@mipmap/whitepoint"
+        android:focusable="false"
+        android:cropToPadding="true"
+        android:padding="2dp"
+        android:scaleType="fitCenter"/>
+    <TextView
+        android:id="@+id/txtBulunan"
+        android:layout_width="81dp"
+        android:layout_height="30dp"
+        android:layout_x="81dp"
+        android:layout_y="480dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="BULUNAN"
+        android:textColor="@color/green"
+        android:textSize="16sp" />
+    <ImageView
+        android:id="@+id/imgBulunan"
+        android:layout_width="81dp"
+        android:layout_height="30dp"
+        android:layout_x="81dp"
+        android:layout_y="510dp"
+        android:background="@drawable/btn_menu_pasif"
+        android:src="@mipmap/greenpoint"
+        android:focusable="false"
+        android:cropToPadding="true"
+        android:padding="2dp"
+        android:scaleType="fitCenter"/>
+    <TextView
+        android:id="@+id/txtEksik"
+        android:layout_width="81dp"
+        android:layout_height="30dp"
+        android:layout_x="162dp"
+        android:layout_y="480dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="EKSİK"
+        android:textColor="@color/red1"
+        android:textSize="16sp" />
+    <ImageView
+        android:id="@+id/imgEksik"
+        android:layout_width="81dp"
+        android:layout_height="30dp"
+        android:layout_x="162dp"
+        android:layout_y="510dp"
+        android:background="@drawable/btn_menu_pasif"
+        android:src="@mipmap/redpoint"
+        android:focusable="false"
+        android:cropToPadding="true"
+        android:padding="2dp"
+        android:scaleType="fitCenter"/>
+    <TextView
+        android:id="@+id/txtKullanimDisi"
+        android:layout_width="81dp"
+        android:layout_height="30dp"
+        android:layout_x="243dp"
+        android:layout_y="480dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="K.DIŞI"
+        android:textColor="@color/yellow"
+        android:textSize="16sp" />
+    <ImageView
+        android:id="@+id/imgKullanimDisi"
+        android:layout_width="81dp"
+        android:layout_height="30dp"
+        android:layout_x="243dp"
+        android:layout_y="510dp"
+        android:background="@drawable/btn_menu_pasif"
+        android:src="@mipmap/yellowpoint"
+        android:focusable="false"
+        android:cropToPadding="true"
+        android:padding="2dp"
+        android:scaleType="fitCenter"/>
+    <TextView
+        android:id="@+id/txtYuklemeMiktari"
+        android:layout_width="325dp"
+        android:layout_height="30dp"
+        android:layout_x="0dp"
+        android:layout_y="540dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="5dp"
+        android:text="SAYILAN ADET = 0"
+        android:textColor="@color/green"
+        android:textSize="16sp" />
+
+</AbsoluteLayout>

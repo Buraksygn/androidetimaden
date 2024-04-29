@@ -32,6 +32,7 @@ import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.persosclass.malzeme_sayim_isemri;
 import com.etimaden.request.request_bos;
+import com.etimaden.request.request_bos_aktif_isletme_esleme;
 import com.etimaden.request.requestsecDepoTanimlari;
 import com.etimaden.ugr_demo.R;
 
@@ -153,7 +154,7 @@ public class frg_aktif_depo_sayim_isemri_secimi extends Fragment {
     {
         try
         {
-            request_bos _Param=new request_bos();
+            request_bos_aktif_isletme_esleme _Param=new request_bos_aktif_isletme_esleme();
 
             _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
             _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
@@ -163,6 +164,7 @@ public class frg_aktif_depo_sayim_isemri_secimi extends Fragment {
             _Param.set_zsifre(_zsifre);
             _Param.setAktif_sunucu(_ayaraktifsunucu);
             _Param.setAktif_kullanici(_ayaraktifkullanici);
+            _Param.set_aktif_isletme_esleme(_ayaraktifisletmeeslesme);
 
             Genel.showProgressDialog(getContext());
             List<malzeme_sayim_isemri> result = persos.fn_sec_malzeme_sayim_isemri(_Param);

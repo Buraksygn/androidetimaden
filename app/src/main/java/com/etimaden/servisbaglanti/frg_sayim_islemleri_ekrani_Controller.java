@@ -44,10 +44,10 @@ import retrofit2.http.POST;
 public interface frg_sayim_islemleri_ekrani_Controller {
 
     @POST("api/sec_malzeme_sayim_isemri")
-    Call<View_malzeme_sayim_isemri_listesi> fn_sec_malzeme_sayim_isemri(@Body request_bos v_Gelen);
+    Call<View_malzeme_sayim_isemri_listesi> fn_sec_malzeme_sayim_isemri(@Body request_bos_aktif_isletme_esleme v_Gelen);
 
     @POST("api/sorgula_sayım_uygunluk")
-    Call<View_string_response> fn_sorgula_sayım_uygunluk(@Body request_string v_Gelen);
+    Call<View_string_response> fn_sorgula_sayım_uygunluk(@Body request_string_aktif_isletme_esleme v_Gelen);
 
     @POST("api/aktar_malzeme_sayim_listesi")
     Call<View_bool_response> fn_aktar_malzeme_sayim_listesi(@Body request_aktarim_list v_Gelen);

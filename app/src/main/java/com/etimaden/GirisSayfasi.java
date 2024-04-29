@@ -28,6 +28,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.etimaden.Elden_satis_islemi.frg_perakende_satis;
+import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_arama.frg_da_isemri_secimi;
 import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_depo_sayim_islemi;
 import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_sayim_islemi_urun_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_aktivasyon;
@@ -915,6 +916,12 @@ public class GirisSayfasi extends AppCompatActivity {
             return true;
         }
 
+        frg_da_isemri_secimi _frg_da_isemri_secimi = (frg_da_isemri_secimi) getSupportFragmentManager().findFragmentByTag("frg_da_isemri_secimi");
+        if (_frg_da_isemri_secimi != null && _frg_da_isemri_secimi.isVisible()) {
+            _frg_da_isemri_secimi.barkodOkundu(barkod);
+            return true;
+        }
+
         return false;
     }
 
@@ -1122,6 +1129,12 @@ public class GirisSayfasi extends AppCompatActivity {
         frg_sayim_islemi_urun_aktivasyon _frg_sayim_islemi_urun_aktivasyon = (frg_sayim_islemi_urun_aktivasyon) getSupportFragmentManager().findFragmentByTag("frg_sayim_islemi_urun_aktivasyon");
         if (_frg_sayim_islemi_urun_aktivasyon != null && _frg_sayim_islemi_urun_aktivasyon.isVisible()) {
             _frg_sayim_islemi_urun_aktivasyon.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_da_isemri_secimi _frg_da_isemri_secimi = (frg_da_isemri_secimi) getSupportFragmentManager().findFragmentByTag("frg_da_isemri_secimi");
+        if (_frg_da_isemri_secimi != null && _frg_da_isemri_secimi.isVisible()) {
+            _frg_da_isemri_secimi.rfidOkundu(rfid);
             return true;
         }
 

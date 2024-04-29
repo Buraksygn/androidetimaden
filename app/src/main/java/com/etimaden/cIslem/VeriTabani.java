@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.etimaden.cSabitDegerler;
+import com.etimaden.persosclass.Demirbas_Konum;
+import com.etimaden.persosclass.demirbas_sayim;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -157,6 +159,37 @@ public class VeriTabani extends SQLiteOpenHelper {
     private static final String TABLO_10_ETIKET_KONTROL_DURUM = "durum";
     private static final String TABLO_10_ETIKET_KONTROL_URUN_ADI = "urunadi";
 
+
+    //demirbas_sayim
+    private static final String TABLO_11_DEMIRBAS_SAYIM = "persos_demirbas_sayim";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_id = "ds_id";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_user_id = "ds_user_id";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod = "ds_isletme_kod";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_isletme_adi = "ds_isletme_adi";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_bina_kod = "ds_bina_kod";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_kat_kod = "ds_kat_kod";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_oda_kod = "ds_oda_kod";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_bina_adi = "ds_bina_adi";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_kat_adi = "ds_kat_adi";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_oda_adi = "ds_oda_adi";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_sayim_kod = "ds_sayim_kod";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_sayim_id = "ds_sayim_id";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_kod = "ds_demirbas_kod";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_eski_kod = "ds_demirbas_eski_kod";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_1 = "ds_demirbas_ad_1";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_2 = "ds_demirbas_ad_2";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_3 = "ds_demirbas_ad_3";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_durum = "ds_durum";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_eski_yeni = "ds_eski_yeni";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_sap_kod = "ds_sap_kod";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_persos_kod = "ds_persos_kod";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_persos_id = "ds_persos_id";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_rfid = "ds_rfid";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_id = "ds_zimmetli_id";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_adi = "ds_zimmetli_adi";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_aktarim = "ds_aktarim";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_masraf_yeri = "ds_masraf_yeri";
+    private static final String TABLO_11_DEMIRBAS_SAYIM_ds_TEKNIK = "ds_TEKNIK";
 
 
     public VeriTabani(Context context)
@@ -406,6 +439,37 @@ return _Sonuc;
                 + TABLO_isletme_esleme + " TEXT,"
                 + TABLO_isletme_adi + " TEXT,"
                 + TABLO_kilitli + " TEXT )");
+
+        //demirbas_sayim
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLO_11_DEMIRBAS_SAYIM+ "("
+                + TABLO_11_DEMIRBAS_SAYIM_ds_id + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_user_id + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_isletme_adi + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_bina_kod + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_kat_kod + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_oda_kod + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_bina_adi + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_kat_adi + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_oda_adi + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_sayim_kod + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_sayim_id + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_kod + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_eski_kod + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_1 + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_2 + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_3 + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_durum + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_eski_yeni + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_sap_kod + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_persos_kod + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_persos_id + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_rfid + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_id + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_adi + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_aktarim + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_masraf_yeri + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_TEKNIK + " TEXT )");
 
     }
 
@@ -1567,6 +1631,7 @@ return _Sonuc;
         db.execSQL("DROP TABLE IF EXISTS " + TABLO_08_BEKLEYEN_ARAC);
         db.execSQL("DROP TABLE IF EXISTS " + TABLO_09_INDIRME_YUKLENEN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLO_10_ETIKET_KONTROL);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLO_11_DEMIRBAS_SAYIM);
 
         onCreate(db);
     }
@@ -1725,4 +1790,109 @@ return _Sonuc;
         return  _IsEmirleriListesi;
     }
 
+    public ArrayList<Demirbas_Konum> fn_sec_ds_isemri_listesi(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<Demirbas_Konum> ds_isemri = new ArrayList<>();
+
+        String query = "SELECT DISTINCT " +
+                TABLO_11_DEMIRBAS_SAYIM_ds_sayim_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_bina_adi+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_bina_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_kat_adi+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_kat_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_oda_adi+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_oda_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_sap_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_isletme_adi+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_sayim_id+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_sap_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_TEKNIK+
+                " from "+TABLO_11_DEMIRBAS_SAYIM;
+
+        Cursor cursor = db.rawQuery(query,null);
+
+        while (cursor.moveToNext())
+        {
+            Demirbas_Konum demirbas_konum = new Demirbas_Konum();
+            demirbas_konum.setOda_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_oda_kod)));
+            demirbas_konum.setOda_adi(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_oda_adi)));
+            demirbas_konum.setOda_kod_sap(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_oda_kod)));
+            demirbas_konum.setOda_id(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_oda_kod)));
+            demirbas_konum.setIsletme_kod_sap(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod)));
+            demirbas_konum.setIsletme_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod)));
+            demirbas_konum.setIsletme_adi(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_isletme_adi)));
+            demirbas_konum.setBina_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_bina_kod)));
+            demirbas_konum.setBina_adi(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_bina_adi)));
+            demirbas_konum.setKat_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_kat_kod)));
+            demirbas_konum.setKat_adi(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_kat_adi)));
+
+            demirbas_konum.setSayim_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_sayim_kod)));
+            demirbas_konum.setSayim_id(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_sayim_id)));
+            demirbas_konum.setSayim_kod_sap(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_sap_kod)));
+            demirbas_konum.setDs_TEKNIK(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_TEKNIK)));
+
+            ds_isemri.add(demirbas_konum);
+        }
+
+        if(db.isOpen())
+        {
+            db.close();
+        }
+
+        return  ds_isemri;
+    }
+
+    public ArrayList<demirbas_sayim> fn_sec_ds_detay(Demirbas_Konum dk){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<demirbas_sayim> sayim_listesi = new ArrayList<>();
+
+        String query = "SELECT * FROM "+TABLO_11_DEMIRBAS_SAYIM+" WHERE "+TABLO_11_DEMIRBAS_SAYIM_ds_sayim_kod+"='"+dk.getSayim_kod()+"'";
+
+        Cursor cursor = db.rawQuery(query,null);
+
+        while (cursor.moveToNext())
+        {
+            demirbas_sayim demirbas_sayim = new demirbas_sayim();
+            demirbas_sayim.setDs_id(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_id)));
+            demirbas_sayim.setDs_user_id(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_user_id)));
+            demirbas_sayim.setDs_isletme_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod)));
+            demirbas_sayim.setDs_isletme_adi(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_isletme_adi)));
+            demirbas_sayim.setDs_bina_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_bina_kod)));
+            demirbas_sayim.setDs_kat_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_kat_kod)));
+            demirbas_sayim.setDs_oda_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_oda_kod)));
+            demirbas_sayim.setDs_bina_adi(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_bina_adi)));
+            demirbas_sayim.setDs_kat_adi(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_kat_adi)));
+            demirbas_sayim.setDs_oda_adi(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_oda_adi)));
+            demirbas_sayim.setDs_sayim_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_sayim_kod)));
+            demirbas_sayim.setDs_sayim_id(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_sayim_id)));
+            demirbas_sayim.setDs_demirbas_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_kod)));
+            demirbas_sayim.setDs_demirbas_eski_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_eski_kod)));
+            demirbas_sayim.setDs_demirbas_ad_1(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_1)));
+            demirbas_sayim.setDs_demirbas_ad_2(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_2)));
+            demirbas_sayim.setDs_demirbas_ad_3(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_3)));
+            demirbas_sayim.setDs_durum(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_durum)));
+            demirbas_sayim.setDs_eski_yeni(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_eski_yeni)));
+            demirbas_sayim.setDs_sap_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_sap_kod)));
+            demirbas_sayim.setDs_persos_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_persos_kod)));
+            demirbas_sayim.setDs_persos_id(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_persos_id)));
+            demirbas_sayim.setDs_rfid(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_rfid)));
+            demirbas_sayim.setDs_zimmetli_id(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_id)));
+            demirbas_sayim.setDs_zimmetli_adi(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_adi)));
+            demirbas_sayim.setDs_aktarim(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_aktarim)));
+            demirbas_sayim.setDs_masraf_yeri(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_masraf_yeri)));
+            demirbas_sayim.setDs_teknik_birim("");
+            demirbas_sayim.setDs_uzun_adi("");
+            demirbas_sayim.setDs_serino("");
+
+            sayim_listesi.add(demirbas_sayim);
+        }
+
+        if(db.isOpen())
+        {
+            db.close();
+        }
+
+        return  sayim_listesi;
+    }
 }

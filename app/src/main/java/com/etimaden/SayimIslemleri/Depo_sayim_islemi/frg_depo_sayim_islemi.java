@@ -37,6 +37,7 @@ import com.etimaden.persosclass.malzeme_sayim_isemri;
 import com.etimaden.request.request_aktarim_list;
 import com.etimaden.request.request_bos;
 import com.etimaden.request.request_string;
+import com.etimaden.request.request_string_aktif_isletme_esleme;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
@@ -155,7 +156,7 @@ public class frg_depo_sayim_islemi extends Fragment {
         fn_AyarlariYukle();
         urun_listesi= new ArrayList<aktarim>();
 
-        request_string _Param1= new request_string();
+        request_string_aktif_isletme_esleme _Param1= new request_string_aktif_isletme_esleme();
         _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
         _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
         _Param1.set_zaktif_tesis(_ayaraktiftesis);
@@ -165,6 +166,7 @@ public class frg_depo_sayim_islemi extends Fragment {
         _Param1.setAktif_sunucu(_ayaraktifsunucu);
         _Param1.setAktif_kullanici(_ayaraktifkullanici);
 
+        _Param1.set_aktif_isletme_esleme(_ayaraktifisletmeeslesme);
         _Param1.set_value(sayim_isemri.getMls_kod_sap());
 
         Genel.showProgressDialog(getContext());
