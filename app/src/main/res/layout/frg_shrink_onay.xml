@@ -19,40 +19,33 @@
         android:text="frg_shrink_onay"
         android:textSize="12dp" />
 
-    <TextView
-        android:id="@+id/txtYazi5"
+    <Button
+        android:id="@+id/btnShrinkOlustur"
         android:layout_width="325dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="29dp"
+        android:layout_y="20dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="SHRINK OLUŞTUR"
         android:textColor="@color/green"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="SHRİNK DEĞİŞİM ONAYI"
-        android:textSize="26dp"
-        android:textStyle="bold" />
+        android:textSize="20sp"/>
 
-
-
-    <TextView
-        android:id="@+id/txtYazi"
+    <HorizontalScrollView
         android:layout_width="325dp"
-        android:layout_height="70dp"
-        android:layout_x="0dp"
-        android:layout_y="70dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="AÇIK PALET ETİKETİ OKUTUNUZ..."
-        android:textColor="@color/green"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+        android:layout_height="340dp"
+        android:layout_x="2dp"
+        android:layout_y="100dp">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="325dp"
-        android:layout_height="350dp"
-        android:layout_x="1dp"
-        android:layout_y="135dp"
-        app:srcCompat="@mipmap/cbimage"
-        android:focusable="false" />
+        <ListView
+            android:id="@+id/etiket_list"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:listSelector="@color/colorBlackSecili"
+            android:scrollbars="horizontal|vertical"
+            android:textColor="@color/green" />
+
+    </HorizontalScrollView>
 
     <Button
         android:id="@+id/btngeri"

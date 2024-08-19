@@ -201,7 +201,7 @@ public class frg_konteyner_vagon_esleme extends Fragment {
                                     Genel.dismissProgressDialog();
 
 
-                                    if (miktarlar.get(0).equals("0"))
+                                    if (miktarlar.get(0).equals("0") || miktarlar.get(0).equals(""))
                                     {
                                         new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                                                 .setTitleText("HATA")

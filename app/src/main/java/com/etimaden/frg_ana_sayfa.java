@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.Elden_satis_islemi.frg_perakende_satis_is_emri_secimi;
+import com.etimaden.SayimIslemleri.frg_sayim_menu_panel;
 import com.etimaden.SevkiyatIslemleri.frg_isemri_degistir;
 import com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
@@ -37,6 +38,8 @@ public class frg_ana_sayfa extends Fragment
     Button _btnTest;
     Button _btndepoduzenleme;
     Button _btneldensatis;
+    Button _btnsayim;
+
 
 
 
@@ -113,6 +116,10 @@ public class frg_ana_sayfa extends Fragment
         _btneldensatis.playSoundEffect(SoundEffectConstants.CLICK);
         _btneldensatis.setOnClickListener(new fn_btneldensatis());
 
+        _btnsayim = (Button)getView().findViewById(R.id.btnsayim);
+        _btnsayim.playSoundEffect(SoundEffectConstants.CLICK);
+        _btnsayim.setOnClickListener(new fn_btnsayim());
+
     }
 
     public void fn_BarkodOkutuldu(final String barcode)
@@ -178,7 +185,18 @@ public class frg_ana_sayfa extends Fragment
             fragmentTransaction.commit();
         }
     }
+    private class fn_btnsayim implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
 
+            frg_sayim_menu_panel fragmentyeni = new frg_sayim_menu_panel();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sayim_menu_panel").addToBackStack(null);
+            fragmentTransaction.commit();
+
+        }
+    }
     private class fn_btnSatilmisEtiket implements View.OnClickListener {
         @Override
         public void onClick(View v) {

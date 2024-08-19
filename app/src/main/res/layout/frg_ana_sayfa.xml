@@ -75,7 +75,7 @@
         android:layout_height="100dp"
         android:layout_x="0dp"
         android:layout_y="265dp"
-        android:background="@drawable/my_button_cikis"
+        android:background="@drawable/btn_menu_normal"
         android:gravity="center"
         android:text="SAYIM"
         android:textColor="@color/colorGri"

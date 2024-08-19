@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -15,12 +18,16 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
 import com.etimaden.UretimIslemleri.frg_uretim_menu_panel;
+import com.etimaden.adapter.apmblAktifIsEmirleri;
+import com.etimaden.adapter.apmblSevkiyatAktifIsEmiriYukleme;
+import com.etimaden.adapter.apmblShirinklenecekListesi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_secEtiket;
+import com.etimaden.request.request_shrink_is_emri;
 import com.etimaden.request.request_shrink_onayi_al;
 import com.etimaden.ugr_demo.R;
 
@@ -31,6 +38,8 @@ import static com.etimaden.cSabitDegerler._zkullaniciadi;
 import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
 import static com.etimaden.cSabitDegerler._zsifre;
+
+import java.util.ArrayList;
 
 public class frg_shrink_onay extends Fragment {
 
@@ -53,14 +62,18 @@ public class frg_shrink_onay extends Fragment {
     //Button _btnShrinkOlustur;
     //ListView _isemri_list;
     Button _btngeri;
-    TextView _txtYazi;
-
+    Button _btnShrinkOlustur;
+    //TextView _txtYazi;
+    ListView _etiket_list;
 
     Urun_tag aktif_etiket;
 
+    ArrayList<Urun_tag> dataModels;
+    Urun_tag _Secili = new Urun_tag();
+    private static apmblShirinklenecekListesi adapter;
     //uretim_etiket urun;
 
-    //ArrayList<Urun_tag> dataModels;
+
     //Urun_tag _Secili = new Urun_tag();
     //private static apmblAktifIsEmirleri adapter;
 
@@ -130,16 +143,30 @@ public class frg_shrink_onay extends Fragment {
         //barkod,rfid,ikiside
         ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
-        _txtYazi=(TextView)getView().findViewById(R.id.txtYazi);
+       // _txtYazi=(TextView)getView().findViewById(R.id.txtYazi);
+        _etiket_list = (ListView) getView().findViewById(R.id.etiket_list);
 
+        _etiket_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                _Secili = dataModels.get(position);
+            }
+        });
 
         _btngeri = (Button)getView().findViewById(R.id.btngeri);
-        _btngeri.playSoundEffect(0);
+        _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
 
+        _btnShrinkOlustur=(Button)getView().findViewById(R.id.btnShrinkOlustur);
+        _btnShrinkOlustur.playSoundEffect(SoundEffectConstants.CLICK);
+        _btnShrinkOlustur.setOnClickListener(new fn_btnShrinkEslestir());
 
+        //dataModels= new ArrayList<Urun_tag>();
+        //adapter=new apmblShirinklenecekListesi(dataModels,getContext());
+       // _etiket_list.setAdapter(adapter);
         fn_AyarlariYukle();
-
+        dataModels= new ArrayList<Urun_tag>();
     }
     public void fn_BarkodOkutuldu(String barkod) {
 
@@ -181,7 +208,42 @@ public class frg_shrink_onay extends Fragment {
 
 
     }
+    private void updateListviewItem()
+    {
+        try
+        {
+            int gorev_id = 0;
+//            if (adapter != null) {
+//                adapter.clear();
+//                //_urun_list.setAdapter(adapter);
+//
+//                adapter=new apmblShirinklenecekListesi(dataModels,getContext());
+//                adapter.addAll(dataModels);
+//                //_urun_list.setAdapter(adapter);
+//                adapter.notifyDataSetChanged();
+//            }
+//            else{
+//                adapter=new apmblShirinklenecekListesi(dataModels,getContext());
+//                adapter.addAll(dataModels);
+//                //_urun_list.setAdapter(adapter);
+//                adapter.notifyDataSetChanged();
+//            }
+            if (adapter != null) {
+                //adapter.clear();
+                _etiket_list.setAdapter(adapter);
+            }
 
+            adapter=new apmblShirinklenecekListesi(dataModels,getContext());
+            _etiket_list.setAdapter(adapter);
+
+
+
+        }
+        catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,getContext());
+        }
+    }
     public void fn_RfidOkundu(String v_epc){
         System.out.println("Rfid okutuldu : " + v_epc);
 
@@ -220,6 +282,9 @@ public class frg_shrink_onay extends Fragment {
     {
         try
         {
+
+
+
             if (islemDurumu == 0)
             {
                 if (tag == null )
@@ -233,6 +298,7 @@ public class frg_shrink_onay extends Fragment {
                     return;
 
                 }
+                //  a.ser_flag_serinodurumu, a.ser_flag_serinotipi,
                 else if ( (!tag.islem_durumu.equals("1")) || (!tag.etiket_turu.equals("1")) )
                 {
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
@@ -244,32 +310,167 @@ public class frg_shrink_onay extends Fragment {
                     return;
 
                 }
-                else
+                else if(tag.etiket_turu.equals("1"))
                 {
-                    aktif_etiket = tag;
-                    islemDurumu = 1;
+                    //aktif_etiket = tag;
+                    //islemDurumu = 1;
+                    if (dataModels.contains(tag)){
+                        dataModels.remove(tag);
+                    }
+                    else{
+                        dataModels.add(tag);
+                    }
+
+                    updateListviewItem();
+
+
                     //Program.setbildirimMesaji("Shrink etiketi okutunuz.");
                     //tanim_resmi.Image = ımageList1.Images[islemDurumu];
-                    _txtYazi.setText("SHRINK ETİKETİ OKUTUNUZ.");
+                    //_txtYazi.setText("SHRINK ETİKETİ OKUTUNUZ.");
                 }
             }
-            else if (islemDurumu == 1)
+//            else if (islemDurumu == 1)
+//            {
+//                if (tag == null)
+//                {
+//                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+//                            .setTitleText("BAĞLANTI PROBLEMİ")
+//                            .setContentTextSize(25)
+//                            .setContentText("ÜRÜN BİLGİSİ ALINAMADI. DAHA SONRA TEKRAR DENEYİNİZ. \r\n Etiket verisine ulaşılamadı.")
+//                            .showCancelButton(false)
+//                            .show();
+//                    return;
+//
+//                }
+//                else if(aktif_etiket.etiket_turu.equals("1") && tag.kod.equals(aktif_etiket.kod))
+//                {
+//                    //Cursor.Current = Cursors.WaitCursor;
+//                    request_shrink_is_emri _Param= new request_shrink_is_emri();
+//                    _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+//                    _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+//                    _Param.set_zaktif_tesis(_ayaraktiftesis);
+//                    _Param.set_zsurum(_sbtVerisyon);
+//                    _Param.set_zkullaniciadi(_zkullaniciadi);
+//                    _Param.set_zsifre(_zsifre);
+//                    _Param.setAktif_sunucu(_ayaraktifsunucu);
+//                    _Param.setAktif_kullanici(_ayaraktifkullanici);
+//                    _Param.set_urunlist(tag);
+//
+//                    //String miktar = persos.fn_sec_ambalaj_degisim_toplam_harcanan_miktar(_Param);
+//
+//                    Genel.showProgressDialog(getContext());
+//                    Boolean result = persos.fn_shrink_onayi_al(_Param);
+//                    Genel.dismissProgressDialog();
+//
+//
+//                    //Boolean res = Program.persos.shrink_onayi_al(tag); ;
+//                    //Cursor.Current = Cursors.Default;
+//
+//                    if (result)
+//                    {
+//                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+//                                .setTitleText("Onay Mesaji")
+//                                .setContentText("İŞLEM BAŞARIYLA YAPILDI")
+//                                .setContentTextSize(20)
+//                                .setConfirmText("TAMAM")
+//                                .showCancelButton(false)
+//                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+//                                    @Override
+//                                    public void onClick(SweetAlertDialogG sDialog) {
+//                                        sDialog.dismissWithAnimation();
+//
+//                                    }
+//                                })
+//                                .show();
+//
+//
+//                            aktif_etiket = null;
+//                            islemDurumu = 0;
+//                            //Program.setbildirimMesaji("Açık palet etiketi okutunuz.");
+//                            //tanim_resmi.Image = ımageList1.Images[islemDurumu];
+//                           // _txtYazi.setText("AÇIK PALET ETİKETİ OKUTUNUZ.");
+//
+//
+//                    }
+//                    else
+//                    {
+//                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+//                            .setTitleText("Uyarı")
+//                            .setContentText("İşlem yapılamadı.Bağlantı ayarlarınızı kontrol ettikten sonra tekrar deneyiniz.")
+//                            .setContentTextSize(20)
+//                            .setConfirmText("TAMAM")
+//                            .showCancelButton(false)
+//                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+//                                @Override
+//                                public void onClick(SweetAlertDialogG sDialog) {
+//                                    sDialog.dismissWithAnimation();
+//
+//                                }
+//                            })
+//                            .show();
+//                        //Program.giveUyariMesaji("Uyarı", "İşlem yapılamadı.Bağlantı ayarlarınızı kontrol ettikten sonra tekrar deneyiniz.");
+//                    }
+//
+//                }
+//                else
+//                {
+//                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+//                            .setTitleText("İŞLEM YAPILAMADI")
+//                            .setContentTextSize(25)
+//                            .setContentText("Ürün eşleme başarız oldu. Etiketleri kontrol ederek tekrar deneyiniz \r\n İşleme uygun olmayan etiket.")
+//                            .showCancelButton(false)
+//                            .show();
+//                    return;
+//
+//
+//                }
+//            }
+
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private class fn_Geri implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            frg_uretim_menu_panel fragmentyeni = new frg_uretim_menu_panel();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_uretim_menu_panel").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+    }
+    private class fn_btnShrinkEslestir implements View.OnClickListener {
+        @Override
+        public void onClick(final View view) {
+            view.setEnabled(false);
+            try
             {
-                if (tag == null)
+                if (dataModels.size() == 0)
                 {
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                            .setTitleText("BAĞLANTI PROBLEMİ")
+                            .setTitleText("HATALI İŞLEM")
                             .setContentTextSize(25)
-                            .setContentText("ÜRÜN BİLGİSİ ALINAMADI. DAHA SONRA TEKRAR DENEYİNİZ. \r\n Etiket verisine ulaşılamadı.")
+                            .setContentText("Ürün listenizde ürün bulunmamaktadır. \r\n Hatalı İşlem.")
                             .showCancelButton(false)
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialogG sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                    view.setEnabled(true);
+                                }
+                            })
                             .show();
+
                     return;
 
                 }
-                else if(aktif_etiket.etiket_turu.equals("1") && tag.kod.equals(aktif_etiket.kod))
+                else
                 {
                     //Cursor.Current = Cursors.WaitCursor;
-                    request_shrink_onayi_al _Param= new request_shrink_onayi_al();
+                    request_shrink_is_emri _Param= new request_shrink_is_emri();
                     _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
                     _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
                     _Param.set_zaktif_tesis(_ayaraktiftesis);
@@ -278,7 +479,7 @@ public class frg_shrink_onay extends Fragment {
                     _Param.set_zsifre(_zsifre);
                     _Param.setAktif_sunucu(_ayaraktifsunucu);
                     _Param.setAktif_kullanici(_ayaraktifkullanici);
-                    _Param.setUrun_tag(tag);
+                    _Param.set_urunlist(dataModels);
 
                     //String miktar = persos.fn_sec_ambalaj_degisim_toplam_harcanan_miktar(_Param);
 
@@ -308,62 +509,41 @@ public class frg_shrink_onay extends Fragment {
                                 .show();
 
 
-                            aktif_etiket = null;
-                            islemDurumu = 0;
-                            //Program.setbildirimMesaji("Açık palet etiketi okutunuz.");
-                            //tanim_resmi.Image = ımageList1.Images[islemDurumu];
-                            _txtYazi.setText("AÇIK PALET ETİKETİ OKUTUNUZ.");
+                        aktif_etiket = null;
+                        islemDurumu = 0;
+                        //Program.setbildirimMesaji("Açık palet etiketi okutunuz.");
+                        //tanim_resmi.Image = ımageList1.Images[islemDurumu];
+                        // _txtYazi.setText("AÇIK PALET ETİKETİ OKUTUNUZ.");
 
 
                     }
                     else
-                    {new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
-                            .setTitleText("Uyarı")
-                            .setContentText("İşlem yapılamadı.Bağlantı ayarlarınızı kontrol ettikten sonra tekrar deneyiniz.")
-                            .setContentTextSize(20)
-                            .setConfirmText("TAMAM")
-                            .showCancelButton(false)
-                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialogG sDialog) {
-                                    sDialog.dismissWithAnimation();
+                    {
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+                                .setTitleText("Uyarı")
+                                .setContentText("İşlem yapılamadı.Bağlantı ayarlarınızı kontrol ettikten sonra tekrar deneyiniz.")
+                                .setContentTextSize(20)
+                                .setConfirmText("TAMAM")
+                                .showCancelButton(false)
+                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialogG sDialog) {
+                                        sDialog.dismissWithAnimation();
 
-                                }
-                            })
-                            .show();
+                                    }
+                                })
+                                .show();
                         //Program.giveUyariMesaji("Uyarı", "İşlem yapılamadı.Bağlantı ayarlarınızı kontrol ettikten sonra tekrar deneyiniz.");
                     }
-
-                }
-                else
-                {
-                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                            .setTitleText("İŞLEM YAPILAMADI")
-                            .setContentTextSize(25)
-                            .setContentText("Ürün eşleme başarız oldu. Etiketleri kontrol ederek tekrar deneyiniz \r\n İşleme uygun olmayan etiket.")
-                            .showCancelButton(false)
-                            .show();
-                    return;
-
-
                 }
             }
+            catch (Exception ex)
+            {
+                Genel.printStackTrace(ex,getContext());
+                view.setEnabled(true);
+            }
 
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
+
         }
     }
-
-    private class fn_Geri implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            frg_uretim_menu_panel fragmentyeni = new frg_uretim_menu_panel();
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_uretim_menu_panel").addToBackStack(null);
-            fragmentTransaction.commit();
-        }
-    }
-
 }

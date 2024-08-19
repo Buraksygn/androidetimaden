@@ -67,7 +67,7 @@ public class frg_zayi_arac_bulundu_indirme extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frg_aktif_silobas_arac_bulundu, container, false);
+        return inflater.inflate(R.layout.frg_zayi_arac_bulundu_indirme, container, false);
     }
 
     @Override

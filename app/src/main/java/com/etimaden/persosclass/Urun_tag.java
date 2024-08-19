@@ -1,5 +1,7 @@
 package com.etimaden.persosclass;
 
+import java.util.Objects;
+
 public class Urun_tag
 {
 
@@ -166,7 +168,18 @@ public class Urun_tag
         this.MAN_TİP = MAN_TİP;
 
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Urun_tag urun_tag = (Urun_tag) o;
+        return Objects.equals(rfid, urun_tag.rfid);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(rfid);
+    }
     public String getIsemri_kod() {
         return isemri_kod;
     }

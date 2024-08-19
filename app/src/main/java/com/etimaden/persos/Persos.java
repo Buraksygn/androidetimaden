@@ -780,7 +780,7 @@ public class Persos {
 
     }*/
 
-    public Boolean fn_shrink_onayi_al(request_shrink_onayi_al v_Gelen)
+    public Boolean fn_shrink_onayi_al(request_shrink_is_emri v_Gelen)
     {
         View_bool_response _yanit;
 

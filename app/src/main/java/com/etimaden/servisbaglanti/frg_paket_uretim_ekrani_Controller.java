@@ -73,7 +73,7 @@ public interface frg_paket_uretim_ekrani_Controller {
     Call<View_bool_response> fn_setShrinkIsemri(@Body request_shrink_is_emri v_Gelen);
 
     @POST("api/shrink_onayi_al")
-    Call<View_bool_response> fn_shrink_onayi_al(@Body request_shrink_onayi_al v_Gelen);
+    Call<View_bool_response> fn_shrink_onayi_al(@Body request_shrink_is_emri v_Gelen);
 
     @POST("api/uretim_iptali")
     Call<View_bool_response> fn_uretim_iptali(@Body request_uretim_iptali v_Gelen);
