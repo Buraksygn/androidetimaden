@@ -65,6 +65,8 @@ public class frg_shrink_onay extends Fragment {
     Button _btnShrinkOlustur;
     //TextView _txtYazi;
     ListView _etiket_list;
+    TextView _txtDurum;
+    TextView _txtEtiket;
 
     Urun_tag aktif_etiket;
 
@@ -153,6 +155,10 @@ public class frg_shrink_onay extends Fragment {
                 _Secili = dataModels.get(position);
             }
         });
+        _txtDurum=(TextView)getView().findViewById(R.id.txtDurum);
+        _txtEtiket=(TextView)getView().findViewById(R.id.txtEtiket);
+
+
 
         _btngeri = (Button)getView().findViewById(R.id.btngeri);
         _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
@@ -283,8 +289,6 @@ public class frg_shrink_onay extends Fragment {
         try
         {
 
-
-
             if (islemDurumu == 0)
             {
                 if (tag == null )
@@ -312,8 +316,21 @@ public class frg_shrink_onay extends Fragment {
                 }
                 else if(tag.etiket_turu.equals("1"))
                 {
-                    //aktif_etiket = tag;
-                    //islemDurumu = 1;
+                    aktif_etiket = tag;
+                    _txtEtiket.setText(tag.rfid);
+                    _txtDurum.setText("Shrink etiketi okutunuz ...");
+                    islemDurumu = 1;
+
+
+
+
+                    //Program.setbildirimMesaji("Shrink etiketi okutunuz.");
+                    //tanim_resmi.Image = ımageList1.Images[islemDurumu];
+                    //_txtYazi.setText("SHRINK ETİKETİ OKUTUNUZ.");
+                }
+            }
+            else if (islemDurumu == 1){
+                if (_txtEtiket.getText().equals(tag.rfid)){
                     if (dataModels.contains(tag)){
                         dataModels.remove(tag);
                     }
@@ -322,13 +339,13 @@ public class frg_shrink_onay extends Fragment {
                     }
 
                     updateListviewItem();
-
-
-                    //Program.setbildirimMesaji("Shrink etiketi okutunuz.");
-                    //tanim_resmi.Image = ımageList1.Images[islemDurumu];
-                    //_txtYazi.setText("SHRINK ETİKETİ OKUTUNUZ.");
+                    islemDurumu=0;
+                    _txtEtiket.setText("");
+                    _txtDurum.setText("Açık palet etiketi okutunuz ...");
                 }
+
             }
+
 //            else if (islemDurumu == 1)
 //            {
 //                if (tag == null)
@@ -503,7 +520,11 @@ public class frg_shrink_onay extends Fragment {
                                     @Override
                                     public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
-
+                                        frg_uretim_menu_panel fragmentyeni = new frg_uretim_menu_panel();
+                                        FragmentManager fragmentManager = getFragmentManager();
+                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_uretim_menu_panel").addToBackStack(null);
+                                        fragmentTransaction.commit();
                                     }
                                 })
                                 .show();
@@ -529,6 +550,7 @@ public class frg_shrink_onay extends Fragment {
                                     @Override
                                     public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
+
 
                                     }
                                 })
