@@ -10,10 +10,12 @@ import com.etimaden.persosclass.Arac;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.View_sec_sevk_miktar;
 import com.etimaden.persosclass.DEPOTag;
+import com.etimaden.persosclass.Duran_Varlik_sap;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.persosclass.Vagon_hareket;
 import com.etimaden.persosclass.Zayi;
 import com.etimaden.persosclass.Zayi_urun;
+import com.etimaden.persosclass.Zimmet_sonuc_sap;
 import com.etimaden.persosclass.cBekleyen_Arac_Listesi;
 import com.etimaden.persosclass.etiket_no;
 import com.etimaden.persosclass.lot_detay;
@@ -24,6 +26,8 @@ import com.etimaden.request.request_aktarim_list;
 import com.etimaden.request.request_ambalaj_tipi_secEtiket;
 import com.etimaden.request.request_bos;
 import com.etimaden.request.request_bos_aktif_isletme_esleme;
+import com.etimaden.request.request_demirbas_sayim_list;
+import com.etimaden.request.request_demirbas_sayim_string;
 import com.etimaden.request.request_get_lot_toplami;
 import com.etimaden.request.request_guncelle_sevk_hareket;
 import com.etimaden.request.request_integer_sevkiyat_isemri;
@@ -68,7 +72,9 @@ import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_uretim_detay;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_string_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.ViewsecDepoTanimlari;
 import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
+import com.etimaden.response.sayim_islemleri.View_duran_varlik_sap;
 import com.etimaden.response.sayim_islemleri.View_malzeme_sayim_isemri_listesi;
+import com.etimaden.response.sayim_islemleri.View_zimmet_sonuc_sap;
 import com.etimaden.response.sevkiyat_islemleri.View_arac;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_bekleyen_arac_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri;
@@ -3067,6 +3073,156 @@ public class Persos {
                 _yanit = _Response.body();
 
                 return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_guncelle_demirbas_sayim_detay_listesi(request_demirbas_sayim_list v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_guncelle_demirbas_sayim_detay_listesi(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_iptal_demirbas_sayim_detay_listesi(request_demirbas_sayim_list v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_iptal_demirbas_sayim_detay_listesi(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_kaydet_demirbas_sayim_detay_listesi(request_demirbas_sayim_list v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_kaydet_demirbas_sayim_detay_listesi(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Duran_Varlik_sap fn_sorgula_duran_varlik(request_string v_Gelen)
+    {
+        View_duran_varlik_sap _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_duran_varlik_sap> fn_Servis = _Servis.fn_sorgula_duran_varlik(v_Gelen);
+
+            Response<View_duran_varlik_sap> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_duran_varlik_sap();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Zimmet_sonuc_sap fn_sorgula_zimmet(request_demirbas_sayim_string v_Gelen)
+    {
+        View_zimmet_sonuc_sap _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_zimmet_sonuc_sap> fn_Servis = _Servis.fn_sorgula_zimmet(v_Gelen);
+
+            Response<View_zimmet_sonuc_sap> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_zimmet_sonuc_sap();
             }
             else
             {

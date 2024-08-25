@@ -442,7 +442,7 @@ return _Sonuc;
 
         //demirbas_sayim
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLO_11_DEMIRBAS_SAYIM+ "("
-                + TABLO_11_DEMIRBAS_SAYIM_ds_id + " TEXT,"
+                + TABLO_11_DEMIRBAS_SAYIM_ds_id + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TABLO_11_DEMIRBAS_SAYIM_ds_user_id + " TEXT,"
                 + TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod + " TEXT,"
                 + TABLO_11_DEMIRBAS_SAYIM_ds_isletme_adi + " TEXT,"
@@ -1854,7 +1854,7 @@ return _Sonuc;
         while (cursor.moveToNext())
         {
             demirbas_sayim demirbas_sayim = new demirbas_sayim();
-            demirbas_sayim.setDs_id(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_id)));
+            demirbas_sayim.setDs_id(""+cursor.getInt(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_id)));
             demirbas_sayim.setDs_user_id(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_user_id)));
             demirbas_sayim.setDs_isletme_kod(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod)));
             demirbas_sayim.setDs_isletme_adi(cursor.getString(cursor.getColumnIndex(TABLO_11_DEMIRBAS_SAYIM_ds_isletme_adi)));
@@ -1894,5 +1894,160 @@ return _Sonuc;
         }
 
         return  sayim_listesi;
+    }
+
+    public void  fn_ekle_ds(demirbas_sayim ds)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String _strSql="";
+
+        _strSql="INSERT INTO "+TABLO_11_DEMIRBAS_SAYIM+"(" +
+                TABLO_11_DEMIRBAS_SAYIM_ds_id+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_user_id+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_isletme_adi+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_bina_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_kat_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_oda_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_bina_adi+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_kat_adi+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_oda_adi+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_sayim_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_sayim_id+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_eski_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_1+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_2+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_3+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_durum+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_eski_yeni+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_sap_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_persos_kod+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_persos_id+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_rfid+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_id+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_adi+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_aktarim+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_masraf_yeri+","+
+                TABLO_11_DEMIRBAS_SAYIM_ds_TEKNIK+
+                ") VALUES ("+
+                "'"+ds.getDs_id()+"'," +
+                "'"+ds.getDs_user_id()+"'," +
+                "'"+ds.getDs_isletme_kod()+"'," +
+                "'"+ds.getDs_isletme_adi()+"'," +
+                "'"+ds.getDs_bina_kod()+"'," +
+                "'"+ds.getDs_kat_kod()+"'," +
+                "'"+ds.getDs_oda_kod()+"'," +
+                "'"+ds.getDs_bina_adi()+"'," +
+                "'"+ds.getDs_kat_adi()+"'," +
+                "'"+ds.getDs_oda_adi()+"'," +
+                "'"+ds.getDs_sayim_kod()+"'," +
+                "'"+ds.getDs_sayim_id()+"'," +
+                "'"+ds.getDs_demirbas_kod()+"'," +
+                "'"+ds.getDs_demirbas_eski_kod()+"'," +
+                "'"+ds.getDs_demirbas_ad_1()+"'," +
+                "'"+ds.getDs_demirbas_ad_2()+"'," +
+                "'"+ds.getDs_demirbas_ad_3()+"'," +
+                "'"+ds.getDs_durum()+"'," +
+                "'"+ds.getDs_eski_yeni()+"'," +
+                "'"+ds.getDs_sap_kod()+"'," +
+                "'"+ds.getDs_persos_kod()+"'," +
+                "'"+ds.getDs_persos_id()+"'," +
+                "'"+ds.getDs_rfid()+"'," +
+                "'"+ds.getDs_zimmetli_id()+"'," +
+                "'"+ds.getDs_zimmetli_adi()+"'," +
+                "'"+ds.getDs_aktarim()+"'," +
+                "'"+ds.getDs_masraf_yeri()+"'," +
+                "'"+ds.getDs_teknik_birim()+"'" +
+                ") ";
+
+        db.execSQL(_strSql);
+        if(db.isOpen())
+        {
+            db.close();
+        }
+    }
+
+    public void  fn_guncelle_ds(demirbas_sayim ds)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        SqlUpdateObject sqlUpdateObject=new SqlUpdateObject(TABLO_11_DEMIRBAS_SAYIM);
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_user_id,ds.getDs_user_id());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod,ds.getDs_isletme_kod());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_isletme_adi,ds.getDs_isletme_adi());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_bina_kod,ds.getDs_bina_kod());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_kat_kod,ds.getDs_kat_kod());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_oda_kod,ds.getDs_oda_kod());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_bina_adi,ds.getDs_bina_adi());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_kat_adi,ds.getDs_kat_adi());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_oda_adi,ds.getDs_oda_adi());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_sayim_kod,ds.getDs_sayim_kod());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_sayim_id,ds.getDs_sayim_id());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_kod,ds.getDs_demirbas_kod());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_eski_kod,ds.getDs_demirbas_eski_kod());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_1,ds.getDs_demirbas_ad_1());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_2,ds.getDs_demirbas_ad_2());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_3,ds.getDs_demirbas_ad_3());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_durum,ds.getDs_durum());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_eski_yeni,ds.getDs_eski_yeni());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_sap_kod,ds.getDs_sap_kod());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_persos_kod,ds.getDs_persos_kod());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_persos_id,ds.getDs_persos_id());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_rfid,ds.getDs_rfid());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_id,ds.getDs_zimmetli_id());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_adi,ds.getDs_zimmetli_adi());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_aktarim,ds.getDs_aktarim());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_masraf_yeri,ds.getDs_masraf_yeri());
+        sqlUpdateObject.addCollumnIfIsNotEmpty(TABLO_11_DEMIRBAS_SAYIM_ds_TEKNIK,ds.getDs_teknik_birim());
+
+        sqlUpdateObject.addWhereAndCloseUpdate(TABLO_11_DEMIRBAS_SAYIM_ds_id,ds.getDs_id());
+
+        db.execSQL(sqlUpdateObject.getSql());
+        if(db.isOpen())
+        {
+            db.close();
+        }
+    }
+
+    public void fn_sil_demirbas_sayim(Demirbas_Konum dk) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String Sonuc = "";
+
+        String _strSql = "DELETE FROM \"+TABLO_11_DEMIRBAS_SAYIM+\" WHERE " + TABLO_11_DEMIRBAS_SAYIM_ds_sayim_id + " = '" + dk.getSayim_id() + "'";
+        db.execSQL(_strSql);
+
+        if (db.isOpen()) {
+            db.close();
+        }
+    }
+
+
+    private class SqlUpdateObject{
+        private String sql="";
+        private Boolean comma=false;
+        private Boolean updatable=true;
+
+        public SqlUpdateObject(String tableName) {
+            this.sql = "UPDATE "+tableName+" SET ";
+        }
+
+        public void addCollumnIfIsNotEmpty(String collName,String value){
+            if(value!=null && !value.isEmpty() && updatable) {
+                if(this.comma){ this.sql += ", "; }
+                this.sql += collName + " = '"+value +"'";
+                this.comma=true;
+            }
+        }
+
+        public void addWhereAndCloseUpdate(String collName,String value){
+            if(updatable){
+                this.sql += " WHERE " + collName + " = '"+value +"'";
+                updatable=false;
+            }
+        }
+
+        public String getSql() {
+            return sql;
+        }
     }
 }
