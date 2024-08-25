@@ -312,7 +312,7 @@ public class frg_ds_sayim_islemi extends Fragment {
         try
         {
             barkod = barkod.substring(barkod.length() - 24);
-            if(barkod.startsWith("737767")) {
+            if(barkod.startsWith("7377675")) {
                 etiketDegerlendir(barkod);
             }
         }
@@ -332,7 +332,7 @@ public class frg_ds_sayim_islemi extends Fragment {
     public void rfidOkundu(String rfid){
         try
         {
-            if(rfid.startsWith("737767")) {
+            if(rfid.startsWith("7377675")) {
                 etiketDegerlendir(rfid);
             }
         }
