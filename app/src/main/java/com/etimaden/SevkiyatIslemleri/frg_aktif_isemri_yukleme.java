@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -159,15 +160,15 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         _txtBaslik.setText(baslik);
 
         _btnTamam = (Button)getView().findViewById(R.id.btnTamam);
-        _btnTamam.playSoundEffect(0);
+        _btnTamam.playSoundEffect(SoundEffectConstants.CLICK);
         _btnTamam.setOnClickListener(new fn_btnTamam());
 
         _btngeri = (Button)getView().findViewById(R.id.btnGeri);
-        _btngeri.playSoundEffect(0);
+        _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
 
         _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
-        _btnOkuma.playSoundEffect(0);
+        _btnOkuma.playSoundEffect(SoundEffectConstants.CLICK);
         _btnOkuma.setOnClickListener(new fn_okumaDegistir());
         _btnOkuma.setText("KAREKOD");
 

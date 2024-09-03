@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
+import com.etimaden.SevkiyatIslemleri.frg_aktif_arac_secimi;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
@@ -35,6 +37,7 @@ public class frg_aktif_silobas_arac_secimi extends Fragment {
 
     SweetAlertDialogG pDialog;
     boolean isReadable = true;
+    Button _btnOkuma;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
     String _ayaraktifdepo = "";
@@ -112,20 +115,38 @@ public class frg_aktif_silobas_arac_secimi extends Fragment {
 
         _myIslem = new VeriTabani(getContext());
 
-        ((GirisSayfasi) getActivity()).fn_ModRFID();
+        //        ((GirisSayfasi)getActivity()).fn_ModRFID();
+        ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
         _txtYazi=(TextView)getView().findViewById(R.id.txtYazi);
 
+        _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
+        _btnOkuma.playSoundEffect(SoundEffectConstants.CLICK);
+        _btnOkuma.setOnClickListener( new fn_okumaDegistir());
+        _btnOkuma.setText("KAREKOD");
 
         _btngeri = (Button)getView().findViewById(R.id.btngeri);
-        _btngeri.playSoundEffect(0);
+        _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
 
 
         fn_AyarlariYukle();
 
     }
-
+    private class fn_okumaDegistir implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Genel.showProgressDialog(getContext());
+            if(_btnOkuma.getText().toString().equals("KAREKOD")){
+                ((GirisSayfasi) getActivity()).fn_ModRFID();
+                _btnOkuma.setText("RFID");
+            }else{
+                ((GirisSayfasi) getActivity()).fn_ModBarkod();
+                _btnOkuma.setText("KAREKOD");
+            }
+            Genel.dismissProgressDialog();
+        }
+    }
     public void fn_RfidOkundu(String v_epc){
         System.out.println("Rfid okutuldu : " + v_epc);
         try
@@ -198,7 +219,78 @@ public class frg_aktif_silobas_arac_secimi extends Fragment {
         okunabilir = true;
     }
 
+    public void barkodOkundu(String v_epc)
+    {
+        System.out.println("Rfid okutuldu : " + v_epc);
+        try
+        {
+            if (!okunabilir)
+                return;
+            okunabilir = false;
+            Genel.playQuestionSound(getContext());
+            //System.Media.SystemSounds.Question.Play();
 
+            request_string _Param= new request_string();
+            _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+            _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            _Param.set_zaktif_tesis(_ayaraktiftesis);
+            _Param.set_zsurum(_sbtVerisyon);
+            _Param.set_zkullaniciadi(_zkullaniciadi);
+            _Param.set_zsifre(_zsifre);
+            _Param.setAktif_sunucu(_ayaraktifsunucu);
+            _Param.setAktif_kullanici(_ayaraktifkullanici);
+
+            _Param.set_value(v_epc);
+
+            Genel.showProgressDialog(getContext());
+            Sevkiyat_isemri sevk = persos.fn_sec_aktif_silobas(_Param);
+            Genel.dismissProgressDialog();
+
+            if (sevk == null)
+            {
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Aktif araç işemri bulunamadı.. \r\n Araç kantardan geçiş işlemini tamamlamamış.")
+                        .showCancelButton(false)
+                        .show();
+            }
+            else
+            {
+                try
+                {
+                    //todo GURKAN frg_aktif_silobas_arac_bulundu sayfasını neye göre açacaz?
+                    Genel.playButtonClikSound(getContext());
+                    if (_ayaraktiftesis.equals("5001")){
+                        frg_aktif_silobas_isemri_degistir fragmentyeni = new frg_aktif_silobas_isemri_degistir();
+                        fragmentyeni.fn_senddata(sevk);
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_aktif_silobas_Isemri_degistir").addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Genel.printStackTrace(ex,getContext());
+                }
+            }
+
+
+
+        }
+        catch (Exception ex)
+        {
+            Genel.dismissProgressDialog();
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                    .setTitleText("HATA")
+                    .setContentTextSize(25)
+                    .setContentText("Aktif araç işemri bulunamadı.. \r\n Araç kantardan geçiş işlemini tamamlamamış.")
+                    .showCancelButton(false)
+                    .show();
+        }
+        okunabilir = true;
+    }
     private class fn_Geri implements View.OnClickListener {
         @Override
         public void onClick(View view) {

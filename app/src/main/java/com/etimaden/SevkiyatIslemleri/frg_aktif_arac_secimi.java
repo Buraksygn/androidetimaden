@@ -50,7 +50,7 @@ public class frg_aktif_arac_secimi  extends Fragment {
 
 
     SweetAlertDialogG pDialog;
-
+    Button _btnOkuma;
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
     String _ayaraktifdepo = "";
@@ -108,6 +108,11 @@ public class frg_aktif_arac_secimi  extends Fragment {
 
         ((GirisSayfasi)getActivity()).fn_ListeTemizle();
 
+        _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
+        _btnOkuma.playSoundEffect(SoundEffectConstants.CLICK);
+        _btnOkuma.setOnClickListener( new fn_okumaDegistir());
+        _btnOkuma.setText("KAREKOD");
+
         _btngeri=(Button)getView().findViewById(R.id.btngeri);
         _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
@@ -117,11 +122,24 @@ public class frg_aktif_arac_secimi  extends Fragment {
         _btn_05.setOnClickListener(new fn_btn_05());
 
     }
-
+    private class fn_okumaDegistir implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Genel.showProgressDialog(getContext());
+            if(_btnOkuma.getText().toString().equals("KAREKOD")){
+                ((GirisSayfasi) getActivity()).fn_ModRFID();
+                _btnOkuma.setText("RFID");
+            }else{
+                ((GirisSayfasi) getActivity()).fn_ModBarkod();
+                _btnOkuma.setText("KAREKOD");
+            }
+            Genel.dismissProgressDialog();
+        }
+    }
     private void fn_AyarlariYukle()
     {
-        ((GirisSayfasi)getActivity()).fn_ModRFID();
-
+//        ((GirisSayfasi)getActivity()).fn_ModRFID();
+        ((GirisSayfasi) getActivity()).fn_ModBarkod();
         _ayarbaglantituru=_myIslem.fn_baglanti_turu();
         _ayarsunucuip=_myIslem.fn_sunucu_ip();
         _ayaraktifkullanici=_myIslem.fn_aktif_kullanici();
@@ -271,7 +289,134 @@ public class frg_aktif_arac_secimi  extends Fragment {
 
 
     }
+    public void barkodOkundu(String tempEpc)
+    {
+        pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.NORMAL_TYPE);
+        pDialog.setTitleText("YÜKLENİYOR");
+        pDialog.setContentText(tempEpc+ " Kontrol ediliyor Lütfen bekleyiniz.");
+        //pDialog.setContentText(_TempEpc);
+        pDialog.setCancelable(false);
+        pDialog.show();
+        pDialog.findViewById(R.id.confirm_button).setVisibility(View.GONE);
 
+        JSONObject parametre = new JSONObject();
+
+
+        try
+        {
+            parametre.put("_zkullaniciadi", _zkullaniciadi);
+            parametre.put("_zsifre", _zsifre);
+            parametre.put("_zrfid", tempEpc);
+            parametre.put("_zsunucu_ip_adresi", _ayarsunucuip);
+            parametre.put("_zaktif_alt_tesis", _ayaraktifalttesis);
+            parametre.put("_zaktif_tesis", _ayaraktiftesis);
+            parametre.put("aktif_sunucu", _ayaraktifsunucu);
+            parametre.put("aktif_kullanici", _ayaraktifkullanici);
+
+            //parametre.put("aktif_sunucu", _ayaraktifsunucu);
+            //parametre.put("aktif_kullanici", _ayaraktifkullanici);
+
+        }
+        catch (JSONException error)
+        {
+            error.printStackTrace();
+        }
+
+        RequestQueue mRequestQueue;
+
+        Cache cache = new DiskBasedCache(getContext().getCacheDir(), 2*1024 * 1024); // 1MB cap
+        Network network = new BasicNetwork(new HurlStack());
+
+        RequestQueue queue = new RequestQueue(cache, network);
+        queue.start();
+
+
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST,
+                _OnlineUrl,
+                parametre,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            ObjectMapper objectMapper = new ObjectMapper();
+
+                            ViewsecAktifSevkIsemriListesi _Yanit = objectMapper.readValue(response.toString(), ViewsecAktifSevkIsemriListesi.class);
+
+                            // String _Asd = _Yanit._zaktif_sevk_isemri.arac_kodu;
+
+                            if(_Yanit._zSonuc.equals("0"))
+                            {
+                                pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
+                                pDialog.setTitle("HATA");
+                                pDialog.setContentText(_Yanit._zHataAciklama);
+                            }
+                            else
+                            {
+                                pDialog.hide();
+
+
+                                if(_Yanit._zsevkisemi.indirmeBindirme.equals(("")))
+                                {
+                                    pDialog.changeAlertType(SweetAlertDialogG.ERROR_TYPE);
+                                    pDialog.setTitle("HATA");
+                                    pDialog.setContentText(" HTN 01:Aktif araç işemri bulunamadı.. Araç kantardan geçiş işlemini tamamlamamış.");
+
+                                }
+                                else
+                                {
+                                    if(_Yanit._zsevkisemi.indirmeBindirme.equals("0"))
+                                    {
+
+                                        frg_aktif_isemri_indirme fragmentyeni = new frg_aktif_isemri_indirme();
+                                        fragmentyeni.fn_senddata(_Yanit._zsevkisemi);
+                                        FragmentManager fragmentManager = getFragmentManager();
+                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_aktif_isemri_indirme").addToBackStack(null);
+                                        fragmentTransaction.commit();
+
+                                    }
+                                    else
+                                    {
+                                        frg_aktif_isemri_yukleme fragmentyeni = new frg_aktif_isemri_yukleme();
+                                        fragmentyeni.fn_senddata(_Yanit._zsevkisemi);
+                                        FragmentManager fragmentManager = getFragmentManager();
+                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_aktif_isemri_yukleme").addToBackStack(null);
+                                        fragmentTransaction.commit();
+                                    }
+                                }
+                            }
+
+
+
+                            //Toast.makeText(getApplicationContext(), "_zSayfaAdiAciklama =" + _zHataAciklamasi, Toast.LENGTH_SHORT).show();
+
+                        } catch (JsonMappingException e) {
+                            e.printStackTrace();
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        pDialog.hide();
+                        Toast.makeText(getContext(), "error =" + error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+        );
+        int socketTimeout = 30000;//30 seconds - change to what you want
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        request.setRetryPolicy(policy);
+        queue.add(request);
+
+    }
     private class fn_Geri implements View.OnClickListener {
         @Override
         public void onClick(View view) {

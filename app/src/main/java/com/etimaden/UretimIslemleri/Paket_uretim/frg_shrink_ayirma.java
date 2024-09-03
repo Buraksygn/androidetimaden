@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -133,11 +134,11 @@ public class frg_shrink_ayirma extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
         _btnShrinkOlustur = (Button)getView().findViewById(R.id.btnShrinkOlustur);
-        _btnShrinkOlustur.playSoundEffect(0);
+        _btnShrinkOlustur.playSoundEffect(SoundEffectConstants.CLICK);
         _btnShrinkOlustur.setOnClickListener(new fn_btnShrinkOlustur());
 
         _btngeri = (Button)getView().findViewById(R.id.btncikis);
-        _btngeri.playSoundEffect(0);
+        _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
 
         _isemri_list = (ListView) getView().findViewById(R.id.isemri_list);

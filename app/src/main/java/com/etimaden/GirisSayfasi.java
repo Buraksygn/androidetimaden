@@ -921,7 +921,21 @@ public class GirisSayfasi extends AppCompatActivity {
             _frg_da_isemri_secimi.barkodOkundu(barkod);
             return true;
         }
-
+        frg_konteyner_aktivasyon _frg_konteyner_aktivasyon = (frg_konteyner_aktivasyon) getSupportFragmentManager().findFragmentByTag("frg_konteyner_aktivasyon");
+        if (_frg_konteyner_aktivasyon != null && _frg_konteyner_aktivasyon.isVisible()) {
+            _frg_konteyner_aktivasyon.barkodOkundu(barkod);
+            return true;
+        }
+        frg_konteyner_yukleme_aktivasyon _frg_konteyner_yukleme_aktivasyon = (frg_konteyner_yukleme_aktivasyon) getSupportFragmentManager().findFragmentByTag("frg_konteyner_yukleme_aktivasyon");
+        if (_frg_konteyner_yukleme_aktivasyon != null && _frg_konteyner_yukleme_aktivasyon.isVisible()) {
+            _frg_konteyner_yukleme_aktivasyon.barkodOkundu(barkod);
+            return true;
+        }
+        frg_aktif_arac_secimi _frg_aktif_arac_secimi = (frg_aktif_arac_secimi) getSupportFragmentManager().findFragmentByTag("frg_aktif_arac_secimi");
+        if (_frg_aktif_arac_secimi != null && _frg_aktif_arac_secimi.isVisible()) {
+            _frg_aktif_arac_secimi.barkodOkundu(barkod);
+            return true;
+        }
         return false;
     }
 
