@@ -56,7 +56,7 @@
 
     <Button
         android:id="@+id/btngeri"
-        android:layout_width="325dp"
+        android:layout_width="220dp"
         android:layout_height="60dp"
         android:layout_x="0dp"
         android:layout_y="510dp"
@@ -67,6 +67,18 @@
         android:textSize="20sp"
         android:focusable="false"/>
 
+    <Button
+        android:id="@+id/btnOkuma"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_x="224dp"
+        android:layout_y="510dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:focusable="false"
+        android:text="KAREKOD"
+        android:textColor="@color/green" />
 
 
 

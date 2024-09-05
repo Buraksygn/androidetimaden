@@ -56,6 +56,7 @@ public class frg_konteyner_vagon_esleme extends Fragment {
     Persos persos;
 
     Button _btngeri;
+    Button _btnOkuma;
     TextView _txtYazi;
 
 
@@ -118,7 +119,7 @@ public class frg_konteyner_vagon_esleme extends Fragment {
     {
         super.onActivityCreated(savedInstanceState);
 
-        ((GirisSayfasi)getActivity()).fn_ModRFID();
+        ((GirisSayfasi)getActivity()).fn_ModBarkod();
 
         _myIslem = new VeriTabani(getContext());
 
@@ -135,6 +136,11 @@ public class frg_konteyner_vagon_esleme extends Fragment {
         _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
         _txtYazi.setText( vagon.vagon_kod +" KODLU " + vagon.vagon_plaka + " PLAKALI VAGONUN EŞLEŞTİRME İŞLEMİNİ TAMAMLAMAK İÇİN KONTEYNER ETİKETİ OKUTUNUZ...");
+
+        _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
+        _btnOkuma.playSoundEffect(SoundEffectConstants.CLICK);
+        _btnOkuma.setOnClickListener(new frg_konteyner_vagon_esleme.fn_okumaDegistir());
+        _btnOkuma.setText("KAREKOD");
     }
 
     public void rfidOkundu(String rfid)
@@ -336,6 +342,40 @@ public class frg_konteyner_vagon_esleme extends Fragment {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_sevkiyat_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
+        }
+    }
+
+    public void fn_BarkodOkutuldu(String barkod) {
+
+        try
+        {
+            barkod = barkod.substring(barkod.length() - 24);
+
+
+            rfidOkundu(barkod);
+
+        }
+        catch (Exception ex){
+            Genel.printStackTrace(ex,getContext());
+        }
+        //Thread.Sleep(1000);
+        //isReadable = true;
+
+
+    }
+
+    private class fn_okumaDegistir implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Genel.showProgressDialog(getContext());
+            if(_btnOkuma.getText().toString().equals("KAREKOD")){
+                ((GirisSayfasi) getActivity()).fn_ModRFID();
+                _btnOkuma.setText("RFID");
+            }else{
+                ((GirisSayfasi) getActivity()).fn_ModBarkod();
+                _btnOkuma.setText("KAREKOD");
+            }
+            Genel.dismissProgressDialog();
         }
     }
 }

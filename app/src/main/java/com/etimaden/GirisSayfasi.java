@@ -931,9 +931,32 @@ public class GirisSayfasi extends AppCompatActivity {
             _frg_konteyner_yukleme_aktivasyon.barkodOkundu(barkod);
             return true;
         }
+        frg_arac_aktivasyon _frg_arac_aktivasyon = (frg_arac_aktivasyon) getSupportFragmentManager().findFragmentByTag("frg_arac_aktivasyon");
+        if (_frg_arac_aktivasyon != null && _frg_arac_aktivasyon.isVisible()) {
+            _frg_arac_aktivasyon.fn_BarkodOkutuldu(barkod);
+            return true;
+        }
         frg_aktif_arac_secimi _frg_aktif_arac_secimi = (frg_aktif_arac_secimi) getSupportFragmentManager().findFragmentByTag("frg_aktif_arac_secimi");
         if (_frg_aktif_arac_secimi != null && _frg_aktif_arac_secimi.isVisible()) {
             _frg_aktif_arac_secimi.barkodOkundu(barkod);
+            return true;
+        }
+
+        frg_konteyner_kamyon_esleme _frg_konteyner_kamyon_esleme = (frg_konteyner_kamyon_esleme) getSupportFragmentManager().findFragmentByTag("frg_konteyner_kamyon_esleme");
+        if (_frg_konteyner_kamyon_esleme != null && _frg_konteyner_kamyon_esleme.isVisible()) {
+            _frg_konteyner_kamyon_esleme.fn_BarkodOkutuldu(barkod);
+            return true;
+        }
+
+        frg_konteyner_vagon_esleme _frg_konteyner_vagon_esleme = (frg_konteyner_vagon_esleme) getSupportFragmentManager().findFragmentByTag("frg_konteyner_vagon_esleme");
+        if (_frg_konteyner_vagon_esleme != null && _frg_konteyner_vagon_esleme.isVisible()) {
+            _frg_konteyner_vagon_esleme.fn_BarkodOkutuldu(barkod);
+            return true;
+        }
+
+        frg_zayi_aktivasyon _frg_zayi_aktivasyon = (frg_zayi_aktivasyon) getSupportFragmentManager().findFragmentByTag("frg_zayi_aktivasyon");
+        if (_frg_zayi_aktivasyon != null && _frg_zayi_aktivasyon.isVisible()) {
+            _frg_zayi_aktivasyon.fn_BarkodOkutuldu(barkod);
             return true;
         }
         return false;

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
+import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.SweetAlertDialogG;
@@ -57,6 +59,7 @@ public class frg_zayi_aktivasyon extends Fragment {
 
     Button _btngeri;
     TextView _txtYazi;
+    Button _btnOkuma;
 
 
     boolean okunabilir = true;
@@ -118,7 +121,7 @@ public class frg_zayi_aktivasyon extends Fragment {
 
         _myIslem = new VeriTabani(getContext());
 
-        ((GirisSayfasi) getActivity()).fn_ModRFID();
+        ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
         _txtYazi=(TextView)getView().findViewById(R.id.txtYazi);
 
@@ -126,6 +129,11 @@ public class frg_zayi_aktivasyon extends Fragment {
         _btngeri = (Button)getView().findViewById(R.id.btngeri);
         _btngeri.playSoundEffect(0);
         _btngeri.setOnClickListener(new fn_Geri());
+
+        _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
+        _btnOkuma.playSoundEffect(SoundEffectConstants.CLICK);
+        _btnOkuma.setOnClickListener(new frg_zayi_aktivasyon.fn_okumaDegistir());
+        _btnOkuma.setText("KAREKOD");
 
 
         fn_AyarlariYukle();
@@ -249,6 +257,40 @@ public class frg_zayi_aktivasyon extends Fragment {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_zayi_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
+        }
+    }
+
+    public void fn_BarkodOkutuldu(String barkod) {
+
+        try
+        {
+            barkod = barkod.substring(barkod.length() - 24);
+
+
+            fn_RfidOkundu(barkod);
+
+        }
+        catch (Exception ex){
+            Genel.printStackTrace(ex,getContext());
+        }
+        //Thread.Sleep(1000);
+        //isReadable = true;
+
+
+    }
+
+    private class fn_okumaDegistir implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Genel.showProgressDialog(getContext());
+            if(_btnOkuma.getText().toString().equals("KAREKOD")){
+                ((GirisSayfasi) getActivity()).fn_ModRFID();
+                _btnOkuma.setText("RFID");
+            }else{
+                ((GirisSayfasi) getActivity()).fn_ModBarkod();
+                _btnOkuma.setText("KAREKOD");
+            }
+            Genel.dismissProgressDialog();
         }
     }
 

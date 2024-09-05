@@ -11,19 +11,37 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.android.volley.Cache;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.etimaden.GirisSayfasi;
+import com.etimaden.SevkiyatIslemleri.frg_aktif_arac_secimi;
+import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_indirme;
+import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_yukleme;
 import com.etimaden.SevkiyatIslemleri.frg_arac_bulundu_indirme;
 import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
+import com.etimaden.cResponseResult.ViewsecAktifSevkIsemriListesi;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
@@ -31,6 +49,12 @@ import com.etimaden.persosclass.Vagon_hareket;
 import com.etimaden.request.request_sevkiyat_isemri;
 import com.etimaden.request.request_string;
 import com.etimaden.ugr_demo.R;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +78,8 @@ public class frg_arac_aktivasyon extends Fragment {
 
     Button _btnBekleyenAracListesi;
     Button _btngeri;
+    Button _btnOkuma;
+
 
     boolean okunabilir = true;
 
@@ -114,7 +140,7 @@ public class frg_arac_aktivasyon extends Fragment {
 
         _myIslem = new VeriTabani(getContext());
 
-        ((GirisSayfasi) getActivity()).fn_ModRFID();
+        ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
 
         _btnBekleyenAracListesi = (Button)getView().findViewById(R.id.btnBekleyenAracListesi);
@@ -125,6 +151,10 @@ public class frg_arac_aktivasyon extends Fragment {
         _btngeri.playSoundEffect(0);
         _btngeri.setOnClickListener(new fn_Geri());
 
+        _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
+        _btnOkuma.playSoundEffect(SoundEffectConstants.CLICK);
+        _btnOkuma.setOnClickListener(new frg_arac_aktivasyon.fn_okumaDegistir());
+        _btnOkuma.setText("KAREKOD");
 
         fn_AyarlariYukle();
 
@@ -392,6 +422,25 @@ public class frg_arac_aktivasyon extends Fragment {
 
     }
 
+    public void fn_BarkodOkutuldu(String barkod) {
+
+        try
+        {
+            barkod = barkod.substring(barkod.length() - 24);
+
+
+            rfidOkundu(barkod);
+
+        }
+        catch (Exception ex){
+            Genel.printStackTrace(ex,getContext());
+        }
+        //Thread.Sleep(1000);
+        //isReadable = true;
+
+
+    }
+
     private class fn_btnBekleyenAracListesi implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -411,6 +460,21 @@ public class frg_arac_aktivasyon extends Fragment {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
+        }
+    }
+
+    private class fn_okumaDegistir implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Genel.showProgressDialog(getContext());
+            if(_btnOkuma.getText().toString().equals("KAREKOD")){
+                ((GirisSayfasi) getActivity()).fn_ModRFID();
+                _btnOkuma.setText("RFID");
+            }else{
+                ((GirisSayfasi) getActivity()).fn_ModBarkod();
+                _btnOkuma.setText("KAREKOD");
+            }
+            Genel.dismissProgressDialog();
         }
     }
 

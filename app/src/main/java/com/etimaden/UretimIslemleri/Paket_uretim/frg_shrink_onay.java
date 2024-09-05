@@ -501,7 +501,7 @@ public class frg_shrink_onay extends Fragment {
                     //String miktar = persos.fn_sec_ambalaj_degisim_toplam_harcanan_miktar(_Param);
 
                     Genel.showProgressDialog(getContext());
-                    Boolean result = persos.fn_shrink_onayi_al(_Param);
+                    Boolean result = persos.fn_shrink_onayi_al_toplu(_Param);
                     Genel.dismissProgressDialog();
 
 

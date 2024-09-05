@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -52,6 +53,7 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
     Persos persos;
 
     Button _btngeri;
+    Button _btnOkuma;
 
     boolean okunabilir = true;
     Sevkiyat_isemri kamyon = null;
@@ -112,7 +114,7 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
     {
         super.onActivityCreated(savedInstanceState);
 
-        ((GirisSayfasi)getActivity()).fn_ModRFID();
+        ((GirisSayfasi)getActivity()).fn_ModBarkod();
 
         _myIslem = new VeriTabani(getContext());
 
@@ -126,6 +128,11 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
         _btngeri = (Button) getView().findViewById(R.id.btngeri);
         _btngeri.playSoundEffect(0);
         _btngeri.setOnClickListener(new fn_Geri());
+
+        _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
+        _btnOkuma.playSoundEffect(SoundEffectConstants.CLICK);
+        _btnOkuma.setOnClickListener(new frg_konteyner_kamyon_esleme.fn_okumaDegistir());
+        _btnOkuma.setText("KAREKOD");
     }
 
 
@@ -273,6 +280,40 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_sevkiyat_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
+        }
+    }
+
+    public void fn_BarkodOkutuldu(String barkod) {
+
+        try
+        {
+            barkod = barkod.substring(barkod.length() - 24);
+
+
+            rfidOkundu(barkod);
+
+        }
+        catch (Exception ex){
+            Genel.printStackTrace(ex,getContext());
+        }
+        //Thread.Sleep(1000);
+        //isReadable = true;
+
+
+    }
+
+    private class fn_okumaDegistir implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Genel.showProgressDialog(getContext());
+            if(_btnOkuma.getText().toString().equals("KAREKOD")){
+                ((GirisSayfasi) getActivity()).fn_ModRFID();
+                _btnOkuma.setText("RFID");
+            }else{
+                ((GirisSayfasi) getActivity()).fn_ModBarkod();
+                _btnOkuma.setText("KAREKOD");
+            }
+            Genel.dismissProgressDialog();
         }
     }
 }
