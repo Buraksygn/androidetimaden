@@ -251,7 +251,7 @@ public class cSetIlsletmeAyari
         aktif_isletmeesleme = "2001";
         aktif_kullanici = "andr_bandirma_isletme";
         baglanti_turu="wifi";
-        sunucu_ip="192.168.10.101";
+        sunucu_ip="192.168.10.113";
 
         _myIslem=new VeriTabani(v_Context);
         _myIslem.fn_Kayit();

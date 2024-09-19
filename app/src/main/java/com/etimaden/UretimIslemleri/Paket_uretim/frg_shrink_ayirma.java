@@ -284,7 +284,7 @@ public class frg_shrink_ayirma extends Fragment {
            int gorev_id = 0;
 
             if (adapter != null) {
-                adapter.clear();
+                //adapter.clear();
                 _isemri_list.setAdapter(adapter);
             }
 
