@@ -162,6 +162,7 @@ public class frg_zayi_aktif_isemri_secimi extends Fragment {
             _Param1.setAktif_sunucu(_ayaraktifsunucu);
             _Param1.setAktif_kullanici(_ayaraktifkullanici);
 
+
             Genel.showProgressDialog(getContext());
             List<Zayi> result = persos.fn_sec_zayi_arac(_Param1);
             zayi_listesi=new ArrayList<>();

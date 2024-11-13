@@ -78,8 +78,11 @@ public interface frg_paket_uretim_ekrani_Controller {
     @POST("api/shrink_onayi_al_toplu")
     Call<View_bool_response> fn_shrink_onayi_al_toplu(@Body request_shrink_is_emri v_Gelen);
 
-    @POST("api/uretim_iptali")
-    Call<View_bool_response> fn_uretim_iptali(@Body request_uretim_iptali v_Gelen);
+    //@POST("api/uretim_iptali")
+    //Call<View_bool_response> fn_uretim_iptali(@Body request_uretim_iptali v_Gelen); //aniventi kapattı aşağıdakini açtı
+
+    @POST("api/uretim_iptali_dk")
+    Call<View_string_response> fn_uretim_iptali_dk(@Body request_uretim_iptali v_Gelen);
 
     @POST("api/sec_uretim_detay")
     Call<View_sec_uretim_detay> fn_sec_uretim_detay(@Body request_bos v_Gelen);

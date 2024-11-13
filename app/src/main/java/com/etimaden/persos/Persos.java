@@ -842,7 +842,7 @@ public class Persos {
 
     }
 
-    public Boolean fn_uretim_iptali(request_uretim_iptali v_Gelen)
+    /*public Boolean fn_uretim_iptali(request_uretim_iptali v_Gelen)
     {
         View_bool_response _yanit;
 
@@ -853,6 +853,36 @@ public class Persos {
             Call<View_bool_response> fn_Servis = _Servis.fn_uretim_iptali(v_Gelen);
 
             Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+
+    }*/
+    public String fn_uretim_iptali_dk(request_uretim_iptali v_Gelen)
+    {
+        View_string_response _yanit;
+
+        try
+        {
+            frg_paket_uretim_ekrani_Controller _Servis=retrofit.create(frg_paket_uretim_ekrani_Controller.class);
+
+            Call<View_string_response> fn_Servis = _Servis.fn_uretim_iptali_dk(v_Gelen);
+
+            Response<View_string_response> _Response = fn_Servis.execute();
 
             if(_Response.isSuccessful())
             {

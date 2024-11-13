@@ -244,11 +244,13 @@ public class frg_uretim_iptal extends Fragment {
 
             //String miktar = persos.fn_sec_ambalaj_degisim_toplam_harcanan_miktar(_Param);
             Genel.showProgressDialog(getContext());
-            Boolean result = persos.fn_uretim_iptali(_Param);
+            //Boolean result = persos.fn_uretim_iptali(_Param); //aslında boolen fonksiyondu persos.java dosyasında da değiştirildi string yapıldı. Aniventi
+            String result = persos.fn_uretim_iptali_dk(_Param);
+
             Genel.dismissProgressDialog();
             //Boolean islem_res = persos.fn_uretim_iptali(tag);
 
-            if (result) {
+            if ("1".equals(result.trim())) {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("İŞLEM ONAYI")
                         .setContentText("ÜRETİM İPTAL İŞLEM KAYDI OLUŞTURULDU")
@@ -265,7 +267,17 @@ public class frg_uretim_iptal extends Fragment {
                         .show();
                 isReadable = true;
 
-            } else {
+            } else if ("2".equals(result.trim())) {
+                // Depolar farklı hatası için özel mesaj
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün Orjinal Deposundan Transfer Edilmiştir. İptal edilemez.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+
+            }else {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("BAĞLANTI PROBLEMİ")
                         .setContentTextSize(25)

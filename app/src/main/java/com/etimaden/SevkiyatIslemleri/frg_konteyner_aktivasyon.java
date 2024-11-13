@@ -32,14 +32,11 @@ import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_bulundu;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.ViewsecKonteyner;
-import com.etimaden.cResponseResult.viewsevkiyatKapat;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
-import com.etimaden.persosclass.Arac;
 import com.etimaden.request.request_sevkiyat_isemri_sevkiyat_isemri;
 import com.etimaden.request.request_string;
-import com.etimaden.response.sevkiyat_islemleri.View_arac;
 import com.etimaden.response.sevkiyat_islemleri.View_arac2;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -875,10 +872,29 @@ public class frg_konteyner_aktivasyon extends Fragment {
                                                                 pDialog.hide();
                                                             }
 
-                                                            String _pAciklama = "KONTEYNER PLAKA : " + v_arac_plaka + " KONTEYNER OKUNDU. İŞLEME DEVAM ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?";
+
+                                                            //String _pAciklama = "KONTEYNER PLAKA : " + v_arac_plaka + " KONTEYNER OKUNDU. İŞLEME DEVAM ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?";
+
+                                                            String _pAciklama;
+
+                                                            if (v_arac_plaka.length() == 12) {
+                                                                _pAciklama = "KONTEYNER PLAKA : " + v_arac_plaka + " KONTEYNER OKUNDU. İŞLEME DEVAM ETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?";
+                                                            }
+                                                            else {
+                                                                _pAciklama = "HATA " + v_arac_plaka + " KONTEYNER OKUMA HATASI";
+                                                            }
+
+
 
                                                             SweetAlertDialogG pConfirm = new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE);
-                                                            pConfirm.setTitleText("KONTEYNER ONAY");
+                                                            if (v_arac_plaka.length() == 12)
+                                                            {
+                                                                pConfirm.setTitleText("KONTEYNER ONAY");
+                                                            }
+                                                            else
+                                                            {
+                                                                pConfirm.setTitleText("HATA");
+                                                            }
                                                             pConfirm.setContentText(_pAciklama);
                                                             pConfirm.setCancelText("İptal");
                                                             pConfirm.setContentTextSize(20);
