@@ -23,6 +23,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
+import com.etimaden.adapter.apmblManipulasyonGeribeslemeAyirma;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
@@ -30,8 +31,13 @@ import com.etimaden.manipulasyon.ellecleme.frg_ellecleme_menu_panel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_secEtiket;
+import com.etimaden.request.request_uruntag;
 import com.etimaden.request.request_uruntag_string;
 import com.etimaden.ugr_demo.R;
+
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class frg_geribesleme_onay extends Fragment {
 
@@ -49,11 +55,17 @@ public class frg_geribesleme_onay extends Fragment {
     Persos persos;
 
 
+    Button _btn_01;
 
-    ImageView _imageTanimResmi;
     TextView _txtYazi;
+    ListView _listisemirleri;
     Button _btnGeri;
     Button _btnOkuma;
+
+
+    ArrayList<Urun_tag> urun_listesi = new ArrayList<Urun_tag>();
+
+    private apmblManipulasyonGeribeslemeAyirma adapter;
 
     Urun_tag aktif_etiket = null;
     boolean isReadable = true;
@@ -120,10 +132,6 @@ public class frg_geribesleme_onay extends Fragment {
 
         ((GirisSayfasi) getActivity()).fn_ModBarkod();
 
-        _txtYazi=(TextView)getView().findViewById(R.id.txtYazi);
-        _txtYazi.setText("ESKİ ETİKETİ OKUTUNUZ...");
-
-        _imageTanimResmi = (ImageView) getView().findViewById(R.id.imageTanimResmi);
 
         _btnGeri = (Button)getView().findViewById(R.id.btnGeri);
         _btnGeri.playSoundEffect(SoundEffectConstants.CLICK);
@@ -134,9 +142,19 @@ public class frg_geribesleme_onay extends Fragment {
         _btnOkuma.setOnClickListener(new fn_okumaDegistir());
         _btnOkuma.setText("KAREKOD");
 
+        _btn_01= (Button)getView().findViewById(R.id.btn_01);
+        _btn_01.playSoundEffect(SoundEffectConstants.CLICK);
+        _btn_01.setOnClickListener(new frg_geribesleme_onay.fn_btn_01());
+
+        _listisemirleri=(ListView)getView().findViewById(R.id.isemri_list);
+        adapter=new apmblManipulasyonGeribeslemeAyirma(new ArrayList<Urun_tag>(),getContext());
+        _listisemirleri.setAdapter(adapter);
+
         fn_AyarlariYukle();
 
     }
+
+
 
     public void barkodOkundu(String barkod){
 
@@ -200,6 +218,7 @@ public class frg_geribesleme_onay extends Fragment {
             Genel.dismissProgressDialog();
 
             etiketDegerlendir(tag);
+
         }
         catch (Exception ex){
             Genel.printStackTrace(ex,getContext());
@@ -230,16 +249,30 @@ public class frg_geribesleme_onay extends Fragment {
                         .showCancelButton(false)
                         .show();
             }
+
             else if (tag.islem_durumu.equals("1") || tag.islem_durumu.equals("370"))
             {
-                //todo mükerrer kayıta buradan gidiyor.
-                frg_geribesleme_harcama_yeri_secimi fragmentyeni = new frg_geribesleme_harcama_yeri_secimi();
-                fragmentyeni.fn_senddata(tag);
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_geribesleme_harcama_yeri_secimi").addToBackStack(null);
-                fragmentTransaction.commit();
+
+                Boolean kodVar=false;
+                Urun_tag tmpObj=null;
+                for(Urun_tag w:urun_listesi){
+                    if(w.kod.equals(tag.kod)){
+                        tmpObj=w;
+                        kodVar=true;
+                        break;
+                    }
+                }
+
+                if (kodVar)
+                {
+                    urun_listesi.remove(tmpObj);
+                }
+                else
+                {
+                    urun_listesi.add(tag);
+                }
             }
+
             else
             {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
@@ -250,11 +283,29 @@ public class frg_geribesleme_onay extends Fragment {
                         .show();
             }
 
+            updateListviewItem();
+
         }
         catch (Exception ex) {
             Genel.printStackTrace(ex,getContext());
         }
 
+    }
+
+    private void updateListviewItem(){
+        try
+        {
+            if (adapter != null) {
+                adapter.clear();
+                adapter.addAll(urun_listesi);
+                adapter.notifyDataSetChanged();
+            }
+
+        }
+        catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,getContext());
+        }
     }
 
     private class fn_Geri implements View.OnClickListener {
@@ -279,6 +330,34 @@ public class frg_geribesleme_onay extends Fragment {
                 _btnOkuma.setText("KAREKOD");
             }
             Genel.dismissProgressDialog();
+        }
+    }
+
+    private class fn_btn_01 implements View.OnClickListener {
+        @Override
+        public void onClick(View view)
+        {
+            ArrayList<Urun_tag> urunListesi = new ArrayList<>(urun_listesi); // Tüm listeyi kopyala
+            try
+            {
+
+
+                Genel.showProgressDialog(getContext());
+                Genel.dismissProgressDialog();
+
+                frg_geribesleme_harcama_yeri_secimi fragmentyeni = new frg_geribesleme_harcama_yeri_secimi();
+                fragmentyeni.fn_senddata(urunListesi);
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_geribesleme_harcama_yeri_secimi").addToBackStack(null);
+                fragmentTransaction.commit();
+
+
+            }
+            catch (Exception ex)
+            {
+                Genel.printStackTrace(ex,getContext());
+            }
         }
     }
 

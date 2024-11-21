@@ -234,7 +234,9 @@ public class frg_depo_transfer_ekrani extends Fragment {
                 isReadable = true;
                 return;
             }
-            else if (urun.son_depo_kod.equals(depo.getDepo_id()))
+
+            /*else if (urun.son_depo_kod.equals(depo.getDepo_id()))*/
+            else if (urun.depo_kod.equals(depo.getDepo_id()))
             {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")

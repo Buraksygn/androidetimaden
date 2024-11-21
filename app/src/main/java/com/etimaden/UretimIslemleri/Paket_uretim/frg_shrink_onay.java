@@ -41,7 +41,7 @@ import static com.etimaden.cSabitDegerler._zsifre;
 
 import java.util.ArrayList;
 
-public class frg_shrink_onay extends Fragment {
+public class  frg_shrink_onay extends Fragment {
 
     SweetAlertDialogG pDialog;
     boolean isReadable = true;

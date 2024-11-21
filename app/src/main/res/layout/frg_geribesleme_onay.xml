@@ -31,28 +31,21 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
-
-
-    <TextView
-        android:id="@+id/txtYazi"
+    <HorizontalScrollView
         android:layout_width="325dp"
-        android:layout_height="70dp"
+        android:layout_height="340dp"
         android:layout_x="0dp"
-        android:layout_y="70dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="DÖKMEYE ÇEVRİLECEK ÜRÜNÜN ETİKETİNİ OKUTUNUZ..."
-        android:textColor="@color/green"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+        android:layout_y="128dp">
 
-    <ImageView
-        android:id="@+id/imageTanimResmi"
-        android:layout_width="325dp"
-        android:layout_height="350dp"
-        android:layout_x="1dp"
-        android:layout_y="135dp"
-        app:srcCompat="@mipmap/tag_yellow"
-        android:focusable="false" />
+        <ListView
+            android:id="@+id/isemri_list"
+            android:layout_width="wrap_content"
+            android:layout_height="330dp"
+            android:listSelector="@color/colorBlackSecili"
+            android:scrollbars="horizontal|vertical"
+            android:textColor="@color/green" />
+
+    </HorizontalScrollView>
 
     <Button
         android:id="@+id/btnGeri"
@@ -79,5 +72,18 @@
         android:focusable="false"
         android:text="KAREKOD"
         android:textColor="@color/green" />
+
+    <Button
+        android:id="@+id/btn_01"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_x="0dp"
+        android:layout_y="65dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="DÖKME ÜRÜNE ÇEVİR"
+        android:textColor="@color/green"
+        android:textSize="18sp"
+        android:focusable="false"/>
 
 </AbsoluteLayout>

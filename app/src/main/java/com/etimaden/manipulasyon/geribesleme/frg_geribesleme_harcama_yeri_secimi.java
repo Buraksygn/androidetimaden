@@ -115,10 +115,22 @@ public class frg_geribesleme_harcama_yeri_secimi extends Fragment {
         persos = new Persos(_OnlineUrl,getContext());
     }
 
-    public void fn_senddata(Urun_tag aktif_tag)
+   /* public void fn_senddata(Urun_tag aktif_tag)
     {
         this.aktif_tag=aktif_tag;
+    }*/
+
+    //---
+    private ArrayList<Urun_tag> aktifTagList;
+
+    public void fn_senddata(ArrayList<Urun_tag> urunListesi) {
+        this.aktifTagList = urunListesi;
+        if (aktifTagList != null && !aktifTagList.isEmpty()) {
+            this.aktif_tag = aktifTagList.get(0);
+        }
     }
+
+    //----
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
@@ -238,7 +250,8 @@ public class frg_geribesleme_harcama_yeri_secimi extends Fragment {
                 final DEPOTag secilenDepo=_Secili;
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
                         .setTitleText("İşlem Onay Sorgusu")
-                        .setContentText(aktif_tag.kod +" seri numaralı "+ aktif_tag.urun_adi +" ürün geri besleme işlemi gerçekleştirilecek. Bu işlemi onaylıyor musunuz? ")
+                        //.setContentText(aktif_tag.kod +" seri numaralı "+ aktif_tag.urun_adi +" ürün geri besleme işlemi gerçekleştirilecek. Bu işlemi onaylıyor musunuz? ")
+                        .setContentText("Geri besleme işlemi gerçekleştirilecek. Bu işlemi onaylıyor musunuz? ")
                         .setContentTextSize(20)
                         .setConfirmText("EVET")
                         .setCancelText("HAYIR")
@@ -254,6 +267,8 @@ public class frg_geribesleme_harcama_yeri_secimi extends Fragment {
                                    // depoIdSecili=depoIdSecili.substring(0,idx);
                                 //}
 
+
+
                                 request_uruntag_string v_Gelen=new request_uruntag_string();
                                 v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
                                 v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
@@ -264,15 +279,32 @@ public class frg_geribesleme_harcama_yeri_secimi extends Fragment {
                                 v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
                                 v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
-                                v_Gelen.setEtiket(aktif_tag);
-                                v_Gelen.setStringValue(depoIdSecili);
+                                 for (int i = 0; i < aktifTagList.size(); i++) {
+                                     Urun_tag aktif_tag = aktifTagList.get(i);
+                                     v_Gelen.setEtiket(aktif_tag);
 
+                                     v_Gelen.setStringValue(depoIdSecili);
+                                     Genel.showProgressDialog(getContext());
+                                     Boolean islem_sonucu = persos.fn_geribesleme_onay(v_Gelen);
+                                     Genel.dismissProgressDialog();
+                                     if (!islem_sonucu)
+                                     //if (false)
+                                     {
+                                         new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                                 .setTitleText("HATA")
+                                                 .setContentTextSize(25)
+                                                 .setContentText("İşlem yapılamadı \r\n Veritabanı hatası")
+                                                 .showCancelButton(false)
+                                                 .show();
+                                         return;
+                                     }
+                                 }
+                                //v_Gelen.setStringValue(depoIdSecili);
+                                //Genel.showProgressDialog(getContext());
+                                //Boolean islem_sonucu = persos.fn_geribesleme_onay(v_Gelen);
+                                //Genel.dismissProgressDialog();
 
-                                Genel.showProgressDialog(getContext());
-                                Boolean islem_sonucu = persos.fn_geribesleme_onay(v_Gelen);
-                                Genel.dismissProgressDialog();
-
-                                if (!islem_sonucu)
+                                /*if (!islem_sonucu)
                                 //if (false)
                                 {
                                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
@@ -282,7 +314,7 @@ public class frg_geribesleme_harcama_yeri_secimi extends Fragment {
                                             .showCancelButton(false)
                                             .show();
                                     return;
-                                }
+                                }*/
                                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
                                         .setTitleText("ONAY")
                                         .setContentText("İşlem kaydı oluşturuldu.")

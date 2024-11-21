@@ -42,7 +42,6 @@ public class frg_ana_sayfa extends Fragment
 
 
 
-
     public frg_ana_sayfa() {
         // Required empty public constructor
     }
