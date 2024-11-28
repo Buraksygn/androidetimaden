@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    android:focusable="false"
+    tools:context="com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_arama.frg_demirbas_arama">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:textColor="@color/green"
+        android:layout_y="0dp"
+        android:text="frg_demirbas_arama"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/txtYazi5"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="29dp"
+        android:textColor="@color/green"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="DEMİRBAŞ ARAMA"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+
+
+    <TextView
+        android:id="@+id/txtDemirbasDetay"
+        android:layout_width="325dp"
+        android:layout_height="330dp"
+        android:layout_x="0dp"
+        android:layout_y="70dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="DEMİRBAŞ DETAY"
+        android:textColor="@color/green"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="325dp"
+        android:layout_height="10dp"
+        android:layout_x="0dp"
+        android:layout_y="410dp"
+        android:progress="50"
+        android:layout_weight="10"
+        style="?android:attr/progressBarStyleHorizontal"/>
+        />
+
+    <TextView
+        android:id="@+id/txtUzak"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_x="0dp"
+        android:layout_y="420dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="UZAK"
+        android:textColor="@color/red1"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtYakin"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_x="225dp"
+        android:layout_y="420dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="YAKIN"
+        android:textColor="@color/red1"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnGeri"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="500dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:focusable="false"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+
+
+</AbsoluteLayout>

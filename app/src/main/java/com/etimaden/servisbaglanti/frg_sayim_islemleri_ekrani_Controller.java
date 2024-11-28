@@ -4,6 +4,7 @@ import com.etimaden.cResponseResult.View_sec_sevk_miktar;
 import com.etimaden.request.request_aktarim_list;
 import com.etimaden.request.request_bos;
 import com.etimaden.request.request_bos_aktif_isletme_esleme;
+import com.etimaden.request.request_demirbas_konum;
 import com.etimaden.request.request_demirbas_sayim_list;
 import com.etimaden.request.request_demirbas_sayim_string;
 import com.etimaden.request.request_guncelle_sevk_hareket;
@@ -26,6 +27,9 @@ import com.etimaden.request.requestsecDepoTanimlari;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_string_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.ViewsecDepoTanimlari;
+import com.etimaden.response.sayim_islemleri.View_demirbas_konum_listesi;
+import com.etimaden.response.sayim_islemleri.View_demirbas_sayim;
+import com.etimaden.response.sayim_islemleri.View_demirbas_sayim_listesi;
 import com.etimaden.response.sayim_islemleri.View_duran_varlik_sap;
 import com.etimaden.response.sayim_islemleri.View_malzeme_sayim_isemri_listesi;
 import com.etimaden.response.sayim_islemleri.View_zimmet_sonuc_sap;
@@ -73,4 +77,22 @@ public interface frg_sayim_islemleri_ekrani_Controller {
 
     @POST("api/sorgula_zimmet")
     Call<View_zimmet_sonuc_sap> fn_sorgula_zimmet(@Body request_demirbas_sayim_string v_Gelen);
+
+    @POST("api/sec_demirbas_detay") //Program.ds_persos.sec_demirbas_detay
+    Call<View_demirbas_sayim> fn_sec_demirbas_detay(@Body request_string v_Gelen);
+
+    @POST("api/sec_ek_demirbas_isletme")
+    Call<View_demirbas_konum_listesi> fn_sec_ek_demirbas_isletme(@Body request_bos v_Gelen);
+
+    @POST("api/sec_ek_demirbas_bina")
+    Call<View_demirbas_konum_listesi> fn_sec_ek_demirbas_bina(@Body request_demirbas_konum v_Gelen);
+
+    @POST("api/sec_ek_demirbas_kat")
+    Call<View_demirbas_konum_listesi> fn_sec_ek_demirbas_kat(@Body request_demirbas_konum v_Gelen);
+
+    @POST("api/sec_ek_demirbas_oda")
+    Call<View_demirbas_konum_listesi> fn_sec_ek_demirbas_oda(@Body request_demirbas_konum v_Gelen);
+
+    @POST("api/sec_ek_demirbas_detay")
+    Call<View_demirbas_sayim_listesi> fn_sec_ek_demirbas_detay(@Body request_demirbas_konum v_Gelen);
 }

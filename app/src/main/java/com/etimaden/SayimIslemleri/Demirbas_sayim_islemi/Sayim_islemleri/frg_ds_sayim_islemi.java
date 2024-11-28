@@ -385,9 +385,8 @@ public class frg_ds_sayim_islemi extends Fragment {
 
             sayilacak_liste.add(sayim_item);
             kayıt_yapılacak_urun.add(sayim_item);
-
-            updateListviewItem();
         }
+        updateListviewItem();
     }
 
 

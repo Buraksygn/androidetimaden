@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    android:focusable="false"
+    tools:context="com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_arama.frg_da_demirbasno_girisi">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:textColor="@color/green"
+        android:layout_y="0dp"
+        android:text="frg_da_demirbasno_girisi"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/txtYazi5"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="29dp"
+        android:textColor="@color/green"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="DEMİRBAŞ ARAMA MODULÜ"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtYazi6"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="70dp"
+        android:textColor="@color/red1"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="DEMİRBAŞ NO GİRİŞİ YAPINIZ"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTextDemirbasNo"
+        android:textColor="@color/colorGreen"
+        android:paddingLeft="15dp"
+        android:layout_width="315dp"
+        android:layout_height="50dp"
+        android:layout_x="5dp"
+        android:layout_y="110dp"
+        android:text=""
+        android:background="@drawable/btn_giris_yap"
+        android:ems="10"
+        android:inputType="number" />
+
+
+    <Button
+        android:id="@+id/btnTamam"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="190dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:focusable="false"
+        android:text="TAMAM"
+        android:textColor="@color/colorRed" />
+
+
+    <Button
+        android:id="@+id/btnGeri"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="500dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:focusable="false"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+
+
+</AbsoluteLayout>

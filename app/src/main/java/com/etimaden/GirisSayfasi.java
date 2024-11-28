@@ -29,6 +29,9 @@ import androidx.fragment.app.FragmentManager;
 
 import com.etimaden.Elden_satis_islemi.frg_perakende_satis;
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_arama.frg_da_isemri_secimi;
+import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_arama.frg_demirbas_arama;
+import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_basim_sorgula.frg_db_sayim_islemi;
+import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_sorgulama.frg_demirbas_sorgula;
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Sayim_islemleri.frg_ds_sayim_islemi;
 import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_depo_sayim_islemi;
 import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_sayim_islemi_urun_aktivasyon;
@@ -929,6 +932,12 @@ public class GirisSayfasi extends AppCompatActivity {
             return true;
         }
 
+        frg_db_sayim_islemi _frg_db_sayim_islemi = (frg_db_sayim_islemi) getSupportFragmentManager().findFragmentByTag("frg_db_sayim_islemi");
+        if (_frg_db_sayim_islemi != null && _frg_db_sayim_islemi.isVisible()) {
+            _frg_db_sayim_islemi.barkodOkundu(barkod);
+            return true;
+        }
+
         return false;
     }
 
@@ -1151,6 +1160,23 @@ public class GirisSayfasi extends AppCompatActivity {
             return true;
         }
 
+        frg_demirbas_arama _frg_demirbas_arama = (frg_demirbas_arama) getSupportFragmentManager().findFragmentByTag("frg_demirbas_arama");
+        if (_frg_demirbas_arama != null && _frg_demirbas_arama.isVisible()) {
+            _frg_demirbas_arama.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_demirbas_sorgula _frg_demirbas_sorgula = (frg_demirbas_sorgula) getSupportFragmentManager().findFragmentByTag("frg_demirbas_sorgula");
+        if (_frg_demirbas_sorgula != null && _frg_demirbas_sorgula.isVisible()) {
+            _frg_demirbas_sorgula.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_db_sayim_islemi _frg_db_sayim_islemi = (frg_db_sayim_islemi) getSupportFragmentManager().findFragmentByTag("frg_db_sayim_islemi");
+        if (_frg_db_sayim_islemi != null && _frg_db_sayim_islemi.isVisible()) {
+            _frg_db_sayim_islemi.rfidOkundu(rfid);
+            return true;
+        }
         return false;
     }
 
