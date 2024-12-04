@@ -11,6 +11,7 @@ import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.cResponseResult.View_sec_sevk_miktar;
 import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.persosclass.Demirbas_Konum;
+import com.etimaden.persosclass.Depo_sayım_isemri;
 import com.etimaden.persosclass.Duran_Varlik_sap;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.persosclass.Vagon_hareket;
@@ -78,6 +79,7 @@ import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
 import com.etimaden.response.sayim_islemleri.View_demirbas_konum_listesi;
 import com.etimaden.response.sayim_islemleri.View_demirbas_sayim;
 import com.etimaden.response.sayim_islemleri.View_demirbas_sayim_listesi;
+import com.etimaden.response.sayim_islemleri.View_depo_sayim_isemri_listesi;
 import com.etimaden.response.sayim_islemleri.View_duran_varlik_sap;
 import com.etimaden.response.sayim_islemleri.View_malzeme_sayim_isemri_listesi;
 import com.etimaden.response.sayim_islemleri.View_zimmet_sonuc_sap;
@@ -3409,6 +3411,279 @@ public class Persos {
                 _yanit = _Response.body();
 
                 return  _yanit.get_demirbas_sayim_listesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public List<Demirbas_Konum> fn_sec_demirbas_isletme(request_bos v_Gelen)
+    {
+        View_demirbas_konum_listesi _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_demirbas_konum_listesi> fn_Servis = _Servis.fn_sec_demirbas_isletme(v_Gelen);
+
+            Response<View_demirbas_konum_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_demirbas_konum_listesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public List<Demirbas_Konum> fn_sec_demirbas_bina(request_demirbas_konum v_Gelen)
+    {
+        View_demirbas_konum_listesi _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_demirbas_konum_listesi> fn_Servis = _Servis.fn_sec_demirbas_bina(v_Gelen);
+
+            Response<View_demirbas_konum_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_demirbas_konum_listesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public List<Demirbas_Konum> fn_sec_demirbas_kat(request_demirbas_konum v_Gelen)
+    {
+        View_demirbas_konum_listesi _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_demirbas_konum_listesi> fn_Servis = _Servis.fn_sec_demirbas_kat(v_Gelen);
+
+            Response<View_demirbas_konum_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_demirbas_konum_listesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public List<Demirbas_Konum> fn_sec_demirbas_oda(request_demirbas_konum v_Gelen)
+    {
+        View_demirbas_konum_listesi _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_demirbas_konum_listesi> fn_Servis = _Servis.fn_sec_demirbas_oda(v_Gelen);
+
+            Response<View_demirbas_konum_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_demirbas_konum_listesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public List<demirbas_sayim> fn_sec_demirbas_detay(request_demirbas_konum v_Gelen)
+    {
+        View_demirbas_sayim_listesi _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_demirbas_sayim_listesi> fn_Servis = _Servis.fn_sec_demirbas_detay(v_Gelen);
+
+            Response<View_demirbas_sayim_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_demirbas_sayim_listesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public List<Depo_sayım_isemri> fn_sec_depo_sayim_isemri(request_bos_aktif_isletme_esleme v_Gelen)
+    {
+        View_depo_sayim_isemri_listesi _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_depo_sayim_isemri_listesi> fn_Servis = _Servis.fn_sec_depo_sayim_isemri(v_Gelen);
+
+            Response<View_depo_sayim_isemri_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_depo_sayim_isemri_listesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+
+    }
+
+    public List<DEPOTag> fn_secDepoTanimlari(request_bos v_Gelen)
+    {
+        ViewsecDepoTanimlari _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<ViewsecDepoTanimlari> fn_Servis = _Servis.fn_secDepoTanimlari(v_Gelen);
+
+            Response<ViewsecDepoTanimlari> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_DepoListesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+
+    }
+
+    public String fn_sayim_isemri_dosyaid_update(request_string v_Gelen)
+    {
+        View_string_response _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_string_response> fn_Servis = _Servis.fn_sayim_isemri_dosyaid_update(v_Gelen);
+
+            Response<View_string_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+
+    }
+
+    public Boolean fn_aktar_depo_sayim_listesi(request_aktarim_list v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_aktar_depo_sayim_listesi(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
             }
             else
             {

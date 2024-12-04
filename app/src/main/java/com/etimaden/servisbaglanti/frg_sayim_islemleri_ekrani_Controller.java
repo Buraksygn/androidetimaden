@@ -30,6 +30,7 @@ import com.etimaden.response.frg_paket_uretim_ekrani.ViewsecDepoTanimlari;
 import com.etimaden.response.sayim_islemleri.View_demirbas_konum_listesi;
 import com.etimaden.response.sayim_islemleri.View_demirbas_sayim;
 import com.etimaden.response.sayim_islemleri.View_demirbas_sayim_listesi;
+import com.etimaden.response.sayim_islemleri.View_depo_sayim_isemri_listesi;
 import com.etimaden.response.sayim_islemleri.View_duran_varlik_sap;
 import com.etimaden.response.sayim_islemleri.View_malzeme_sayim_isemri_listesi;
 import com.etimaden.response.sayim_islemleri.View_zimmet_sonuc_sap;
@@ -95,4 +96,32 @@ public interface frg_sayim_islemleri_ekrani_Controller {
 
     @POST("api/sec_ek_demirbas_detay")
     Call<View_demirbas_sayim_listesi> fn_sec_ek_demirbas_detay(@Body request_demirbas_konum v_Gelen);
+
+    @POST("api/sec_demirbas_isletme")
+    Call<View_demirbas_konum_listesi> fn_sec_demirbas_isletme(@Body request_bos v_Gelen);
+
+    @POST("api/sec_demirbas_bina")
+    Call<View_demirbas_konum_listesi> fn_sec_demirbas_bina(@Body request_demirbas_konum v_Gelen);
+
+    @POST("api/sec_demirbas_kat")
+    Call<View_demirbas_konum_listesi> fn_sec_demirbas_kat(@Body request_demirbas_konum v_Gelen);
+
+    @POST("api/sec_demirbas_oda")
+    Call<View_demirbas_konum_listesi> fn_sec_demirbas_oda(@Body request_demirbas_konum v_Gelen);
+
+    @POST("api/sec_demirbas_detay")
+    Call<View_demirbas_sayim_listesi> fn_sec_demirbas_detay(@Body request_demirbas_konum v_Gelen);
+
+    @POST("api/sec_depo_sayim_isemri")
+    Call<View_depo_sayim_isemri_listesi> fn_sec_depo_sayim_isemri(@Body request_bos_aktif_isletme_esleme v_Gelen);
+
+    @POST("api/secDepoTanimlari")
+    Call<ViewsecDepoTanimlari> fn_secDepoTanimlari(@Body request_bos v_Gelen);
+
+    @POST("api/sayim_isemri_dosyaid_update")
+    Call<View_string_response> fn_sayim_isemri_dosyaid_update(@Body request_string v_Gelen);
+
+    @POST("api/ktar_depo_sayim_listesi")
+    Call<View_bool_response> fn_aktar_depo_sayim_listesi(@Body request_aktarim_list v_Gelen);
+
 }

@@ -16,6 +16,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_arama.frg_demirbas_arama_menu_panel;
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_basim_sorgula.frg_db_isletme_secimi;
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_sorgulama.frg_demirbas_sorgula;
+import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Sayim_islemleri.frg_ds_isemri_secimi;
+import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Sayim_islemleri.frg_ds_isletme_secimi;
 import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_sayim_islemi_urun_aktivasyon;
 import com.etimaden.SayimIslemleri.frg_sayim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
@@ -159,24 +161,24 @@ public class frg_demirbas_sayim_menu_panel extends Fragment {
     private class fn_btnDemirbasSayimiOlustur implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            /*frg_ds_isletme_secimi fragmentyeni = new frg_ds_isletme_secimi();
+            frg_ds_isletme_secimi fragmentyeni = new frg_ds_isletme_secimi();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_ds_isletme_secimi").addToBackStack(null);
-            fragmentTransaction.commit();*/
+            fragmentTransaction.commit();
         }
     }
 
     private class fn_btnDemirbasSay implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            /*frg_ds_isemri_secimi fragmentyeni = new frg_ds_isemri_secimi();
+            frg_ds_isemri_secimi fragmentyeni = new frg_ds_isemri_secimi();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_ds_isemri_secimi").addToBackStack(null);
             fragmentTransaction.commit();
 
-             */
+
         }
     }
 

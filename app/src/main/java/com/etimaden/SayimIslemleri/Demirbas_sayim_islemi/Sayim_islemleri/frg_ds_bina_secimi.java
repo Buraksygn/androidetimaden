@@ -1,4 +1,4 @@
-package com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_basim_sorgula;
+package com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Sayim_islemleri;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -22,8 +22,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
-import com.etimaden.adapter.apmblSayimIslemleriDbKatSecimi;
-import com.etimaden.adapter.apmblSayimIslemleriDbOdaSecimi;
+import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_basim_sorgula.frg_db_isletme_secimi;
+import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_basim_sorgula.frg_db_kat_secimi;
+import com.etimaden.adapter.apmblSayimIslemleriDbBinaSecimi;
+import com.etimaden.adapter.apmblSayimIslemleriDsBinaSecimi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
@@ -36,7 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class frg_db_oda_secimi extends Fragment {
+public class frg_ds_bina_secimi extends Fragment {
 
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -53,23 +55,23 @@ public class frg_db_oda_secimi extends Fragment {
 
 
     Button _btnIleri;
-    ListView _oda_list;
+    ListView _bina_list;
     Button _btnGeri;
 
     boolean isReadable = true;
-    List<Demirbas_Konum> oda_listesi;
+    List<Demirbas_Konum> bina_listesi;
     Demirbas_Konum _Secili = null;
-    Demirbas_Konum kat = null;
+    Demirbas_Konum isletme = null;
 
-    private apmblSayimIslemleriDbOdaSecimi adapter;
+    private apmblSayimIslemleriDsBinaSecimi adapter;
 
-    public frg_db_oda_secimi() {
+    public frg_ds_bina_secimi() {
         // Required empty public constructor
     }
 
-    public static frg_db_oda_secimi newInstance()
+    public static frg_ds_bina_secimi newInstance()
     {
-        return new frg_db_oda_secimi();
+        return new frg_ds_bina_secimi();
     }
 
     @Override
@@ -83,7 +85,7 @@ public class frg_db_oda_secimi extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.frg_db_oda_secimi, container, false);
+        return inflater.inflate(R.layout.frg_ds_bina_secimi, container, false);
     }
 
     @Override
@@ -113,9 +115,9 @@ public class frg_db_oda_secimi extends Fragment {
         persos = new Persos(_OnlineUrl,getContext());
     }
 
-    public void fn_senddata(Demirbas_Konum kat)
+    public void fn_senddata(Demirbas_Konum isletme)
     {
-        this.kat=kat;
+        this.isletme=isletme;
     }
 
     @Override
@@ -137,21 +139,21 @@ public class frg_db_oda_secimi extends Fragment {
 
 
 
-        _oda_list = (ListView) getView().findViewById(R.id.oda_list);
+        _bina_list = (ListView) getView().findViewById(R.id.bina_list);
 
-        _oda_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        _bina_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                _Secili = oda_listesi.get(position);
+                _Secili = bina_listesi.get(position);
             }
         });
 
-        adapter=new apmblSayimIslemleriDbOdaSecimi(new ArrayList<Demirbas_Konum>(),getContext());
-        _oda_list.setAdapter(adapter);
+        adapter=new apmblSayimIslemleriDsBinaSecimi(new ArrayList<Demirbas_Konum>(),getContext());
+        _bina_list.setAdapter(adapter);
 
 
-        oda_listesi= new ArrayList<Demirbas_Konum>();
+        bina_listesi= new ArrayList<Demirbas_Konum>();
         binaDegerlendir();
     }
 
@@ -169,10 +171,10 @@ public class frg_db_oda_secimi extends Fragment {
             _Param1.setAktif_sunucu(_ayaraktifsunucu);
             _Param1.setAktif_kullanici(_ayaraktifkullanici);
 
-            _Param1.setDemirbasKonum(kat);
+            _Param1.setDemirbasKonum(isletme);
 
             Genel.showProgressDialog(getContext());
-            oda_listesi = persos.fn_sec_ek_demirbas_oda(_Param1);
+            bina_listesi = persos.fn_sec_demirbas_bina(_Param1);
             Genel.dismissProgressDialog();
 
             updateListviewItem();
@@ -184,7 +186,7 @@ public class frg_db_oda_secimi extends Fragment {
             new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("BAĞLANTI HATASI")
                     .setContentTextSize(25)
-                    .setContentText("Oda listesi alınamadı.")
+                    .setContentText("Bina listesi alınamadı.")
                     .showCancelButton(false)
                     .show();
         }
@@ -196,7 +198,7 @@ public class frg_db_oda_secimi extends Fragment {
         {
             if (adapter != null) {
                 adapter.clear();
-                adapter.addAll(oda_listesi);
+                adapter.addAll(bina_listesi);
                 adapter.notifyDataSetChanged();
             }
 
@@ -214,13 +216,13 @@ public class frg_db_oda_secimi extends Fragment {
             try
             {
                 if (_Secili!=null) {
-                    Demirbas_Konum secilen_kat = _Secili;
+                    Demirbas_Konum secilen_bina = _Secili;
 
-                    frg_db_sayim_islemi fragmentyeni = new frg_db_sayim_islemi();
-                    fragmentyeni.fn_senddata(secilen_kat);
+                    frg_ds_kat_secimi fragmentyeni = new frg_ds_kat_secimi();
+                    fragmentyeni.fn_senddata(secilen_bina);
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_db_sayim_islemi").addToBackStack(null);
+                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_ds_kat_secimi").addToBackStack(null);
                     fragmentTransaction.commit();
                 }
 
@@ -240,11 +242,10 @@ public class frg_db_oda_secimi extends Fragment {
     private class fn_Geri implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_db_kat_secimi fragmentyeni = new frg_db_kat_secimi();
-            fragmentyeni.fn_senddata(kat);
+            frg_ds_isletme_secimi fragmentyeni = new frg_ds_isletme_secimi();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_db_kat_secimi").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_ds_isletme_secimi").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }

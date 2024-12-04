@@ -32,7 +32,9 @@ import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_arama.frg_da_i
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_arama.frg_demirbas_arama;
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_basim_sorgula.frg_db_sayim_islemi;
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_sorgulama.frg_demirbas_sorgula;
+import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Sayim_islemleri.frg_ds_isemri_secimi;
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Sayim_islemleri.frg_ds_sayim_islemi;
+import com.etimaden.SayimIslemleri.Depo_gecici_sayimi.frg_depo_gecici_sayim_islemi;
 import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_depo_sayim_islemi;
 import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_sayim_islemi_urun_aktivasyon;
 import com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri.frg_arac_aktivasyon;
@@ -938,6 +940,12 @@ public class GirisSayfasi extends AppCompatActivity {
             return true;
         }
 
+        frg_ds_isemri_secimi _frg_ds_isemri_secimi = (frg_ds_isemri_secimi) getSupportFragmentManager().findFragmentByTag("frg_ds_isemri_secimi");
+        if (_frg_ds_isemri_secimi != null && _frg_ds_isemri_secimi.isVisible()) {
+            _frg_ds_isemri_secimi.barkodOkundu(barkod);
+            return true;
+        }
+
         return false;
     }
 
@@ -1177,6 +1185,19 @@ public class GirisSayfasi extends AppCompatActivity {
             _frg_db_sayim_islemi.rfidOkundu(rfid);
             return true;
         }
+
+        frg_ds_isemri_secimi _frg_ds_isemri_secimi = (frg_ds_isemri_secimi) getSupportFragmentManager().findFragmentByTag("frg_ds_isemri_secimi");
+        if (_frg_ds_isemri_secimi != null && _frg_ds_isemri_secimi.isVisible()) {
+            _frg_ds_isemri_secimi.rfidOkundu(rfid);
+            return true;
+        }
+
+        frg_depo_gecici_sayim_islemi _frg_depo_gecici_sayim_islemi = (frg_depo_gecici_sayim_islemi) getSupportFragmentManager().findFragmentByTag("frg_depo_gecici_sayim_islemi");
+        if (_frg_depo_gecici_sayim_islemi != null && _frg_depo_gecici_sayim_islemi.isVisible()) {
+            _frg_depo_gecici_sayim_islemi.rfidOkundu(rfid);
+            return true;
+        }
+
         return false;
     }
 

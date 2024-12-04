@@ -12,13 +12,13 @@ import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
 
-public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum> {
+public class apmblSayimIslemleriDsBinaSecimi extends ArrayAdapter<Demirbas_Konum> {
 
     private ArrayList<Demirbas_Konum> dataSet;
     Context mContext;
 
-    public apmblSayimIslemleriDbBinaSecimi(ArrayList<Demirbas_Konum> data, Context context) {
-        super(context, R.layout.liste_sayim_islemleri_db_bina_secimi_item, data);
+    public apmblSayimIslemleriDsBinaSecimi(ArrayList<Demirbas_Konum> data, Context context) {
+        super(context, R.layout.liste_sayim_islemleri_ds_bina_secimi_item, data);
         this.dataSet = data;
         this.mContext=context;
 
@@ -43,7 +43,7 @@ public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.liste_sayim_islemleri_db_bina_secimi_item, parent, false);
+            convertView = inflater.inflate(R.layout.liste_sayim_islemleri_ds_bina_secimi_item, parent, false);
 
 
             viewHolder._sira = (TextView) convertView.findViewById(R.id.sira);

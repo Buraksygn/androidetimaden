@@ -12,13 +12,13 @@ import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
 
-public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum> {
+public class apmblSayimIslemleriDsIsemriSecimi extends ArrayAdapter<Demirbas_Konum> {
 
     private ArrayList<Demirbas_Konum> dataSet;
     Context mContext;
 
-    public apmblSayimIslemleriDbBinaSecimi(ArrayList<Demirbas_Konum> data, Context context) {
-        super(context, R.layout.liste_sayim_islemleri_db_bina_secimi_item, data);
+    public apmblSayimIslemleriDsIsemriSecimi(ArrayList<Demirbas_Konum> data, Context context) {
+        super(context, R.layout.liste_sayim_islemleri_ds_isemri_secimi_item, data);
         this.dataSet = data;
         this.mContext=context;
 
@@ -26,8 +26,9 @@ public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum
 
     private static class ViewHolder {
         TextView _sira;
-        TextView _bina_kod;
-        TextView _bina_adi;
+        TextView _sayim_kod_sap;
+        TextView _oda_kod;
+        TextView _oda_adi;
     }
 
     @Override
@@ -43,12 +44,13 @@ public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.liste_sayim_islemleri_db_bina_secimi_item, parent, false);
+            convertView = inflater.inflate(R.layout.liste_sayim_islemleri_ds_isemri_secimi_item, parent, false);
 
 
             viewHolder._sira = (TextView) convertView.findViewById(R.id.sira);
-            viewHolder._bina_kod = (TextView) convertView.findViewById(R.id.bina_kod);
-            viewHolder._bina_adi = (TextView) convertView.findViewById(R.id.bina_adi);
+            viewHolder._sayim_kod_sap = (TextView) convertView.findViewById(R.id.sayim_kod_sap);
+            viewHolder._oda_kod = (TextView) convertView.findViewById(R.id.oda_kod);
+            viewHolder._oda_adi = (TextView) convertView.findViewById(R.id.oda_adi);
 
             result=convertView;
 
@@ -62,8 +64,9 @@ public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum
         }
 
         viewHolder._sira.setText(position + 1 + "" );
-        viewHolder._bina_kod.setText(dataModel.getBina_kod());
-        viewHolder._bina_adi.setText(dataModel.getBina_adi());
+        viewHolder._sayim_kod_sap.setText(dataModel.getSayim_kod_sap());
+        viewHolder._oda_kod.setText(dataModel.getOda_kod());
+        viewHolder._oda_adi.setText(dataModel.getOda_adi());
 
         return convertView;
     }

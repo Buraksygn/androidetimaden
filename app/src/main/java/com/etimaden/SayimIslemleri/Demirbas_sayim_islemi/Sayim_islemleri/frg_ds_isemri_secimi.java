@@ -1,4 +1,4 @@
-package com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_arama;
+package com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Sayim_islemleri;
 
 import static com.etimaden.cSabitDegerler._ipAdresi3G;
 import static com.etimaden.cSabitDegerler._sbtVerisyon;
@@ -22,29 +22,22 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.GirisSayfasi;
-import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Sayim_islemleri.frg_ds_sayim_islemi;
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.frg_demirbas_sayim_menu_panel;
-import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_depo_sayim_islemi;
-import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_depo_sayim_menu_panel;
-import com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_yukleme;
-import com.etimaden.adapter.apmblSayimIslemleriAktifDepoSayimIsemriSecimi;
 import com.etimaden.adapter.apmblSayimIslemleriDaIsemriSecimi;
+import com.etimaden.adapter.apmblSayimIslemleriDsIsemriSecimi;
 import com.etimaden.cIslem.VeriTabani;
-import com.etimaden.cResponseResult.Urun_sevkiyat;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Demirbas_Konum;
-import com.etimaden.persosclass.malzeme_sayim_isemri;
-import com.etimaden.request.request_bos;
+import com.etimaden.persosclass.Zayi_urun;
 import com.etimaden.request.request_string;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
-public class frg_da_isemri_secimi extends Fragment {
+public class frg_ds_isemri_secimi extends Fragment {
 
     VeriTabani _myIslem;
     String _ayaraktifkullanici = "";
@@ -69,15 +62,15 @@ public class frg_da_isemri_secimi extends Fragment {
     ArrayList<Demirbas_Konum> oda_listesi;
     Demirbas_Konum _Secili = null;
 
-    private apmblSayimIslemleriDaIsemriSecimi adapter;
+    private apmblSayimIslemleriDsIsemriSecimi adapter;
 
-    public frg_da_isemri_secimi() {
+    public frg_ds_isemri_secimi() {
         // Required empty public constructor
     }
 
-    public static frg_da_isemri_secimi newInstance()
+    public static frg_ds_isemri_secimi newInstance()
     {
-        return new frg_da_isemri_secimi();
+        return new frg_ds_isemri_secimi();
     }
 
     @Override
@@ -155,7 +148,17 @@ public class frg_da_isemri_secimi extends Fragment {
             }
         });
 
-        adapter=new apmblSayimIslemleriDaIsemriSecimi(new ArrayList<Demirbas_Konum>(),getContext());
+        _aktif_is_emirleri_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                _Secili = oda_listesi.get(position);
+                fn_listview_longclick();
+                return false;
+            }
+        });
+
+        adapter=new apmblSayimIslemleriDsIsemriSecimi(new ArrayList<Demirbas_Konum>(),getContext());
         _aktif_is_emirleri_list.setAdapter(adapter);
 
 
@@ -221,7 +224,8 @@ public class frg_da_isemri_secimi extends Fragment {
             try
             {
                 for(Demirbas_Konum w : oda_listesi){
-                    if(barkod.equals(oda + w.getBina_kod() + w.getKat_kod() + w.getOda_kod())){
+                    //if(barkod.equals(oda + w.getBina_kod() + w.getKat_kod() + w.getOda_kod())){
+                    if(barkod.contains(w.getDs_TEKNIK())){
                         konum = w;
                         break;
                     }
@@ -276,7 +280,8 @@ public class frg_da_isemri_secimi extends Fragment {
             try
             {
                 for(Demirbas_Konum w : oda_listesi){
-                    if(rfid.equals(oda + w.getBina_kod() + w.getKat_kod() + w.getOda_kod())){
+                    //if(rfid.equals(oda + w.getBina_kod() + w.getKat_kod() + w.getOda_kod())){
+                    if(rfid.contains(w.getDs_TEKNIK())){
                         konum = w;
                         break;
                     }
@@ -327,12 +332,13 @@ public class frg_da_isemri_secimi extends Fragment {
                 if (_Secili!=null) {
                     Demirbas_Konum secilen_oda = _Secili;
 
-                    frg_da_sayim_islemi fragmentyeni = new frg_da_sayim_islemi();
+                    frg_ds_sayim_islemi fragmentyeni = new frg_ds_sayim_islemi();
                     fragmentyeni.fn_senddata(secilen_oda);
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_da_sayim_islemi").addToBackStack(null);
+                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_ds_sayim_islemi").addToBackStack(null);
                     fragmentTransaction.commit();
+
 
                 }
                 else
@@ -356,6 +362,52 @@ public class frg_da_isemri_secimi extends Fragment {
 
         }
     }
+
+    private void fn_listview_longclick(){
+
+        try {
+            final Demirbas_Konum secilenKonum = _Secili;
+            if (_Secili != null ) {
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+                        .setTitleText("SİL")
+                        .setContentText( _Secili.getSayim_kod_sap() + " nolu iş emri silmek istiyor musunuz ?")
+                        .setContentTextSize(20)
+                        .setConfirmText("EVET")
+                        .setCancelText("HAYIR")
+                        .showCancelButton(true)
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialogG sDialog) {
+                                sDialog.dismissWithAnimation();
+
+                                Genel.showProgressDialog(getContext());
+                                _myIslem.fn_ds_sil_detay(secilenKonum);
+                                Genel.dismissProgressDialog();
+
+                                frg_ds_isemri_secimi fragmentyeni = new frg_ds_isemri_secimi();
+                                FragmentManager fragmentManager = getFragmentManager();
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_ds_isemri_secimi").addToBackStack(null);
+                                fragmentTransaction.commit();
+
+                            }
+                        })
+                        .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialogG sDialog) {
+                                sDialog.dismissWithAnimation();
+                                return;
+                            }
+                        })
+                        .show();
+
+
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
 
     private class fn_Geri implements View.OnClickListener {
         @Override

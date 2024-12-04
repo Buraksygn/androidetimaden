@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.etimaden.persosclass.Demirbas_Konum;
@@ -12,22 +13,23 @@ import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
 
-public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum> {
+public class apmblSayimIslemleriDsOdaSecimi extends ArrayAdapter<Demirbas_Konum> {
 
     private ArrayList<Demirbas_Konum> dataSet;
     Context mContext;
 
-    public apmblSayimIslemleriDbBinaSecimi(ArrayList<Demirbas_Konum> data, Context context) {
-        super(context, R.layout.liste_sayim_islemleri_db_bina_secimi_item, data);
+    public apmblSayimIslemleriDsOdaSecimi(ArrayList<Demirbas_Konum> data, Context context) {
+        super(context, R.layout.liste_sayim_islemleri_ds_oda_secimi_item, data);
         this.dataSet = data;
         this.mContext=context;
 
     }
 
     private static class ViewHolder {
-        TextView _sira;
-        TextView _bina_kod;
-        TextView _bina_adi;
+        TextView _checkbox;
+        TextView _sayim_kod_sap;
+        TextView _oda_kod;
+        TextView _oda_adi;
     }
 
     @Override
@@ -43,12 +45,13 @@ public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.liste_sayim_islemleri_db_bina_secimi_item, parent, false);
+            convertView = inflater.inflate(R.layout.liste_sayim_islemleri_ds_oda_secimi_item, parent, false);
 
 
-            viewHolder._sira = (TextView) convertView.findViewById(R.id.sira);
-            viewHolder._bina_kod = (TextView) convertView.findViewById(R.id.bina_kod);
-            viewHolder._bina_adi = (TextView) convertView.findViewById(R.id.bina_adi);
+            viewHolder._checkbox = (CheckBox) convertView.findViewById(R.id.checkbox);
+            viewHolder._sayim_kod_sap = (TextView) convertView.findViewById(R.id.sayim_kod_sap);
+            viewHolder._oda_kod = (TextView) convertView.findViewById(R.id.oda_kod);
+            viewHolder._oda_adi = (TextView) convertView.findViewById(R.id.oda_adi);
 
             result=convertView;
 
@@ -61,9 +64,9 @@ public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum
             result=convertView;
         }
 
-        viewHolder._sira.setText(position + 1 + "" );
-        viewHolder._bina_kod.setText(dataModel.getBina_kod());
-        viewHolder._bina_adi.setText(dataModel.getBina_adi());
+        viewHolder._sayim_kod_sap.setText(dataModel.getSayim_kod_sap());
+        viewHolder._oda_kod.setText(dataModel.getOda_kod());
+        viewHolder._oda_adi.setText(dataModel.getOda_adi());
 
         return convertView;
     }

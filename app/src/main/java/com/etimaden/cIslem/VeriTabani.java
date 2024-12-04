@@ -2013,7 +2013,19 @@ return _Sonuc;
         SQLiteDatabase db = this.getWritableDatabase();
         String Sonuc = "";
 
-        String _strSql = "DELETE FROM \"+TABLO_11_DEMIRBAS_SAYIM+\" WHERE " + TABLO_11_DEMIRBAS_SAYIM_ds_sayim_id + " = '" + dk.getSayim_id() + "'";
+        String _strSql = "DELETE FROM "+TABLO_11_DEMIRBAS_SAYIM+" WHERE " + TABLO_11_DEMIRBAS_SAYIM_ds_sayim_id + " = '" + dk.getSayim_id() + "'";
+        db.execSQL(_strSql);
+
+        if (db.isOpen()) {
+            db.close();
+        }
+    }
+
+    public void fn_ds_sil_detay(Demirbas_Konum dk) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String Sonuc = "";
+
+        String _strSql = "DELETE FROM "+TABLO_11_DEMIRBAS_SAYIM+" WHERE " + TABLO_11_DEMIRBAS_SAYIM_ds_sayim_kod + " = '" + dk.getSayim_kod() + "'";
         db.execSQL(_strSql);
 
         if (db.isOpen()) {

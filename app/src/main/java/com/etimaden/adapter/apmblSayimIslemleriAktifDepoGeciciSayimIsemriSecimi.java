@@ -7,18 +7,19 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.etimaden.persosclass.Demirbas_Konum;
+import com.etimaden.persosclass.Depo_sayım_isemri;
+import com.etimaden.persosclass.malzeme_sayim_isemri;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
 
-public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum> {
+public class apmblSayimIslemleriAktifDepoGeciciSayimIsemriSecimi extends ArrayAdapter<Depo_sayım_isemri> {
 
-    private ArrayList<Demirbas_Konum> dataSet;
+    private ArrayList<Depo_sayım_isemri> dataSet;
     Context mContext;
 
-    public apmblSayimIslemleriDbBinaSecimi(ArrayList<Demirbas_Konum> data, Context context) {
-        super(context, R.layout.liste_sayim_islemleri_db_bina_secimi_item, data);
+    public apmblSayimIslemleriAktifDepoGeciciSayimIsemriSecimi(ArrayList<Depo_sayım_isemri> data, Context context) {
+        super(context, R.layout.liste_sayim_islemleri_aktif_depo_gecici_sayim_isemri_secimi_item, data);
         this.dataSet = data;
         this.mContext=context;
 
@@ -26,14 +27,13 @@ public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum
 
     private static class ViewHolder {
         TextView _sira;
-        TextView _bina_kod;
-        TextView _bina_adi;
+        TextView _say_ad;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        Demirbas_Konum dataModel = getItem(position);
+        Depo_sayım_isemri dataModel = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         ViewHolder viewHolder; // view lookup cache stored in tag
 
@@ -43,12 +43,11 @@ public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.liste_sayim_islemleri_db_bina_secimi_item, parent, false);
+            convertView = inflater.inflate(R.layout.liste_sayim_islemleri_aktif_depo_gecici_sayim_isemri_secimi_item, parent, false);
 
 
             viewHolder._sira = (TextView) convertView.findViewById(R.id.sira);
-            viewHolder._bina_kod = (TextView) convertView.findViewById(R.id.bina_kod);
-            viewHolder._bina_adi = (TextView) convertView.findViewById(R.id.bina_adi);
+            viewHolder._say_ad = (TextView) convertView.findViewById(R.id.say_ad);
 
             result=convertView;
 
@@ -62,8 +61,7 @@ public class apmblSayimIslemleriDbBinaSecimi extends ArrayAdapter<Demirbas_Konum
         }
 
         viewHolder._sira.setText(position + 1 + "" );
-        viewHolder._bina_kod.setText(dataModel.getBina_kod());
-        viewHolder._bina_adi.setText(dataModel.getBina_adi());
+        viewHolder._say_ad.setText(dataModel.getSay_ad());
 
         return convertView;
     }

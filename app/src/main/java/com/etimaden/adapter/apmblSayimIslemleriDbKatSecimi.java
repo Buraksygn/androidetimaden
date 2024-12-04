@@ -43,7 +43,7 @@ public class apmblSayimIslemleriDbKatSecimi extends ArrayAdapter<Demirbas_Konum>
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.liste_sayim_islemleri_depo_sayim_islemi_item, parent, false);
+            convertView = inflater.inflate(R.layout.liste_sayim_islemleri_db_kat_secimi_item, parent, false);
 
 
             viewHolder._sira = (TextView) convertView.findViewById(R.id.sira);
