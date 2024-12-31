@@ -116,6 +116,7 @@ public class frg_ds_isletme_secimi extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
         ((GirisSayfasi) getActivity()).fn_ModBarkod();
         _myIslem = new VeriTabani(getContext());
         _myIslem.fn_EpcTemizle();
@@ -146,6 +147,7 @@ public class frg_ds_isletme_secimi extends Fragment {
 
 
         isletme_listesi= new ArrayList<Demirbas_Konum>();
+        fn_AyarlariYukle();
         isletmeDegerlendir();
     }
 

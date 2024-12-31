@@ -244,14 +244,14 @@ public class cSetIlsletmeAyari
         _myIslem.fn_BaslangicAyarlari(cSabitDegerler._sbtVerisyon,baglanti_turu, aktif_kullanici, aktif_depo, aktif_alt_tesis, aktif_tesis, aktif_sunucu, aktif_isletmeesleme, sunucu_ip);
     }
     public void fn_setTest(Context v_Context) {
-        aktif_kullanici = "andr_EmetIsletme";
-        aktif_depo = "URN1";
-        aktif_alt_tesis = "2001-01";
+        aktif_depo = "MUR1";
         aktif_tesis = "2001";
-        aktif_sunucu = "002";
+        aktif_alt_tesis = "2001-01";
+        aktif_sunucu = "001";
         aktif_isletmeesleme = "2001";
+        aktif_kullanici = "andr_bandirma_isletme";
         baglanti_turu="wifi";
-        sunucu_ip="192.168.9.150";
+        sunucu_ip="192.168.10.121";
 
         _myIslem=new VeriTabani(v_Context);
         _myIslem.fn_Kayit();

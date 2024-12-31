@@ -136,7 +136,7 @@ public class frg_da_isemri_secimi extends Fragment {
         _btnOdaSec.playSoundEffect(0);
         _btnOdaSec.setOnClickListener(new fn_btnOdaSec());
 
-        _btngeri = (Button)getView().findViewById(R.id.btngeri);
+        _btngeri = (Button)getView().findViewById(R.id.btnGeri);
         _btngeri.playSoundEffect(0);
         _btngeri.setOnClickListener(new fn_Geri());
 

@@ -154,6 +154,8 @@ public class frg_ds_bina_secimi extends Fragment {
 
 
         bina_listesi= new ArrayList<Demirbas_Konum>();
+
+        fn_AyarlariYukle();
         binaDegerlendir();
     }
 

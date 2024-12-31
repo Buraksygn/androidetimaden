@@ -154,6 +154,8 @@ public class frg_ds_kat_secimi extends Fragment {
 
 
         kat_listesi= new ArrayList<Demirbas_Konum>();
+
+        fn_AyarlariYukle();
         binaDegerlendir();
     }
 

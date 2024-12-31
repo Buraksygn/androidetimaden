@@ -165,6 +165,7 @@ public class frg_ds_oda_secimi extends Fragment {
 
 
         oda_listesi= new ArrayList<Demirbas_Konum>();
+        fn_AyarlariYukle();
         binaDegerlendir();
     }
 
@@ -185,7 +186,7 @@ public class frg_ds_oda_secimi extends Fragment {
             _Param1.setDemirbasKonum(kat);
 
             Genel.showProgressDialog(getContext());
-            oda_listesi = persos.fn_sec_demirbas_oda(_Param1);
+             oda_listesi = persos.fn_sec_demirbas_oda(_Param1);
             Genel.dismissProgressDialog();
 
             updateListviewItem();
