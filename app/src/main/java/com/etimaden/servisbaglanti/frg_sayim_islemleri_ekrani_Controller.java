@@ -108,9 +108,9 @@ public interface frg_sayim_islemleri_ekrani_Controller {
 
     @POST("api/sec_demirbas_oda")
     Call<View_demirbas_konum_listesi> fn_sec_demirbas_oda(@Body request_demirbas_konum v_Gelen);
-
-    @POST("api/sec_demirbas_detay")
-    Call<View_demirbas_sayim_listesi> fn_sec_demirbas_detay(@Body request_demirbas_konum v_Gelen);
+    //-----------
+    @POST("api/sec_demirbas_detay_list")
+    Call<View_demirbas_sayim_listesi> fn_sec_demirbas_detay_list(@Body request_demirbas_konum v_Gelen);
 
     @POST("api/sec_depo_sayim_isemri")
     Call<View_depo_sayim_isemri_listesi> fn_sec_depo_sayim_isemri(@Body request_bos_aktif_isletme_esleme v_Gelen);

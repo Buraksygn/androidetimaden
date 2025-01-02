@@ -3544,7 +3544,7 @@ public class Persos {
         }
     }
 
-    public List<demirbas_sayim> fn_sec_demirbas_detay(request_demirbas_konum v_Gelen)
+    public List<demirbas_sayim> fn_sec_demirbas_detay_list(request_demirbas_konum v_Gelen)
     {
         View_demirbas_sayim_listesi _yanit;
 
@@ -3552,7 +3552,7 @@ public class Persos {
         {
             frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
 
-            Call<View_demirbas_sayim_listesi> fn_Servis = _Servis.fn_sec_demirbas_detay(v_Gelen);
+            Call<View_demirbas_sayim_listesi> fn_Servis = _Servis.fn_sec_demirbas_detay_list(v_Gelen);
 
             Response<View_demirbas_sayim_listesi> _Response = fn_Servis.execute();
 

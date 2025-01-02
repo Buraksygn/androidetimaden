@@ -281,7 +281,7 @@ public class frg_ds_oda_secimi extends Fragment {
             _Param1.setDemirbasKonum(knm_isemri);
 
             Genel.showProgressDialog(getContext());
-            List<demirbas_sayim> dl = persos.fn_sec_demirbas_detay(_Param1);
+            List<demirbas_sayim> dl = persos.fn_sec_demirbas_detay_list(_Param1);
             Genel.dismissProgressDialog();
 
             for(demirbas_sayim ds : dl){
