@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -19,6 +20,7 @@
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depo_transfer_ekrani.xml" value="0.21822916666666667" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depo_transfer_ekranı.xml" value="0.2109375" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_depolar_arasi_transfer_menu_panel.xml" value="0.2109375" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ds_oda_secimi.xml" value="0.2140625" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ds_sayim_islemi.xml" value="0.25" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ellecleme_ayirma.xml" value="0.25" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/frg_ellecleme_menu_panel.xml" value="0.33" />
@@ -47,6 +49,7 @@
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sayim_islemleri_aktif_depo_sayim_isemri_secimi_item.xml" value="0.21822916666666667" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sayim_islemleri_da_isemri_secimi_item.xml" value="0.22239583333333332" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sayim_islemleri_depo_sayim_islemi_item.xml" value="0.21822916666666667" />
+        <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sayim_islemleri_ds_oda_secimi_item.xml" value="0.5" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/layout/liste_sayim_islemleri_sayim_islemi_urun_aktivasyon_item.xml" value="0.21822916666666667" />
         <entry key="..\:/ANIVENTI/Buraksygn/androidetimaden/app/src/main/res/xml/config_preference.xml" value="0.22395833333333334" />
       </map>

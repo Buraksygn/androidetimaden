@@ -12,8 +12,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="12dp"
         android:text=""
-        android:clickable="false"
+        android:enabled="false"
         android:checked="false"
+        android:buttonTint="@color/colorGreen"
         android:textSize="20dp"
         android:id="@+id/checkbox" />
 
