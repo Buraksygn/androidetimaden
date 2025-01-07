@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         _btnCikis = (Button) findViewById(R.id.btnCikis);
-        _btnCikis.playSoundEffect(0);
+        _btnCikis.playSoundEffect(SoundEffectConstants.CLICK);
         _btnCikis.setOnClickListener(new fn_Cikis());
 
         _btnGiris = (Button) findViewById(R.id.btnGiris);

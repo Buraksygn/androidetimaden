@@ -3547,7 +3547,7 @@ public class Persos {
     public List<demirbas_sayim> fn_sec_demirbas_detay_list(request_demirbas_konum v_Gelen)
     {
         View_demirbas_sayim_listesi _yanit;
-
+        String sonuc="";
         try
         {
             frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
@@ -3559,6 +3559,8 @@ public class Persos {
             if(_Response.isSuccessful())
             {
                 _yanit = _Response.body();
+                sonuc= _yanit._zHataAciklama;
+           //    Genel.printStackTrace(sonuc, context);
 
                 return  _yanit.get_demirbas_sayim_listesi();
             }

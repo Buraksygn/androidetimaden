@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.etimaden.cSabitDegerler;
+import com.etimaden.genel.Genel;
 import com.etimaden.persosclass.Demirbas_Konum;
 import com.etimaden.persosclass.demirbas_sayim;
 
@@ -191,10 +192,12 @@ public class VeriTabani extends SQLiteOpenHelper {
     private static final String TABLO_11_DEMIRBAS_SAYIM_ds_masraf_yeri = "ds_masraf_yeri";
     private static final String TABLO_11_DEMIRBAS_SAYIM_ds_TEKNIK = "ds_TEKNIK";
 
-
+    Context context2;
     public VeriTabani(Context context)
     {
+
         super(context, DATABASE_NAME, null, cSabitDegerler.DATABASE_VERSION);
+        context2=context;
     }
 
     public String fn_SaglamEtiketSayisi()
@@ -1900,72 +1903,77 @@ return _Sonuc;
     {
         SQLiteDatabase db = this.getWritableDatabase();
         String _strSql="";
+        try {
+            _strSql="INSERT INTO "+TABLO_11_DEMIRBAS_SAYIM+"(" +
+                    TABLO_11_DEMIRBAS_SAYIM_ds_id+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_user_id+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_isletme_adi+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_bina_kod+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_kat_kod+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_oda_kod+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_bina_adi+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_kat_adi+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_oda_adi+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_sayim_kod+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_sayim_id+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_kod+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_eski_kod+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_1+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_2+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_3+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_durum+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_eski_yeni+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_sap_kod+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_persos_kod+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_persos_id+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_rfid+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_id+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_adi+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_aktarim+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_masraf_yeri+","+
+                    TABLO_11_DEMIRBAS_SAYIM_ds_TEKNIK+
+                    ") VALUES ("+
+                    "'"+ds.getDs_id()+"'," +
+                    "'"+ds.getDs_user_id()+"'," +
+                    "'"+ds.getDs_isletme_kod()+"'," +
+                    "'"+ds.getDs_isletme_adi()+"'," +
+                    "'"+ds.getDs_bina_kod()+"'," +
+                    "'"+ds.getDs_kat_kod()+"'," +
+                    "'"+ds.getDs_oda_kod()+"'," +
+                    "'"+ds.getDs_bina_adi()+"'," +
+                    "'"+ds.getDs_kat_adi()+"'," +
+                    "'"+ds.getDs_oda_adi()+"'," +
+                    "'"+ds.getDs_sayim_kod()+"'," +
+                    "'"+ds.getDs_sayim_id()+"'," +
+                    "'"+ds.getDs_demirbas_kod()+"'," +
+                    "'"+ds.getDs_demirbas_eski_kod()+"'," +
+                    "'"+ds.getDs_demirbas_ad_1()+"'," +
+                    "'"+ds.getDs_demirbas_ad_2()+"'," +
+                    "'"+ds.getDs_demirbas_ad_3()+"'," +
+                    "'"+ds.getDs_durum()+"'," +
+                    "'"+ds.getDs_eski_yeni()+"'," +
+                    "'"+ds.getDs_sap_kod()+"'," +
+                    "'"+ds.getDs_persos_kod()+"'," +
+                    "'"+ds.getDs_persos_id()+"'," +
+                    "'"+ds.getDs_rfid()+"'," +
+                    "'"+ds.getDs_zimmetli_id()+"'," +
+                    "'"+ds.getDs_zimmetli_adi()+"'," +
+                    "'"+ds.getDs_aktarim()+"'," +
+                    "'"+ds.getDs_masraf_yeri()+"'," +
+                    "'"+ds.getDs_teknik_birim()+"'" +
+                    ") ";
 
-        _strSql="INSERT INTO "+TABLO_11_DEMIRBAS_SAYIM+"(" +
-                TABLO_11_DEMIRBAS_SAYIM_ds_id+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_user_id+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_isletme_adi+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_bina_kod+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_kat_kod+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_oda_kod+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_bina_adi+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_kat_adi+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_oda_adi+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_sayim_kod+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_sayim_id+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_kod+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_eski_kod+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_1+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_2+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_demirbas_ad_3+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_durum+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_eski_yeni+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_sap_kod+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_persos_kod+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_persos_id+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_rfid+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_id+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_zimmetli_adi+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_aktarim+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_masraf_yeri+","+
-                TABLO_11_DEMIRBAS_SAYIM_ds_TEKNIK+
-                ") VALUES ("+
-                "'"+ds.getDs_id()+"'," +
-                "'"+ds.getDs_user_id()+"'," +
-                "'"+ds.getDs_isletme_kod()+"'," +
-                "'"+ds.getDs_isletme_adi()+"'," +
-                "'"+ds.getDs_bina_kod()+"'," +
-                "'"+ds.getDs_kat_kod()+"'," +
-                "'"+ds.getDs_oda_kod()+"'," +
-                "'"+ds.getDs_bina_adi()+"'," +
-                "'"+ds.getDs_kat_adi()+"'," +
-                "'"+ds.getDs_oda_adi()+"'," +
-                "'"+ds.getDs_sayim_kod()+"'," +
-                "'"+ds.getDs_sayim_id()+"'," +
-                "'"+ds.getDs_demirbas_kod()+"'," +
-                "'"+ds.getDs_demirbas_eski_kod()+"'," +
-                "'"+ds.getDs_demirbas_ad_1()+"'," +
-                "'"+ds.getDs_demirbas_ad_2()+"'," +
-                "'"+ds.getDs_demirbas_ad_3()+"'," +
-                "'"+ds.getDs_durum()+"'," +
-                "'"+ds.getDs_eski_yeni()+"'," +
-                "'"+ds.getDs_sap_kod()+"'," +
-                "'"+ds.getDs_persos_kod()+"'," +
-                "'"+ds.getDs_persos_id()+"'," +
-                "'"+ds.getDs_rfid()+"'," +
-                "'"+ds.getDs_zimmetli_id()+"'," +
-                "'"+ds.getDs_zimmetli_adi()+"'," +
-                "'"+ds.getDs_aktarim()+"'," +
-                "'"+ds.getDs_masraf_yeri()+"'," +
-                "'"+ds.getDs_teknik_birim()+"'" +
-                ") ";
-
-        db.execSQL(_strSql);
-        if(db.isOpen())
-        {
-            db.close();
+            db.execSQL(_strSql);
+            if(db.isOpen())
+            {
+                db.close();
+            }
         }
+        catch (Exception ex){
+            Genel.printStackTrace(ex,context2);
+        }
+
     }
 
     public void  fn_guncelle_ds(demirbas_sayim ds)

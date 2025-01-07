@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -134,17 +135,20 @@ public class frg_ds_oda_secimi extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
 
         _btnIleri = (Button)getView().findViewById(R.id.btnIleri);
-        _btnIleri.playSoundEffect(0);
+        _btnIleri.playSoundEffect(SoundEffectConstants.CLICK);
         _btnIleri.setOnClickListener(new fn_btnIleri());
 
         _btnGeri = (Button)getView().findViewById(R.id.btnGeri);
-        _btnGeri.playSoundEffect(0);
+        _btnGeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btnGeri.setOnClickListener(new fn_Geri());
 
 
+//        adapter=new apmblSayimIslemleriDsOdaSecimi(new ArrayList<Demirbas_Konum>(),getContext());
+//        _oda_list.setAdapter(adapter);
 
         _oda_list = (ListView) getView().findViewById(R.id.oda_list);
-
+        adapter=new apmblSayimIslemleriDsOdaSecimi(new ArrayList<Demirbas_Konum>(),getContext());
+        _oda_list.setAdapter(adapter);
         _oda_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -159,10 +163,8 @@ public class frg_ds_oda_secimi extends Fragment {
                 }
             }
         });
-
-        adapter=new apmblSayimIslemleriDsOdaSecimi(new ArrayList<Demirbas_Konum>(),getContext());
-        _oda_list.setAdapter(adapter);
-
+//        adapter=new apmblSayimIslemleriDsOdaSecimi(new ArrayList<Demirbas_Konum>(),getContext());
+//        _oda_list.setAdapter(adapter);
 
         oda_listesi= new ArrayList<Demirbas_Konum>();
         fn_AyarlariYukle();
@@ -291,7 +293,9 @@ public class frg_ds_oda_secimi extends Fragment {
             return true;
         }
         catch (Exception ex)
-        {}
+        {
+            Genel.printStackTrace(ex,getContext());
+        }
         return false;
     }
 

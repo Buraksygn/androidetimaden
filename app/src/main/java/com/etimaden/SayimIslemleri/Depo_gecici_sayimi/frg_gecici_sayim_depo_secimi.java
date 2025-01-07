@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -132,11 +133,11 @@ public class frg_gecici_sayim_depo_secimi extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
 
         _btnDepoOnayla = (Button)getView().findViewById(R.id.btnDepoOnayla);
-        _btnDepoOnayla.playSoundEffect(0);
+        _btnDepoOnayla.playSoundEffect(SoundEffectConstants.CLICK);
         _btnDepoOnayla.setOnClickListener(new fn_btnDepoOnayla());
 
         _btnGeri = (Button)getView().findViewById(R.id.btnGeri);
-        _btnGeri.playSoundEffect(0);
+        _btnGeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btnGeri.setOnClickListener(new fn_Geri());
 
 
