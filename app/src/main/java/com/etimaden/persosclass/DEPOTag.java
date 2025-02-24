@@ -17,8 +17,9 @@ public class DEPOTag {
     }
 
     public String getDepo_id() {
-        return depo_id;
+        return  depo_id;
     }
+
 
     public void setDepo_id(String depo_id) {
         this.depo_id = depo_id;

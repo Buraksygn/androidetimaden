@@ -5,6 +5,7 @@ import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -82,6 +83,7 @@ public class frg_zayi_isemri_degistir extends Fragment {
         // Inflate the layout for this fragment
 
         return inflater.inflate(R.layout.frg_zayi_isemri_degistir, container, false);
+
     }
 
     @Override
@@ -115,6 +117,7 @@ public class frg_zayi_isemri_degistir extends Fragment {
     {
         this.zayi_listesi = zayi_listesi;
         this.arac=arac;
+
     }
 
     @Override
@@ -145,7 +148,11 @@ public class frg_zayi_isemri_degistir extends Fragment {
         });
 
         fn_AyarlariYukle();
-        zayi_listesi= new ArrayList<Zayi>();
+        //ozgur asagidaki kodu koydu
+        if (zayi_listesi == null) {
+            zayi_listesi = new ArrayList<>();
+        }
+        //zayi_listesi= new ArrayList<Zayi>(); ///orjinali buydu listesi sıfırlıyordu
         sevkDegerlendir();
     }
 
@@ -179,6 +186,7 @@ public class frg_zayi_isemri_degistir extends Fragment {
             Genel.printStackTrace(ex,getContext());
         }
     }
+
 
 
     private class fn_Geri implements View.OnClickListener {

@@ -21,7 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.etimaden.adapter.apmblDepoListesi;
+import com.etimaden.adapter.apmblDepoTransferListesi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.depolarArasiSevkIslemi.frg_depolar_arasi_transfer_menu_panel;
 import com.etimaden.genel.Genel;
@@ -58,7 +58,7 @@ public class frg_depo_secimi_transfer extends Fragment {
     ArrayList<DEPOTag> depo_listesi;
     DEPOTag _Secili = null;
 
-    private apmblDepoListesi adapter;
+    private apmblDepoTransferListesi adapter;
 
     public frg_depo_secimi_transfer() {
         // Required empty public constructor
@@ -137,7 +137,7 @@ public class frg_depo_secimi_transfer extends Fragment {
             }
         });
 
-        adapter=new apmblDepoListesi(new ArrayList<DEPOTag>(),getContext());
+        adapter=new apmblDepoTransferListesi(new ArrayList<DEPOTag>(),getContext());
         _aktif_is_emirleri_list.setAdapter(adapter);
 
         fn_AyarlariYukle();
@@ -167,6 +167,7 @@ public class frg_depo_secimi_transfer extends Fragment {
             _Param.setDepo_silo_secimi_kontrol(false);
 
             Genel.showProgressDialog(getContext());
+
             List<DEPOTag> result = persos.fn_secDepoTanimlari(_Param);
             depo_listesi=new ArrayList<>();
             for(DEPOTag depo : result){
@@ -174,6 +175,10 @@ public class frg_depo_secimi_transfer extends Fragment {
                     depo_listesi.add(depo);
                 }
             }
+
+
+
+
             Genel.dismissProgressDialog();
 
             updateListviewItem();

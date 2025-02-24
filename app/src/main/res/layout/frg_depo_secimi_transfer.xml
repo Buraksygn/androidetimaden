@@ -17,7 +17,8 @@
         android:layout_y="0dp"
         android:textColor="@color/green"
         android:text="frg_depo_secimi_transfer"
-        android:textSize="12dp" />
+        android:textSize="12dp"/>
+
 
     <Button
         android:id="@+id/btnDepoOnayla"
@@ -32,22 +33,22 @@
         android:textSize="20sp"
         android:focusable="false"/>
 
+
     <HorizontalScrollView
         android:layout_width="325dp"
         android:layout_height="340dp"
-        android:layout_x="2dp"
+        android:layout_x="-2dp"
         android:layout_y="100dp">
 
         <ListView
             android:id="@+id/aktif_is_emirleri_list"
             android:layout_width="wrap_content"
-            android:layout_height="440dp"
+            android:layout_height="match_parent"
             android:listSelector="@color/colorBlackSecili"
             android:scrollbars="horizontal|vertical"
             android:textColor="@color/green" />
 
     </HorizontalScrollView>
-
 
     <Button
         android:id="@+id/btncikis"

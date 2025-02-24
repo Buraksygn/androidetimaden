@@ -46,8 +46,11 @@ public class Sevkiyat_isemri {
     public String aciklama  = "";
     public String update_id  = "";
     public String vardiya  = "";
+
     public int count  = 0;
     public int dolu_konteyner_sayisi  = 0;
     public int bos_konteyner_sayisi = 0;
     public int dolu_konteyner_toplam_miktar = 0;
+
+
 }

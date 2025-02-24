@@ -7,20 +7,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
-import com.etimaden.DataModel.mblBekleyenArac;
 import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
 
-public class apmblDepoListesi extends ArrayAdapter<DEPOTag> {
+public class apmblDepoTransferListesi extends ArrayAdapter<DEPOTag> {
 
     private ArrayList<DEPOTag> dataSet;
     Context mContext;
 
-    public apmblDepoListesi(ArrayList<DEPOTag> data, Context context) {
+    public apmblDepoTransferListesi(ArrayList<DEPOTag> data, Context context) {
         super(context, R.layout.liste_depo_secimi, data);
         this.dataSet = data;
         this.mContext=context;
@@ -64,8 +61,9 @@ public class apmblDepoListesi extends ArrayAdapter<DEPOTag> {
             result=convertView;
         }
 
+        // + " " + dataModel.getIsletme_kod()
 
-        viewHolder._yazi_kod_depo_id.setText(dataModel.getDepo_id());
+        viewHolder._yazi_kod_depo_id.setText(dataModel.getDepo_id() + " " + dataModel.getIsletme_kod());
         viewHolder._yazi_kod_depo_adi.setText(dataModel.getDepo_adi());
 
         return convertView;

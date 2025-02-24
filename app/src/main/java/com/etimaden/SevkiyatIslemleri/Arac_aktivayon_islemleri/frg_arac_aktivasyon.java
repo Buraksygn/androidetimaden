@@ -290,11 +290,18 @@ public class frg_arac_aktivasyon extends Fragment {
                         break;
                     }
                 }
+                //String paletSayisi = aktif_sevk_isemri.ish_palet_sayisi; //OZGUR EKLEDİ
+                String paletSayisi = aktif_sevk_isemri.yapilan_adet; //OZGUR EKLEDİ
+
+
+
+
                 if (_ayaraktiftesis.equals("2003") && (aktif_sevk_isemri.aciklama.equals("17") || aktif_sevk_isemri.aciklama.equals("1")) && !aktif_sevk_isemri.vardiya.equals(""))
                 {
                     final Sevkiyat_isemri _aktif_sevk_isemri=aktif_sevk_isemri;
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
-                            .setTitleText("SEVKİYAT YÖNLENDİRMESİ")
+                            //.setTitleText("SEVKİYAT YÖNLENDİRMESİ")
+                            .setTitleText("SEVKİYAT YÖNLENDİRMESİ\n\nPALET SAYISI : " + paletSayisi) //OZGUR EKLEDİ
                             .setContentText("ARAÇ İÇİN GEMİ YÜKLEMESİ SEÇİLMİŞ. GEMİ YÜKLEMESİ TAMAMLANDIYSA \"EVET\" \n DEPOYA ALMA İÇİN \"HAYIR\" \n SEÇENEĞİNİ SEÇİNİZ!! ")
                             .setContentTextSize(20)
                             .setConfirmText("EVET")
