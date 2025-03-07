@@ -144,11 +144,11 @@ public class frg_arac_aktivasyon extends Fragment {
 
 
         _btnBekleyenAracListesi = (Button)getView().findViewById(R.id.btnBekleyenAracListesi);
-        _btnBekleyenAracListesi.playSoundEffect(0);
+        _btnBekleyenAracListesi.playSoundEffect(SoundEffectConstants.CLICK);
         _btnBekleyenAracListesi.setOnClickListener(new fn_btnBekleyenAracListesi());
 
         _btngeri = (Button)getView().findViewById(R.id.btngeri);
-        _btngeri.playSoundEffect(0);
+        _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
 
         _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);

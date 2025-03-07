@@ -276,6 +276,12 @@ public class frg_aktif_isemri_indirme  extends Fragment {
             }
             for(Urun_tag urun : ul_bekleyen){
                 urun_listesi.add(new Urun_tag_data(urun, Color.RED,R.drawable.redpoint,true));
+                //rfidOkundu(urun.rfid); //ozgur ekledi
+                if (_ayaraktiftesis.equals("2003"))
+                {
+                    rfidOkundu(urun.rfid); //ozgur ekledi
+                }
+
             }
             for(Urun_tag urun : ul_indirilen){
                 urun_listesi.add(new Urun_tag_data(urun, Color.GREEN,R.drawable.greenpoint,false));
@@ -733,7 +739,11 @@ public class frg_aktif_isemri_indirme  extends Fragment {
 
             //urun_listesi_indirilen.Add(urun_listesi_yuklenen.Where(w => w.palet_kod.Equals(tag.palet_kod)).ElementAt(0));
 
-            updateListviewItem();
+            //updateListviewItem(); ozgur kapattı orjinalinde vardı
+            if (!_ayaraktiftesis.equals("2003")) // ozgur
+            {
+                updateListviewItem();
+            }
         } catch (Exception ex) {
             new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("")
@@ -797,6 +807,11 @@ public class frg_aktif_isemri_indirme  extends Fragment {
         public void onClick(View view) {
             try
             {
+                if (_ayaraktiftesis.equals("2003"))
+                {
+                    updateListviewItem();
+                }
+
                 //todo Burası sadece yenileme işlemi için kullanılacak hale gelecek.
                 /*
                 Genel.lockButtonClick(view,getActivity());
