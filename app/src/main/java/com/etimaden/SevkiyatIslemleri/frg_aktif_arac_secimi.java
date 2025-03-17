@@ -354,7 +354,7 @@ public class frg_aktif_arac_secimi  extends Fragment {
                             }
                             else
                             {
-                                pDialog.hide();
+                                //pDialog.hide(); //ozgur kapadı orjinalı bu
 
 
                                 if(_Yanit._zsevkisemi.indirmeBindirme.equals(("")))
@@ -374,7 +374,9 @@ public class frg_aktif_arac_secimi  extends Fragment {
                                         FragmentManager fragmentManager = getFragmentManager();
                                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                         fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_aktif_isemri_indirme").addToBackStack(null);
+
                                         fragmentTransaction.commit();
+                                        pDialog.hide(); //ozgur ekledi
 
                                     }
                                     else
@@ -385,6 +387,7 @@ public class frg_aktif_arac_secimi  extends Fragment {
                                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                         fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_aktif_isemri_yukleme").addToBackStack(null);
                                         fragmentTransaction.commit();
+                                        pDialog.hide(); //ozgur ekledi
                                     }
                                 }
                             }
@@ -394,8 +397,10 @@ public class frg_aktif_arac_secimi  extends Fragment {
                             //Toast.makeText(getApplicationContext(), "_zSayfaAdiAciklama =" + _zHataAciklamasi, Toast.LENGTH_SHORT).show();
 
                         } catch (JsonMappingException e) {
+                            pDialog.hide(); //ozgur ekledi
                             e.printStackTrace();
                         } catch (JsonProcessingException e) {
+                            pDialog.hide(); //ozgur ekledi
                             e.printStackTrace();
                         }
 

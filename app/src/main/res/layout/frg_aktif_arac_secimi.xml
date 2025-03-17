@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBlack"
     android:focusable="false"
-    tools:context="com.etimaden.SevkiyatIslemleri.frg_aktif_isemri_secimi">
+    tools:context="com.etimaden.SevkiyatIslemleri.frg_aktif_arac_secimi">
 
     <TextView
         android:id="@+id/txtYazi5"
