@@ -245,10 +245,10 @@ public class cSetIlsletmeAyari
     }
     public void fn_setTest(Context v_Context) {
         aktif_depo = "MUR1";
-        aktif_tesis = "2001"; //2001 -2003
-        aktif_alt_tesis = "2001-01"; //2001-01 - 2004-01
+        aktif_tesis = "2003"; //2001 -2003
+        aktif_alt_tesis = "2004-01"; //2001-01 - 2004-01
         aktif_sunucu = "001";
-        aktif_isletmeesleme = "2001"; //2001 - 2003
+        aktif_isletmeesleme = "2003"; //2001 - 2003
         aktif_kullanici = "andr_bandirma_isletme";
         baglanti_turu="wifi";
         sunucu_ip="192.168.10.121";
