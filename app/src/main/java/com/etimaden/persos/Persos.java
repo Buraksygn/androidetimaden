@@ -2385,6 +2385,66 @@ public class Persos {
         }
     }
 
+    public Urun_sevkiyat fn_sec_sevkiyat_islemtipi(request_string v_Gelen)
+    {
+        View_sevkiyat_urun_sevkiyat _yanit;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_sevkiyat_urun_sevkiyat> fn_Servis = _Servis.fn_sec_sevkiyat_islemtipi(v_Gelen);
+
+            Response<View_sevkiyat_urun_sevkiyat> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Sevkiyat_isemri fn_sec_aktif_sevkiyat_isemri(request_string v_Gelen){
+        View_sevkiyat_isemri _yanit;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_sevkiyat_isemri> fn_Servis = _Servis.fn_sec_aktif_sevkiyat_isemri(v_Gelen);
+
+            Response<View_sevkiyat_isemri> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+
+    }
+
     public Boolean fn_ekle_aktarim(request_sevkiyat_aktarim v_Gelen)
     {
         View_bool_response _yanit;

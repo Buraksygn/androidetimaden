@@ -1,5 +1,9 @@
 package com.etimaden.cResponseResult;
 
+import net.sourceforge.jtds.jdbc.DateTime;
+
+import java.util.Date;
+
 public class Urun_sevkiyat {
 
     public String urun_kod = "";
@@ -19,4 +23,5 @@ public class Urun_sevkiyat {
     public String isletme_esleme  = "";
     public String isletme_adi = "";
     public String kilitli  = "";
+    public String ser_create_date = "";
 }

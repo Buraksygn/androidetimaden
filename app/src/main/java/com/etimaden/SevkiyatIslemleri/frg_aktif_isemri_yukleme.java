@@ -39,7 +39,16 @@ import com.etimaden.request.request_string;
 import com.etimaden.request.request_string_string;
 import com.etimaden.ugr_demo.R;
 
+import net.sourceforge.jtds.jdbc.DateTime;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -328,8 +337,48 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         }
     }
 
+    public Sevkiyat_isemri sevkiyatIsemriGet(String isemriId){
+
+            isReadable = false;
+            Genel.playQuestionSound(getContext());
+
+            request_string _Param=new request_string();
+
+        _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+        _Param.set_zaktif_tesis(_ayaraktiftesis);
+        _Param.set_zkullaniciadi(_zkullaniciadi);
+        _Param.set_zsifre(_zsifre);
+        _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+        _Param.set_zsurum(_sbtVerisyon);
+        _Param.setAktif_kullanici(_ayaraktifkullanici);
+        _Param.setAktif_sunucu(_ayaraktifsunucu);
+
+        _Param.set_value(isemriId);
+
+            Genel.showProgressDialog(getContext());
+            Sevkiyat_isemri isemri = persos.fn_sec_aktif_sevkiyat_isemri(_Param);
+            Genel.dismissProgressDialog();
+        if (isemri == null)
+        {
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                    .setTitleText("HATA")
+                    .setContentTextSize(25)
+                    .setContentText("Aktif araç işemri bulunamadı..")
+                    .showCancelButton(false)
+                    .show();
+
+        }else{
+            return isemri;
+        }
+
+           return null;
+
+    }
+
+
     public void barkodOkundu(String barkod)
     {
+        String createDate;
         try
         {
             barkod = barkod.substring(barkod.length()-24);
@@ -353,9 +402,21 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
             Genel.showProgressDialog(getContext());
             Urun_sevkiyat tag = persos.fn_sec_sevkiyat_urun(v_Gelen);
+            //Arac isemri veri listeleme
+            Sevkiyat_isemri isemri = sevkiyatIsemriGet(aktif_sevk_isemri.isemri_detay_id);
             Genel.dismissProgressDialog();
 
             Urun_sevkiyat urun = tag;
+
+            createDate = tag.ser_create_date;
+            int yearDiff = dateCalculator(createDate);
+
+
+            //if (calendarToday.get(Calendar.MONTH) < calendarCreated.get(Calendar.MONTH) ||
+            //        (calendarToday.get(Calendar.MONTH) == calendarCreated.get(Calendar.MONTH) &&
+            //                calendarToday.get(Calendar.DAY_OF_MONTH) < calendarCreated.get(Calendar.DAY_OF_MONTH))) {
+            //    yearDiff--;
+            //}
 
             if (urun == null)
             {
@@ -522,7 +583,45 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                         .showCancelButton(false)
                         .show();
             }
-            else
+            else if(yearDiff >= 1){
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("Zaman Aşımı Hatası")
+                        .setContentTextSize(25)
+                        .setContentText("1 yıldan fazla oluşturulan etiketlerin işlemi yapılamaz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
+
+            }
+            else if(!isemri.isemri_tipi_alt.equals("") && (aktif_sevk_isemri.isemri_tipi.equals("200"))) {
+                int yearDiffUrun = dateCalculator(tag.ser_create_date);
+                if(yearDiffUrun >= 2){
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                            .setTitleText("Zaman Aşımı Hatası")
+                            .setContentTextSize(25)
+                            .setContentText("2 yıldan fazla oluşturulan ürünlerin işlemi yapılamaz.")
+                            .showCancelButton(false)
+                            .show();
+                    isReadable = true;
+                    return;
+                }
+
+            }else if(aktif_sevk_isemri.isemri_tipi.equals("250") || (aktif_sevk_isemri.isemri_tipi.equals("251"))) {
+                int yearDiffUrun = dateCalculator(tag.ser_create_date);
+                if(yearDiffUrun >= 2){
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                            .setTitleText("Zaman Aşımı Hatası")
+                            .setContentTextSize(25)
+                            .setContentText("2 yıldan fazla oluşturulan ürünlerin işlemi yapılamaz.")
+                            .showCancelButton(false)
+                            .show();
+                    isReadable = true;
+                    return;
+                }
+
+            }
+             else
             {
                 urunDegerlendir(tag);
             }
@@ -532,6 +631,36 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             Genel.printStackTrace(ex,getContext());
         }
         isReadable = true;
+    }
+
+    //Tarih parse işlemi
+    public int dateCalculator(String value) throws ParseException {
+        Date today = new Date(); // Bugünün tarihi
+
+        SimpleDateFormat dateFormat = null;
+
+        //Farklı formatta gelirse uygun olanı seç
+        if(value.contains("-")){
+            dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        }
+        else if(value.contains("/")){
+            dateFormat = new SimpleDateFormat("M/d/yyyy");
+        }
+        else {
+            throw new ParseException("Bilinmeyen tarih formatı: " + value, 0);
+        }
+        Date createdDate = dateFormat.parse(value);
+
+        // Tarihleri set et
+        Calendar calendarToday = Calendar.getInstance();
+        calendarToday.setTime(today);
+
+        Calendar calendarCreated = Calendar.getInstance();
+        calendarCreated.setTime(createdDate);
+
+        int yearDiff = calendarToday.get(Calendar.YEAR) - calendarCreated.get(Calendar.YEAR);
+
+        return yearDiff;
     }
 
     public void rfidOkundu(String rfid)

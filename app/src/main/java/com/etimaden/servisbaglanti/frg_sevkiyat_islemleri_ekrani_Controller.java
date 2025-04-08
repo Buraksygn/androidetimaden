@@ -160,6 +160,9 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
     @POST("api/sec_sevkiyat_urun2")
     Call<View_sevkiyat_urun_sevkiyat> fn_sec_sevkiyat_urun(@Body request_string v_Gelen);
 
+    @POST("api/sec_sevkiyat_islemtipi")
+    Call<View_sevkiyat_urun_sevkiyat> fn_sec_sevkiyat_islemtipi(@Body request_string v_Gelen);
+
     //@POST("api/ekle_aktarim")
     @POST("api/kayit_aktarim")
     Call<View_bool_response> fn_ekle_aktarim(@Body request_sevkiyat_aktarim v_Gelen);
@@ -168,5 +171,6 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
 
     @POST("api/arac_konteyner_esleme")
     Call<View_bool_response> fn_arac_konteyner_esleme(@Body request_sevkiyat_isemri_sevkiyat_isemri v_Gelen);
-
+    @POST("api/sec_aktif_sevkiyat_isemri")
+    Call<View_sevkiyat_isemri> fn_sec_aktif_sevkiyat_isemri(@Body request_string v_Gelen);
 }

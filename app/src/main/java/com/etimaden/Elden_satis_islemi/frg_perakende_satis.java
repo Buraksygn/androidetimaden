@@ -200,6 +200,9 @@ public class frg_perakende_satis extends Fragment {
 
             Genel.showProgressDialog(getContext());
             Urun_sevkiyat tag = persos.fn_sec_sevkiyat_urun(v_Gelen);
+
+            //Urun_sevkiyat tagIsemritipi = persos.fn_sec_sevkiyat_islemtipi(v_Gelen);
+            Urun_sevkiyat tagIsemritipi = getIslemTipi(aktif_sevk_isemri.isemri_detay_id);
             Genel.dismissProgressDialog();
 
             if (tag == null)
@@ -211,6 +214,15 @@ public class frg_perakende_satis extends Fragment {
                         .showCancelButton(false)
                         .show();
                 isReadable = true;
+            }else if(tagIsemritipi.islem_durumu.equals("31")){
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Üretim iptali yapılmış bir etiketin satış işlemi gerçekleştirilemez.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
             }
             else
             {
@@ -226,6 +238,24 @@ public class frg_perakende_satis extends Fragment {
 
 
 
+    }
+
+    public Urun_sevkiyat getIslemTipi(String value){
+        request_string v_Gelen=new request_string();
+        v_Gelen.set_value(value);
+        v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
+        v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
+        v_Gelen.set_zkullaniciadi(_zkullaniciadi);
+        v_Gelen.set_zsifre(_zsifre);
+        v_Gelen.set_zsunucu_ip_adresi(_ayarsunucuip);
+        v_Gelen.set_zsurum(_sbtVerisyon);
+        v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
+        v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
+
+        Genel.showProgressDialog(getContext());
+        Urun_sevkiyat tagIsemritipi = persos.fn_sec_sevkiyat_islemtipi(v_Gelen);
+        Genel.dismissProgressDialog();
+        return tagIsemritipi;
     }
 
     public void rfidOkundu(String rfid){
