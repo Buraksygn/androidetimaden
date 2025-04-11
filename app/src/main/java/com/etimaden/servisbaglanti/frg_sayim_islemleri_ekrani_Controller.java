@@ -1,29 +1,15 @@
 package com.etimaden.servisbaglanti;
 
-import com.etimaden.cResponseResult.View_sec_sevk_miktar;
+import com.etimaden.persosclass.demirbas_sayim;
 import com.etimaden.request.request_aktarim_list;
 import com.etimaden.request.request_bos;
 import com.etimaden.request.request_bos_aktif_isletme_esleme;
 import com.etimaden.request.request_demirbas_konum;
 import com.etimaden.request.request_demirbas_sayim_list;
 import com.etimaden.request.request_demirbas_sayim_string;
-import com.etimaden.request.request_guncelle_sevk_hareket;
-import com.etimaden.request.request_sevkiyat_aktarim;
-import com.etimaden.request.request_sevkiyat_eski_sevk_yeni_sevk;
-import com.etimaden.request.request_sevkiyat_isemri;
-import com.etimaden.request.request_sevkiyat_isemri_depo;
-import com.etimaden.request.request_sevkiyat_isemri_sevkiyat_isemri;
-import com.etimaden.request.request_sevkiyat_isemri_uruntag_list_uruntag;
-import com.etimaden.request.request_sevkiyat_rota_agirlik_konteyner;
-import com.etimaden.request.request_sevkiyat_vagon_hareket_isemri;
-import com.etimaden.request.request_sevkiyat_zayi;
-import com.etimaden.request.request_sevkiyat_zayi_arac;
-import com.etimaden.request.request_sevkiyat_zayi_zayiurun_list_zayiurun;
 import com.etimaden.request.request_string;
 import com.etimaden.request.request_string_aktif_isletme_esleme;
-import com.etimaden.request.request_string_string;
 import com.etimaden.request.request_uruntag_list;
-import com.etimaden.request.requestsecDepoTanimlari;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_string_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.ViewsecDepoTanimlari;
@@ -34,17 +20,6 @@ import com.etimaden.response.sayim_islemleri.View_depo_sayim_isemri_listesi;
 import com.etimaden.response.sayim_islemleri.View_duran_varlik_sap;
 import com.etimaden.response.sayim_islemleri.View_malzeme_sayim_isemri_listesi;
 import com.etimaden.response.sayim_islemleri.View_zimmet_sonuc_sap;
-import com.etimaden.response.sevkiyat_islemleri.View_arac;
-import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_bekleyen_arac_listesi;
-import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri;
-import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri_listesi;
-import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_urun_sevkiyat;
-import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_urun_sevkiyat_listesi;
-import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_urun_tag_listesi;
-import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_vagon_hareket;
-import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_listesi;
-import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_urun_listesi;
-import com.etimaden.response.sevkiyat_islemleri.View_string_list;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -108,9 +83,20 @@ public interface frg_sayim_islemleri_ekrani_Controller {
 
     @POST("api/sec_demirbas_oda")
     Call<View_demirbas_konum_listesi> fn_sec_demirbas_oda(@Body request_demirbas_konum v_Gelen);
+
+    //merve
+    @POST("api/sec_demirbas_oda_sayim_list")
+    Call<View_demirbas_sayim_listesi> fn_sec_demirbas_oda_sayim_list(@Body request_demirbas_konum v_Gelen);
+    @POST("api/fn_ekle_ds")
+    Call<View_bool_response> fn_ekle_ds(@Body request_demirbas_sayim_string v_Gelen);
+
     //-----------
     @POST("api/sec_demirbas_detay_list")
     Call<View_demirbas_sayim_listesi> fn_sec_demirbas_detay_list(@Body request_demirbas_konum v_Gelen);
+
+    //merve api
+    @POST("api/sec_demirbas_oda_list")
+    Call<View_demirbas_konum_listesi> fn_sec_demirbas_oda_list(@Body request_demirbas_konum v_Gelen);
 
     @POST("api/sec_depo_sayim_isemri")
     Call<View_depo_sayim_isemri_listesi> fn_sec_depo_sayim_isemri(@Body request_bos_aktif_isletme_esleme v_Gelen);

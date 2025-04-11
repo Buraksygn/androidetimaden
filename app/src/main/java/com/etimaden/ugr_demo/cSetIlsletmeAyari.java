@@ -237,7 +237,8 @@ public class cSetIlsletmeAyari
         aktif_sunucu = "001";
         aktif_kullanici = "andr_GSM";
         baglanti_turu="wifi";
-        sunucu_ip="10.88.24.24";
+        //sunucu_ip="10.88.24.24";
+        sunucu_ip="10.24.153.24";
 
         _myIslem=new VeriTabani(v_Context);
         _myIslem.fn_Kayit();
@@ -251,7 +252,7 @@ public class cSetIlsletmeAyari
         aktif_isletmeesleme = "2001";
         aktif_kullanici = "andr_bandirma_isletme";
         baglanti_turu="wifi";
-        sunucu_ip="192.168.10.116";
+        sunucu_ip="192.168.10.123";
 
         _myIslem=new VeriTabani(v_Context);
         _myIslem.fn_Kayit();

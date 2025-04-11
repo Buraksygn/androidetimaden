@@ -12,6 +12,7 @@ public class View_demirbas_sayim_listesi {
     public String _zSonuc = "";
 
     public List<demirbas_sayim> _demirbas_sayim_listesi;
+    public List<Demirbas_Konum> _demirbas_oda_listesi;
 
     public View_demirbas_sayim_listesi() {
     }
@@ -42,6 +43,10 @@ public class View_demirbas_sayim_listesi {
 
     public List<demirbas_sayim> get_demirbas_sayim_listesi() {
         return _demirbas_sayim_listesi;
+    }
+
+    public List<Demirbas_Konum> get_demirbas_oda_listesi() {
+        return _demirbas_oda_listesi;
     }
 
     public void set_demirbas_sayim_listesi(List<demirbas_sayim> _demirbas_sayim_listesi) {

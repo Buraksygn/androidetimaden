@@ -2,9 +2,9 @@ package com.etimaden.persos;
 
 import android.content.Context;
 import android.os.StrictMode;
+import android.util.Log;
 
 import com.etimaden.cResponseResult.Urun_sevkiyat;
-import com.etimaden.cResponseResult.Viewsec_sevkiyat_urun;
 import com.etimaden.genel.Genel;
 import com.etimaden.persosclass.Arac;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
@@ -105,6 +105,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -3106,20 +3107,34 @@ public class Persos {
 
             Response<View_bool_response> _Response = fn_Servis.execute();
 
+            ResponseBody rawBody = _Response.raw().body();
+            if (rawBody != null) {
+                Log.d("RAW_RESPONSE", rawBody.toString());
+            }
+
             if(_Response.isSuccessful())
             {
                 _yanit = _Response.body();
-
+                Log.d("_zHataAciklama :" , _yanit._zHataAciklama);
+                Log.d("_zAciklama :" , _yanit._zAciklama);
+                Log.d("_Response :" , _Response.toString());
                 return  _yanit.get_result();
             }
             else
             {
+                Log.e("RESPONSE", "Body null geldi.");
+                Log.e("RESPONSE", "Servis başarısız. HTTP Code: " + _Response.code());
+                if (_Response.errorBody() != null) {
+                    Log.e("RESPONSE", "Error body: " + _Response.errorBody().string());
+                }
                 return null;
             }
 
         }catch (Exception ex)
         {
             Genel.printStackTrace(ex,context);
+            Log.e("RESPONSE", ex.toString());
+
             return  null;
         }
     }
@@ -3544,6 +3559,36 @@ public class Persos {
         }
     }
 
+    public List<demirbas_sayim> fn_sec_demirbas_oda_sayim_list(request_demirbas_konum v_Gelen)
+    {
+        View_demirbas_sayim_listesi _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_demirbas_sayim_listesi> fn_Servis = _Servis.fn_sec_demirbas_oda_sayim_list(v_Gelen);
+
+            Response<View_demirbas_sayim_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_demirbas_sayim_listesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
     public List<demirbas_sayim> fn_sec_demirbas_detay_list(request_demirbas_konum v_Gelen)
     {
         View_demirbas_sayim_listesi _yanit;
@@ -3563,6 +3608,39 @@ public class Persos {
            //    Genel.printStackTrace(sonuc, context);
 
                 return  _yanit.get_demirbas_sayim_listesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    // merve oda listesi
+    public List<Demirbas_Konum> fn_sec_demirbas_oda_listesi(request_demirbas_konum v_Gelen)
+    {
+        View_demirbas_konum_listesi _yanit;
+        String sonuc="";
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_demirbas_konum_listesi> fn_Servis = _Servis.fn_sec_demirbas_oda_list(v_Gelen);
+
+            Response<View_demirbas_konum_listesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+                sonuc= _yanit._zHataAciklama;
+           //    Genel.printStackTrace(sonuc, context);
+
+                return  _yanit.get_demirbas_konum_listesi();
             }
             else
             {
@@ -3678,6 +3756,35 @@ public class Persos {
             frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
 
             Call<View_bool_response> fn_Servis = _Servis.fn_aktar_depo_sayim_listesi(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_ekle_ds(request_demirbas_sayim_string v_Gelen){
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_sayim_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sayim_islemleri_ekrani_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_ekle_ds(v_Gelen);
 
             Response<View_bool_response> _Response = fn_Servis.execute();
 

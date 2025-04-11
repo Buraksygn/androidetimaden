@@ -6,8 +6,10 @@ import static com.etimaden.cSabitDegerler._zkullaniciadi;
 import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
 import static com.etimaden.cSabitDegerler._zsifre;
+import static com.etimaden.genel.SweetAlertDialogG.PROGRESS_TYPE;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,12 +25,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.etimaden.GirisSayfasi;
-import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_basim_sorgula.frg_db_bina_secimi;
-import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.Demirbas_basim_sorgula.frg_db_sayim_islemi;
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.frg_demirbas_sayim_menu_panel;
-import com.etimaden.SevkiyatIslemleri.frg_sevkiyat_menu_panel;
-import com.etimaden.adapter.apmblSayimIslemleriDbOdaSecimi;
 import com.etimaden.adapter.apmblSayimIslemleriDsOdaSecimi;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.genel.Genel;
@@ -37,6 +37,7 @@ import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Demirbas_Konum;
 import com.etimaden.persosclass.demirbas_sayim;
 import com.etimaden.request.request_demirbas_konum;
+import com.etimaden.request.request_demirbas_sayim_string;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
@@ -67,6 +68,8 @@ public class frg_ds_oda_secimi extends Fragment {
     List<Demirbas_Konum> oda_listesi;
     List<Demirbas_Konum> _SecilenOdalar = new ArrayList<>();
     Demirbas_Konum kat = null;
+
+    SweetAlertDialogG pDialog;
 
     private apmblSayimIslemleriDsOdaSecimi adapter;
 
@@ -229,6 +232,21 @@ public class frg_ds_oda_secimi extends Fragment {
             Genel.lockButtonClick(view,getActivity());
             try
             {
+                // Progress başlatılır.
+                //pDialog = new SweetAlertDialogG(getContext(), SweetAlertDialogG.PROGRESS_TYPE);
+                //pDialog.setTitleText("İŞLEM YAPILIYOR");
+                //pDialog.setContentText("Lütfen bekleyiniz...");
+                //pDialog.setCancelable(false);
+                //if(pDialog != null && pDialog.isShowing() ==false)
+                //{
+                //    pDialog.show();
+//
+                //}
+                //pDialog.findViewById(R.id.confirm_button).setVisibility(View.GONE);
+//
+                //RequestQueue queue = Volley.newRequestQueue(getContext());
+                //queue.start();
+
                 for (Demirbas_Konum dk : _SecilenOdalar) {
                     ekle_demirbas_sayım_isemri(dk);
                 }
@@ -286,6 +304,17 @@ public class frg_ds_oda_secimi extends Fragment {
             List<demirbas_sayim> dl = persos.fn_sec_demirbas_detay_list(_Param1);
             Genel.dismissProgressDialog();
 
+            if (dl == null || dl.isEmpty()) {
+                Genel.dismissProgressDialog();
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+                        .setTitleText("Uyarı")
+                        .setContentTextSize(25)
+                        .setContentText("Demirbaş sayım listesi boş.")
+                        .showCancelButton(false)
+                        .show();
+                return false;
+            }
+
             for(demirbas_sayim ds : dl){
                 _myIslem.fn_ekle_ds(ds);
             }
@@ -298,6 +327,40 @@ public class frg_ds_oda_secimi extends Fragment {
         }
         return false;
     }
+
+
+    private boolean fn_ekle_demirbas_sayim(demirbas_sayim ds)
+    {
+        try
+        {
+            request_demirbas_sayim_string _Param1 = new request_demirbas_sayim_string();
+            _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
+            _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            _Param1.set_zaktif_tesis(_ayaraktiftesis);
+            _Param1.set_zsurum(_sbtVerisyon);
+            _Param1.set_zkullaniciadi(_zkullaniciadi);
+            _Param1.set_zsifre(_zsifre);
+            _Param1.setAktif_sunucu(_ayaraktifsunucu);
+            _Param1.setAktif_kullanici(_ayaraktifkullanici);
+
+            _Param1.setDemirbasSayim(ds);
+            // **Burada log alarak içeriği kontrol edelim**
+            Log.d("fn_ekle_demirbas_sayim", "Kullanıcı Adı: " + _Param1.get_zkullaniciadi());
+            Log.d("fn_ekle_demirbas_sayim", "Şifre: " + _Param1.get_zsifre());
+            Genel.showProgressDialog(getContext());
+            Boolean islem_sonuc = persos.fn_ekle_ds(_Param1);
+            Genel.dismissProgressDialog();
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,getContext());
+        }
+        return false;
+    }
+
+
 
     private class fn_Geri implements View.OnClickListener {
         @Override

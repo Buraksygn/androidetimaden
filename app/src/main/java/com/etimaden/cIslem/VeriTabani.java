@@ -1,5 +1,6 @@
 package com.etimaden.cIslem;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -1905,7 +1906,7 @@ return _Sonuc;
         String _strSql="";
         try {
             _strSql="INSERT INTO "+TABLO_11_DEMIRBAS_SAYIM+"(" +
-                    TABLO_11_DEMIRBAS_SAYIM_ds_id+","+
+                    //TABLO_11_DEMIRBAS_SAYIM_ds_id+","+
                     TABLO_11_DEMIRBAS_SAYIM_ds_user_id+","+
                     TABLO_11_DEMIRBAS_SAYIM_ds_isletme_kod+","+
                     TABLO_11_DEMIRBAS_SAYIM_ds_isletme_adi+","+
@@ -1934,7 +1935,7 @@ return _Sonuc;
                     TABLO_11_DEMIRBAS_SAYIM_ds_masraf_yeri+","+
                     TABLO_11_DEMIRBAS_SAYIM_ds_TEKNIK+
                     ") VALUES ("+
-                    "'"+ds.getDs_id()+"'," +
+                    //"'"+ds.getDs_id()+"'," +
                     "'"+ds.getDs_user_id()+"'," +
                     "'"+ds.getDs_isletme_kod()+"'," +
                     "'"+ds.getDs_isletme_adi()+"'," +

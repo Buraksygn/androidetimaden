@@ -32,10 +32,14 @@ import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Demirbas_Konum;
 import com.etimaden.persosclass.Zayi_urun;
+import com.etimaden.persosclass.demirbas_sayim;
+import com.etimaden.request.request_bos_aktif_isletme_esleme;
+import com.etimaden.request.request_demirbas_konum;
 import com.etimaden.request.request_string;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class frg_ds_isemri_secimi extends Fragment {
@@ -85,7 +89,8 @@ public class frg_ds_isemri_secimi extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.frg_da_isemri_secimi, container, false);
+        //return inflater.inflate(R.layout.frg_da_isemri_secimi, container, false);
+        return inflater.inflate(R.layout.frg_ds_isemri_secimi, container, false);
     }
 
     @Override
@@ -164,6 +169,7 @@ public class frg_ds_isemri_secimi extends Fragment {
 
 
         oda_listesi= new ArrayList<Demirbas_Konum>();
+        fn_AyarlariYukle();
         binaDegerlendir();
     }
 
