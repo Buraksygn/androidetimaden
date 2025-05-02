@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_menu_etiket_detayi"
+        android:orderInCategory="100"
+        android:title="ETİKET DETAYI" />
+
+    <item
+        android:id="@+id/action_menu_etiket_sayim_iptal"
+        android:orderInCategory="200"
+        android:title="ETİKET SAYIM İPTAL" />
+
+    <item
+        android:id="@+id/action_menu_zimmet_degistir"
+        android:orderInCategory="300"
+        android:title="ZİMMET DEĞİŞTİR" />
+
+</menu>

@@ -115,10 +115,9 @@ public class frg_ana_sayfa extends Fragment
         _btneldensatis.playSoundEffect(SoundEffectConstants.CLICK);
         _btneldensatis.setOnClickListener(new fn_btneldensatis());
 
-        _btnsayim = (Button)getView().findViewById(R.id.btnsayim);
+        _btnsayim= (Button)getView().findViewById(R.id.btnsayim);
         _btnsayim.playSoundEffect(SoundEffectConstants.CLICK);
-        _btnsayim.setOnClickListener(new fn_btnsayim());
-
+        _btnsayim.setOnClickListener(new fn_btnsayim()); //_btnsayim
     }
 
     public void fn_BarkodOkutuldu(final String barcode)
@@ -241,6 +240,18 @@ public class frg_ana_sayfa extends Fragment
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_perakende_satis_is_emri_secimi").addToBackStack(null);
+            fragmentTransaction.commit();
+
+        }
+    }
+    private class fn_btnsayim implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+            frg_sayim_menu_panel fragmentyeni = new frg_sayim_menu_panel();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sayim_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
 
         }

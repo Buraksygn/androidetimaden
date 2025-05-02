@@ -1,0 +1,71 @@
+package com.etimaden.adapter;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import com.etimaden.persosclass.Demirbas_Konum;
+import com.etimaden.ugr_demo.R;
+
+import java.util.ArrayList;
+
+public class apmblSayimIslemleriDbOdaSecimi extends ArrayAdapter<Demirbas_Konum> {
+
+    private ArrayList<Demirbas_Konum> dataSet;
+    Context mContext;
+
+    public apmblSayimIslemleriDbOdaSecimi(ArrayList<Demirbas_Konum> data, Context context) {
+        super(context, R.layout.liste_sayim_islemleri_db_oda_secimi_item, data);
+        this.dataSet = data;
+        this.mContext=context;
+
+    }
+
+    private static class ViewHolder {
+        TextView _sira;
+        TextView _oda_kod;
+        TextView _oda_adi;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // Get the data item for this position
+        Demirbas_Konum dataModel = getItem(position);
+        // Check if an existing view is being reused, otherwise inflate the view
+        ViewHolder viewHolder; // view lookup cache stored in tag
+
+        final View result;
+
+        if (convertView == null) {
+
+            viewHolder = new ViewHolder();
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.liste_sayim_islemleri_db_oda_secimi_item, parent, false);
+
+
+            viewHolder._sira = (TextView) convertView.findViewById(R.id.sira);
+            viewHolder._oda_kod = (TextView) convertView.findViewById(R.id.oda_kod);
+            viewHolder._oda_adi = (TextView) convertView.findViewById(R.id.oda_adi);
+
+            result=convertView;
+
+            convertView.setTag(viewHolder);
+        }
+        else
+        {
+            viewHolder = (ViewHolder) convertView.getTag();
+
+            result=convertView;
+        }
+
+        viewHolder._sira.setText(position + 1 + "" );
+        viewHolder._oda_kod.setText(dataModel.getOda_kod());
+        viewHolder._oda_adi.setText(dataModel.getOda_adi());
+
+        return convertView;
+    }
+
+}

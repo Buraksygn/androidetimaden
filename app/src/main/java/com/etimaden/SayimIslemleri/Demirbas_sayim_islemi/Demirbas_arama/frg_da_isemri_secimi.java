@@ -136,7 +136,7 @@ public class frg_da_isemri_secimi extends Fragment {
         _btnOdaSec.playSoundEffect(0);
         _btnOdaSec.setOnClickListener(new fn_btnOdaSec());
 
-        _btngeri = (Button)getView().findViewById(R.id.btngeri);
+        _btngeri = (Button)getView().findViewById(R.id.btnGeri);
         _btngeri.playSoundEffect(0);
         _btngeri.setOnClickListener(new fn_Geri());
 
@@ -327,14 +327,13 @@ public class frg_da_isemri_secimi extends Fragment {
                 if (_Secili!=null) {
                     Demirbas_Konum secilen_oda = _Secili;
 
-                    /*frg_da_sayim_islemi fragmentyeni = new frg_da_sayim_islemi();
+                    frg_da_sayim_islemi fragmentyeni = new frg_da_sayim_islemi();
                     fragmentyeni.fn_senddata(secilen_oda);
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_da_sayim_islemi").addToBackStack(null);
                     fragmentTransaction.commit();
 
-                     */
                 }
                 else
                 {

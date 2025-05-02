@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.frg_demirbas_sayim_menu_panel;
+import com.etimaden.SayimIslemleri.Depo_gecici_sayimi.frg_aktif_depo_gecici_sayim_isemri_secimi;
 import com.etimaden.SayimIslemleri.Depo_sayim_islemi.frg_depo_sayim_menu_panel;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.depolarArasiSevkIslemi.Depo_cikis.frg_depo_secimi_transfer;
@@ -130,22 +132,22 @@ public class frg_sayim_menu_panel extends Fragment {
     private class fn_btnDemirbasSayim implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            /*frg_lot_degistirme_onayi fragmentyeni = new frg_lot_degistirme_onayi();
+            frg_demirbas_sayim_menu_panel fragmentyeni = new frg_demirbas_sayim_menu_panel();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_lot_degistirme_onayi").addToBackStack(null);
-            fragmentTransaction.commit();*/
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_demirbas_sayim_menu_panel").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
     private class fn_btnDepoGeciciSayimi implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            /*frg_urun_sorgulama fragmentyeni = new frg_urun_sorgulama();
+            frg_aktif_depo_gecici_sayim_isemri_secimi fragmentyeni = new frg_aktif_depo_gecici_sayim_isemri_secimi();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_urun_sorgulama").addToBackStack(null);
-            fragmentTransaction.commit();*/
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_aktif_depo_gecici_sayim_isemri_secimi").addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 

@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         _btnCikis = (Button) findViewById(R.id.btnCikis);
-        _btnCikis.playSoundEffect(0);
+        _btnCikis.playSoundEffect(SoundEffectConstants.CLICK);
         _btnCikis.setOnClickListener(new fn_Cikis());
 
         _btnGiris = (Button) findViewById(R.id.btnGiris);
@@ -243,12 +243,12 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     String regionCode = _IpAdresiDizi[2];
-                    if (regionCode.equals("160"))
-                    {
-                        _Ayarlar.fn_setKirkaDegirmenozu(getApplicationContext());
-                    }
+                    //if (regionCode.equals("160"))
+                    //{
+                    //    _Ayarlar.fn_setKirkaDegirmenozu(getApplicationContext());
+                    //}
 
-                    else if (regionCode.equals("80"))
+                     if (regionCode.equals("80"))
                     {
                         _Ayarlar.fn_setEmetIsletme(getApplicationContext());
                     }
@@ -318,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
                     {
                         _Ayarlar.fn_setKirkaDegirmenozu(getApplicationContext());
                     }
-                    else if (regionCode.equals("0"))
+                    else if (regionCode.equals("0") || (regionCode.equals("160")))
                     {
                         _Ayarlar.fn_setAnkara(getApplicationContext());
                     }

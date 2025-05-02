@@ -2,6 +2,7 @@ package com.etimaden.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,8 @@ public class apmblDemirbasSayimDsSayimIslemi extends ArrayAdapter<demirbas_sayim
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.liste_sevkiyat_aktif_isemri_indirme_item, parent, false);
+            //convertView = inflater.inflate(R.layout.liste_sevkiyat_aktif_isemri_indirme_item, parent, false);
+            convertView = inflater.inflate(R.layout.liste_demirbas_sayim_ds_sayim_islemi_item,parent,false);
 
             viewHolder._img = (ImageView) convertView.findViewById(R.id.img);
             viewHolder._sira = (TextView) convertView.findViewById(R.id.sira);
