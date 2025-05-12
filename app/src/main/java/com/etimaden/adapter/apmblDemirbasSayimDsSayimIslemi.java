@@ -68,9 +68,9 @@ public class apmblDemirbasSayimDsSayimIslemi extends ArrayAdapter<demirbas_sayim
         if(dataModel.getDs_durum().equals("0")){
             viewHolder._img.setImageResource(R.mipmap.yellowpoint);
         }else if(dataModel.getDs_durum().equals("1")){
-            viewHolder._img.setImageResource(R.mipmap.greenpoint);
+            viewHolder._img.setImageResource(R.drawable.bulundu);
         }else if(dataModel.getDs_durum().equals("2")){
-            viewHolder._img.setImageResource(R.mipmap.redpoint);
+            viewHolder._img.setImageResource(R.drawable.bulunmadi);
         }
         viewHolder._sira.setText(position + 1 + "" );
         viewHolder._ds_demirbas_kod.setText(dataModel.getDs_demirbas_kod());
