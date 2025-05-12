@@ -8,6 +8,7 @@ import static com.etimaden.cSabitDegerler._zportWifi;
 import static com.etimaden.cSabitDegerler._zsifre;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -518,7 +519,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                 isReadable = true;
                 return;
             }
-            else if (urun.islem_durumu.equals("352"))
+             else if (urun.islem_durumu.equals("352"))
             {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("HATA")
@@ -592,11 +593,10 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                         .show();
                 isReadable = true;
                 return;
-
             }
-            else if(!isemri.isemri_tipi_alt.equals("") && (aktif_sevk_isemri.isemri_tipi.equals("200"))) {
-                int yearDiffUrun = dateCalculator(tag.ser_create_date);
-                if(yearDiffUrun >= 2){
+            else if(!isemri.isemri_tipi_alt.equals("") && (aktif_sevk_isemri.isemri_tipi.equals("200")) && yearDiff >= 2)
+            {
+                  //int yearDiffUrun = dateCalculator(tag.ser_create_date);
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("Zaman Aşımı Hatası")
                             .setContentTextSize(25)
@@ -605,11 +605,11 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                             .show();
                     isReadable = true;
                     return;
-                }
-
-            }else if(aktif_sevk_isemri.isemri_tipi.equals("250") || (aktif_sevk_isemri.isemri_tipi.equals("251"))) {
-                int yearDiffUrun = dateCalculator(tag.ser_create_date);
-                if(yearDiffUrun >= 2){
+            }
+            else if((aktif_sevk_isemri.isemri_tipi.equals("250") || (aktif_sevk_isemri.isemri_tipi.equals("251"))) && yearDiff >= 2)
+            {
+                //int yearDiffUrun = dateCalculator(tag.ser_create_date);
+                //if(yearDiffUrun >= 2){
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("Zaman Aşımı Hatası")
                             .setContentTextSize(25)
@@ -618,10 +618,10 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                             .show();
                     isReadable = true;
                     return;
-                }
-
+                //}
+                //return;
             }
-             else
+            else
             {
                 urunDegerlendir(tag);
             }
@@ -629,6 +629,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         catch (Exception ex)
         {
             Genel.printStackTrace(ex,getContext());
+            Log.d("Exception", "",ex);
         }
         isReadable = true;
     }
@@ -639,6 +640,9 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
         SimpleDateFormat dateFormat = null;
 
+        if (value == null || value.trim().isEmpty()) {
+            throw new IllegalArgumentException("Tarih değeri boş olamaz.");
+        }
         //Farklı formatta gelirse uygun olanı seç
         if(value.contains("-")){
             dateFormat = new SimpleDateFormat("yyyy-MM-dd");

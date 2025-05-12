@@ -247,30 +247,33 @@ public class frg_ds_oda_secimi extends Fragment {
                 //RequestQueue queue = Volley.newRequestQueue(getContext());
                 //queue.start();
 
+                Boolean islemSonuc = false;
+
                 for (Demirbas_Konum dk : _SecilenOdalar) {
-                    ekle_demirbas_sayım_isemri(dk);
+                   islemSonuc = ekle_demirbas_sayım_isemri(dk);
                 }
-                new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
-                        .setTitleText("UYARI")
-                        .setContentText("İŞ GÜNCELLEME YAPILDI.")
-                        .setContentTextSize(20)
-                        .setConfirmText("TAMAM")
-                        .showCancelButton(false)
-                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialogG sDialog) {
-                                sDialog.dismissWithAnimation();
-                                frg_demirbas_sayim_menu_panel fragmentyeni = new frg_demirbas_sayim_menu_panel();
-                                FragmentManager fragmentManager = getFragmentManager();
-                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_demirbas_sayim_menu_panel").addToBackStack(null);
-                                fragmentTransaction.commit();
-                                return;
-                            }
-                        })
-                        .show();
 
-
+                if(islemSonuc){
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+                            .setTitleText("UYARI")
+                            .setContentText("İŞ GÜNCELLEME YAPILDI.")
+                            .setContentTextSize(20)
+                            .setConfirmText("TAMAM")
+                            .showCancelButton(false)
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialogG sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                    frg_demirbas_sayim_menu_panel fragmentyeni = new frg_demirbas_sayim_menu_panel();
+                                    FragmentManager fragmentManager = getFragmentManager();
+                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_demirbas_sayim_menu_panel").addToBackStack(null);
+                                    fragmentTransaction.commit();
+                                    return;
+                                }
+                            })
+                            .show();
+                }
             } catch (Exception ex) {
                 ex.printStackTrace();
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)

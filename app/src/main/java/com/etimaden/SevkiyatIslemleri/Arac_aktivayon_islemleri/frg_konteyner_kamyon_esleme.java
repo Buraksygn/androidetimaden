@@ -125,7 +125,7 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
         ((GirisSayfasi) getActivity()).fn_GucAyarla(248);
 
-        _btngeri = (Button) getView().findViewById(R.id.btngeri);
+        _btngeri = (Button) getView().findViewById(R.id.btncikis);
         _btngeri.playSoundEffect(0);
         _btngeri.setOnClickListener(new fn_Geri());
 
@@ -145,7 +145,7 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
                 return;
             okunabilir = false;
             Genel.playQuestionSound(getContext());
-            if ( _ayaraktiftesis.equals("5002"))
+            if ( _ayaraktiftesis.equals("5002") || _ayaraktiftesis.equals("3001"))
             {
                 request_string _Param= new request_string();
                 _Param.set_zsunucu_ip_adresi(_ayarsunucuip);

@@ -170,6 +170,12 @@ public class frg_arac_onayla extends Fragment {
         btn_03 = (Button) getView().findViewById(R.id.btn_03);
         btn_03.playSoundEffect(0);
         btn_03.setOnClickListener(new fn_Ara_Tartima_Yolla());
+
+        if(!aktif_sevk_isemri.alt_rota.isEmpty()){
+            btn_01.setEnabled(false);
+            btn_01.setAlpha(0.5f);
+        }
+
     }
 
 

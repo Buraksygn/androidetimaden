@@ -183,18 +183,6 @@ public class frg_ana_sayfa extends Fragment
             fragmentTransaction.commit();
         }
     }
-    private class fn_btnsayim implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-
-//            frg_sayim_menu_panel fragmentyeni = new frg_sayim_menu_panel();
-//            FragmentManager fragmentManager = getFragmentManager();
-//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sayim_menu_panel").addToBackStack(null);
-//            fragmentTransaction.commit();
-
-        }
-    }
     private class fn_btnSatilmisEtiket implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -248,11 +236,11 @@ public class frg_ana_sayfa extends Fragment
         @Override
         public void onClick(View v) {
 
-            frg_sayim_menu_panel fragmentyeni = new frg_sayim_menu_panel();
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sayim_menu_panel").addToBackStack(null);
-            fragmentTransaction.commit();
+            //frg_sayim_menu_panel fragmentyeni = new frg_sayim_menu_panel();
+            //FragmentManager fragmentManager = getFragmentManager();
+            //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            //fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sayim_menu_panel").addToBackStack(null);
+            //fragmentTransaction.commit();
 
         }
     }
