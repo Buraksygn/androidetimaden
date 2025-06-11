@@ -8,8 +8,8 @@ android {
         applicationId "com.etimaden.rfid.uygulama"
         minSdkVersion 26
         targetSdkVersion 31
-        versionCode 18
-        versionName "v2.5.18"
+        versionCode 35
+        versionName "v2.6.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
