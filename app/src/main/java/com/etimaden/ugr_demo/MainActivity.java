@@ -2,6 +2,7 @@ package com.etimaden.ugr_demo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
@@ -32,7 +33,6 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.etimaden.GirisSayfasi;
-import com.etimaden.SevkiyatIslemleri.csurumkontrol;
 import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cIslem.Viewsistemgiris;
 import com.etimaden.genel.SweetAlertDialogG;
@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
     String _OnlineUrlTest="";
 
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_main);
+
+        //sharedPref = getSharedPreferences("liman", Context.MODE_PRIVATE);
+        //editor = sharedPref.edit();
+        //editor.clear(); // cache temizler.
 
         _btnCikis = (Button) findViewById(R.id.btnCikis);
         _btnCikis.playSoundEffect(SoundEffectConstants.CLICK);
@@ -152,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         fn_BaslangicAyarlari();
 
         fn_AyarlariYukle();
+
     }
 
 
@@ -299,6 +306,10 @@ public class MainActivity extends AppCompatActivity {
                     else if (regionCode.equals("16"))
                     {
                         _Ayarlar.fn_setBandirmaLojistik(getApplicationContext());
+                        //gemiföy buton kontrolü için
+                        //editor.putBoolean("banliman", true);
+                        //editor.apply();
+
                         //setKırkaDegirmenozu();
                     }
                     else if (regionCode.equals("24"))
@@ -325,6 +336,10 @@ public class MainActivity extends AppCompatActivity {
                     else if(regionCode.equals("10"))
                     {
                         _Ayarlar.fn_setTest(getApplicationContext());
+                        //gemiföy buton kontrolü için
+                        //editor.putBoolean("banliman", true);
+                        //editor.apply();
+
                     }
                     else{
                         _Ayarlar.fn_setGenel(getApplicationContext());

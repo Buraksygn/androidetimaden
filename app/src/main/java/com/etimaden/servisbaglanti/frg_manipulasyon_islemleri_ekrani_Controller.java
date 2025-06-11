@@ -45,5 +45,7 @@ public interface frg_manipulasyon_islemleri_ekrani_Controller
 
     @POST("api/palet_dagit")
     Call<View_bool_response> fn_palet_dagit(@Body request_uruntag v_Gelen);
-    //Buraya kadar yapıldı.
+
+    @POST("api/kirli_ambalaj_ayir")
+    Call<View_bool_response> fn_kirli_ambalaj_ayir(@Body request_uruntag_string vGelen);
 }

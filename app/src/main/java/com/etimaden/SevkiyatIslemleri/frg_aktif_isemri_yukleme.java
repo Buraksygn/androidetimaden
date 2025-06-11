@@ -51,6 +51,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class frg_aktif_isemri_yukleme extends Fragment {
@@ -77,7 +78,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
     ListView _urun_list;
     Button _btngeri;
     Button _btnOkuma;
-
+    int yearDiff;
 
     ArrayList<Urun_sevkiyat> urun_listesi;
     Sevkiyat_isemri aktif_sevk_isemri = null;
@@ -342,37 +343,23 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
             isReadable = false;
             Genel.playQuestionSound(getContext());
-
             request_string _Param=new request_string();
+            _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            _Param.set_zaktif_tesis(_ayaraktiftesis);
+            _Param.set_zkullaniciadi(_zkullaniciadi);
+            _Param.set_zsifre(_zsifre);
+            _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+            _Param.set_zsurum(_sbtVerisyon);
+            _Param.setAktif_kullanici(_ayaraktifkullanici);
+            _Param.setAktif_sunucu(_ayaraktifsunucu);
 
-        _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
-        _Param.set_zaktif_tesis(_ayaraktiftesis);
-        _Param.set_zkullaniciadi(_zkullaniciadi);
-        _Param.set_zsifre(_zsifre);
-        _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
-        _Param.set_zsurum(_sbtVerisyon);
-        _Param.setAktif_kullanici(_ayaraktifkullanici);
-        _Param.setAktif_sunucu(_ayaraktifsunucu);
-
-        _Param.set_value(isemriId);
+            _Param.set_value(isemriId);
 
             Genel.showProgressDialog(getContext());
             Sevkiyat_isemri isemri = persos.fn_sec_aktif_sevkiyat_isemri(_Param);
             Genel.dismissProgressDialog();
-        if (isemri == null)
-        {
-            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                    .setTitleText("HATA")
-                    .setContentTextSize(25)
-                    .setContentText("Aktif araç işemri bulunamadı..")
-                    .showCancelButton(false)
-                    .show();
 
-        }else{
             return isemri;
-        }
-
-           return null;
 
     }
 
@@ -409,15 +396,17 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
             Urun_sevkiyat urun = tag;
 
-            createDate = tag.ser_create_date;
-            int yearDiff = dateCalculator(createDate);
-
-
-            //if (calendarToday.get(Calendar.MONTH) < calendarCreated.get(Calendar.MONTH) ||
-            //        (calendarToday.get(Calendar.MONTH) == calendarCreated.get(Calendar.MONTH) &&
-            //                calendarToday.get(Calendar.DAY_OF_MONTH) < calendarCreated.get(Calendar.DAY_OF_MONTH))) {
-            //    yearDiff--;
-            //}
+            if(tag.ser_create_date != null && !tag.ser_create_date.isEmpty()){
+                createDate = tag.ser_create_date;
+                yearDiff = calculateYearDifference(createDate);
+                //yearDiff = dateCalculator(createDate);
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("BİLGİ")
+                        .setContentTextSize(25)
+                        .setContentText("Etiket Ürt. Trh. : " + createDate + " \r\n Tarih Fark : " + yearDiff)
+                        .showCancelButton(false)
+                        .show();
+            }
 
             if (urun == null)
             {
@@ -584,23 +573,13 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                         .showCancelButton(false)
                         .show();
             }
-            else if(yearDiff >= 1){
-                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                        .setTitleText("Zaman Aşımı Hatası")
-                        .setContentTextSize(25)
-                        .setContentText("1 yıldan fazla oluşturulan etiketlerin işlemi yapılamaz.")
-                        .showCancelButton(false)
-                        .show();
-                isReadable = true;
-                return;
-            }
-            else if(!isemri.isemri_tipi_alt.equals("") && (aktif_sevk_isemri.isemri_tipi.equals("200")) && yearDiff >= 2)
+            else if(isemri != null && !isemri.isemri_tipi_alt.equals("") && (aktif_sevk_isemri.isemri_tipi.equals("200")) && yearDiff >= 2)
             {
                   //int yearDiffUrun = dateCalculator(tag.ser_create_date);
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("Zaman Aşımı Hatası")
                             .setContentTextSize(25)
-                            .setContentText("2 yıldan fazla oluşturulan ürünlerin işlemi yapılamaz.")
+                            .setContentText("2 yıldan fazla oluşturulan nakil ilişkili ürünlerin işlemi yapılamaz.")
                             .showCancelButton(false)
                             .show();
                     isReadable = true;
@@ -613,13 +592,22 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("Zaman Aşımı Hatası")
                             .setContentTextSize(25)
-                            .setContentText("2 yıldan fazla oluşturulan ürünlerin işlemi yapılamaz.")
+                            .setContentText("2 yıldan fazla oluşturulan satış ve satış ilişkili ürünlerin işlemi yapılamaz.")
                             .showCancelButton(false)
                             .show();
                     isReadable = true;
                     return;
                 //}
                 //return;
+            }else if(yearDiff >= 1){
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("Zaman Aşımı Hatası")
+                        .setContentTextSize(25)
+                        .setContentText("1 yıldan fazla oluşturulan etiketlerin işlemi yapılamaz.")
+                        .showCancelButton(false)
+                        .show();
+                isReadable = true;
+                return;
             }
             else
             {
@@ -634,37 +622,99 @@ public class frg_aktif_isemri_yukleme extends Fragment {
         isReadable = true;
     }
 
-    //Tarih parse işlemi
-    public int dateCalculator(String value) throws ParseException {
+    //Tarih parse işlemi merve
+    public static int calculateYearDifference(String dateString){
+
+        try{
+            String[] parts = dateString.split(" ");
+            String datePart = parts[0];
+            String[] dateParts;
+            if(datePart.contains("/")){
+                dateParts = datePart.split("/");
+            }else if(datePart.contains("-")){
+                dateParts = datePart.split("-");
+            }else if(datePart.contains(".")){
+                dateParts = datePart.split("\\.");
+            }else {
+                // Desteklenmeyen format
+                System.out.println("Desteklenmeyen tarih formatı: " + dateString);
+                return 0;
+            }
+
+            int month = Integer.parseInt(dateParts[0]) - 1; // Calendar'da ay 0'dan başlar
+            int day = Integer.parseInt(dateParts[1]);
+            int year = Integer.parseInt(dateParts[2]);
+
+            //Date dateNow = new Date();
+            //int currentYear = dateNow.getYear() + 1900;
+            //int currentMonth = dateNow.getMonth() + 1;
+            //int currentDay = dateNow.getDate();
+//
+            //int yearDifference = currentYear - year;
+//
+            //// Ay ve gün kontrolü
+            //if (currentMonth < month || (currentMonth == month && currentDay < day)) {
+            //    yearDifference--;
+            //}
+
+            Calendar givenCalendar = Calendar.getInstance(); // set ile belirttiğimiz tarih
+            Calendar currentCalendar = Calendar.getInstance(); // günümüz tarihi
+
+            givenCalendar.set(year, month, day);
+
+            int yearDifference = currentCalendar.get(Calendar.YEAR) - givenCalendar.get(Calendar.YEAR);
+             //Ay ve gün kontrolü yap
+            if (currentCalendar.get(Calendar.MONTH) < givenCalendar.get(Calendar.MONTH) ||
+                    (currentCalendar.get(Calendar.MONTH) == givenCalendar.get(Calendar.MONTH) &&
+                            currentCalendar.get(Calendar.DAY_OF_MONTH) < givenCalendar.get(Calendar.DAY_OF_MONTH))) {
+                yearDifference--;
+            }
+
+            return yearDifference;
+
+
+        }catch (Exception  e){
+            e.printStackTrace();
+            return 0; // Hata durumunda 0 döndür
+        }
+    }
+
+    public int dateCalculator(String value){
+
         Date today = new Date(); // Bugünün tarihi
+        SimpleDateFormat dateFormat;
 
-        SimpleDateFormat dateFormat = null;
+        try{
+            //Farklı formatta gelirse uygun olanı seç
+            if(value.contains("-")){
+                dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            }
+            else if(value.contains("/")){
+                dateFormat = new SimpleDateFormat("M/d/yyyy",Locale.US);
+            }else if(value.contains(".")){
+                dateFormat = new SimpleDateFormat("d.M.yyyy",Locale.US);
+            }
+            else {
+                return -1; // bilinmeyen format
+            }
 
-        if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException("Tarih değeri boş olamaz.");
+            Date createdDate = dateFormat.parse(value);
+
+            // Tarihleri set et
+            Calendar calendarToday = Calendar.getInstance();
+            calendarToday.setTime(today);
+
+            Calendar calendarCreated = Calendar.getInstance();
+            calendarCreated.setTime(createdDate);
+
+            int yearDiff = calendarToday.get(Calendar.YEAR) - calendarCreated.get(Calendar.YEAR);
+
+            return yearDiff;
+
+        }catch (ParseException e){
+            e.printStackTrace();
+            return -1; // parse hatası varsa
         }
-        //Farklı formatta gelirse uygun olanı seç
-        if(value.contains("-")){
-            dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        }
-        else if(value.contains("/")){
-            dateFormat = new SimpleDateFormat("M/d/yyyy");
-        }
-        else {
-            throw new ParseException("Bilinmeyen tarih formatı: " + value, 0);
-        }
-        Date createdDate = dateFormat.parse(value);
-
-        // Tarihleri set et
-        Calendar calendarToday = Calendar.getInstance();
-        calendarToday.setTime(today);
-
-        Calendar calendarCreated = Calendar.getInstance();
-        calendarCreated.setTime(createdDate);
-
-        int yearDiff = calendarToday.get(Calendar.YEAR) - calendarCreated.get(Calendar.YEAR);
-
-        return yearDiff;
     }
 
     public void rfidOkundu(String rfid)

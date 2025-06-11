@@ -28,6 +28,7 @@ import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
+import com.etimaden.persosenum.enumSeriNoDurum;
 import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_string;
 import com.etimaden.request.request_uruntag;
@@ -219,68 +220,74 @@ public class frg_urun_sorgulama extends Fragment {
             }
             else
             {
-                if (tag.islem_durumu.equals("3"))
-                {
-                    durum = "Satılmış Ürün";
-                }
-                else if (tag.islem_durumu.equals("7"))
-                {
-                    durum = "Sevk Edilmiş Ürün";
-                }
-                else if (tag.islem_durumu.equals("2"))
-                {
-                    durum = "Sevk Edilemez Ürün";
-                }
-                else if (tag.islem_durumu.equals("4"))
-                {
-                    durum = "Etiket Değişimi Bekliyor";
-                }
-                else if (tag.islem_durumu.equals("200"))
-                {
-                    durum = "TSE tarafından ayrılmış ürün";
-                }
-                else if (tag.islem_durumu.equals("201"))
-                {
-                    durum = "İşletme tarafından ürün";
-                }
-                else if (tag.islem_durumu.equals("350"))
-                {
-                    durum = "Torba tipi değişimi bekleyen ürün";
-                }
-                else if (tag.islem_durumu.equals("351") || tag.MAN_TİP.equals("360"))
-                {
-                    durum = "Kirli torba değişimi bekleyen ürün";
-                }
-                else if (tag.islem_durumu.equals("352") || tag.MAN_TİP.equals("370"))
-                {
-                    durum = "Geri besleme bekleyen ürün";
-                }
-                else if (tag.islem_durumu.equals("353") )
-                {
-                    durum = "Palet düzenleme bekleyen ürün";
-                }
-                else if (tag.islem_durumu.equals("354") || tag.MAN_TİP.equals("390"))
-                {
-                    durum = "Elleçleme bekleyen ürün";
-                }
-                else if (tag.islem_durumu.equals("0"))
-                {
-                    durum = "Üretim Bekleyen Ürün";
-                }
-                else if (tag.islem_durumu.equals("8"))
-                {
-                    durum = "Araca Yüklenmiş ürün";
-                }
-                else if (tag.aciklama.trim().equals(""))
+                if(tag.MAN_TİP.equals(""))
+                    tag.MAN_TİP = "0";
+                durum = enumSeriNoDurum.getLabelByValues(tag.islem_durumu , tag.MAN_TİP);
+                if (tag.aciklama.trim().equals(""))
                 {
                     durum = "Üretim Bekleyen Ürün";
 
                 }
-                else if (tag.islem_durumu.equals("1"))
-                {
-                    durum = "Üretimi Tamamlanan Ürün";
+                //enumSeriNoDurum islem_durum = enumSeriNoDurum.fromInt(Integer.parseInt(tag.islem_durumu));
+                //durum = islem_durum.getLabel();
 
-                }
+                //if (tag.islem_durumu.equals("3"))
+                //{
+                //    durum = "Satılmış Ürün";
+                //}
+                //else if (tag.islem_durumu.equals("7"))
+                //{
+                //    durum = "Sevk Edilmiş Ürün";
+                //}
+                //else if (tag.islem_durumu.equals("2"))
+                //{
+                //    durum = "Sevk Edilemez Ürün";
+                //}
+                //else if (tag.islem_durumu.equals("4"))
+                //{
+                //    durum = "Etiket Değişimi Bekliyor";
+                //}
+                //else if (tag.islem_durumu.equals("200"))
+                //{
+                //    durum = "TSE tarafından ayrılmış ürün";
+                //}
+                //else if (tag.islem_durumu.equals("201"))
+                //{
+                //    durum = "İşletme tarafından ürün";
+                //}
+                //else if (tag.islem_durumu.equals("350"))
+                //{
+                //    durum = "Torba tipi değişimi bekleyen ürün";
+                //}
+                //if (tag.islem_durumu.equals("351") || tag.MAN_TİP.equals("360"))
+                //{
+                //    durum = "Kirli torba değişimi bekleyen ürün";
+                //}
+                //else if (tag.islem_durumu.equals("352") || tag.MAN_TİP.equals("370"))
+                //{
+                //    durum = "Geri besleme bekleyen ürün";
+                //}
+                //else if (tag.islem_durumu.equals("353") )
+                //{
+                //    durum = "Palet düzenleme bekleyen ürün";
+                //}
+                //else if (tag.islem_durumu.equals("354") || tag.MAN_TİP.equals("390"))
+                //{
+                //    durum = "Elleçleme bekleyen ürün";
+                //}
+                //else if (tag.islem_durumu.equals("0"))
+                //{
+                //    durum = "Üretim Bekleyen Ürün";
+                //}
+                //else if (tag.islem_durumu.equals("8"))
+                //{
+                //    durum = "Araca Yüklenmiş ürün";
+                //}
+                //else if (tag.islem_durumu.equals("1"))
+                //{
+                //    durum = "Üretimi Tamamlanan Ürün";
+//
+                //}
                     /*if (tag.kilitli.Equals("True"))
                     {
                         durum = durum + " / " + " Manipülasyon için ayrılmış blokeli ürün ";

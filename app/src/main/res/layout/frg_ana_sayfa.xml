@@ -75,10 +75,10 @@
         android:layout_height="100dp"
         android:layout_x="0dp"
         android:layout_y="265dp"
-        android:background="@drawable/btn_menu_normal"
+        android:background="@drawable/btn_cikis_yap"
         android:gravity="center"
         android:text="SAYIM"
-        android:textColor="@color/colorGri"
+        android:textColor="@color/green"
         android:textSize="25sp" />
 
 
@@ -95,6 +95,18 @@
         android:textSize="18sp" />
 
 
+    <Button
+        android:id="@+id/btngemifoy"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_x="1dp"
+        android:layout_y="380dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:text="GEMİ"
+        android:textColor="@color/green"
+        android:textSize="25sp"
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/imgsifredegistir"

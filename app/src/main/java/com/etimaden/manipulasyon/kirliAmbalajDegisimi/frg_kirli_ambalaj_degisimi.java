@@ -52,10 +52,12 @@ import com.etimaden.cResponseResult.ViewsevkDegerlendir;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.manipulasyon.Ambalaj_tipi_degisimi.frg_ambalaj_tipi_degisimi;
+import com.etimaden.manipulasyon.ellecleme.frg_ellecleme_menu_panel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_secEtiket;
 import com.etimaden.request.request_string;
+import com.etimaden.request.request_uruntag_string;
 import com.etimaden.ugr_demo.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -419,12 +421,12 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
                 }
                 else
                 {
+                    boolean islem_sonucu = false;
                     for (int i = 0; i < urun_listesi.size(); i++)
                     {
                         Urun_tag tag = urun_listesi.get(i);
-                        request_string v_Gelen=new request_string();
+                        request_uruntag_string v_Gelen=new request_uruntag_string();
                         //todo substring 10 var aynı anlama mı geliyor bak.
-                        v_Gelen.set_value(tag.rfid.substring(10));
                         v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
                         v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
                         v_Gelen.set_zkullaniciadi(_zkullaniciadi);
@@ -434,13 +436,49 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
                         v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
                         v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
 
+                        v_Gelen.setEtiket(tag);
+                        //Kirliambalaj etiket insert
+
                         Genel.showProgressDialog(getContext());
-                        String _FlagDurum = persos.fn_flag_islemtipi(v_Gelen);
+
+                        if(tag.etiket_turu.equals(("1"))){
+                            v_Gelen.setStringValue("202");
+                            islem_sonucu = persos.fn_kirli_ambalaj_ayir(v_Gelen);
+                        }
+                        else if (tag.etiket_turu.equals("2"))
+                        {
+                            v_Gelen.setStringValue("203");
+                            islem_sonucu = persos.fn_kirli_ambalaj_ayir(v_Gelen);
+                        }
+                        if (tag.etiket_turu.equals("3"))
+                        {
+                            v_Gelen.setStringValue("200");
+                            islem_sonucu = persos.fn_kirli_ambalaj_ayir(v_Gelen);
+                        }
+
+                        //String _FlagDurum = persos.fn_flag_islemtipi(v_Gelen);
                         Genel.dismissProgressDialog();
 
-                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.PROGRESS_TYPE)
-                                .setTitleText("DURUM")
-                                .setContentText(_FlagDurum)
+
+
+                        //new SweetAlertDialogG(getContext(), SweetAlertDialogG.PROGRESS_TYPE)
+                        //        .setTitleText("DURUM")
+                        //        .setContentText(_FlagDurum)
+                        //        .setContentTextSize(20)
+                        //        .setConfirmText("TAMAM")
+                        //        .showCancelButton(false)
+                        //        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                        //            @Override
+                        //            public void onClick(SweetAlertDialogG sDialog) {
+                        //                sDialog.dismissWithAnimation();
+                        //                return;
+                        //            }
+                        //        }).show();
+                    }
+                    if(islem_sonucu){
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
+                                .setTitleText("ONAY")
+                                .setContentText("İşlem başarı ile tamamlanmıştır.")
                                 .setContentTextSize(20)
                                 .setConfirmText("TAMAM")
                                 .showCancelButton(false)
@@ -448,9 +486,25 @@ public class frg_kirli_ambalaj_degisimi extends Fragment {
                                     @Override
                                     public void onClick(SweetAlertDialogG sDialog) {
                                         sDialog.dismissWithAnimation();
+
+                                        frg_kirli_ambalaj_menu_panel fragmentyeni = new frg_kirli_ambalaj_menu_panel();
+                                        FragmentManager fragmentManager = getFragmentManager();
+                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_kirli_ambalaj_menu_panel").addToBackStack(null);
+                                        fragmentTransaction.commit();
+
                                         return;
                                     }
                                 }).show();
+                    }
+                    else
+                    {
+                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                .setTitleText("HATA")
+                                .setContentTextSize(25)
+                                .setContentText("KAYIT YAPILAMADI \r\n NETWORK BAĞLANTISINI KONTROL EDİNİZ..")
+                                .showCancelButton(false)
+                                .show();
                     }
                 }
             }

@@ -1,6 +1,13 @@
 package com.etimaden;
 
+import static com.etimaden.cSabitDegerler._ipAdresi3G;
+import static com.etimaden.cSabitDegerler._zport3G;
+import static com.etimaden.cSabitDegerler._zportWifi;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,11 +17,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etimaden.Elden_satis_islemi.frg_perakende_satis_is_emri_secimi;
+import com.etimaden.GemiIslemleri.frg_aktif_gemi_secimi;
 import com.etimaden.SayimIslemleri.frg_sayim_menu_panel;
 import com.etimaden.SevkiyatIslemleri.frg_isemri_degistir;
 import com.etimaden.SevkiyatIslemleri.frg_satilmis_etiket;
@@ -24,6 +34,8 @@ import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.depolarArasiSevkIslemi.frg_depolar_arasi_transfer_menu_panel;
 import com.etimaden.digerislemler.frg_sifre_degistir;
 import com.etimaden.manipulasyon.frg_manipulasyon_menu_panel;
+import com.etimaden.persos.Persos;
+import com.etimaden.ugr_demo.MainActivity;
 import com.etimaden.ugr_demo.R;
 
 public class frg_ana_sayfa extends Fragment
@@ -40,7 +52,23 @@ public class frg_ana_sayfa extends Fragment
     Button _btneldensatis;
     Button _btnsayim;
 
+    Button _btngemifoy;
 
+
+    //TEST START
+    VeriTabani _myIslem;
+    String _ayaraktifkullanici = "";
+    String _ayaraktifdepo = "";
+    String _ayaraktifalttesis = "";
+    String _ayaraktiftesis = "";
+    String _ayaraktifsunucu = "";
+    String _ayaraktifisletmeeslesme = "";
+    String _ayarbaglantituru = "";
+    String _ayarsunucuip = "";
+    String _ayarversiyon = "";
+    String _OnlineUrl = "";
+    Persos persos;
+    //TEST END
 
     public frg_ana_sayfa() {
         // Required empty public constructor
@@ -57,6 +85,8 @@ public class frg_ana_sayfa extends Fragment
 
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,10 +94,60 @@ public class frg_ana_sayfa extends Fragment
         return inflater.inflate(R.layout.frg_ana_sayfa, container, false);
     }
 
+    private void fn_AyarlariYukle()
+    {
+        _ayarbaglantituru=_myIslem.fn_baglanti_turu();
+        _ayarsunucuip=_myIslem.fn_sunucu_ip();
+        _ayaraktifkullanici=_myIslem.fn_aktif_kullanici();
+        _ayaraktifdepo=_myIslem.fn_aktif_depo();
+        _ayaraktifalttesis=_myIslem.fn_aktif_alt_tesis();
+        _ayaraktiftesis=_myIslem.fn_aktif_tesis();
+        _ayaraktifsunucu=_myIslem.fn_aktif_sunucu();
+        _ayaraktifisletmeeslesme=_myIslem.fn_isletmeeslesme();
+
+        if(_ayarbaglantituru.equals("wifi"))
+        {
+            _OnlineUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/";
+        }
+        else
+        {
+            _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
+        }
+        persos = new Persos(_OnlineUrl,getContext());
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        _myIslem = new VeriTabani(getContext());
+
+        fn_AyarlariYukle();
+
+        _btngemifoy = view.findViewById(R.id.btngemifoy);
+        //if(_ayaraktiftesis.equals("2003") || _ayaraktifalttesis.equals("2004-01")){
+        //    _btngemifoy.setVisibility(View.VISIBLE);
+        //}else{
+        //    _btngemifoy.setVisibility(View.GONE);
+        //}
+        //// Veriyi çekmek
+        //SharedPreferences sharedPref = getActivity().getSharedPreferences("liman", Context.MODE_PRIVATE);
+        //boolean isBanliman = sharedPref.getBoolean("banliman", false);  // default false
+        //if (isBanliman) {
+        //    //Log.d("Banliman", "Veri true");
+        //    _btngemifoy.setVisibility(View.VISIBLE);
+        //} else {
+        //    _btngemifoy.setVisibility(View.GONE);
+        //}
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
     }
+
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
@@ -118,6 +198,20 @@ public class frg_ana_sayfa extends Fragment
         _btnsayim= (Button)getView().findViewById(R.id.btnsayim);
         _btnsayim.playSoundEffect(SoundEffectConstants.CLICK);
         _btnsayim.setOnClickListener(new fn_btnsayim()); //_btnsayim
+
+        _btngemifoy = (Button)getView().findViewById(R.id.btngemifoy);
+        _btngemifoy.playSoundEffect(SoundEffectConstants.CLICK);
+        //_btngemifoy.setOnClickListener(new fn_gemifoy());
+        _btngemifoy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                frg_aktif_gemi_secimi fragmentyeni = new frg_aktif_gemi_secimi();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayoutForFragments,fragmentyeni,"frg_aktif_gemi_secimi").addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
     }
 
     public void fn_BarkodOkutuldu(final String barcode)
@@ -236,11 +330,11 @@ public class frg_ana_sayfa extends Fragment
         @Override
         public void onClick(View v) {
 
-            frg_sayim_menu_panel fragmentyeni = new frg_sayim_menu_panel();
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sayim_menu_panel").addToBackStack(null);
-            fragmentTransaction.commit();
+            //frg_sayim_menu_panel fragmentyeni = new frg_sayim_menu_panel();
+            //FragmentManager fragmentManager = getFragmentManager();
+            //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            //fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sayim_menu_panel").addToBackStack(null);
+            //fragmentTransaction.commit();
 
         }
     }

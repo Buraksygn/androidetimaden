@@ -197,6 +197,25 @@ public class frg_depo_sayim_islemi extends Fragment {
         }
 
     }
+    public void barkodOkundu(String barkod) {
+
+        try
+        {
+            barkod = barkod.substring(barkod.length() - 24);
+
+
+            rfidOkundu(barkod);
+
+        }
+        catch (Exception ex){
+            Genel.printStackTrace(ex,getContext());
+        }
+        //Thread.Sleep(1000);
+        //isReadable = true;
+
+
+    }
+
 
     public void rfidOkundu(String rfid){
         try
@@ -261,6 +280,16 @@ public class frg_depo_sayim_islemi extends Fragment {
         @Override
         public void onClick(View view) {
             Genel.lockButtonClick(view,getActivity());
+
+            if(urun_listesi.isEmpty()){
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün listesi boş")
+                        .showCancelButton(false)
+                        .show();
+                return ;
+            }
             try
             {
                 request_aktarim_list _Param1= new request_aktarim_list();

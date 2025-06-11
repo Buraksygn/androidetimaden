@@ -312,83 +312,119 @@ public class frg_arac_aktivasyon extends Fragment {
                                 public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
 
-                                    request_sevkiyat_isemri _Param= new request_sevkiyat_isemri();
-                                    _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
-                                    _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
-                                    _Param.set_zaktif_tesis(_ayaraktiftesis);
-                                    _Param.set_zsurum(_sbtVerisyon);
-                                    _Param.set_zkullaniciadi(_zkullaniciadi);
-                                    _Param.set_zsifre(_zsifre);
-                                    _Param.setAktif_sunucu(_ayaraktifsunucu);
-                                    _Param.setAktif_kullanici(_ayaraktifkullanici);
+                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE) //merve ekledi
+                                            .setTitleText("SEVKİYAT YÖNLENDİRMESİ")
+                                            .setContentText("GEMİYE YÜKLEMESİ TAMAMLANDI. \r\n İŞLEME DEVAM ETMEK İSTİYOR MUSUNUZ?")
+                                            .setContentTextSize(20)
+                                            .setConfirmText("EVET")
+                                            .setCancelText("HAYIR")
+                                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialogG sweetAlertDialog) {
+                                                    request_sevkiyat_isemri _Param= new request_sevkiyat_isemri();
+                                                    _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                                    _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                                    _Param.set_zaktif_tesis(_ayaraktiftesis);
+                                                    _Param.set_zsurum(_sbtVerisyon);
+                                                    _Param.set_zkullaniciadi(_zkullaniciadi);
+                                                    _Param.set_zsifre(_zsifre);
+                                                    _Param.setAktif_sunucu(_ayaraktifsunucu);
+                                                    _Param.setAktif_kullanici(_ayaraktifkullanici);
 
-                                    _Param.set_sevkiyat_ismeri(_aktif_sevk_isemri);
+                                                    _Param.set_sevkiyat_ismeri(_aktif_sevk_isemri);
 
-                                    Genel.showProgressDialog(getContext());
-                                    Boolean res_aktarım = persos.fn_update_gemi_transfer_direct(_Param);
-                                    Genel.dismissProgressDialog();
+                                                    Genel.showProgressDialog(getContext());
+                                                    Boolean res_aktarım = persos.fn_update_gemi_transfer_direct(_Param);
+                                                    Genel.dismissProgressDialog();
 
 
-                                    if (res_aktarım==true)
-                                    {
-                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
-                                                .setTitleText("İşlem Onayı")
-                                                .setContentText("İşlem başarı ile tamamlanmıştır. Aracı kantara gönderiniz.")
-                                                .setContentTextSize(20)
-                                                .setConfirmText("TAMAM")
-                                                .showCancelButton(false)
-                                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
-                                                    @Override
-                                                    public void onClick(SweetAlertDialogG sDialog) {
-                                                        sDialog.dismissWithAnimation();
-                                                        frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
-                                                        FragmentManager fragmentManager = getFragmentManager();
-                                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
-                                                        fragmentTransaction.commit();
-                                                        return;
+                                                    if (res_aktarım==true)
+                                                    {
+                                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+                                                                .setTitleText("İşlem Onayı")
+                                                                .setContentText("İşlem başarı ile tamamlanmıştır. Aracı kantara gönderiniz.")
+                                                                .setContentTextSize(20)
+                                                                .setConfirmText("TAMAM")
+                                                                .showCancelButton(false)
+                                                                .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                                                    @Override
+                                                                    public void onClick(SweetAlertDialogG sDialog) {
+                                                                        sDialog.dismissWithAnimation();
+                                                                        frg_sevkiyat_menu_panel fragmentyeni = new frg_sevkiyat_menu_panel();
+                                                                        FragmentManager fragmentManager = getFragmentManager();
+                                                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sevkiyat_menu_panel").addToBackStack(null);
+                                                                        fragmentTransaction.commit();
+                                                                        return;
+                                                                    }
+                                                                })
+                                                                .show();
+
                                                     }
-                                                })
-                                                .show();
-
-                                    }
-                                    else
-                                    {
-                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                                                .setTitleText("İşlem Başarısız")
-                                                .setContentTextSize(25)
-                                                .setContentText("Kayıt yapılamadı. \r\n Veritabanı hatası")
-                                                .showCancelButton(false)
-                                                .show();
-                                    }
+                                                    else
+                                                    {
+                                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                                                .setTitleText("İşlem Başarısız")
+                                                                .setContentTextSize(25)
+                                                                .setContentText("Kayıt yapılamadı. \r\n Veritabanı hatası")
+                                                                .showCancelButton(false)
+                                                                .show();
+                                                    }
+                                                }
+                                            })
+                                            .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialogG sweetAlertDialog) {
+                                                    sweetAlertDialog.dismissWithAnimation();
+                                                }
+                                            }).show();
                                 }
                             })
                             .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
-                                    if (_aktif_sevk_isemri.hedef_isletme_alt_kodu.equals(_ayaraktifalttesis))
-                                    {
-                                        frg_arac_bulundu_indirme fragmentyeni = new frg_arac_bulundu_indirme();
-                                        fragmentyeni.fn_senddata(_aktif_sevk_isemri);
-                                        FragmentManager fragmentManager = getFragmentManager();
-                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_arac_bulundu_indirme").addToBackStack(null);
-                                        fragmentTransaction.commit();
-                                    }
-                                    else
-                                    {
-                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                                                .setTitleText("HATA")
-                                                .setContentTextSize(25)
-                                                .setContentText("Aktif araç işemri bulunamadı.. \r\n Araç kantardan geçiş işlemini tamamlamamış.")
-                                                .showCancelButton(false)
-                                                .show();
-                                    }
+
+                                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE) // merve ekledi
+                                            .setTitleText("SEVKİYAT YÖNLENDİRMESİ")
+                                            .setContentText("DEPOYA ALMA İŞLEMİ YAPILACAKTIR. \r\n ONAYLIYOR MUSUNUZ?")
+                                            .setContentTextSize(20)
+                                            .setConfirmText("EVET")
+                                            .setCancelText("HAYIR")
+                                            .showCancelButton(true)
+                                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialogG sweetAlertDialog) {
+                                                    sweetAlertDialog.dismissWithAnimation();
+
+                                                    if (_aktif_sevk_isemri.hedef_isletme_alt_kodu.equals(_ayaraktifalttesis))
+                                                    {
+                                                        frg_arac_bulundu_indirme fragmentyeni = new frg_arac_bulundu_indirme();
+                                                        fragmentyeni.fn_senddata(_aktif_sevk_isemri);
+                                                        FragmentManager fragmentManager = getFragmentManager();
+                                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_arac_bulundu_indirme").addToBackStack(null);
+                                                        fragmentTransaction.commit();
+                                                    }
+                                                    else
+                                                    {
+                                                        new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                                                                .setTitleText("HATA")
+                                                                .setContentTextSize(25)
+                                                                .setContentText("Aktif araç işemri bulunamadı.. \r\n Araç kantardan geçiş işlemini tamamlamamış.")
+                                                                .showCancelButton(false)
+                                                                .show();
+                                                    }
+                                                }
+                                            }).setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialogG sweetAlertDialog) {
+                                                    sweetAlertDialog.dismissWithAnimation();
+                                                }
+                                            }).show();
                                 }
                             })
                             .show();
-
                 }
                 else
                 {

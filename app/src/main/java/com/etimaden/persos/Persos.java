@@ -13,6 +13,9 @@ import com.etimaden.persosclass.DEPOTag;
 import com.etimaden.persosclass.Demirbas_Konum;
 import com.etimaden.persosclass.Depo_sayım_isemri;
 import com.etimaden.persosclass.Duran_Varlik_sap;
+import com.etimaden.persosclass.Gemi;
+import com.etimaden.persosclass.Gemi_Sevkiyat;
+import com.etimaden.persosclass.Gemi_Teslimat;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.persosclass.Vagon_hareket;
 import com.etimaden.persosclass.Zayi;
@@ -55,6 +58,7 @@ import com.etimaden.request.request_shrink_is_emri;
 import com.etimaden.request.request_shrink_onayi_al;
 import com.etimaden.request.request_string;
 import com.etimaden.request.request_string_aktif_isletme_esleme;
+import com.etimaden.request.request_string_gemi;
 import com.etimaden.request.request_string_string;
 import com.etimaden.request.request_string_string_string;
 import com.etimaden.request.request_uretim_etiket;
@@ -76,6 +80,8 @@ import com.etimaden.response.frg_paket_uretim_ekrani.View_sec_uretim_detay;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_string_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.ViewsecDepoTanimlari;
 import com.etimaden.response.frg_paket_uretim_ekrani.Viewsec_etiket_uretim;
+import com.etimaden.response.gemi_islemleri.ViewAktifGemiListesi;
+import com.etimaden.response.gemi_islemleri.ViewAktifIsemirleriListesi;
 import com.etimaden.response.sayim_islemleri.View_demirbas_konum_listesi;
 import com.etimaden.response.sayim_islemleri.View_demirbas_sayim;
 import com.etimaden.response.sayim_islemleri.View_demirbas_sayim_listesi;
@@ -96,6 +102,7 @@ import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_urun_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_string_list;
 import com.etimaden.servisbaglanti.frg_depolar_arasi_sevk_islemleri_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_elden_satis_islemi_Controller;
+import com.etimaden.servisbaglanti.frg_gemi_islemleri_Controller;
 import com.etimaden.servisbaglanti.frg_manipulasyon_islemleri_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_sayim_islemleri_ekrani_Controller;
@@ -2611,6 +2618,44 @@ public class Persos {
         }
     }
 
+    public Boolean fn_kirli_ambalaj_ayir(request_uruntag_string v_Gelen){
+        View_bool_response _yanit;
+        try{
+            frg_manipulasyon_islemleri_ekrani_Controller _Servis=retrofit.create(frg_manipulasyon_islemleri_ekrani_Controller.class);
+            Call<View_bool_response> fn_Servis = _Servis.fn_kirli_ambalaj_ayir(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            ResponseBody rawBody = _Response.raw().body();
+
+            if (rawBody != null) {
+                Log.d("RAW_RESPONSE", rawBody.toString());
+            }
+            Log.d("Kirli Ambalaj", "Status Code: " + _Response.code());
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                if (_Response.errorBody() != null) {
+                    String error = _Response.errorBody().string();
+                    Log.e("Kirli", "Error Body: " + error);
+                } else {
+                    Log.e("Kirli", "Error Body boş geldi");
+                }
+                return null;
+            }
+        }catch (Exception ex){
+            Genel.printStackTrace(ex,context);
+            Log.e("RESPONSE_CATCH", ex.toString());
+            return  null;
+        }
+    }
+
     public Boolean fn_bigBag_ellecleme(request_uruntag_string v_Gelen)
     {
         View_bool_response _yanit;
@@ -3926,5 +3971,117 @@ public class Persos {
             return  null;
         }
     }
+
+    //gemi foy
+    public List<Gemi> fn_sec_aktif_gemi_listesi(request_string v_Gelen) {
+
+        ViewAktifGemiListesi _yanit;
+
+        try
+        {
+            frg_gemi_islemleri_Controller _Servis=retrofit.create(frg_gemi_islemleri_Controller.class);
+
+            Call<ViewAktifGemiListesi> fn_Servis = _Servis.fn_secGemi(v_Gelen);
+
+            Response<ViewAktifGemiListesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.getGemiListesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
+    public Boolean fn_gemi_gelisme_kaydet(request_string_gemi v_Gelen)
+    {
+        View_bool_response _yanit;
+
+        try
+        {
+            frg_gemi_islemleri_Controller _Servis=retrofit.create(frg_gemi_islemleri_Controller.class);
+
+            Call<View_bool_response> fn_Servis = _Servis.fn_gemi_gelisme_kaydet(v_Gelen);
+
+            Response<View_bool_response> _Response = fn_Servis.execute();
+
+            ResponseBody rawBody = _Response.raw().body();
+            if (rawBody != null) {
+                Log.d("RAW_RESPONSE", rawBody.toString());
+            }
+
+            Log.d("Retrofit", "Status Code: " + _Response.code());
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                if (_yanit == null) {
+                    Log.d("Retrofit", "Yanıt null geldi");
+                    return null;
+                }
+
+                return  _yanit.get_result();
+            }
+            else
+            {
+                if (_Response.errorBody() != null) {
+                    String error = _Response.errorBody().string();
+                    Log.e("Retrofit", "Error Body: " + error);
+                } else {
+                    Log.e("Retrofit", "Error Body boş geldi");
+                }
+
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            Log.e("RESPONSE_CATCH", ex.toString());
+            return  null;
+        }
+    }
+
+    public List<Gemi_Teslimat> fn_sec_gemi_teslimat_listesi(request_string v_Gelen){
+
+        ViewAktifIsemirleriListesi _yanit;
+
+        try
+        {
+            frg_gemi_islemleri_Controller _Servis=retrofit.create(frg_gemi_islemleri_Controller.class);
+
+            Call<ViewAktifIsemirleriListesi> fn_Servis = _Servis.fn_sec_isemirleri_listesi(v_Gelen);
+
+            Response<ViewAktifIsemirleriListesi> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _yanit = _Response.body();
+
+                return  _yanit.getisemirleriListesi();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+    }
+
 
 }

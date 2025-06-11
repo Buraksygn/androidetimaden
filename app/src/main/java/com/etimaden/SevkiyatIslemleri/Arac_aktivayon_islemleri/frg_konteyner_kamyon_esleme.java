@@ -58,6 +58,8 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
     boolean okunabilir = true;
     Sevkiyat_isemri kamyon = null;
 
+    Integer toplam_agırlik=0;
+
 
     public static frg_konteyner_kamyon_esleme newInstance() {
 
@@ -145,7 +147,7 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
                 return;
             okunabilir = false;
             Genel.playQuestionSound(getContext());
-            if ( _ayaraktiftesis.equals("5002") || _ayaraktiftesis.equals("3001"))
+            if ( _ayaraktiftesis.equals("5002") || _ayaraktiftesis.equals("3001")) //eklendi.
             {
                 request_string _Param= new request_string();
                 _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
@@ -177,8 +179,12 @@ public class frg_konteyner_kamyon_esleme  extends Fragment {
                                 public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
 
-                                    Integer toplam_agırlik = Integer.parseInt( arac.arac_bos_tartim )+ Integer.parseInt(kamyon.vardiya) - Integer.parseInt(kamyon.aciklama);
 
+                                    if(_ayaraktiftesis.equals("3001")){  //bigadiç için boş tartim ağırlığı yok.
+                                        toplam_agırlik = Integer.parseInt(kamyon.vardiya) - Integer.parseInt(kamyon.aciklama);
+                                    }else{
+                                        toplam_agırlik = Integer.parseInt( arac.arac_bos_tartim )+ Integer.parseInt(kamyon.vardiya) - Integer.parseInt(kamyon.aciklama);
+                                    }
                                     request_sevkiyat_rota_agirlik_konteyner _Param= new request_sevkiyat_rota_agirlik_konteyner();
                                     _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
                                     _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
