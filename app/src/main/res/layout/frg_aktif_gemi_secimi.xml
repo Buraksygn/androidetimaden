@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    android:focusable="false"
+    tools:context="com.etimaden.GemiIslemleri.frg_aktif_gemi_secimi">
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:text="frg_aktif_gemi_secimi"
+        android:textColor="@color/green"/>
+
+    <TextView
+        android:id="@+id/txtYazi23"
+        android:layout_width="150dp"
+        android:layout_height="38dp"
+        android:layout_x="0dp"
+        android:layout_y="20dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="GEMİ SEÇİMİ"
+        android:textColor="@color/green"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+    <HorizontalScrollView
+        android:layout_width="325dp"
+        android:layout_height="370dp"
+        android:layout_x="2dp"
+        android:layout_y="60dp">
+
+
+        <ListView
+            android:id="@+id/gemi_list"
+            android:layout_width="wrap_content"
+            android:layout_height="370dp"
+            android:listSelector="@color/colorBlackSecili"
+            android:scrollbars="horizontal|vertical"
+            android:textColor="@color/green" />
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/btngeriGemi"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="500dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:focusable="false"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+    <Button
+        android:id="@+id/btngelismebildir"
+        android:layout_width="146dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="440dp"
+        android:background="@drawable/btn_menu_normal"
+        android:focusable="false"
+        android:gravity="center"
+        android:text=" Gelişme Bildir "
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnsevkiyatbasla"
+        android:layout_width="163dp"
+        android:layout_height="50dp"
+        android:layout_x="160dp"
+        android:layout_y="440dp"
+        android:background="@drawable/btn_menu_normal"
+        android:focusable="false"
+        android:gravity="center"
+        android:text=" Sevkiyata Başla "
+        android:textColor="@color/green"
+        android:textSize="20sp"
+        android:visibility="visible" />
+
+    <EditText
+        android:id="@+id/searchBox"
+        android:layout_width="171dp"
+        android:layout_height="35dp"
+        android:layout_x="151dp"
+        android:layout_y="21dp"
+        android:background="@drawable/btn_giris_yap"
+        android:textColor="@color/green"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:inputType="text"
+        android:hint="Ara..."
+        android:textColorHint="@color/green" />
+</AbsoluteLayout>

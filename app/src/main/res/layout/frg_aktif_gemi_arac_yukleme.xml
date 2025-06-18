@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorBlack"
+    android:focusable="false"
+    tools:context="com.etimaden.GemiIslemleri.frg_aktif_gemi_arac_yukleme">
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:textColor="@color/green"
+        android:textSize="12dp"
+        android:text="frg_aktif_gemi_arac_yukleme" />
+
+    <TextView
+        android:id="@+id/txtgemiYuklemeBaslik"
+        android:layout_width="269dp"
+        android:layout_height="36dp"
+        android:layout_x="3dp"
+        android:layout_y="17dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="YÜKLEME LİSTESİ"
+        android:textAlignment="center"
+        android:textColor="@color/green"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:scrollbars="horizontal" />
+
+    <HorizontalScrollView
+        android:layout_width="325dp"
+        android:layout_height="321dp"
+        android:layout_x="3dp"
+        android:layout_y="61dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#222222"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="178dp"
+                    android:layout_height="wrap_content"
+                    android:text="Araç Plaka"
+                    android:textColor="@color/green"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    android:text="Hasar Durumu"
+                    android:textColor="@color/green"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <ListView
+                android:id="@+id/gemi_yukleme_list"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:listSelector="@color/colorBlackSecili"
+                android:scrollbars="horizontal|vertical"
+                />
+
+
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/btngemiYuklemeGeri"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="500dp"
+        android:background="@drawable/my_button_cikis"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:focusable="false"
+        android:text=" &lt; &lt; GERİ"
+        android:textColor="@color/colorRed" />
+
+    <Button
+        android:id="@+id/btnGemiOkuma"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_x="224dp"
+        android:layout_y="500dp"
+        android:background="@drawable/btn_menu_normal"
+        android:focusable="false"
+        android:gravity="center"
+        android:text="KAREKOD"
+        android:textColor="@color/green"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtYuklenenArac"
+        android:layout_width="106dp"
+        android:layout_height="40dp"
+        android:layout_x="3dp"
+        android:layout_y="454dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text=""
+        android:textColor="@color/main_orange_color"
+        android:textSize="13dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtTamamlananArac"
+        android:layout_width="129dp"
+        android:layout_height="39dp"
+        android:layout_x="113dp"
+        android:layout_y="454dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text=""
+        android:textColor="@color/green"
+        android:textSize="13dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtHasarliArac"
+        android:layout_width="79dp"
+        android:layout_height="39dp"
+        android:layout_x="240dp"
+        android:layout_y="453dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text=""
+        android:textColor="@color/red1"
+        android:textSize="13dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_x="2dp"
+        android:layout_y="396dp"
+        android:text="Yüklemeyi Başlat"
+        android:textColor="@color/green"
+        android:background="@drawable/btn_menu_normal"
+        />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_x="171dp"
+        android:layout_y="396dp"
+        android:background="@drawable/btn_menu_normal"
+        android:text="Yüklemeyi Bitir"
+        android:textColor="@color/green" />
+
+
+</AbsoluteLayout>
