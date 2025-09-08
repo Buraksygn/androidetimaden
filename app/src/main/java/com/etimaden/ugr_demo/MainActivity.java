@@ -40,6 +40,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -337,8 +338,10 @@ public class MainActivity extends AppCompatActivity {
                     {
                         _Ayarlar.fn_setTest(getApplicationContext());
                         //gemiföy buton kontrolü için
-                        //editor.putBoolean("banliman", true);
-                        //editor.apply();
+                        /*SharedPreferences sharedPref = getSharedPreferences("liman", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putBoolean("banliman", true);
+                        editor.apply();*/
 
                     }
                     else{

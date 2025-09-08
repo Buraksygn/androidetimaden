@@ -1,5 +1,12 @@
 package com.etimaden.SevkiyatIslemleri.Arac_aktivayon_islemleri;
 
+import static com.etimaden.cSabitDegerler._ipAdresi3G;
+import static com.etimaden.cSabitDegerler._sbtVerisyon;
+import static com.etimaden.cSabitDegerler._zkullaniciadi;
+import static com.etimaden.cSabitDegerler._zport3G;
+import static com.etimaden.cSabitDegerler._zportWifi;
+import static com.etimaden.cSabitDegerler._zsifre;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -23,7 +30,10 @@ import com.etimaden.cIslem.VeriTabani;
 import com.etimaden.cResponseResult.Sevkiyat_isemri;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
+import com.etimaden.persos.Persos;
+import com.etimaden.request.request_string;
 import com.etimaden.ugr_demo.R;
+
 
 
 public class frg_arac_bulundu extends Fragment {
@@ -55,6 +65,9 @@ public class frg_arac_bulundu extends Fragment {
     Button _btnileri;
 
     Button _btnIsEmriDegistir;
+
+    String _OnlineUrl = "";
+    Persos persos;
 
     public frg_arac_bulundu() {
         // Required empty public constructor
@@ -157,12 +170,24 @@ public class frg_arac_bulundu extends Fragment {
         _ayaraktiftesis=_myIslem.fn_aktif_tesis();
         _ayaraktifsunucu=_myIslem.fn_aktif_sunucu();
         _ayaraktifisletmeeslesme=_myIslem.fn_isletmeeslesme();
+
+        if(_ayarbaglantituru.equals("wifi"))
+        {
+            _OnlineUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/";
+        }
+        else
+        {
+            _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
+        }
+
+        persos = new Persos(_OnlineUrl,getContext());
     }
 
 
     private class fn_Geri implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+
             frg_arac_aktivasyon fragmentyeni = new frg_arac_aktivasyon();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -176,7 +201,7 @@ public class frg_arac_bulundu extends Fragment {
         this.aktif_sevk_isemri=v_aktif_sevk_isemri;
     }
 
-    private class fn_Ileri implements View.OnClickListener {
+    /*private class fn_Ileri implements View.OnClickListener {
         @Override
         public void onClick(View view)
         {
@@ -187,7 +212,82 @@ public class frg_arac_bulundu extends Fragment {
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_onayla").addToBackStack(null);
             fragmentTransaction.commit();
         }
+    }*/
+
+
+    private class fn_Ileri implements View.OnClickListener { //özgür yeni yazdı
+        @Override
+        public void onClick(View view) {
+
+            if (_ayaraktiftesis.equals("5001")) { // özgür
+                String ilktartim = "";
+                String _arakod =aktif_sevk_isemri.arac_kodu.toString();
+                request_string _Param = new request_string();
+                _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+                _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                _Param.set_zaktif_tesis(_ayaraktiftesis);
+                _Param.set_zsurum(_sbtVerisyon);
+                _Param.set_zkullaniciadi(_zkullaniciadi);
+                _Param.set_zsifre(_zsifre);
+                _Param.setAktif_sunucu(_ayaraktifsunucu);
+                _Param.setAktif_kullanici(_ayaraktifkullanici);
+
+                _Param.set_value(_arakod); // özgür
+                try {
+                    ilktartim = persos.fn_ilk_tartim_bul(_Param);
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+
+
+                int tartimMiktari = 0;
+                try {
+                    tartimMiktari = Integer.parseInt(ilktartim);
+                } catch (NumberFormatException e) {
+                    tartimMiktari = 0;
+                }
+
+                if (tartimMiktari == 0) {
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+                            .setTitleText("ARAÇ BİLGİ")
+                            .setContentText("ARAÇ İLK TARTIMA GİRMEMİŞTİR. DEVAM ETMEK İÇİN EVET, VAZGEÇMEK İÇİN HAYIR BUTONUNA BASINIZ.")
+                            .setConfirmText("EVET")
+                            .setCancelText("HAYIR")
+                            .showCancelButton(true)
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialogG sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                    sDialog.hide();
+                                    // EVET’e basıldığında fragment aç
+                                    frg_arac_onayla fragmentyeni = new frg_arac_onayla();
+                                    fragmentyeni.fn_senddata(aktif_sevk_isemri);
+                                    FragmentManager fragmentManager = getFragmentManager();
+                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_onayla").addToBackStack(null);
+                                    fragmentTransaction.commit();
+                                }
+                            })
+                            .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialogG sDialog) {
+                                    sDialog.dismissWithAnimation(); // HAYIR’a basılırsa sadece kapat
+                                }
+                            })
+                            .show();
+                    return; // bekle
+                }
+            }
+
+            frg_arac_onayla fragmentyeni = new frg_arac_onayla();
+            fragmentyeni.fn_senddata(aktif_sevk_isemri);
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_arac_onayla").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
     }
+
 
     private class fn_IsemirDegistir implements View.OnClickListener {
         @Override

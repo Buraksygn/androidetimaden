@@ -1024,6 +1024,7 @@ public class frg_konteyner_aktivasyon extends Fragment {
     }
     public void barkodOkundu(String v_epc)
     {
+
         try {
             final FragmentManager fragmentManager=getFragmentManager();
              v_epc = v_epc.substring(v_epc.length() - 24);

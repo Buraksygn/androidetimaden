@@ -1,0 +1,32 @@
+
+2.5.20-------------------------------------------------------------------------------------------------------- 
+Araç indirmenin torba okutmadan yapılabilmesi ve araçtaki palet miktarının görülebilmesi (Liman Kod : 2003)
+
+frg_arac_aktivasyon.java dosyasında 
+
+String paletSayisi = aktif_sevk_isemri.yapilan_adet; //OZGUR EKLEDİ   
+.setTitleText("SEVKİYAT YÖNLENDİRMESİ\n\nPALET SAYISI : " + paletSayisi) //OZGUR EKLEDİ
+
+frg_aktif_isemri_indirme.java dosyasında aşağıdaki satırlar eklendi 
+
+if (_ayaraktiftesis.equals("2003"))
+                {
+                    rfidOkundu(urun.rfid); //ozgur ekledi
+                }
+
+if (!_ayaraktiftesis.equals("2003")) // ozgur
+            {
+                updateListviewItem();
+            }
+
+if (_ayaraktiftesis.equals("2003"))
+                {
+                    updateListviewItem();
+                }			
+---------------------------------------------------------------------------------------------------------------	
+2.5.21---------------------------------------------------------------------		
+
+Araç sevkiyat işleminde oluşturma tarihi mevcut tarihten önce olan etiketler için kontrol kriteri eklendi. 
+frg_aktif_isemri_yukleme formunda çalışma yapıldı.
+
+----------------------------------------------------------------------------

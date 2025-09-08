@@ -126,20 +126,20 @@ public class frg_ana_sayfa extends Fragment
         fn_AyarlariYukle();
 
         _btngemifoy = view.findViewById(R.id.btngemifoy);
-        //if(_ayaraktiftesis.equals("2003") || _ayaraktifalttesis.equals("2004-01")){
-        //    _btngemifoy.setVisibility(View.VISIBLE);
-        //}else{
-        //    _btngemifoy.setVisibility(View.GONE);
-        //}
-        //// Veriyi çekmek
-        //SharedPreferences sharedPref = getActivity().getSharedPreferences("liman", Context.MODE_PRIVATE);
-        //boolean isBanliman = sharedPref.getBoolean("banliman", false);  // default false
-        //if (isBanliman) {
-        //    //Log.d("Banliman", "Veri true");
-        //    _btngemifoy.setVisibility(View.VISIBLE);
-        //} else {
-        //    _btngemifoy.setVisibility(View.GONE);
-        //}
+        if(_ayaraktiftesis.equals("2003") || _ayaraktifalttesis.equals("2004-01")){
+            _btngemifoy.setVisibility(View.VISIBLE);
+        }else{
+            _btngemifoy.setVisibility(View.GONE);
+        }
+        // Veriyi çekmek
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("liman", Context.MODE_PRIVATE);
+        boolean isBanliman = sharedPref.getBoolean("banliman", false);  // default false
+        if (isBanliman) {
+            //Log.d("Banliman", "Veri true");
+            _btngemifoy.setVisibility(View.VISIBLE);
+        } else {
+            _btngemifoy.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -330,11 +330,11 @@ public class frg_ana_sayfa extends Fragment
         @Override
         public void onClick(View v) {
 
-            //frg_sayim_menu_panel fragmentyeni = new frg_sayim_menu_panel();
-            //FragmentManager fragmentManager = getFragmentManager();
-            //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            //fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sayim_menu_panel").addToBackStack(null);
-            //fragmentTransaction.commit();
+            frg_sayim_menu_panel fragmentyeni = new frg_sayim_menu_panel();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sayim_menu_panel").addToBackStack(null);
+            fragmentTransaction.commit();
 
         }
     }

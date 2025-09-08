@@ -352,13 +352,6 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
                                 @Override
                                 public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
-                                    return;
-                                }
-                            })
-                            .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialogG sDialog) {
-                                    sDialog.dismissWithAnimation();
                                     request_sevkiyat_zayi_arac _Param= new request_sevkiyat_zayi_arac();
                                     _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
                                     _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
@@ -391,6 +384,13 @@ public class frg_zayi_arac_onayla_indirme extends Fragment {
                                                 .show();
                                     }
 
+                                }
+                            })
+                            .setCancelClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialogG sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                    return;
                                 }
                             })
                             .show();

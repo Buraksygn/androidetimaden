@@ -248,11 +248,11 @@ public class cSetIlsletmeAyari
         aktif_depo = "MUR1";
         aktif_tesis = "2003"; //2001 -2003
         aktif_alt_tesis = "2004-01"; //2001-01 - 2004-01
-        aktif_sunucu = "001";
+        aktif_sunucu = "001";//001
         aktif_isletmeesleme = "2003"; //2001 - 2003
-        aktif_kullanici = "andr_bandirma_isletme";
+        aktif_kullanici = "andr_liman"; //andr_liman - andr_bandirma_isletme
         baglanti_turu="wifi";
-        sunucu_ip="192.168.10.123";
+        sunucu_ip="192.168.10.121";
 
         _myIslem=new VeriTabani(v_Context);
         _myIslem.fn_Kayit();

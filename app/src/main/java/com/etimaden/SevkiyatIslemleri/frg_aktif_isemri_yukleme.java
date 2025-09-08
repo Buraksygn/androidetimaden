@@ -396,7 +396,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
             Urun_sevkiyat urun = tag;
 
-            if(tag.ser_create_date != null && !tag.ser_create_date.isEmpty()){
+           /* if(tag.ser_create_date != null && !tag.ser_create_date.isEmpty()){  //özgür kapattı hata veriyor sürekli
                 createDate = tag.ser_create_date;
                 yearDiff = calculateYearDifference(createDate);
                 //yearDiff = dateCalculator(createDate);
@@ -406,7 +406,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                         .setContentText("Etiket Ürt. Trh. : " + createDate + " \r\n Tarih Fark : " + yearDiff)
                         .showCancelButton(false)
                         .show();
-            }
+            }*/
 
             if (urun == null)
             {
@@ -573,7 +573,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                         .showCancelButton(false)
                         .show();
             }
-            else if(isemri != null && !isemri.isemri_tipi_alt.equals("") && (aktif_sevk_isemri.isemri_tipi.equals("200")) && yearDiff >= 2)
+            /*else if(isemri != null && !isemri.isemri_tipi_alt.equals("") && (aktif_sevk_isemri.isemri_tipi.equals("200")) && yearDiff >= 2) //merve
             {
                   //int yearDiffUrun = dateCalculator(tag.ser_create_date);
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
@@ -585,7 +585,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                     isReadable = true;
                     return;
             }
-            else if((aktif_sevk_isemri.isemri_tipi.equals("250") || (aktif_sevk_isemri.isemri_tipi.equals("251"))) && yearDiff >= 2)
+            else if((aktif_sevk_isemri.isemri_tipi.equals("250") || (aktif_sevk_isemri.isemri_tipi.equals("251"))) && yearDiff >= 2) //merve
             {
                 //int yearDiffUrun = dateCalculator(tag.ser_create_date);
                 //if(yearDiffUrun >= 2){
@@ -599,7 +599,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                     return;
                 //}
                 //return;
-            }else if(yearDiff >= 1){
+            }else if(yearDiff >= 1){ //merve
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("Zaman Aşımı Hatası")
                         .setContentTextSize(25)
@@ -608,7 +608,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                         .show();
                 isReadable = true;
                 return;
-            }
+            }*/
             else
             {
                 urunDegerlendir(tag);
@@ -623,7 +623,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
     }
 
     //Tarih parse işlemi merve
-    public static int calculateYearDifference(String dateString){
+    /*public static int calculateYearDifference(String dateString){
 
         try{
             String[] parts = dateString.split(" ");
@@ -677,7 +677,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
             e.printStackTrace();
             return 0; // Hata durumunda 0 döndür
         }
-    }
+    }*/
 
     public int dateCalculator(String value){
 
