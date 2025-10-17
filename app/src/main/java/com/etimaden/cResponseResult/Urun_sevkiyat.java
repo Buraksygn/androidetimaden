@@ -24,4 +24,5 @@ public class Urun_sevkiyat {
     public String isletme_adi = "";
     public String kilitli  = "";
     public String ser_create_date = "";
+    public String yilfarki = "";
 }

@@ -396,6 +396,8 @@ public class frg_aktif_isemri_yukleme extends Fragment {
 
             Urun_sevkiyat urun = tag;
 
+            yearDiff= Integer.parseInt(tag.yilfarki);  //ozgur ekledi
+
            /* if(tag.ser_create_date != null && !tag.ser_create_date.isEmpty()){  //özgür kapattı hata veriyor sürekli
                 createDate = tag.ser_create_date;
                 yearDiff = calculateYearDifference(createDate);
@@ -573,7 +575,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                         .showCancelButton(false)
                         .show();
             }
-            /*else if(isemri != null && !isemri.isemri_tipi_alt.equals("") && (aktif_sevk_isemri.isemri_tipi.equals("200")) && yearDiff >= 2) //merve
+            else if(isemri != null && !isemri.isemri_tipi_alt.equals("") && (aktif_sevk_isemri.isemri_tipi.equals("200")) && yearDiff >= 2) //merve
             {
                   //int yearDiffUrun = dateCalculator(tag.ser_create_date);
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
@@ -608,7 +610,7 @@ public class frg_aktif_isemri_yukleme extends Fragment {
                         .show();
                 isReadable = true;
                 return;
-            }*/
+            }
             else
             {
                 urunDegerlendir(tag);

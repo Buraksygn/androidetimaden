@@ -9,6 +9,14 @@
     tools:context="com.etimaden.frg_ana_sayfa"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/img_gucdegistir"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_x="91dp"
+        android:layout_y="500dp"
+        android:src="@drawable/img_gucdegistir" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="325dp"

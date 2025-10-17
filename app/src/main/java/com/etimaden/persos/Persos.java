@@ -107,6 +107,8 @@ import com.etimaden.servisbaglanti.frg_manipulasyon_islemleri_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_sayim_islemleri_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_sevkiyat_islemleri_ekrani_Controller;
+import com.etimaden.servisbaglanti.test_Controller;
+
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -4093,6 +4095,45 @@ public class Persos {
             frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
 
             Call<View_string_response> fn_Servis = _Servis.fn_ilk_tartim_bul(v_Gelen);
+
+            Response<View_string_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                View_string_response _Yanit = _Response.body();
+
+                if(_Yanit.get_zSonuc().equals("0"))
+                {
+                    _Cevap = null;
+                }
+                else
+                {
+                    _Cevap= _Yanit.get_result();
+                }
+            }
+            else
+            {
+                _Cevap = null;
+            }
+
+
+        }catch (Exception ex)
+        {
+
+        }
+
+        return  _Cevap;
+    }
+
+    public String fn_GetRfidGucAyari()
+    {
+        String _Cevap ="";
+
+        try
+        {
+            test_Controller _Servis=retrofit.create(test_Controller.class);
+
+            Call<View_string_response> fn_Servis = _Servis.fn_GetRfidGucAyari();
 
             Response<View_string_response> _Response = fn_Servis.execute();
 

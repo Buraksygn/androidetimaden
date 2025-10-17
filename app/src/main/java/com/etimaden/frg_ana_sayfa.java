@@ -37,11 +37,13 @@ import com.etimaden.manipulasyon.frg_manipulasyon_menu_panel;
 import com.etimaden.persos.Persos;
 import com.etimaden.ugr_demo.MainActivity;
 import com.etimaden.ugr_demo.R;
+import com.etimaden.digerislemler.frg_guc_degistir;
 
 public class frg_ana_sayfa extends Fragment
 {
     ImageView _btnCikis;
     ImageView _imgsifredegistir;
+    ImageView _imggucdegistir;
 
     Button _btnUretim;
     Button _btnSevkiyat;
@@ -170,6 +172,10 @@ public class frg_ana_sayfa extends Fragment
         _imgsifredegistir=(ImageView)getView().findViewById(R.id.imgsifredegistir);
         _imgsifredegistir.playSoundEffect(SoundEffectConstants.CLICK);
         _imgsifredegistir.setOnClickListener(new fn_sifredegistir());
+
+        _imggucdegistir=(ImageView)getView().findViewById(R.id.img_gucdegistir);
+        _imggucdegistir.playSoundEffect(SoundEffectConstants.CLICK);
+        _imggucdegistir.setOnClickListener(new fn_gucdegistir());
 
         _btnSevkiyat=(Button)getView().findViewById(R.id.btnSevkiyat);
         _btnSevkiyat.playSoundEffect(SoundEffectConstants.CLICK);
@@ -346,6 +352,17 @@ public class frg_ana_sayfa extends Fragment
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_sifre_degistir").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+    }
+
+    private class fn_gucdegistir implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            frg_guc_degistir gucFragment = new frg_guc_degistir();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, gucFragment, "frg_guc_degistir").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }
