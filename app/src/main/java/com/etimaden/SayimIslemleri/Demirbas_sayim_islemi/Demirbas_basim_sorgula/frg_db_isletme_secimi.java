@@ -86,7 +86,7 @@ public class frg_db_isletme_secimi extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.frg_da_isemri_secimi, container, false);
+        return inflater.inflate(R.layout.frg_db_isletme_secimi, container, false);
     }
 
     @Override
@@ -124,6 +124,8 @@ public class frg_db_isletme_secimi extends Fragment {
         _myIslem = new VeriTabani(getContext());
         _myIslem.fn_EpcTemizle();
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
+
+        fn_AyarlariYukle();
 
         _btnIleri = (Button)getView().findViewById(R.id.btnIleri);
         _btnIleri.playSoundEffect(0);

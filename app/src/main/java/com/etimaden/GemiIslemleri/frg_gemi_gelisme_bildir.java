@@ -34,8 +34,7 @@ import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.GelismeTuruEnum;
 import com.etimaden.persosclass.Gemi;
 import com.etimaden.persosclass.GemiGelismeDurum;
-import com.etimaden.request.request_string;
-import com.etimaden.request.request_string_gemi;
+import com.etimaden.request.request_gemi;
 import com.etimaden.ugr_demo.R;
 
 import org.w3c.dom.Text;
@@ -141,7 +140,7 @@ public class frg_gemi_gelisme_bildir extends Fragment {
                     return;
                 }
                 try{
-                    request_string_gemi _Param1 = new request_string_gemi();
+                    request_gemi _Param1 = new request_gemi();
                     _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
                     _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
                     _Param1.set_zaktif_tesis(_ayaraktiftesis);

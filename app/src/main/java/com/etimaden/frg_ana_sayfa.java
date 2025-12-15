@@ -134,14 +134,14 @@ public class frg_ana_sayfa extends Fragment
             _btngemifoy.setVisibility(View.GONE);
         }
         // Veriyi çekmek
-        SharedPreferences sharedPref = getActivity().getSharedPreferences("liman", Context.MODE_PRIVATE);
+        /*SharedPreferences sharedPref = getActivity().getSharedPreferences("liman", Context.MODE_PRIVATE);
         boolean isBanliman = sharedPref.getBoolean("banliman", false);  // default false
         if (isBanliman) {
             //Log.d("Banliman", "Veri true");
             _btngemifoy.setVisibility(View.VISIBLE);
         } else {
             _btngemifoy.setVisibility(View.GONE);
-        }
+        }*/
     }
 
     @Override

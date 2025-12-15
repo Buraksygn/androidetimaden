@@ -7,6 +7,8 @@ import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
 import static com.etimaden.cSabitDegerler._zsifre;
 
+
+import android.util.Log;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -90,57 +92,46 @@ public class frg_da_sayim_islemi extends Fragment {
     private apmblDemirbasSayimDsSayimIslemi adapter;
 
     public frg_da_sayim_islemi() {
-        // Required empty public constructor
     }
 
-    public static frg_da_sayim_islemi newInstance()
-    {
+    public static frg_da_sayim_islemi newInstance() {
         return new frg_da_sayim_islemi();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.frg_da_sayim_islemi, container, false);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-
     }
 
-    private void fn_AyarlariYukle()
-    {
-        _ayarbaglantituru=_myIslem.fn_baglanti_turu();
-        _ayarsunucuip=_myIslem.fn_sunucu_ip();
-        _ayaraktifkullanici=_myIslem.fn_aktif_kullanici();
-        _ayaraktifdepo=_myIslem.fn_aktif_depo();
-        _ayaraktifalttesis=_myIslem.fn_aktif_alt_tesis();
-        _ayaraktiftesis=_myIslem.fn_aktif_tesis();
-        _ayaraktifsunucu=_myIslem.fn_aktif_sunucu();
-        _ayaraktifisletmeeslesme=_myIslem.fn_isletmeeslesme();
+    private void fn_AyarlariYukle() {
+        _ayarbaglantituru = _myIslem.fn_baglanti_turu();
+        _ayarsunucuip = _myIslem.fn_sunucu_ip();
+        _ayaraktifkullanici = _myIslem.fn_aktif_kullanici();
+        _ayaraktifdepo = _myIslem.fn_aktif_depo();
+        _ayaraktifalttesis = _myIslem.fn_aktif_alt_tesis();
+        _ayaraktiftesis = _myIslem.fn_aktif_tesis();
+        _ayaraktifsunucu = _myIslem.fn_aktif_sunucu();
+        _ayaraktifisletmeeslesme = _myIslem.fn_isletmeeslesme();
 
-        if(_ayarbaglantituru.equals("wifi"))
-        {
-            _OnlineUrl = "http://"+_ayarsunucuip+":"+_zportWifi+"/";
+        if (_ayarbaglantituru.equals("wifi")) {
+            _OnlineUrl = "http://" + _ayarsunucuip + ":" + _zportWifi + "/";
+        } else {
+            _OnlineUrl = "http:/" + _ipAdresi3G + ":" + _zport3G + "/";
         }
-        else
-        {
-            _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
-        }
-        persos = new Persos(_OnlineUrl,getContext());
+        persos = new Persos(_OnlineUrl, getContext());
     }
 
     public void fn_senddata(Demirbas_Konum secilen_sevk) {
-        this.konum_sayim_isemri=secilen_sevk;
+        this.konum_sayim_isemri = secilen_sevk;
     }
 
     @Override
@@ -158,17 +149,16 @@ public class frg_da_sayim_islemi extends Fragment {
         _txtBaslik = (TextView) getView().findViewById(R.id.txtBaslik);
         _txtBaslik.setText("SAYIM LİSTESİ");
 
-        _imgBilgi = (ImageView)getView().findViewById(R.id.imgBilgi);
+        _imgBilgi = (ImageView) getView().findViewById(R.id.imgBilgi);
         _imgBilgi.playSoundEffect(0);
         _imgBilgi.setOnClickListener(new fn_imgBilgi());
 
-        _btnTamam = (Button)getView().findViewById(R.id.btnTamam);
+        _btnTamam = (Button) getView().findViewById(R.id.btnTamam);
         _btnTamam.playSoundEffect(0);
         _btnTamam.setOnClickListener(new fn_btnTamam());
 
-
         _aktif_is_emirleri_list = (ListView) getView().findViewById(R.id.aktif_is_emirleri_list);
-        adapter=new apmblDemirbasSayimDsSayimIslemi(new ArrayList<demirbas_sayim>(),getContext());
+        adapter = new apmblDemirbasSayimDsSayimIslemi(new ArrayList<demirbas_sayim>(), getContext());
         _aktif_is_emirleri_list.setAdapter(adapter);
         _aktif_is_emirleri_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -179,43 +169,41 @@ public class frg_da_sayim_islemi extends Fragment {
         _aktif_is_emirleri_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                longClickedItemIndex=position;
+                longClickedItemIndex = position;
                 return false;
             }
         });
         registerForContextMenu(_aktif_is_emirleri_list);
 
-        _imgHepsi = (ImageView)getView().findViewById(R.id.imgHepsi);
+        _imgHepsi = (ImageView) getView().findViewById(R.id.imgHepsi);
         _imgHepsi.playSoundEffect(0);
         _imgHepsi.setOnClickListener(new fn_imgHepsi());
         _txtHepsi = (TextView) getView().findViewById(R.id.txtHepsi);
-        _txtHepsi.setTypeface(null,Typeface.BOLD);
+        _txtHepsi.setTypeface(null, Typeface.BOLD);
         filtre_durum = 0;
 
-        _imgBulunan = (ImageView)getView().findViewById(R.id.imgBulunan);
+        _imgBulunan = (ImageView) getView().findViewById(R.id.imgBulunan);
         _imgBulunan.playSoundEffect(0);
         _imgBulunan.setOnClickListener(new fn_imgBulunan());
         _txtBulunan = (TextView) getView().findViewById(R.id.txtBulunan);
 
-        _imgEksik = (ImageView)getView().findViewById(R.id.imgEksik);
+        _imgEksik = (ImageView) getView().findViewById(R.id.imgEksik);
         _imgEksik.playSoundEffect(0);
         _imgEksik.setOnClickListener(new fn_imgEksik());
         _txtEksik = (TextView) getView().findViewById(R.id.txtEksik);
 
-        _imgKullanimDisi = (ImageView)getView().findViewById(R.id.imgKullanimDisi);
+        _imgKullanimDisi = (ImageView) getView().findViewById(R.id.imgKullanimDisi);
         _imgKullanimDisi.playSoundEffect(0);
         _imgKullanimDisi.setOnClickListener(new fn_imgKullanimDisi());
         _txtKullanimDisi = (TextView) getView().findViewById(R.id.txtKullanimDisi);
 
-        _btngeri = (Button)getView().findViewById(R.id.btngeri);
+        _btngeri = (Button) getView().findViewById(R.id.btngeri);
         _btngeri.playSoundEffect(0);
         _btngeri.setOnClickListener(new fn_Geri());
-
         fn_AyarlariYukle();
-        kayıt_yapılacak_urun=new ArrayList<>();
+        kayıt_yapılacak_urun = new ArrayList<>();
 
-        if (konum_sayim_isemri.getSayim_kod().equals(""))
-        {
+        if (konum_sayim_isemri == null || konum_sayim_isemri.getSayim_kod() == null || konum_sayim_isemri.getSayim_kod().equals("")) {
             new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentText("Sayım dosyası alınamadı. Lütfen bir daha deneyiniz. BAĞLANTI HATASI.")
@@ -230,14 +218,13 @@ public class frg_da_sayim_islemi extends Fragment {
                             frg_demirbas_sayim_menu_panel fragmentyeni = new frg_demirbas_sayim_menu_panel();
                             FragmentManager fragmentManager = getFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_demirbas_sayim_menu_panel").addToBackStack(null);
+                            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_demirbas_sayim_menu_panel").addToBackStack(null);
                             fragmentTransaction.commit();
-
-                            return;
                         }
                     }).show();
-
+            return;
         }
+
         try {
             sayilacak_liste = _myIslem.fn_sec_ds_detay(this.konum_sayim_isemri);
 
@@ -246,6 +233,57 @@ public class frg_da_sayim_islemi extends Fragment {
                 demirbas_sayim ds = itr.next();
                 if (ds.getDs_durum().equals("31")) {
                     itr.remove();
+                }
+            }
+            for (demirbas_sayim ds : sayilacak_liste) {
+                ds.setDs_durum("0");
+            }
+
+            android.content.SharedPreferences prefs = getContext().getSharedPreferences("demirbas_arama_durumlar", android.content.Context.MODE_PRIVATE);
+            java.util.Map<String, ?> allEntries = prefs.getAll();
+
+            String sayim_prefix = this.konum_sayim_isemri.getSayim_kod() + "_";
+
+            for (java.util.Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                if (entry.getKey().startsWith(sayim_prefix)) {
+                    String demirbas_kod = entry.getKey().substring(sayim_prefix.length());
+                    String durum = entry.getValue().toString();
+
+                    boolean listede_var = false;
+                    for (demirbas_sayim ds : sayilacak_liste) {
+                        if (ds.getDs_demirbas_kod().equals(demirbas_kod)) {
+                            ds.setDs_durum(durum);
+                            listede_var = true;
+                            break;
+                        }
+                    }
+
+                    if (!listede_var && durum.equals("2")) {
+
+                        demirbas_sayim yeni_demirbas = new demirbas_sayim();
+                        yeni_demirbas.setDs_demirbas_kod(demirbas_kod);
+                        yeni_demirbas.setDs_demirbas_ad_1("Kullanım Dışı Demirbaş");
+                        yeni_demirbas.setDs_demirbas_ad_2("");
+                        yeni_demirbas.setDs_demirbas_ad_3("");
+                        yeni_demirbas.setDs_bina_kod("");
+                        yeni_demirbas.setDs_bina_adi("");
+                        yeni_demirbas.setDs_kat_kod("");
+                        yeni_demirbas.setDs_kat_adi("");
+                        yeni_demirbas.setDs_oda_kod("");
+                        yeni_demirbas.setDs_oda_adi("");
+                        yeni_demirbas.setDs_durum("2");
+                        yeni_demirbas.setDs_eski_yeni("1");
+                        yeni_demirbas.setDs_sayim_kod(konum_sayim_isemri.getSayim_kod());
+                        yeni_demirbas.setDs_sayim_id(konum_sayim_isemri.getSayim_id());
+                        yeni_demirbas.setDs_teknik_birim("");
+                        yeni_demirbas.setDs_uzun_adi("");
+                        yeni_demirbas.setDs_serino("");
+                        yeni_demirbas.setDs_demirbas_eski_kod("");
+                        yeni_demirbas.setDs_zimmetli_adi("");
+                        yeni_demirbas.setDs_zimmetli_id("");
+
+                        sayilacak_liste.add(yeni_demirbas);
+                    }
                 }
             }
 
@@ -266,16 +304,13 @@ public class frg_da_sayim_islemi extends Fragment {
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_demirbas_sayim_menu_panel").addToBackStack(null);
                                 fragmentTransaction.commit();
-
-                                return;
                             }
                         }).show();
-
             }
 
             updateListviewItem();
-        }catch (Exception e){
-            Genel.printStackTrace(e,getContext());
+        } catch (Exception e) {
+            Genel.printStackTrace(e, getContext());
             new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentText("Sayım dosyası alınamıyor. Lütfen sorunu ilgili kişiye bildiriniz.")
@@ -292,24 +327,18 @@ public class frg_da_sayim_islemi extends Fragment {
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_demirbas_sayim_menu_panel").addToBackStack(null);
                             fragmentTransaction.commit();
-
-                            return;
                         }
                     }).show();
         }
-
-
     }
 
-    private void updateListviewItem()
-    {
-        try
-        {
-            ArrayList<demirbas_sayim> sayilacak_liste_filtreli=new ArrayList<>();
+    private void updateListviewItem() {
+        try {
+            ArrayList<demirbas_sayim> sayilacak_liste_filtreli = new ArrayList<>();
 
-            if(filtre_durum==0){
-                sayilacak_liste_filtreli=sayilacak_liste;
-            }else {
+            if (filtre_durum == 0) {
+                sayilacak_liste_filtreli = sayilacak_liste;
+            } else {
                 for (demirbas_sayim ds : sayilacak_liste) {
                     if (ds.getDs_durum().equals("1") && filtre_durum == 1) {
                         sayilacak_liste_filtreli.add(ds);
@@ -321,32 +350,42 @@ public class frg_da_sayim_islemi extends Fragment {
                 }
             }
 
+            int bulunan = 0, eksik = 0, kullanimdisi = 0;
+            for (demirbas_sayim ds : sayilacak_liste) {
+                if (ds.getDs_durum().equals("1")) bulunan++;
+                else if (ds.getDs_durum().equals("0")) eksik++;
+                else if (ds.getDs_durum().equals("2")) kullanimdisi++;
+            }
+
             if (adapter != null) {
                 adapter.clear();
                 adapter.addAll(sayilacak_liste_filtreli);
                 adapter.notifyDataSetChanged();
+                Log.d("UPDATE_DEBUG", "   Adapter güncellendi!");
+            } else {
+                Log.e("UPDATE_DEBUG", "   Adapter NULL!");
             }
 
-        }
-        catch (Exception ex)
-        {
-            Genel.printStackTrace(ex,getContext());
+            _aktif_is_emirleri_list.clearChoices();
+            _aktif_is_emirleri_list.requestLayout();
+
+
+        } catch (Exception ex) {
+            Genel.printStackTrace(ex, getContext());
         }
     }
-
 
     private class fn_btnTamam implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Genel.lockButtonClick(view,getActivity());
-            try
-            {
-                if (_Secili!=null){
+            Genel.lockButtonClick(view, getActivity());
+            try {
+                if (_Secili != null) {
                     frg_demirbas_arama fragmentyeni = new frg_demirbas_arama();
                     fragmentyeni.fn_senddata(_Secili);
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_demirbas_arama").addToBackStack(null);
+                    fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_demirbas_arama").addToBackStack(null);
                     fragmentTransaction.commit();
                 }
             } catch (Exception ex) {
@@ -364,9 +403,8 @@ public class frg_da_sayim_islemi extends Fragment {
     private class fn_imgBilgi implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Genel.lockButtonClick(view,getActivity());
-            try
-            {
+            Genel.lockButtonClick(view, getActivity());
+            try {
                 Genel.playButtonClikSound(getContext());
                 String str = "";
                 str += " BİNA : " + konum_sayim_isemri.getBina_adi() + "-" + konum_sayim_isemri.getBina_kod();
@@ -386,9 +424,7 @@ public class frg_da_sayim_islemi extends Fragment {
                         })
                         .show();
 
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
@@ -397,13 +433,13 @@ public class frg_da_sayim_islemi extends Fragment {
     private class fn_imgHepsi implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            if(filtre_durum !=0) {
+            if (filtre_durum != 0) {
                 _txtHepsi.setTypeface(null, Typeface.BOLD);
                 _txtBulunan.setTypeface(null, Typeface.NORMAL);
                 _txtEksik.setTypeface(null, Typeface.NORMAL);
                 _txtKullanimDisi.setTypeface(null, Typeface.NORMAL);
                 filtre_durum = 0;
-                _Secili=null;
+                _Secili = null;
                 updateListviewItem();
             }
         }
@@ -412,13 +448,13 @@ public class frg_da_sayim_islemi extends Fragment {
     private class fn_imgBulunan implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            if(filtre_durum !=1) {
+            if (filtre_durum != 1) {
                 _txtHepsi.setTypeface(null, Typeface.NORMAL);
                 _txtBulunan.setTypeface(null, Typeface.BOLD);
                 _txtEksik.setTypeface(null, Typeface.NORMAL);
                 _txtKullanimDisi.setTypeface(null, Typeface.NORMAL);
                 filtre_durum = 1;
-                _Secili=null;
+                _Secili = null;
                 updateListviewItem();
             }
         }
@@ -427,13 +463,13 @@ public class frg_da_sayim_islemi extends Fragment {
     private class fn_imgEksik implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            if(filtre_durum !=2) {
+            if (filtre_durum != 2) {
                 _txtHepsi.setTypeface(null, Typeface.NORMAL);
                 _txtBulunan.setTypeface(null, Typeface.NORMAL);
                 _txtEksik.setTypeface(null, Typeface.BOLD);
                 _txtKullanimDisi.setTypeface(null, Typeface.NORMAL);
                 filtre_durum = 2;
-                _Secili=null;
+                _Secili = null;
                 updateListviewItem();
             }
         }
@@ -442,22 +478,20 @@ public class frg_da_sayim_islemi extends Fragment {
     private class fn_imgKullanimDisi implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            if(filtre_durum !=3) {
+            if (filtre_durum != 3) {
                 _txtHepsi.setTypeface(null, Typeface.NORMAL);
                 _txtBulunan.setTypeface(null, Typeface.NORMAL);
                 _txtEksik.setTypeface(null, Typeface.NORMAL);
                 _txtKullanimDisi.setTypeface(null, Typeface.BOLD);
                 filtre_durum = 3;
-                _Secili=null;
+                _Secili = null;
                 updateListviewItem();
             }
         }
     }
 
-    private void sorgula_demirbas(String id)
-    {
-        try
-        {
+    private void sorgula_demirbas(String id) {
+        try {
             request_string _Param1 = new request_string();
             _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
             _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
@@ -474,10 +508,8 @@ public class frg_da_sayim_islemi extends Fragment {
             Duran_Varlik_sap db_detay = persos.fn_sorgula_duran_varlik(_Param1);
             Genel.dismissProgressDialog();
 
-            if (db_detay != null)
-            {
-                if (db_detay.islem_sonucu.equals("0"))
-                {
+            if (db_detay != null) {
+                if (db_detay.islem_sonucu.equals("0")) {
                     String str = "";
                     str += "DURAN VARLIK NO : " + db_detay.duran_varlik_no;
                     str += "\r\n ESKİ DURAN VARLIK NO : " + db_detay.eski_demirbas_kod;
@@ -503,18 +535,16 @@ public class frg_da_sayim_islemi extends Fragment {
                             })
                             .show();
 
-                }
-                else {
+                } else {
                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                             .setTitleText("DEMİRBAŞ BULUNAMADI")
                             .setContentTextSize(25)
-                            .setContentText("Demirbaş bulunamadı... \r\n DV_NO :"+id)
+                            .setContentText("Demirbaş bulunamadı... \r\n DV_NO :" + id)
                             .showCancelButton(false)
                             .show();
                 }
 
-            }
-            else {
+            } else {
                 new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                         .setTitleText("BAĞLANTI HATASI")
                         .setContentTextSize(25)
@@ -524,12 +554,291 @@ public class frg_da_sayim_islemi extends Fragment {
             }
 
 
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
+
+    public void barkodOkundu(String barkod) {
+        try {
+            if (barkod == null || barkod.length() < 24) {
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Etiket formatı hatalı!\r\nLütfen uygun bir ürün etiketi okutunuz.")
+                        .showCancelButton(false)
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialogG sDialog) {
+                                sDialog.dismissWithAnimation();
+                                isReadable = true;
+                            }
+                        })
+                        .show();
+                return;
+            }
+
+            barkod = barkod.substring(barkod.length() - 24);
+
+            if (!barkod.startsWith("7377675")) {
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Etiket formatı hatalı!\r\nLütfen uygun bir ürün etiketi okutunuz.")
+                        .showCancelButton(false)
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialogG sDialog) {
+                                sDialog.dismissWithAnimation();
+                                isReadable = true;
+                            }
+                        })
+                        .show();
+                return;
+            }
+
+            if (!isReadable) {
+                return;
+            }
+            isReadable = false;
+
+            aramaDegerlendir(barkod);
+
+        } catch (Exception ex) {
+            Genel.printStackTrace(ex, getContext());
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                    .setTitleText("HATA")
+                    .setContentTextSize(25)
+                    .setContentText("Etiket formatı hatalı!\r\nLütfen uygun bir ürün etiketi okutunuz.")
+                    .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialogG sDialog) {
+                            sDialog.dismissWithAnimation();
+                            isReadable = true;
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    public void rfidOkundu(String rfid) {
+        try {
+            if (rfid == null || rfid.length() < 24) {
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Etiket formatı hatalı!\r\nLütfen uygun bir ürün etiketi okutunuz.")
+                        .showCancelButton(false)
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialogG sDialog) {
+                                sDialog.dismissWithAnimation();
+                                isReadable = true;
+                            }
+                        })
+                        .show();
+                return;
+            }
+
+            rfid = rfid.substring(rfid.length() - 24);
+
+            if (!rfid.startsWith("7377675")) {
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Etiket formatı hatalı!\r\nEtiket 7377675 ile başlamalıdır.\r\nLütfen uygun bir ürün etiketi okutunuz.")
+                        .showCancelButton(false)
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialogG sDialog) {
+                                sDialog.dismissWithAnimation();
+                                isReadable = true;
+                            }
+                        })
+                        .show();
+                return;
+            }
+
+            if (!isReadable) {
+                return;
+            }
+            isReadable = false;
+
+            aramaDegerlendir(rfid);
+
+        } catch (Exception ex) {
+            Genel.printStackTrace(ex, getContext());
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                    .setTitleText("HATA")
+                    .setContentTextSize(25)
+                    .setContentText("Etiket formatı hatalı!\r\nLütfen uygun bir ürün etiketi okutunuz.")
+                    .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialogG sDialog) {
+                            sDialog.dismissWithAnimation();
+                            isReadable = true;
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    private void aramaDegerlendir(String etiket) {
+        try {
+            final String demirbas_kod = etiket.substring(etiket.length() - 12);
+
+            boolean listede_var_mi = false;
+            for (demirbas_sayim ds : sayilacak_liste) {
+                if (ds.getDs_demirbas_kod().equals(demirbas_kod)) {
+                    listede_var_mi = true;
+                    break;
+                }
+            }
+
+            request_string _Param1 = new request_string();
+            _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
+            _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
+            _Param1.set_zaktif_tesis(_ayaraktiftesis);
+            _Param1.set_zsurum(_sbtVerisyon);
+            _Param1.set_zkullaniciadi(_zkullaniciadi);
+            _Param1.set_zsifre(_zsifre);
+            _Param1.setAktif_sunucu(_ayaraktifsunucu);
+            _Param1.setAktif_kullanici(_ayaraktifkullanici);
+            _Param1.set_value(demirbas_kod);
+
+            Genel.showProgressDialog(getContext());
+            Duran_Varlik_sap db_detay = persos.fn_sorgula_duran_varlik(_Param1);
+            Genel.dismissProgressDialog();
+
+            if (db_detay != null && db_detay.islem_sonucu.equals("0")) {
+
+                if (listede_var_mi) {
+
+                    _myIslem.fn_kaydet_arama_durum(
+                            konum_sayim_isemri.getSayim_kod(),
+                            demirbas_kod,
+                            "1"
+                    );
+
+                    String str = "";
+                    str += "DURAN VARLIK NO : " + db_detay.duran_varlik_no;
+                    str += "\r\n ADI : " + db_detay.isim_1;
+                    str += "\r\n MARKA : " + db_detay.marka;
+                    str += "\r\n BİNA : " + db_detay.bina_adi;
+                    str += "\r\n KAT : " + db_detay.kat_adi;
+                    str += "\r\n ODA : " + db_detay.oda_adi;
+
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.SUCCESS_TYPE)
+                            .setTitleText("BULUNDU")
+                            .setContentText(str)
+                            .setContentTextSize(20)
+                            .setConfirmText("TAMAM")
+                            .showCancelButton(false)
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialogG sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                    isReadable = true;
+
+                                    for (demirbas_sayim ds : sayilacak_liste) {
+                                        if (ds.getDs_demirbas_kod().equals(demirbas_kod)) {
+                                            ds.setDs_durum("1");
+                                            break;
+                                        }
+                                    }
+                                    updateListviewItem();
+                                }
+                            })
+                            .show();
+                } else {
+                    demirbas_sayim yeni_demirbas = new demirbas_sayim();
+                    yeni_demirbas.setDs_demirbas_kod(demirbas_kod);
+                    yeni_demirbas.setDs_demirbas_ad_1(db_detay.isim_1);
+                    yeni_demirbas.setDs_demirbas_ad_2(db_detay.marka != null ? db_detay.marka : "");
+                    yeni_demirbas.setDs_demirbas_ad_3("");
+                    yeni_demirbas.setDs_bina_kod(db_detay.bina != null ? db_detay.bina : "");
+                    yeni_demirbas.setDs_bina_adi(db_detay.bina_adi != null ? db_detay.bina_adi : "");
+                    yeni_demirbas.setDs_kat_kod(db_detay.kat != null ? db_detay.kat : "");
+                    yeni_demirbas.setDs_kat_adi(db_detay.kat_adi != null ? db_detay.kat_adi : "");
+                    yeni_demirbas.setDs_oda_kod(db_detay.oda != null ? db_detay.oda : "");
+                    yeni_demirbas.setDs_oda_adi(db_detay.oda_adi != null ? db_detay.oda_adi : "");
+                    yeni_demirbas.setDs_durum("2");
+                    yeni_demirbas.setDs_eski_yeni("1");
+                    yeni_demirbas.setDs_sayim_kod(konum_sayim_isemri.getSayim_kod());
+                    yeni_demirbas.setDs_sayim_id(konum_sayim_isemri.getSayim_id());
+                    yeni_demirbas.setDs_teknik_birim("");
+                    yeni_demirbas.setDs_uzun_adi("");
+                    yeni_demirbas.setDs_serino("");
+
+                    sayilacak_liste.add(yeni_demirbas);
+
+                    _myIslem.fn_kaydet_arama_durum(
+                            konum_sayim_isemri.getSayim_kod(),
+                            demirbas_kod,
+                            "2"
+                    );
+
+                    String str = "";
+                    str += "DURAN VARLIK NO : " + db_detay.duran_varlik_no;
+                    str += "\r\n ADI : " + db_detay.isim_1;
+                    str += "\r\n BİNA : " + db_detay.bina_adi;
+                    str += "\r\n KAT : " + db_detay.kat_adi;
+                    str += "\r\n ODA : " + db_detay.oda_adi;
+                    str += "\r\n\r\n⚠️ BU DEMİRBAŞ MEVCUT İŞ EMRİNE AİT DEĞİL!";
+                    str += "\r\nKULLANIM DIŞI olarak işaretlendi.";
+
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE)
+                            .setTitleText("BAŞKA İŞ EMRİNE AİT")
+                            .setContentText(str)
+                            .setContentTextSize(18)
+                            .setConfirmText("TAMAM")
+                            .showCancelButton(false)
+                            .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialogG sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                    isReadable = true;
+                                    updateListviewItem();
+                                }
+                            })
+                            .show();
+                }
+            } else {
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("GEÇERSİZ ETİKET")
+                        .setContentTextSize(25)
+                        .setContentText("Bu demirbaş hiçbir iş emrine ait değil veya SAP sisteminde bulunamadı.\r\n\r\nDV_NO: " + demirbas_kod)
+                        .showCancelButton(false)
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialogG sDialog) {
+                                sDialog.dismissWithAnimation();
+                                isReadable = true;
+                            }
+                        })
+                        .show();
+            }
+        } catch (Exception ex) {
+            Genel.printStackTrace(ex, getContext());
+
+            new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                    .setTitleText("HATA")
+                    .setContentTextSize(25)
+                    .setContentText("Lütfen uygun bir ürün etiketi okutunuz.")
+                    .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialogG sDialog) {
+                            sDialog.dismissWithAnimation();
+                            isReadable = true;
+                        }
+                    })
+                    .show();
+        }
+    }
+
 
     private class fn_Geri implements View.OnClickListener {
         @Override
@@ -537,7 +846,7 @@ public class frg_da_sayim_islemi extends Fragment {
             frg_da_isemri_secimi fragmentyeni = new frg_da_isemri_secimi();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_da_isemri_secimi").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_da_isemri_secimi").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }
@@ -547,12 +856,10 @@ public class frg_da_sayim_islemi extends Fragment {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         Genel.playButtonClikSound(getContext());
         demirbas_sayim ds = adapter.getItem(longClickedItemIndex);
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.action_menu_demirbas_detayi:
-                try
-                {
-                    if (ds.getDs_eski_yeni().equals("1"))
-                    {
+                try {
+                    if (ds.getDs_eski_yeni().equals("1")) {
                         sorgula_demirbas(ds.getDs_demirbas_kod());
                         return true;
                     }
@@ -580,9 +887,7 @@ public class frg_da_sayim_islemi extends Fragment {
                             })
                             .show();
 
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     ex.printStackTrace();
                 }
                 return true;

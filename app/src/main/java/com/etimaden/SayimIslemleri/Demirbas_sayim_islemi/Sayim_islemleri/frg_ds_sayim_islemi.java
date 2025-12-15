@@ -7,6 +7,7 @@ import static com.etimaden.cSabitDegerler._zport3G;
 import static com.etimaden.cSabitDegerler._zportWifi;
 import static com.etimaden.cSabitDegerler._zsifre;
 
+import android.bluetooth.le.ScanSettings;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -26,6 +27,13 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import com.etimaden.GirisSayfasi;
 import com.etimaden.SayimIslemleri.Demirbas_sayim_islemi.frg_demirbas_sayim_menu_panel;
@@ -51,6 +59,9 @@ import com.etimaden.request.request_string;
 import com.etimaden.request.request_string_aktif_isletme_esleme;
 import com.etimaden.ugr_demo.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -69,7 +80,10 @@ public class frg_ds_sayim_islemi extends Fragment {
     String _ayarversiyon = "";
     String _OnlineUrl = "";
     Persos persos;
-
+    private int DEFAULT_GUC = 100;
+    private int MIN_GUC_GERCEK = 0;
+    private int maxGuc = 11;
+    private int maxGucGercek = 111;
 
     TextView _txtBaslik;
     ImageView _imgBilgi;
@@ -86,6 +100,7 @@ public class frg_ds_sayim_islemi extends Fragment {
     TextView _txtEksik;
     TextView _txtKullanimDisi;
     TextView _txtYuklemeMiktari;
+    Button _btnGeri;
 
     boolean isReadable = true;
     ArrayList<demirbas_sayim> sayilacak_liste;
@@ -160,7 +175,7 @@ public class frg_ds_sayim_islemi extends Fragment {
 
         ((GirisSayfasi) getActivity()).fn_ModBoth();
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
-        ((GirisSayfasi) getActivity()).fn_GucAyarla(250);
+        ((GirisSayfasi) getActivity()).fn_GucAyarla(DEFAULT_GUC);
 
         _txtBaslik = (TextView) getView().findViewById(R.id.txtBaslik);
         _txtBaslik.setText("SAYIM LİSTESİ");
@@ -173,6 +188,9 @@ public class frg_ds_sayim_islemi extends Fragment {
         _btnListeyiKaydet.playSoundEffect(0);
         _btnListeyiKaydet.setOnClickListener(new fn_btnListeyiKaydet());
 
+        _btnGeri = (Button)getView().findViewById(R.id.btnGeri);
+        _btnGeri.playSoundEffect(0);
+        _btnGeri.setOnClickListener(new fn_btnGeri());
 
         _aktif_is_emirleri_list = (ListView) getView().findViewById(R.id.aktif_is_emirleri_list);
         adapter=new apmblDemirbasSayimDsSayimIslemi(new ArrayList<demirbas_sayim>(),getContext());
@@ -188,10 +206,14 @@ public class frg_ds_sayim_islemi extends Fragment {
 
         _sbPower = (SeekBar)getView().findViewById(R.id.sbPower);
         _sbPower.playSoundEffect(0);
+        _sbPower.setMin(0);
+        _sbPower.setMax(11);
+        _sbPower.setProgress(DEFAULT_GUC);
+        _sbPower.setEnabled(true);
         _sbPower.setOnSeekBarChangeListener(new fn_sbPower());
 
         _txtPower = (TextView) getView().findViewById(R.id.txtPower);
-        _txtPower.setText("250 DB");
+        _txtPower.setText("105 / ... DB");
 
         _imgHepsi = (ImageView)getView().findViewById(R.id.imgHepsi);
         _imgHepsi.playSoundEffect(0);
@@ -218,6 +240,7 @@ public class frg_ds_sayim_islemi extends Fragment {
         _txtYuklemeMiktari = (TextView) getView().findViewById(R.id.txtYuklemeMiktari);
 
         fn_AyarlariYukle();
+        loadMaxGucFromService();
         kayıt_yapılacak_urun=new ArrayList<>();
 
         if (konum_sayim_isemri.getSayim_kod().equals(""))
@@ -307,13 +330,115 @@ public class frg_ds_sayim_islemi extends Fragment {
 
     }
 
-    public void barkodOkundu(String barkod){
+    private void loadMaxGucFromService() {
+        try {
+            JSONObject parametre = new JSONObject();
+            parametre.put("_zsunucu_ip_adresi", _ayarsunucuip);
+            parametre.put("_zkullaniciadi", _zkullaniciadi);
+            parametre.put("_zsifre", _zsifre);
 
-        try
-        {
+            String fullUrl = _OnlineUrl + "api/GetRfidGucAyari";
+            RequestQueue queue = Volley.newRequestQueue(getContext());
+
+            JsonObjectRequest request = new JsonObjectRequest(
+                    Request.Method.POST,
+                    fullUrl,
+                    parametre,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                maxGucGercek = response.getInt("_zMaxGuc");
+
+                                maxGuc = maxGucGercek - MIN_GUC_GERCEK;
+
+                                if(maxGuc < 0) {
+                                    maxGuc = 11;
+                                    maxGucGercek = 111;
+                                }
+
+
+                                if(getActivity() != null) {
+                                    final int finalMaxGuc = maxGuc;
+                                    final int finalMaxGucGercek = maxGucGercek;
+
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            _sbPower.setMax(finalMaxGuc);
+
+                                            int baslangicDegeri = DEFAULT_GUC;
+                                            if(baslangicDegeri > finalMaxGuc) {
+                                                baslangicDegeri = finalMaxGuc;
+                                            }
+                                            _sbPower.setProgress(baslangicDegeri);
+
+                                            int currentGucGercek = MIN_GUC_GERCEK + baslangicDegeri;
+                                            ((GirisSayfasi) getActivity()).fn_GucAyarla(currentGucGercek);
+
+                                            _txtPower.setText(currentGucGercek + " / " + finalMaxGucGercek + " DB");
+
+                                            android.util.Log.d("RFID_POWER", "API: Max=" + finalMaxGucGercek + " (UI: 0-" + finalMaxGuc + ")");
+                                        }
+                                    });
+                                }
+                            } catch (JSONException e) {
+                                android.util.Log.e("RFID_POWER", "Parse hatası: " + e.getMessage());
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            android.util.Log.e("RFID_POWER", "Bağlantı hatası");
+
+                            if(getActivity() != null) {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        _txtPower.setText("105 / 111 DB (Varsayılan)");
+                                    }
+                                });
+                            }
+                        }
+                    }
+            );
+
+            queue.add(request);
+
+        } catch (Exception e) {
+            android.util.Log.e("RFID_POWER", "Hata: " + e.getMessage());
+        }
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(getActivity() != null) {
+            int defaultGercek = MIN_GUC_GERCEK + DEFAULT_GUC;
+            ((GirisSayfasi) getActivity()).fn_GucAyarla(defaultGercek);
+        }
+    }
+
+    public void barkodOkundu(String barkod){
+        try {
             barkod = barkod.substring(barkod.length() - 24);
+
             if(barkod.startsWith("7377675")) {
                 etiketDegerlendir(barkod);
+            } else {
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Etiket formatı hatalı!")
+                        .showCancelButton(false)
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialogG sDialog) {
+                                sDialog.dismissWithAnimation();
+                                isReadable = true;
+                            }
+                        })
+                        .show();
             }
         }
         catch (Exception ex){
@@ -321,19 +446,37 @@ public class frg_ds_sayim_islemi extends Fragment {
             new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentTextSize(25)
-                    .setContentText("Lütfen uygun bir ürün etiketi okutunuz. Ürün kaydı bulunamadı..")
+                    .setContentText("Lütfen uygun bir ürün etiketi okutunuz.")
                     .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialogG sDialog) {
+                            sDialog.dismissWithAnimation();
+                            isReadable = true;
+                        }
+                    })
                     .show();
-            isReadable = true;
         }
-
     }
 
     public void rfidOkundu(String rfid){
-        try
-        {
+        try {
             if(rfid.startsWith("7377675")) {
                 etiketDegerlendir(rfid);
+            } else {
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentTextSize(25)
+                        .setContentText("Etiket formatı hatalı!")
+                        .showCancelButton(false)
+                        .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialogG sDialog) {
+                                sDialog.dismissWithAnimation();
+                                isReadable = true;
+                            }
+                        })
+                        .show();
             }
         }
         catch (Exception ex){
@@ -341,12 +484,17 @@ public class frg_ds_sayim_islemi extends Fragment {
             new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("HATA")
                     .setContentTextSize(25)
-                    .setContentText("Lütfen uygun bir ürün etiketi okutunuz. Ürün kaydı bulunamadı..")
+                    .setContentText("Lütfen uygun bir ürün etiketi okutunuz.")
                     .showCancelButton(false)
+                    .setConfirmClickListener(new SweetAlertDialogG.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialogG sDialog) {
+                            sDialog.dismissWithAnimation();
+                            isReadable = true;
+                        }
+                    })
                     .show();
-            isReadable = true;
         }
-
     }
 
     private void etiketDegerlendir(final String etiket)
@@ -362,6 +510,9 @@ public class frg_ds_sayim_islemi extends Fragment {
         if(index!=-1){
             if(sayilacak_liste.get(index).getDs_durum().equals("0")){
                 sayilacak_liste.get(index).setDs_durum("1");
+
+                _myIslem.fn_guncelle_ds(sayilacak_liste.get(index));
+
                 kayıt_yapılacak_urun.add(sayilacak_liste.get(index));
             }
         }else{
@@ -384,33 +535,44 @@ public class frg_ds_sayim_islemi extends Fragment {
             sayim_item.setDs_sayim_kod(sayilacak_liste.get(0).getDs_sayim_kod());
 
             sayilacak_liste.add(sayim_item);
+
+            _myIslem.fn_ekle_ds(sayim_item);
+
             kayıt_yapılacak_urun.add(sayim_item);
         }
         updateListviewItem();
     }
+    private void updateListviewItem() {
+        try {
+            ArrayList<demirbas_sayim> sayilacak_liste_filtreli = new ArrayList<>();
+            int sayilan_demirbas_sayisi = 0;
+            int eksik_demirbas_sayisi = 0;
+            int kullanim_disi_sayisi = 0;
+            int toplam_sayisi = 0;
 
-
-    private void updateListviewItem()
-    {
-        try
-        {
-            ArrayList<demirbas_sayim> sayilacak_liste_filtreli=new ArrayList<>();
-            int sayilan_demirbas_sayisi=0;
-            for(demirbas_sayim ds : sayilacak_liste){
-                if(ds.getDs_durum().equals("1")){
+            for (demirbas_sayim ds : sayilacak_liste) {
+                if (ds.getDs_durum().equals("1")) {
                     sayilan_demirbas_sayisi++;
-                    if(filtre_durum==1) {
+                    if (filtre_durum == 1) {
                         sayilacak_liste_filtreli.add(ds);
                     }
-                }else if( ds.getDs_durum().equals("0") && filtre_durum==2 ){
-                    sayilacak_liste_filtreli.add(ds);
-                }
-                else if( ds.getDs_durum().equals("2") && filtre_durum==3 ){
-                    sayilacak_liste_filtreli.add(ds);
+                } else if (ds.getDs_durum().equals("0")) {
+                    eksik_demirbas_sayisi++;
+                    if (filtre_durum == 2) {
+                        sayilacak_liste_filtreli.add(ds);
+                    }
+                } else if (ds.getDs_durum().equals("2")) {
+                    kullanim_disi_sayisi++;
+                    if (filtre_durum == 3) {
+                        sayilacak_liste_filtreli.add(ds);
+                    }
                 }
             }
-            if(filtre_durum==0){
-                sayilacak_liste_filtreli=sayilacak_liste;
+
+            toplam_sayisi = sayilacak_liste.size();
+
+            if (filtre_durum == 0) {
+                sayilacak_liste_filtreli = sayilacak_liste;
             }
 
             if (adapter != null) {
@@ -419,11 +581,25 @@ public class frg_ds_sayim_islemi extends Fragment {
                 adapter.notifyDataSetChanged();
             }
 
-            _txtYuklemeMiktari.setText("SAYILAN ADET = " +sayilan_demirbas_sayisi);
-        }
-        catch (Exception ex)
-        {
-            Genel.printStackTrace(ex,getContext());
+            String bilgi_metni = "";
+            switch (filtre_durum) {
+                case 0:
+                    bilgi_metni = "TOPLAM ADET = " + toplam_sayisi;
+                    break;
+                case 1:
+                    bilgi_metni = "SAYILAN ADET = " + sayilan_demirbas_sayisi;
+                    break;
+                case 2:
+                    bilgi_metni = "EKSİK ADET = " + eksik_demirbas_sayisi;
+                    break;
+                case 3:
+                    bilgi_metni = "KULLANIM DIŞI ADET = " + kullanim_disi_sayisi;
+                    break;
+            }
+
+            _txtYuklemeMiktari.setText(bilgi_metni);
+        } catch (Exception ex) {
+            Genel.printStackTrace(ex, getContext());
         }
     }
 
@@ -645,19 +821,30 @@ public class frg_ds_sayim_islemi extends Fragment {
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            if (fromUser) { // If the changes are from the User only then accept the changes
-                ((GirisSayfasi) getActivity()).fn_GucAyarla(progress);
-                _txtPower.setText(progress+" DB");
+            if (fromUser) {
+                int gercekGuc = MIN_GUC_GERCEK + progress;
+
+                ((GirisSayfasi) getActivity()).fn_GucAyarla(gercekGuc);
+
+                _txtPower.setText(gercekGuc + " / " + maxGucGercek + " DB");
+
+                android.util.Log.d("SEEKBAR", "UI: " + progress + " → Cihaz: " + gercekGuc + " DB");
             }
         }
 
         @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {}
+        public void onStartTrackingTouch(SeekBar seekBar) {
+            android.util.Log.d("SEEKBAR", "Başladı - Aralık: 0-" + maxGuc + " (Gerçek: " + MIN_GUC_GERCEK + "-" + maxGucGercek + ")");
+        }
 
         @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {}
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            int finalGucUI = seekBar.getProgress();
+            int finalGucGercek = MIN_GUC_GERCEK + finalGucUI;
+            ((GirisSayfasi) getActivity()).fn_GucAyarla(finalGucGercek);
+            android.util.Log.d("SEEKBAR", "Bırakıldı - Son değer: " + finalGucGercek + " DB");
+        }
     }
-
     private class fn_imgHepsi implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -768,6 +955,8 @@ public class frg_ds_sayim_islemi extends Fragment {
                 zimmet_ds.setDs_aktarim("0");
                 zimmet_ds.setDs_durum("1");
                 zimmet_ds.setDs_eski_yeni("1");
+
+                _myIslem.fn_ekle_ds(zimmet_ds);
 
                 kayıt_yapılacak_urun.add(zimmet_ds);
                 updateListviewItem();
@@ -906,11 +1095,17 @@ public class frg_ds_sayim_islemi extends Fragment {
                     if (ds.getDs_eski_yeni().equals("1")) {
                         ds.setDs_durum("31");
                         ds.setDs_aktarim("1");
+
+                        _myIslem.fn_guncelle_ds(ds);
+
                         kayıt_yapılacak_urun.add(ds);
                         sayilacak_liste.remove(ds);
                     } else {
                         ds.setDs_durum("0");
                         ds.setDs_aktarim("1");
+
+                        _myIslem.fn_guncelle_ds(ds);
+
                         kayıt_yapılacak_urun.add(ds);
                         sayilacak_liste.remove(ds);
                     }
@@ -1024,6 +1219,23 @@ public class frg_ds_sayim_islemi extends Fragment {
                 return true;
         }
         return super.onContextItemSelected(item);
+    }
+    private class fn_btnGeri implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Genel.lockButtonClick(view, getActivity());
+
+            if(getActivity() != null) {
+                int defaultGercek = MIN_GUC_GERCEK + DEFAULT_GUC;
+                ((GirisSayfasi) getActivity()).fn_GucAyarla(defaultGercek);
+            }
+
+            frg_ds_isemri_secimi fragmentyeni = new frg_ds_isemri_secimi();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_ds_isemri_secimi").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
     }
 
     @Override

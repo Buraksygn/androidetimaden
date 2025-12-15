@@ -31,6 +31,7 @@ import com.etimaden.manipulasyon.ellecleme.frg_ellecleme_menu_panel;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.request.request_secEtiket;
+import com.etimaden.request.request_string;
 import com.etimaden.request.request_uruntag;
 import com.etimaden.request.request_uruntag_string;
 import com.etimaden.ugr_demo.R;
@@ -338,26 +339,70 @@ public class frg_geribesleme_onay extends Fragment {
         public void onClick(View view)
         {
             ArrayList<Urun_tag> urunListesi = new ArrayList<>(urun_listesi); // Tüm listeyi kopyala
-            try
+            if (urun_listesi.size() == 0)
             {
-
-
-                Genel.showProgressDialog(getContext());
-                Genel.dismissProgressDialog();
-
-                frg_geribesleme_harcama_yeri_secimi fragmentyeni = new frg_geribesleme_harcama_yeri_secimi();
-                fragmentyeni.fn_senddata(urunListesi);
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_geribesleme_harcama_yeri_secimi").addToBackStack(null);
-                fragmentTransaction.commit();
-
-
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("HATALI İŞLEM")
+                        .setContentTextSize(25)
+                        .setContentText("Ürün listenizde ürün bulunmamaktadır. \r\n Hatalı İşlem.")
+                        .showCancelButton(false)
+                        .show();
             }
-            catch (Exception ex)
+            else
             {
-                Genel.printStackTrace(ex,getContext());
+                //---------------------------------------------------------------
+                String kod_serino = urunListesi.get(0).kod; //burasi serino_kod degeri ozgur
+
+                String rota_islemdurum = "";
+                request_string _Param = new request_string();
+                _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+                _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                _Param.set_zaktif_tesis(_ayaraktiftesis);
+                _Param.set_zsurum(_sbtVerisyon);
+                _Param.set_zkullaniciadi(_zkullaniciadi);
+                _Param.set_zsifre(_zsifre);
+                _Param.setAktif_sunucu(_ayaraktifsunucu);
+                _Param.setAktif_kullanici(_ayaraktifkullanici);
+                _Param.set_value(kod_serino); // özgür
+                //---------------------------------------------------------------
+
+                rota_islemdurum = persos.fn_geri_besleme_onay(_Param);
+
+
+                if (rota_islemdurum.equals("10") || rota_islemdurum.equals("4") || rota_islemdurum.equals("1"))
+                {
+                    new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                            .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
+                            .setContentTextSize(25)
+                            .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir. \r\n Rota Dumumu Uygun Değil.")
+                            .showCancelButton(false)
+                            .show();
+                }
+                else
+                {
+                    try
+                    {
+
+                        Genel.showProgressDialog(getContext());
+                        Genel.dismissProgressDialog();
+
+                        frg_geribesleme_harcama_yeri_secimi fragmentyeni = new frg_geribesleme_harcama_yeri_secimi();
+                        fragmentyeni.fn_senddata(urunListesi);
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_geribesleme_harcama_yeri_secimi").addToBackStack(null);
+                        fragmentTransaction.commit();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Genel.printStackTrace(ex,getContext());
+                    }
+                }
             }
+
+
+
         }
     }
 

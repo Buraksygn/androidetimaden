@@ -1,91 +1,119 @@
 package com.etimaden.persosclass;
 
 public class Gemi_Sevkiyat {
+    public String gemi_sevkiyat_id = "";
+    public String ise_sap_kod = "";
+    public String gemi_adi = "";
+    public String ara_plaka = "";
+    public String ara_barkod = "";
+    public String sofor_adi = "";
+    public String yukleme_durumu = "";
+    public String hasar_durumu = "";
+    public String yukleme_tarihi = "";
+    public String yukleme_kullanici = "";
 
-    public String ise_sap_kod ="";
-    public String urun_ad ="";
-    public String ise_id ="";
-    public String isd_id ="";
-    public String ise_kod_sap ="";
-    public String uru_kod ="";
-    public String ara_plaka ="";
-    public String ara_rfid ="";
-    public String ara_kod ="";
-    public String isd_kod_isletme ="";
-    public String hasar_durumu ="";
-
-    public Gemi_Sevkiyat(){}
+    public Gemi_Sevkiyat() {}
 
     public Gemi_Sevkiyat(
-            String _ise_sap_kod ,
-            String _urun_ad ,
-            String _ise_id,
-            String _isd_id,
-            String _ise_kod_sap,
-            String _uru_kod,
+            String _gemi_sevkiyat_id,
+            String _ise_sap_kod,
+            String _gemi_adi,
             String _ara_plaka,
-            String _ara_rfid,
-            String _ara_kod,
-            String _isd_kod_isletme,
-            String _hasar_durumu){
+            String _ara_barkod,
+            String _sofor_adi,
+            String _yukleme_durumu,
+            String _hasar_durumu,
+            String _yukleme_tarihi,
+            String _yukleme_kullanici) {
+        this.gemi_sevkiyat_id = _gemi_sevkiyat_id;
         this.ise_sap_kod = _ise_sap_kod;
-        this.urun_ad = _urun_ad;
-        this.ise_id = _ise_id;
-        this.isd_id = _isd_id;
-        this.ise_kod_sap = _ise_kod_sap;
-        this.uru_kod = _uru_kod;
+        this.gemi_adi = _gemi_adi;
         this.ara_plaka = _ara_plaka;
-        this.ara_rfid = _ara_rfid;
-        this.ara_kod = _ara_kod;
-        this.isd_kod_isletme = _isd_kod_isletme;
+        this.ara_barkod = _ara_barkod;
+        this.sofor_adi = _sofor_adi;
+        this.yukleme_durumu = _yukleme_durumu;
+        this.hasar_durumu = _hasar_durumu;
+        this.yukleme_tarihi = _yukleme_tarihi;
+        this.yukleme_kullanici = _yukleme_kullanici;
+    }
+
+    public String getGemi_sevkiyat_id() {
+        return gemi_sevkiyat_id;
+    }
+
+    public void setGemi_sevkiyat_id(String _gemi_sevkiyat_id) {
+        this.gemi_sevkiyat_id = _gemi_sevkiyat_id;
+    }
+
+    public String getIse_sap_kod() {
+        return ise_sap_kod;
+    }
+
+    public void setIse_sap_kod(String _ise_sap_kod) {
+        this.ise_sap_kod = _ise_sap_kod;
+    }
+
+    public String getGemi_adi() {
+        return gemi_adi;
+    }
+
+    public void setGemi_adi(String _gemi_adi) {
+        this.gemi_adi = _gemi_adi;
+    }
+
+    public String getAra_plaka() {
+        return ara_plaka;
+    }
+
+    public void setAra_plaka(String _ara_plaka) {
+        this.ara_plaka = _ara_plaka;
+    }
+
+    public String getAra_barkod() {
+        return ara_barkod;
+    }
+
+    public void setAra_barkod(String _ara_barkod) {
+        this.ara_barkod = _ara_barkod;
+    }
+
+    public String getSofor_adi() {
+        return sofor_adi;
+    }
+
+    public void setSofor_adi(String _sofor_adi) {
+        this.sofor_adi = _sofor_adi;
+    }
+
+    public String getYukleme_durumu() {
+        return yukleme_durumu;
+    }
+
+    public void setYukleme_durumu(String _yukleme_durumu) {
+        this.yukleme_durumu = _yukleme_durumu;
+    }
+
+    public String getHasar_durumu() {
+        return hasar_durumu;
+    }
+
+    public void setHasar_durumu(String _hasar_durumu) {
         this.hasar_durumu = _hasar_durumu;
     }
-    public String getIse_sap_kod(){return ise_sap_kod;}
 
-    public void setIse_sap_kod(String _ise_sap_kod){
-        this.ise_sap_kod = _ise_sap_kod;
+    public String getYukleme_tarihi() {
+        return yukleme_tarihi;
     }
 
-    public String getUrun_ad(){return urun_ad;}
-
-    public void setUrun_ad(String _urun_ad){
-        this.urun_ad = _urun_ad;
+    public void setYukleme_tarihi(String _yukleme_tarihi) {
+        this.yukleme_tarihi = _yukleme_tarihi;
     }
 
-    public String getIse_id(){return ise_id;}
-
-    public void setIse_id(String _ise_id){
-        this.ise_id = _ise_id;
+    public String getYukleme_kullanici() {
+        return yukleme_kullanici;
     }
 
-    public String getIsd_id(){return isd_id;}
-
-    public void setIsd_id(String _isd_id){
-        this.isd_id = _isd_id;
+    public void setYukleme_kullanici(String _yukleme_kullanici) {
+        this.yukleme_kullanici = _yukleme_kullanici;
     }
-
-    public String getIse_kod_sap(){return ise_kod_sap;}
-
-    public void setIse_kod_sap(String _ise_kod_sap){
-        this.ise_sap_kod = _ise_kod_sap;
-    }
-    public String getAra_plaka(){return ara_plaka;}
-
-    public void setAra_plaka(String _ara_plaka){
-        this.ara_plaka = _ara_plaka;
-    }
-
-    public String getAra_rfid(){return ara_rfid;}
-
-    public void setAra_rfid(String _ara_rfid){
-        this.ara_rfid = _ara_rfid;
-    }
-
-    public String getHasar_durumu(){return hasar_durumu;}
-
-    public void setHasar_durumu(String _hasar_durumu){
-        this.hasar_durumu = _hasar_durumu;
-    }
-
-
 }

@@ -150,11 +150,17 @@ public class frg_demirbas_sayim_menu_panel extends Fragment {
     private class fn_btnEtiketBasimKontrol implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_db_isletme_secimi fragmentyeni = new frg_db_isletme_secimi();
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_db_isletme_secimi").addToBackStack(null);
-            fragmentTransaction.commit();
+            try {
+                frg_db_isletme_secimi fragmentyeni = new frg_db_isletme_secimi();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni, "frg_db_isletme_secimi").addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                android.util.Log.e("FragmentError", "Hata: " + e.getMessage());
+            }
         }
     }
 

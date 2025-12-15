@@ -143,8 +143,9 @@ public class frg_da_isemri_secimi extends Fragment {
         _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
         _btnOkuma.playSoundEffect(0);
         _btnOkuma.setOnClickListener(new fn_okumaDegistir());
-        _btnOkuma.setText("KAREKOD");
 
+        ((GirisSayfasi) getActivity()).fn_ModRFID();
+        _btnOkuma.setText("RFID");
         _aktif_is_emirleri_list = (ListView) getView().findViewById(R.id.aktif_is_emirleri_list);
 
         _aktif_is_emirleri_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -360,10 +361,10 @@ public class frg_da_isemri_secimi extends Fragment {
     private class fn_Geri implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            frg_demirbas_sayim_menu_panel fragmentyeni = new frg_demirbas_sayim_menu_panel();
+            frg_demirbas_arama_menu_panel fragmentyeni = new frg_demirbas_arama_menu_panel();
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_demirbas_sayim_menu_panel").addToBackStack(null);
+            fragmentTransaction.replace(R.id.frameLayoutForFragments, fragmentyeni,"frg_demirbas_arama_menu_panel").addToBackStack(null);
             fragmentTransaction.commit();
         }
     }
@@ -372,14 +373,17 @@ public class frg_da_isemri_secimi extends Fragment {
         @Override
         public void onClick(View view) {
             Genel.showProgressDialog(getContext());
+
             if(_btnOkuma.getText().toString().equals("KAREKOD")){
                 ((GirisSayfasi) getActivity()).fn_ModRFID();
                 _btnOkuma.setText("RFID");
-            }else{
+            } else {
                 ((GirisSayfasi) getActivity()).fn_ModBarkod();
                 _btnOkuma.setText("KAREKOD");
             }
+
             Genel.dismissProgressDialog();
         }
     }
+
 }

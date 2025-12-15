@@ -137,6 +137,10 @@ public class frg_shrink_ayirma extends Fragment {
         _btnShrinkOlustur.playSoundEffect(SoundEffectConstants.CLICK);
         _btnShrinkOlustur.setOnClickListener(new fn_btnShrinkOlustur());
 
+        _btnShrinkOlustur.setFocusable(false);
+        _btnShrinkOlustur.setFocusableInTouchMode(false);
+
+
         _btngeri = (Button)getView().findViewById(R.id.btncikis);
         _btngeri.playSoundEffect(SoundEffectConstants.CLICK);
         _btngeri.setOnClickListener(new fn_Geri());
@@ -154,63 +158,30 @@ public class frg_shrink_ayirma extends Fragment {
         fn_AyarlariYukle();
         dataModels= new ArrayList<Urun_tag>();
         //fn_SiloListele();
+
+        adapter = new apmblAktifIsEmirleri(dataModels, getContext());
+        _isemri_list.setAdapter(adapter);
+
+
     }
+
     public void fn_BarkodOkutuldu(String barkod) {
 
         try
         {
+            if (barkod == null) return;
+            barkod = barkod.trim();
 
-            barkod = barkod.substring(barkod.length()-24);
+            if (barkod.length() >= 24)
+                barkod = barkod.substring(barkod.length() - 24);
 
-            int lenght = barkod.length();
-            boolean readable = isReadable;
-
-            if (!(isReadable && barkod.length() == 24))
-            {
-                return;
-            }
-            isReadable = false;
-            //System.Media.SystemSounds.Question.Play();
-
-            request_secEtiket v_Gelen=new request_secEtiket();
-
-            v_Gelen.set_rfid(barkod);
-            v_Gelen.set_zaktif_alt_tesis(_ayaraktifalttesis);
-            v_Gelen.set_zaktif_tesis(_ayaraktiftesis);
-            v_Gelen.set_zkullaniciadi(_zkullaniciadi);
-            v_Gelen.set_zsifre(_zsifre);
-            v_Gelen.set_zsunucu_ip_adresi(_ayarsunucuip);
-            v_Gelen.set_zsurum(_sbtVerisyon);
-            v_Gelen.setAktif_kullanici(_ayaraktifkullanici);
-            v_Gelen.setAktif_sunucu(_ayaraktifsunucu);
-
-            Genel.showProgressDialog(getContext());
-            Urun_tag tag = persos.fn_secEtiket(v_Gelen);
-            Genel.dismissProgressDialog();
-            if (tag == null || (!tag.islem_durumu.equals("1")) || (!tag.etiket_turu.equals("1")))
-            {
-                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
-                        .setTitleText("İŞLEM İÇİN UYGUN OLMAYAN ÜRÜN")
-                        .setContentTextSize(25)
-                        .setContentText("Ürün yapmak istediğiniz işlem için uygun değildir. \r\n İşleme uygun olmayan etiket.")
-                        .showCancelButton(false)
-                        .show();
-                return;
-
-            }
-            else
-            {
-                urunDegerlendir(tag);
-            }
-
-
+            //barkod = barkod.substring(barkod.length() - 24);
+            fn_RfidOkundu(barkod);
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex){
             Genel.printStackTrace(ex,getContext());
         }
-        //Thread.Sleep(2000);
-        isReadable = true;
+
 
     }
 
@@ -277,7 +248,7 @@ public class frg_shrink_ayirma extends Fragment {
 
 
     }
-    private void updateListviewItem()
+    /*private void updateListviewItem()
     {
         try
         {
@@ -297,6 +268,17 @@ public class frg_shrink_ayirma extends Fragment {
         catch (Exception ex)
         {
             Genel.printStackTrace(ex,getContext());
+        }
+    }*/
+
+    private void updateListviewItem() { //yeni ozgur
+        try {
+            if (adapter != null) {
+                adapter.notifyDataSetChanged();
+            }
+        }
+        catch (Exception ex) {
+            Genel.printStackTrace(ex, getContext());
         }
     }
 
@@ -412,7 +394,6 @@ public class frg_shrink_ayirma extends Fragment {
                 Genel.printStackTrace(ex,getContext());
                 view.setEnabled(true);
             }
-
 
         }
     }

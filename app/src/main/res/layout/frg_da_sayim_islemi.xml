@@ -16,7 +16,7 @@
         android:layout_x="0dp"
         android:layout_y="0dp"
         android:textColor="@color/green"
-        android:text="frg_ds_sayim_islemi"
+        android:text="frg_da_sayim_islemi"
         android:textSize="12dp" />
 
     <ImageView
@@ -55,12 +55,13 @@
         android:layout_width="325dp"
         android:layout_height="340dp"
         android:layout_x="2dp"
-        android:layout_y="102dp">
+        android:layout_y="102dp"
+        android:fillViewport="true">
 
         <ListView
             android:id="@+id/aktif_is_emirleri_list"
             android:layout_width="wrap_content"
-            android:layout_height="440dp"
+            android:layout_height="match_parent"
             android:listSelector="@color/colorBlackSecili"
             android:scrollbars="horizontal|vertical"
             android:textColor="@color/green" >
@@ -102,6 +103,7 @@
         android:text="BULUNAN"
         android:textColor="@color/green"
         android:textSize="16sp" />
+
     <ImageView
         android:id="@+id/imgBulunan"
         android:layout_width="81dp"
@@ -109,11 +111,12 @@
         android:layout_x="81dp"
         android:layout_y="480dp"
         android:background="@drawable/btn_menu_pasif"
-        android:src="@mipmap/greenpoint"
-        android:focusable="false"
         android:cropToPadding="true"
+        android:focusable="false"
         android:padding="2dp"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitCenter"
+        android:src="@drawable/bulundu"
+        app:srcCompat="@drawable/bulundu" />
     <TextView
         android:id="@+id/txtEksik"
         android:layout_width="81dp"
@@ -124,6 +127,7 @@
         android:text="EKSİK"
         android:textColor="@color/red1"
         android:textSize="16sp" />
+
     <ImageView
         android:id="@+id/imgEksik"
         android:layout_width="81dp"
@@ -131,11 +135,12 @@
         android:layout_x="162dp"
         android:layout_y="480dp"
         android:background="@drawable/btn_menu_pasif"
-        android:src="@mipmap/redpoint"
-        android:focusable="false"
         android:cropToPadding="true"
+        android:focusable="false"
         android:padding="2dp"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitCenter"
+        android:src="@drawable/bulunmadi"
+        app:srcCompat="@drawable/bulunmadi" />
     <TextView
         android:id="@+id/txtKullanimDisi"
         android:layout_width="81dp"

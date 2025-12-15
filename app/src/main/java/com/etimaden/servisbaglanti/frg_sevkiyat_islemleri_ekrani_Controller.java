@@ -23,6 +23,7 @@ import com.etimaden.response.frg_paket_uretim_ekrani.View_bool_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.View_string_response;
 import com.etimaden.response.frg_paket_uretim_ekrani.ViewsecDepoTanimlari;
 import com.etimaden.response.sevkiyat_islemleri.View_arac;
+import com.etimaden.response.sevkiyat_islemleri.View_gemi_yukleme;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_bekleyen_arac_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_isemri_listesi;
@@ -177,5 +178,11 @@ public interface frg_sevkiyat_islemleri_ekrani_Controller {
 
     @POST("api/ilk_tartim_bul") //özgur ekledi aniventi 22.07.2025
     Call<View_string_response> fn_ilk_tartim_bul(@Body request_string v_Gelen);
+
+    @POST("api/gemi_yukleme_bul") //özgur ekledi aniventi 20.10.2025
+    Call<View_gemi_yukleme> fn_gemi_yukleme_bul(@Body request_string v_Gelen);
+
+    @POST("api/geri_besleme_onay") //özgur ekledi aniventi 19.11.2025
+    Call<View_string_response> fn_geri_besleme_onay(@Body request_string v_Gelen);
 
 }

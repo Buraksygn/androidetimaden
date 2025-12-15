@@ -45,6 +45,8 @@ import com.etimaden.cResponseResult.ViewsecAktifSevkIsemriListesi;
 import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
+import com.etimaden.persosclass.Gemi;
+import com.etimaden.persosclass.Gemi_Yukleme;
 import com.etimaden.persosclass.Vagon_hareket;
 import com.etimaden.request.request_sevkiyat_isemri;
 import com.etimaden.request.request_string;
@@ -312,9 +314,60 @@ public class frg_arac_aktivasyon extends Fragment {
                                 public void onClick(SweetAlertDialogG sDialog) {
                                     sDialog.dismissWithAnimation();
 
+                                    request_string _Param= new request_string();
+                                    _Param.set_zsunucu_ip_adresi(_ayarsunucuip);
+                                    _Param.set_zaktif_alt_tesis(_ayaraktifalttesis);
+                                    _Param.set_zaktif_tesis(_ayaraktiftesis);
+                                    _Param.set_zsurum(_sbtVerisyon);
+                                    _Param.set_zkullaniciadi(_zkullaniciadi);
+                                    _Param.set_zsifre(_zsifre);
+                                    _Param.setAktif_sunucu(_ayaraktifsunucu);
+                                    _Param.setAktif_kullanici(_ayaraktifkullanici);
+                                    _Param.set_value(_aktif_sevk_isemri.kod_sap);
+
+                                    Gemi_Yukleme gemi = persos.fn_gemi_yukleme_bul(_Param); //Özgür
+
+
+                                    int yapilanAdet = 0;
+                                    int miktarTorba = 0;
+
+                                    try {
+                                        yapilanAdet = Integer.parseInt(_aktif_sevk_isemri.yapilan_adet);
+                                    } catch (Exception e) {
+                                        yapilanAdet = 0;
+                                    }
+
+                                    try {
+                                        miktarTorba = Integer.parseInt(_aktif_sevk_isemri.miktar_torba);
+                                    } catch (Exception e) {
+                                        miktarTorba = 0;
+                                    }
+
+                                    int aracYukInt = yapilanAdet * miktarTorba;
+                                    String arac_yuk = String.valueOf(aracYukInt);
+                                    String isemrikod = _aktif_sevk_isemri.kod_sap;
+                                    String isemrimiktar= gemi.toplam_miktar;
+                                    String yuklenenmiktar = gemi.yuklenen_miktar;
+                                    int kalanmiktar = Integer.parseInt(gemi.kalan_miktar);
+                                    //int kalanmiktar = 8000;
+
+
+                                    //---------------------------------------------------------------------------
+                                    StringBuilder mesaj = new StringBuilder();
+                                    mesaj.append("IS EMRI : ").append(isemrikod)
+                                            .append("\rIS EMRI MIKTARI : ").append(isemrimiktar)
+                                            .append("\rYUKLENEN MIKTAR : ").append(yuklenenmiktar)
+                                            .append("\rKALAN MIKTAR : ").append(kalanmiktar)
+                                            .append("\rARAÇ YÜK : ").append(arac_yuk);
+                                    if (aracYukInt > kalanmiktar) {
+                                        mesaj.append("\r\n⚠️ ARACI **INDIRMEYINIZ**; IS EMRI MIKTARI AŞILIYOR!");
+                                    }
+                                    //---------------------------------------------------------------------------
+
                                     new SweetAlertDialogG(getContext(), SweetAlertDialogG.WARNING_TYPE) //merve ekledi
                                             .setTitleText("SEVKİYAT YÖNLENDİRMESİ")
-                                            .setContentText("GEMİYE YÜKLEMESİ TAMAMLANDI. \r\n İŞLEME DEVAM ETMEK İSTİYOR MUSUNUZ?")
+                                            //.setContentText("GEMİYE YÜKLEMESİ TAMAMLANDI. \r\n İŞLEME DEVAM ETMEK İSTİYOR MUSUNUZ?")
+                                            .setContentText(mesaj.toString())
                                             .setContentTextSize(20)
                                             .setConfirmText("EVET")
                                             .setCancelText("HAYIR")

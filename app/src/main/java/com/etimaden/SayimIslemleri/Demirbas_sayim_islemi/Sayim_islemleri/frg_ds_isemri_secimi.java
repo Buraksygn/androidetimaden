@@ -124,13 +124,11 @@ public class frg_ds_isemri_secimi extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ((GirisSayfasi) getActivity()).fn_ModBarkod();
         _myIslem = new VeriTabani(getContext());
         _myIslem.fn_EpcTemizle();
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
 
         fn_AyarlariYukle();
-
         _btnOdaSec = (Button)getView().findViewById(R.id.btnOdaSec);
         _btnOdaSec.playSoundEffect(SoundEffectConstants.CLICK);
         _btnOdaSec.setOnClickListener(new fn_btnOdaSec());
@@ -142,7 +140,9 @@ public class frg_ds_isemri_secimi extends Fragment {
         _btnOkuma = (Button)getView().findViewById(R.id.btnOkuma);
         _btnOkuma.playSoundEffect(SoundEffectConstants.CLICK);
         _btnOkuma.setOnClickListener(new fn_okumaDegistir());
-        _btnOkuma.setText("KAREKOD");
+
+        ((GirisSayfasi) getActivity()).fn_ModRFID();
+        _btnOkuma.setText("RFID");
 
         _aktif_is_emirleri_list = (ListView) getView().findViewById(R.id.aktif_is_emirleri_list);
 
@@ -282,7 +282,7 @@ public class frg_ds_isemri_secimi extends Fragment {
             isReadable = false;
             Genel.playQuestionSound(getContext());
 
-            String oda = "7377678"; //737767-6(bina)-7(kat)-8(oda)-bina(4)-kat(4)-oda(4)
+            String oda = "7377678";
             Demirbas_Konum konum = null;
             try
             {
@@ -431,13 +431,15 @@ public class frg_ds_isemri_secimi extends Fragment {
         @Override
         public void onClick(View view) {
             Genel.showProgressDialog(getContext());
+
             if(_btnOkuma.getText().toString().equals("KAREKOD")){
                 ((GirisSayfasi) getActivity()).fn_ModRFID();
                 _btnOkuma.setText("RFID");
-            }else{
+            } else {
                 ((GirisSayfasi) getActivity()).fn_ModBarkod();
                 _btnOkuma.setText("KAREKOD");
             }
+
             Genel.dismissProgressDialog();
         }
     }

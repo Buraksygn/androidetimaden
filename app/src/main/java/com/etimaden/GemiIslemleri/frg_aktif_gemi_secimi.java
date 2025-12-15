@@ -33,7 +33,7 @@ import com.etimaden.genel.Genel;
 import com.etimaden.genel.SweetAlertDialogG;
 import com.etimaden.persos.Persos;
 import com.etimaden.persosclass.Gemi;
-import com.etimaden.request.request_string;
+import com.etimaden.request.request_gemi;
 import com.etimaden.ugr_demo.R;
 
 import java.util.ArrayList;
@@ -108,7 +108,7 @@ public class frg_aktif_gemi_secimi extends Fragment {
         }
         else
         {
-            _OnlineUrl = "http:/"+_ipAdresi3G+":"+_zport3G+"/";
+            _OnlineUrl = "http://"+_ipAdresi3G+":"+_zport3G+"/";
         }
         persos = new Persos(_OnlineUrl,getContext());
     }
@@ -179,7 +179,7 @@ public class frg_aktif_gemi_secimi extends Fragment {
     private void gemiListesiGetir(){
         fn_AyarlariYukle();
 
-        request_string _Param1= new request_string();
+        request_gemi _Param1= new request_gemi();
         _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
         _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
         _Param1.set_zaktif_tesis(_ayaraktiftesis);

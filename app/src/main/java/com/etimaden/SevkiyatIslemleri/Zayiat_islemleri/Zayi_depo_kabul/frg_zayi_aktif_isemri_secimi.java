@@ -156,6 +156,7 @@ public class frg_zayi_aktif_isemri_secimi extends Fragment {
             _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
             _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
             _Param1.set_zaktif_tesis(_ayaraktiftesis);
+            _Param1.set_aktif_isletme_esleme(_ayaraktifisletmeeslesme);
             _Param1.set_zsurum(_sbtVerisyon);
             _Param1.set_zkullaniciadi(_zkullaniciadi);
             _Param1.set_zsifre(_zsifre);

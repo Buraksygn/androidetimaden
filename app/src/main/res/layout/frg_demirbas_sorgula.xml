@@ -31,8 +31,6 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
-
-
     <TextView
         android:id="@+id/txtYazi"
         android:layout_width="325dp"
@@ -40,7 +38,7 @@
         android:layout_x="0dp"
         android:layout_y="70dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="DEMİRBAŞ ETİKETİ OKUTUNUZ..."
+        android:text="RFID ETİKETİ OKUTUNUZ..."
         android:textColor="@color/green"
         android:textSize="16dp"
         android:textStyle="bold" />
@@ -48,18 +46,32 @@
     <ImageView
         android:id="@+id/imageTanimResmi"
         android:layout_width="325dp"
-        android:layout_height="350dp"
+        android:layout_height="300dp"
         android:layout_x="1dp"
         android:layout_y="135dp"
         app:srcCompat="@mipmap/konum"
         android:focusable="false" />
+
+    <!-- ⭐ YENİ BUTON: OKUMA MODU DEĞİŞTİRME -->
+    <Button
+        android:id="@+id/btnOkuma"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
+        android:layout_x="0dp"
+        android:layout_y="445dp"
+        android:background="@drawable/btn_menu_normal"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:focusable="false"
+        android:text="RFID"
+        android:textColor="@color/green" />
 
     <Button
         android:id="@+id/btnGeri"
         android:layout_width="325dp"
         android:layout_height="50dp"
         android:layout_x="0dp"
-        android:layout_y="500dp"
+        android:layout_y="505dp"
         android:background="@drawable/my_button_cikis"
         android:gravity="center"
         android:textSize="20sp"

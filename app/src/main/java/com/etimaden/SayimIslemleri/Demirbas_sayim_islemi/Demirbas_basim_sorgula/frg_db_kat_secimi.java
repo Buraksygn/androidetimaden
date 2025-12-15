@@ -126,6 +126,7 @@ public class frg_db_kat_secimi extends Fragment {
         _myIslem = new VeriTabani(getContext());
         _myIslem.fn_EpcTemizle();
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
+        fn_AyarlariYukle();
 
         _btnIleri = (Button)getView().findViewById(R.id.btnIleri);
         _btnIleri.playSoundEffect(0);
@@ -154,11 +155,19 @@ public class frg_db_kat_secimi extends Fragment {
         kat_listesi= new ArrayList<Demirbas_Konum>();
         binaDegerlendir();
     }
-
     private void binaDegerlendir()
     {
         try
         {
+            // ← Bina kontrolü ekle
+            if(bina == null) {
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("HATA")
+                        .setContentText("Bina bilgisi null!")
+                        .show();
+                return;
+            }
+
             request_demirbas_konum _Param1 = new request_demirbas_konum();
             _Param1.set_zsunucu_ip_adresi(_ayarsunucuip);
             _Param1.set_zaktif_alt_tesis(_ayaraktifalttesis);
@@ -175,7 +184,15 @@ public class frg_db_kat_secimi extends Fragment {
             kat_listesi = persos.fn_sec_ek_demirbas_kat(_Param1);
             Genel.dismissProgressDialog();
 
-            updateListviewItem();
+            // ← Liste kontrolü ekle
+            if(kat_listesi == null || kat_listesi.isEmpty()) {
+                new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
+                        .setTitleText("BİLGİ")
+                        .setContentText("Bu binada kat bulunamadı.")
+                        .show();
+            } else {
+                updateListviewItem();
+            }
 
         }
         catch (Exception ex)
@@ -184,7 +201,7 @@ public class frg_db_kat_secimi extends Fragment {
             new SweetAlertDialogG(getContext(), SweetAlertDialogG.ERROR_TYPE)
                     .setTitleText("BAĞLANTI HATASI")
                     .setContentTextSize(25)
-                    .setContentText("Kat listesi alınamadı.")
+                    .setContentText("Kat listesi alınamadı: " + ex.getMessage())
                     .showCancelButton(false)
                     .show();
         }

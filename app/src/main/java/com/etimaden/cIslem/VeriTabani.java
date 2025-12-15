@@ -163,6 +163,8 @@ public class VeriTabani extends SQLiteOpenHelper {
 
 
     //demirbas_sayim
+
+    private static final String TABLO_12_DEMIRBAS_ARAMA = "demirbas_arama";
     private static final String TABLO_11_DEMIRBAS_SAYIM = "persos_demirbas_sayim";
     private static final String TABLO_11_DEMIRBAS_SAYIM_ds_id = "ds_id";
     private static final String TABLO_11_DEMIRBAS_SAYIM_ds_user_id = "ds_user_id";
@@ -445,6 +447,14 @@ return _Sonuc;
                 + TABLO_kilitli + " TEXT )");
 
         //demirbas_sayim
+        sqLiteDatabase.execSQL("CREATE TABLE demirbas_arama("
+                + "da_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "da_demirbas_kod TEXT,"
+                + "da_demirbas_ad_1 TEXT,"
+                + "da_teknik_birim TEXT,"
+                + "da_serino TEXT,"
+                + "da_durum TEXT)");
+
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLO_11_DEMIRBAS_SAYIM+ "("
                 + TABLO_11_DEMIRBAS_SAYIM_ds_id + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TABLO_11_DEMIRBAS_SAYIM_ds_user_id + " TEXT,"
@@ -1636,7 +1646,7 @@ return _Sonuc;
         db.execSQL("DROP TABLE IF EXISTS " + TABLO_09_INDIRME_YUKLENEN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLO_10_ETIKET_KONTROL);
         db.execSQL("DROP TABLE IF EXISTS " + TABLO_11_DEMIRBAS_SAYIM);
-
+        db.execSQL("DROP TABLE IF EXISTS demirbas_arama");
         onCreate(db);
     }
 
@@ -2042,7 +2052,67 @@ return _Sonuc;
         }
     }
 
+    // Demirbaş durumunu kaydet (SharedPreferences)
+    public void fn_kaydet_demirbas_durum(String sayim_kod, String demirbas_kod, String durum) {
+        android.content.SharedPreferences prefs = context2.getSharedPreferences("demirbas_durumlar", Context.MODE_PRIVATE);
+        android.content.SharedPreferences.Editor editor = prefs.edit();
+        String key = sayim_kod + "_" + demirbas_kod;
+        editor.putString(key, durum);
+        editor.apply();
+    }
 
+    // Demirbaş durumunu oku (SharedPreferences)
+    public String fn_oku_demirbas_durum(String sayim_kod, String demirbas_kod) {
+        android.content.SharedPreferences prefs = context2.getSharedPreferences("demirbas_durumlar", Context.MODE_PRIVATE);
+        String key = sayim_kod + "_" + demirbas_kod;
+        return prefs.getString(key, null);
+    }
+
+    // Sayım tamamlandığında temizle (SharedPreferences)
+    public void fn_temizle_demirbas_durumlar(String sayim_kod) {
+        android.content.SharedPreferences prefs = context2.getSharedPreferences("demirbas_durumlar", Context.MODE_PRIVATE);
+        android.content.SharedPreferences.Editor editor = prefs.edit();
+        java.util.Map<String, ?> allEntries = prefs.getAll();
+
+        for (java.util.Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            if (entry.getKey().startsWith(sayim_kod + "_")) {
+                editor.remove(entry.getKey());
+            }
+        }
+        editor.apply();
+    }
+
+// ========== ARAMA SAYFASI İÇİN AYRI SHAREDPREFERENCES ==========
+
+    // Demirbaş ARAMA durumunu kaydet (SharedPreferences)
+    public void fn_kaydet_arama_durum(String sayim_kod, String demirbas_kod, String durum) {
+        android.content.SharedPreferences prefs = context2.getSharedPreferences("demirbas_arama_durumlar", Context.MODE_PRIVATE);
+        android.content.SharedPreferences.Editor editor = prefs.edit();
+        String key = sayim_kod + "_" + demirbas_kod;
+        editor.putString(key, durum);
+        editor.apply();
+    }
+
+    // Demirbaş ARAMA durumunu oku (SharedPreferences)
+    public String fn_oku_arama_durum(String sayim_kod, String demirbas_kod) {
+        android.content.SharedPreferences prefs = context2.getSharedPreferences("demirbas_arama_durumlar", Context.MODE_PRIVATE);
+        String key = sayim_kod + "_" + demirbas_kod;
+        return prefs.getString(key, null);
+    }
+
+    // ARAMA tamamlandığında temizle (SharedPreferences)
+    public void fn_temizle_arama_durumlar(String sayim_kod) {
+        android.content.SharedPreferences prefs = context2.getSharedPreferences("demirbas_arama_durumlar", Context.MODE_PRIVATE);
+        android.content.SharedPreferences.Editor editor = prefs.edit();
+        java.util.Map<String, ?> allEntries = prefs.getAll();
+
+        for (java.util.Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            if (entry.getKey().startsWith(sayim_kod + "_")) {
+                editor.remove(entry.getKey());
+            }
+        }
+        editor.apply();
+    }
     private class SqlUpdateObject{
         private String sql="";
         private Boolean comma=false;

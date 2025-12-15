@@ -130,6 +130,8 @@ public class frg_db_bina_secimi extends Fragment {
         _myIslem.fn_EpcTemizle();
         ((GirisSayfasi) getActivity()).fn_ListeTemizle();
 
+        fn_AyarlariYukle();
+
         _btnIleri = (Button)getView().findViewById(R.id.btnIleri);
         _btnIleri.playSoundEffect(0);
         _btnIleri.setOnClickListener(new fn_btnIleri());

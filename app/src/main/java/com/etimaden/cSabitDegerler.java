@@ -2,7 +2,7 @@ package com.etimaden;
 
 public class cSabitDegerler
 {
-    public static final String _sbtVerisyon = "v2.6.10";
+    public static final String _sbtVerisyon = "v2.7.3";
     public static final String _zkullaniciadi = "5y5tém";
     public static final String _zsifre = "Ank@r@!23";
 

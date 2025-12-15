@@ -18,6 +18,7 @@ import com.etimaden.persosclass.Gemi_Sevkiyat;
 import com.etimaden.persosclass.Gemi_Teslimat;
 import com.etimaden.persosclass.Urun_tag;
 import com.etimaden.persosclass.Vagon_hareket;
+import com.etimaden.persosclass.Gemi_Yukleme;											 
 import com.etimaden.persosclass.Zayi;
 import com.etimaden.persosclass.Zayi_urun;
 import com.etimaden.persosclass.Zimmet_sonuc_sap;
@@ -58,7 +59,7 @@ import com.etimaden.request.request_shrink_is_emri;
 import com.etimaden.request.request_shrink_onayi_al;
 import com.etimaden.request.request_string;
 import com.etimaden.request.request_string_aktif_isletme_esleme;
-import com.etimaden.request.request_string_gemi;
+import com.etimaden.request.request_gemi;
 import com.etimaden.request.request_string_string;
 import com.etimaden.request.request_string_string_string;
 import com.etimaden.request.request_uretim_etiket;
@@ -97,6 +98,7 @@ import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_urun_sevkiyat;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_urun_sevkiyat_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_urun_tag_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_vagon_hareket;
+import com.etimaden.response.sevkiyat_islemleri.View_gemi_yukleme;														  
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_sevkiyat_zayi_urun_listesi;
 import com.etimaden.response.sevkiyat_islemleri.View_string_list;
@@ -108,6 +110,14 @@ import com.etimaden.servisbaglanti.frg_paket_uretim_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_sayim_islemleri_ekrani_Controller;
 import com.etimaden.servisbaglanti.frg_sevkiyat_islemleri_ekrani_Controller;
 import com.etimaden.servisbaglanti.test_Controller;
+
+import com.etimaden.persosclass.Gemi_Sevkiyat;  // ⭐ EKLE
+import com.etimaden.request.request_gemi;
+import com.etimaden.response.gemi_islemleri.View_gemi_response;  // ⭐ EKLE
+import com.etimaden.servisbaglanti.frg_gemi_islemleri_Controller;  // ⭐ EKLE
+import com.etimaden.genel.Genel;
+import java.util.ArrayList;  // ⭐ EKLE
+import java.util.List;
 
 
 import java.util.List;
@@ -3975,7 +3985,7 @@ public class Persos {
     }
 
     //gemi foy
-    public List<Gemi> fn_sec_aktif_gemi_listesi(request_string v_Gelen) {
+    public List<Gemi> fn_sec_aktif_gemi_listesi(request_gemi v_Gelen) {
 
         ViewAktifGemiListesi _yanit;
 
@@ -4004,8 +4014,7 @@ public class Persos {
             return  null;
         }
     }
-
-    public Boolean fn_gemi_gelisme_kaydet(request_string_gemi v_Gelen)
+    public Boolean fn_gemi_gelisme_kaydet(request_gemi v_Gelen)
     {
         View_bool_response _yanit;
 
@@ -4055,36 +4064,153 @@ public class Persos {
         }
     }
 
-    public List<Gemi_Teslimat> fn_sec_gemi_teslimat_listesi(request_string v_Gelen){
-
+    public List<Gemi_Teslimat> fn_sec_gemi_isemirleri(request_gemi v_Gelen){
         ViewAktifIsemirleriListesi _yanit;
-
-        try
-        {
-            frg_gemi_islemleri_Controller _Servis=retrofit.create(frg_gemi_islemleri_Controller.class);
-
-            Call<ViewAktifIsemirleriListesi> fn_Servis = _Servis.fn_sec_isemirleri_listesi(v_Gelen);
-
+        try {
+            frg_gemi_islemleri_Controller _Servis = retrofit.create(frg_gemi_islemleri_Controller.class);
+            Call<ViewAktifIsemirleriListesi> fn_Servis = _Servis.fn_sec_gemi_isemirleri(v_Gelen);
             Response<ViewAktifIsemirleriListesi> _Response = fn_Servis.execute();
-
-            if(_Response.isSuccessful())
-            {
+            if(_Response.isSuccessful()) {
                 _yanit = _Response.body();
-
-                return  _yanit.getisemirleriListesi();
-            }
-            else
-            {
+                return _yanit.getisemirleriListesi();
+            } else {
                 return null;
             }
-
-        }catch (Exception ex)
-        {
-            Genel.printStackTrace(ex,context);
-            return  null;
+        } catch (Exception ex) {
+            Genel.printStackTrace(ex, context);
+            return null;
         }
     }
 
+    public List<Gemi_Sevkiyat> fn_gemi_isemri_araclari(request_gemi v_Gelen) {
+        View_gemi_response _yanit;
+        try {
+
+
+            frg_gemi_islemleri_Controller _Servis = retrofit.create(frg_gemi_islemleri_Controller.class);
+            Call<View_gemi_response> fn_Servis = _Servis.fn_gemi_isemri_araclari(v_Gelen);
+            Response<View_gemi_response> _Response = fn_Servis.execute();
+
+
+            if (_Response.isSuccessful()) {
+                _yanit = _Response.body();
+
+                if (_yanit != null) {
+
+                    if (_yanit.get_sevkiyatListesi() != null) {
+                        return _yanit.get_sevkiyatListesi();
+                    } else {
+                        return new ArrayList<>();
+                    }
+                } else {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        } catch (Exception ex) {
+            Genel.printStackTrace(ex, context);
+            return null;
+        }
+    }
+
+    public View_gemi_response fn_arac_yukleme_kaydet(request_gemi v_Gelen) {
+        View_gemi_response _yanit = null;
+        try {
+
+            frg_gemi_islemleri_Controller _Servis = retrofit.create(frg_gemi_islemleri_Controller.class);
+            Call<View_gemi_response> fn_Servis = _Servis.fn_arac_yukleme_kaydet(v_Gelen);
+            Response<View_gemi_response> _Response = fn_Servis.execute();
+
+            if (_Response.isSuccessful()) {
+                _yanit = _Response.body();
+            } else {
+                _yanit = new View_gemi_response();
+                _yanit.set_zSonuc("1");
+                _yanit.set_zHataAciklama("HTTP Error: " + _Response.code());
+            }
+        } catch (Exception ex) {
+            Genel.printStackTrace(ex, context);
+            _yanit = new View_gemi_response();
+            _yanit.set_zSonuc("1");
+            _yanit.set_zHataAciklama(ex.getMessage());
+        }
+        return _yanit;
+    }
+
+    public View_gemi_response fn_arac_hasar_guncelle(request_gemi v_Gelen) {
+        View_gemi_response _yanit = null;
+        try {
+            frg_gemi_islemleri_Controller _Servis = retrofit.create(frg_gemi_islemleri_Controller.class);
+            Call<View_gemi_response> fn_Servis = _Servis.fn_arac_hasar_guncelle(v_Gelen);
+            Response<View_gemi_response> _Response = fn_Servis.execute();
+
+            if (_Response.isSuccessful()) {
+                _yanit = _Response.body();
+            } else {
+                _yanit = new View_gemi_response();
+                _yanit.set_zSonuc("1");
+                _yanit.set_zHataAciklama("HTTP Error: " + _Response.code());
+            }
+        } catch (Exception ex) {
+            Genel.printStackTrace(ex, context);
+            _yanit = new View_gemi_response();
+            _yanit.set_zSonuc("1");
+            _yanit.set_zHataAciklama(ex.getMessage());
+        }
+        return _yanit;
+    }
+
+    public View_gemi_response fn_arac_10dk_kontrol(request_gemi v_Gelen) {
+        View_gemi_response _yanit = null;
+        try {
+            frg_gemi_islemleri_Controller _Servis = retrofit.create(frg_gemi_islemleri_Controller.class);
+            Call<View_gemi_response> fn_Servis = _Servis.fn_arac_10dk_kontrol(v_Gelen);
+            Response<View_gemi_response> _Response = fn_Servis.execute();
+
+            if (_Response.isSuccessful()) {
+                _yanit = _Response.body();
+                if (_yanit != null && _yanit.get_result() != null) {
+                }
+            } else {
+              ;
+                _yanit = new View_gemi_response();
+                _yanit.set_zSonuc("1");
+                _yanit.set_zHataAciklama("HTTP Error: " + _Response.code());
+                _yanit.set_result(false);
+            }
+        } catch (Exception ex) {
+            Genel.printStackTrace(ex, context);
+            _yanit = new View_gemi_response();
+            _yanit.set_zSonuc("1");
+            _yanit.set_zHataAciklama(ex.getMessage());
+            _yanit.set_result(false);
+        }
+        return _yanit;
+    }
+
+    public View_gemi_response fn_yukleme_ozet(request_gemi v_Gelen) {
+        View_gemi_response _yanit = null;
+        try {
+            frg_gemi_islemleri_Controller _Servis = retrofit.create(frg_gemi_islemleri_Controller.class);
+            Call<View_gemi_response> fn_Servis = _Servis.fn_yukleme_ozet(v_Gelen);
+            Response<View_gemi_response> _Response = fn_Servis.execute();
+
+            if (_Response.isSuccessful()) {
+                _yanit = _Response.body();
+            } else {
+                _yanit = new View_gemi_response();
+                _yanit.set_zSonuc("1");
+                _yanit.set_zHataAciklama("HTTP Error: " + _Response.code());
+            }
+        } catch (Exception ex) {
+            Genel.printStackTrace(ex, context);
+            _yanit = new View_gemi_response();
+            _yanit.set_zSonuc("1");
+            _yanit.set_zHataAciklama(ex.getMessage());
+        }
+        return _yanit;
+    }
 
     public String fn_ilk_tartim_bul(request_string v_Gelen)
     {
@@ -4125,6 +4251,38 @@ public class Persos {
         return  _Cevap;
     }
 
+	 public Gemi_Yukleme fn_gemi_yukleme_bul(request_string v_Gelen)
+    {
+        View_gemi_yukleme _Cevap;
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_gemi_yukleme> fn_Servis = _Servis.fn_gemi_yukleme_bul(v_Gelen);
+
+            Response<View_gemi_yukleme> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                _Cevap = _Response.body();
+
+                return _Cevap.get_result();
+            }
+            else
+            {
+                return null;
+            }
+
+        }catch (Exception ex)
+        {
+            Genel.printStackTrace(ex,context);
+            return  null;
+        }
+
+    }
+	
+	
     public String fn_GetRfidGucAyari()
     {
         String _Cevap ="";
@@ -4134,6 +4292,45 @@ public class Persos {
             test_Controller _Servis=retrofit.create(test_Controller.class);
 
             Call<View_string_response> fn_Servis = _Servis.fn_GetRfidGucAyari();
+
+            Response<View_string_response> _Response = fn_Servis.execute();
+
+            if(_Response.isSuccessful())
+            {
+                View_string_response _Yanit = _Response.body();
+
+                if(_Yanit.get_zSonuc().equals("0"))
+                {
+                    _Cevap = null;
+                }
+                else
+                {
+                    _Cevap= _Yanit.get_result();
+                }
+            }
+            else
+            {
+                _Cevap = null;
+            }
+
+
+        }catch (Exception ex)
+        {
+
+        }
+
+        return  _Cevap;
+    }
+
+    public String fn_geri_besleme_onay(request_string v_Gelen)
+    {
+        String _Cevap ="";
+
+        try
+        {
+            frg_sevkiyat_islemleri_ekrani_Controller _Servis=retrofit.create(frg_sevkiyat_islemleri_ekrani_Controller.class);
+
+            Call<View_string_response> fn_Servis = _Servis.fn_geri_besleme_onay(v_Gelen);
 
             Response<View_string_response> _Response = fn_Servis.execute();
 
